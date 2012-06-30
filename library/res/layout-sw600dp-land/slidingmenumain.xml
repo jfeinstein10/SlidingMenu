@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/slidingmenulayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" >
+
+    <com.slidingmenu.lib.CustomViewBehind
+        android:id="@+id/slidingmenubehind"
+        android:layout_width="500dip"
+        android:layout_height="fill_parent"
+        android:layout_weight="0"
+        android:background="@android:color/background_light" />
+
+    <com.slidingmenu.lib.CustomViewAbove
+        android:id="@+id/slidingmenupager"
+        android:layout_width="0dip"
+        android:layout_height="fill_parent"
+        android:layout_weight="1" />
+
+</LinearLayout>
