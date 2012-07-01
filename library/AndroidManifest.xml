@@ -8,8 +8,7 @@
         android:minSdkVersion="3"
         android:targetSdkVersion="14" />
 
-    <application
-        android:theme="@style/AppTheme" >
+    <application >
         <activity android:name=".SlidingMenuActivity" />
     </application>
 

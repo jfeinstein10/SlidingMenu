@@ -16,16 +16,15 @@
 
 <resources>
 
-    <declare-styleable name="AppTheme">
-        <attr name="actionbarCompatTitleStyle" format="reference" />
-        <attr name="actionbarCompatItemStyle" format="reference" />
-        <attr name="actionbarCompatItemHomeStyle" format="reference" />
-        <attr name="actionbarCompatProgressIndicatorStyle" format="reference" />
-    </declare-styleable>
-
-    <declare-styleable name="BezelImageView">
-        <attr name="maskDrawable" format="reference" />
-        <attr name="borderDrawable" format="reference" />
+   	<declare-styleable name="SlidingMenu">
+        <attr name="viewAbove" format="reference" />
+        <attr name="viewBehind" format="reference" />
+        <attr name="behindOffset" format="dimension" />
+        <attr name="behindScrollScale" format="float" />
+        <attr name="behindSide">
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />
+        </attr>
     </declare-styleable>
 
 </resources>
