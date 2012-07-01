@@ -16,13 +16,13 @@
 
 package com.slidingmenu.lib.actionbar;
 
-import com.slidingmenu.lib.R;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.ViewGroup;
+
+import com.slidingmenu.lib.R;
 
 /**
  * A base activity that defers common functionality across app activities to an {@link

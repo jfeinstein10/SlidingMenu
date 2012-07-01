@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.actionbarsherlock</groupId>
+	<artifactId>sample-fragments</artifactId>
+	<name>Sample: Fragments</name>
+	<packaging>apk</packaging>
+
+	<parent>
+		<groupId>com.actionbarsherlock</groupId>
+		<artifactId>parent-sample</artifactId>
+		<version>4.0.1</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.google.android</groupId>
+			<artifactId>android</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.actionbarsherlock</groupId>
+			<artifactId>library</artifactId>
+			<version>${project.version}</version>
+			<type>apklib</type>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<finalName>${apk.prefix}-${project.artifactId}-unaligned</finalName>
+
+		<plugins>
+			<plugin>
+				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+				<artifactId>android-maven-plugin</artifactId>
+				<extensions>true</extensions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<configuration>
+					<configLocation>../../checkstyle.xml</configLocation>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>verify</phase>
+						<goals>
+							<goal>checkstyle</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>release</id>
+			<activation>
+				<property>
+					<name>performRelease</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+						<artifactId>android-maven-plugin</artifactId>
+						<version>${android-maven.version}</version>
+						<inherited>true</inherited>
+						<configuration>
+							<manifest>
+								<versionCodeAutoIncrement>true</versionCodeAutoIncrement>
+							</manifest>
+							<zipalign>
+								<inputApk>${project.build.directory}/${project.build.finalName}.apk</inputApk>
+								<outputApk>${project.build.directory}/${apk.prefix}-${project.artifactId}.apk</outputApk>
+							</zipalign>
+						</configuration>
+						<executions>
+							<execution>
+								<id>manifestUpdate</id>
+								<phase>process-resources</phase>
+								<goals>
+									<goal>manifest-update</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>alignApk</id>
+								<phase>package</phase>
+								<goals>
+									<goal>zipalign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+					<plugin>
+						<groupId>com.jakewharton</groupId>
+						<artifactId>github-deploy-maven-plugin</artifactId>
+						<version>1.0.1</version>
+						<configuration>
+							<types>
+								<type>aligned</type>
+							</types>
+						</configuration>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>

@@ -1,0 +1,25 @@
+/* TEAM */
+
+  Name: Jake Wharton
+  Site: http://jakewharton.com
+  EMail: jakewharton@gmail.com
+  Twitter: @JakeWharton
+  Location: Pittsburgh, PA
+
+
+
+/* THANKS */
+
+  Name: Johan Nilsson
+  Site: http://markupartist.com/
+
+
+
+/* SITE */
+
+  Last update: 2011-06-15
+  Language: English
+  Doctype: HTML5
+  Standards: HTML5, CSS2, Markdown
+  Components: jQuery, Colorbox (jQuery plugin)
+  Software: nano, jekyll, GIMP

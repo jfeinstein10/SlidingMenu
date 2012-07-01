@@ -1,0 +1,88 @@
+---
+title: Usage
+layout: default
+---
+
+
+<div class="row">
+	<div class="three-fourths">
+		<h1>Usage</h1>
+		<p>Sticking with the theme of the official compatability library, ActionBarSherlock aims to allow the use of the action bar design pattern by mimicking the experience that would be found natively on Android Ice Cream Sandwich with as little effort as required.</p>
+		<p><strong>Are you migrating an application from version 3.x to 4.x?</strong> Check out the <a href="migration.html">migration guide</a> for detailed steps that will get your app up and running with the new version.</p>
+
+		<h3>Requirements</h3>
+		<p>Due to its use of the native action bar and its related classes on Ice Cream Sandwich, the library requires that both it and your project are compiled with Android 4.0 or newer. The project also requires that you are compiling with JDK 1.6 in both your editor and any build systems that you may be using.</p>
+		<p>Since the library is an extension of the official support library you must also have the <code>android-support-v4.jar</code> referenced by your project.</p>
+
+		<h3>Including In Your Project</h3>
+		<p>There are two ways to leverage ActionBarSherlock in your projects:</p>
+		<ol>
+			<li>If you’re using the <a href="http://www.eclipse.org/">Eclipse Development Environment</a> with the <a href="http://developer.android.com/sdk/eclipse-adt.html">ADT plugin</a> version 0.9.7 or greater you can include this as a library project. Create a new Android project in Eclipse using the <code>library/</code> folder as the existing source. Then, in your project properties, add the created project under the ‘Libraries’ section of the ‘Android’ category.</li>
+			<li>
+				<p>If you use maven to build your Android project you can simply add a dependency for this library.</p>
+				<code><pre>
+&lt;dependency>
+  &lt;groupId>com.actionbarsherlock&lt;/groupId>
+  &lt;artifactId>library&lt;/artifactId>
+  &lt;version><span class="latest-version">4.0.0</span>&lt;/version>
+  &lt;type>apklib&lt;/type>
+&lt;/dependency>
+</pre></code>
+			</li>
+		</ol>
+
+		<h3>Action Bar API</h3>
+		<p>When creating an activity to use the action bar on all versions of Android, you must declare your activity to extend any of the activity classes that start with 'Sherlock' (e.g., <code>SherlockActivity</code>, <code>SherlockFragmentActivity</code>). Interaction with the action bar is handled by calling <code>getSupportActionBar()</code> (instead of <a href="http://developer.android.com/reference/android/app/Activity.html#getActionBar()"><code>getActionBar()</code></a>).</p>
+		<p>The API exposed by the <code>ActionBar</code> instance is an exact duplicate of <a href="http://developer.android.com/reference/android/app/ActionBar.html">that which the native method exposes</a>. Refer to its documentation as well as the articles on how to utilize its functionality in the &quot;Related Links&quot; section.</p>
+		<p><strong>NOTE</strong>: When using <code>SherlockFragmentActivity</code> there are also 'Sherlock'-prefixed fragment classes which you should use to ensure proper functionality (e.g. <code>SherlockFragment</code>, <code>SherlockListFragment</code>). The activity will still function with the normal fragment classes but you will not be able to use any of the menu-related methods.</p>
+
+		<h3>Required Theming</h3>
+		<p>Since the action bar widget is very complex it requires a set of default themes. The library provides three core themes&mdash;one of which <strong>must</strong> be applied to each activity on which you want the action bar present.</p>
+		<p>See the <a href="theming.html">theming page</a> for more information.</p>
+
+		<h3>Imports</h3>
+		<p>In order to provide functionality that was not available on version of Android prior to 3.0, the library includes and uses a lot of classes that are named the same as their native counterparts. The three most common are:</p>
+		<ul>
+			<li><code>com.actionbarsherlock.app.ActionBar</code></li>
+			<li><code>com.actionbarsherlock.view.Menu</code></li>
+			<li><code>com.actionbarsherlock.view.MenuItem</code></li>
+			<li><code>com.actionbarsherlock.view.MenuInflater</code></li>
+		</ul>
+		<p>It is important to ensure that you are using these types where appropriate since they contain the additional functionality required to support the action bar.</p>
+		<p><strong>NOTE</strong>: The majority of errors regarding the <code>@Override</code>-ing of methods from the activities are a result of using the incorrect imports. All of the classes which exist in the <code>com.actionbarsherlock.*</code> package whose names match that of a native class extend from that native class and as such can be used in their place.</p>
+		<p><strong>NOTE</strong>: In order to inflate your menu from XML you should call <code>getSupportMenuInflater()</code> in your activities. The fragment callbacks will already have an instance of the inflater as an argument.</p>
+
+		<h3>See Also...</h3>
+		<p>This library was meant to be as behind-the-scenes as possible and require a minimal amount of changes to support. The core usage of the action bar itself is no different than if you were interacting with the native action bar.</p>
+		<p>Be sure to also visit the following pages:</p>
+		<ul>
+			<li><a href="theming.html">Theming</a></li>
+			<li><a href="samples.html">Samples</a></li>
+			<li><a href="faq.html">Frequently Asked Questions</a></li>
+		</ul>
+	</div>
+	<div class="fourth last">
+		<h1>Related Links</h1>
+		<p>The following links are useful information on how to operate the native action bar. Other than the small tweaks mentioned on this page, the entire API is exactly the same.</p>
+
+		<h3>Class APIs</h3>
+		<dl>
+			<dt><a href="http://developer.android.com/reference/android/app/ActionBar.html">ActionBar</a></dt>
+			<dd>Main API for nearly all interaction with the action bar. <strong>This is the exact API <code>getSupportActionBar()</code> exposes.</strong></dd>
+			<dt><a href="http://developer.android.com/reference/android/app/Fragment.html">Fragment</a></dt>
+			<dd>New fundamental building block of layouts which enable your to provide rich experiences on a range of different devices without code duplication.</dd>
+		</dl>
+
+		<h3>Articles</h3>
+		<dl>
+			<dt><a href="http://developer.android.com/guide/topics/ui/actionbar.html">Using the ActionBar</a></dt>
+			<dd>Broad introduction on the action bar design paradign, the API, and common use cases.</dd>
+			<dt><a href="http://developer.android.com/guide/topics/ui/menus.html">Creating Menus</a></dt>
+			<dd>Menus drive the action bar's items.</dd>
+			<dt><a href="http://developer.android.com/sdk/compatibility-library.html#Using">Using the Compatability Libary</a></dt>
+			<dd>ActionBarSherlock is a superset of the official compatability library. All features in the Google library are also available for use through this library.</dd>
+			<dt><a href="http://developer.android.com/guide/topics/fundamentals/fragments.html">Fragments</a></dt>
+			<dd>Introduction to utilizing this new modularized view and its lifecycle.</dd>
+		</dl>
+	</div>
+</div>

@@ -1,22 +1,6 @@
-/*
- * Copyright (C) 2011 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.slidingmenu.lib;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 
 import android.content.Context;
@@ -28,14 +12,10 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.SystemClock;
 import android.support.v4.os.ParcelableCompat;
 import android.support.v4.os.ParcelableCompatCreatorCallbacks;
 import android.support.v4.view.KeyEventCompat;
-import android.support.v4.view.MotionEventCompat;
-import android.support.v4.view.VelocityTrackerCompat;
 import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewConfigurationCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.FocusFinder;
@@ -43,43 +23,13 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.SoundEffectConstants;
-import android.view.VelocityTracker;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.animation.Interpolator;
 import android.widget.Scroller;
 
-/**
- * Layout manager that allows the user to flip left and right
- * through pages of data.  You supply an implementation of a
- * {@link CustomPagerAdapter} to generate the pages that the view shows.
- *
- * <p>Note this class is currently under early design and
- * development.  The API will likely change in later updates of
- * the compatibility library, requiring changes to the source code
- * of apps when they are compiled against the newer version.</p>
- *
- * <p>CustomViewPager is most often used in conjunction with {@link android.app.Fragment},
- * which is a convenient way to supply and manage the lifecycle of each page.
- * There are standard adapters implemented for using fragments with the CustomViewPager,
- * which cover the most common use cases.  These are
- * {@link android.support.v4.app.FragmentCustomPagerAdapter},
- * {@link android.support.v4.app.FragmentStateCustomPagerAdapter},
- * {@link android.support.v13.app.FragmentCustomPagerAdapter}, and
- * {@link android.support.v13.app.FragmentStateCustomPagerAdapter}; each of these
- * classes have simple code showing how to build a full user interface
- * with them.
- *
- * <p>Here is a more complicated example of CustomViewPager, using it in conjuction
- * with {@link android.app.ActionBar} tabs.  You can find other examples of using
- * CustomViewPager in the API 4+ Support Demos and API 13+ Support Demos sample code.
- *
- * {@sample development/samples/Support13Demos/src/com/example/android/supportv13/app/ActionBarTabsPager.java
- *      complete}
- */
 public class CustomViewBehind extends ViewGroup {
 	private static final String TAG = "CustomViewPager";
 	private static final boolean DEBUG = false;
@@ -87,7 +37,6 @@ public class CustomViewBehind extends ViewGroup {
 	private static final boolean USE_CACHE = false;
 
 	private static final int MAX_SETTLE_DURATION = 600; // ms
-	private static final int MIN_DISTANCE_FOR_FLING = 25; // dips
 
 	private static final int[] LAYOUT_ATTRS = new int[] {
 		android.R.attr.layout_gravity

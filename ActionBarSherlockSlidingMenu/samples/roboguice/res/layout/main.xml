@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Welcome back, Doctor Tenma."
+        android:layout_marginBottom="20dp"
+        />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Send a remote command to Astroboy:"
+        />
+
+    <EditText
+        android:id="@+id/say_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Say Something"
+        />
+
+    <Button
+        android:id="@+id/brush_teeth"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Brush Teeth"
+        />
+
+    <Button
+        android:id="@+id/fight_evil"
+        android:tag="fightevil"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Fight Forces of Evil"
+        />
+
+
+    <Button
+        android:id="@+id/self_destruct"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Self Destruct"/>
+    
+</LinearLayout>

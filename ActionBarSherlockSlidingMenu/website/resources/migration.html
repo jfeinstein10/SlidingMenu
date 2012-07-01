@@ -1,0 +1,68 @@
+---
+title: Migration Guide
+layout: default
+---
+
+<div class="row">
+	<div class="three-fourths">
+		<h1>Migrating From Version 3.x to Version 4.0</h1>
+		<p>The migration path between ActionBarSherlock version 3 and version 4 is very straightforward and can be accomplished in four distinct steps: activities/fragments, imports, methods, and themes. Finally we'll found up some common 'gotchas' that detail differences in interaction between the two versions.</p>
+
+		<h2>Activites / Fragments</h2>
+		<p>All of the activities in this version are now prefixed with 'Sherlock'. Each one is named after the type of framework activity that it extends. You should be able to update the base activity of all your classes by only adding the prefix.</p>
+		<ul>
+			<li><code>SherlockActivity</code> extends <code>Activity</code></li>
+			<li><code>SherlockListActivity</code> extends <code>ListActivity</code></li>
+			<li><code>SherlockFragmentActivity</code> extends <code>FragmentActivity</code></li>
+		</ul>
+		<p>All of these classes are in the <code>com.actionbarsherlock.app</code> package.</p>
+		<p>When using <code>SherlockFragmentActivity</code> you should also use the 'Sherlock'-prefixed fragment classes which follow the same naming rules (e.g., <code>SherlockFragment</code>, <code>SherlockListFragment</code>).</p>
+
+		<h2>Imports</h2>
+		<p>Since the library no longer is tightly coupled with the Android support library the package has changed from being in <code>android.support.v4</code> to a much more appropriate <code>com.actionbarsherlock</code>.</p>
+		<p>Because of this change, you will need to update all of your Sherlock-related imports in every class. Some of the key offenders are:</p>
+		<ul>
+			<li><code>com.actionbarsherlock.view.Menu</code></li>
+			<li><code>com.actionbarsherlock.view.MenuItem</code></li>
+			<li><code>com.actionbarsherlock.view.MenuInflater</code></li>
+			<li><code>com.actionbarsherlock.view.Window</code></li>
+			<li><code>com.actionbarsherlock.app.ActionBar</code></li>
+		</ul>
+
+		<h2>Methods</h2>
+		<p>Very few APIs have actually changed between versions. There are only two which you should be aware of:</p>
+		<ul>
+			<li><code>getSherlockActivity()</code> in any base fragment. This returns an instance of you activity that has already been case to <code>SherlockFragmentActivity</code>.
+			<li><code>getSherlock()</code> in any base activity. This will allow access to the <code>ActionBarSherlock</code> interface which allows for interaction with all of the features of the library. Normally you would not need access to this unless you want to programmatically set the activity's UI options.</li>
+		</ul>
+
+		<h2>Themes</h2>
+		<p>Theming now more closely mirrors that of the native action bar and it should be much easier to now create them.</p>
+		<p>Updating your old themes consists of moving any 'ab'-prefixed theme attributes to the action bar style and any 'am'-prefixed theme attributes to the action mode style.</p>
+		<p>Themes must now also mirror their attributes to contain both the attributes with the 'android' namespace and ones without. The easiest way to show this comes from the 'Styled' example in the demos sample:</p>
+		<pre>&lt;style name="Theme.Styled" parent="Theme.Sherlock.Light.DarkActionBar">
+    &lt;item name="actionBarStyle">@style/Widget.Styled.ActionBar&lt;/item>
+    &lt;item name="android:actionBarStyle">@style/Widget.Styled.ActionBar&lt;/item>
+&lt;/style>
+
+&lt;style name="Widget.Styled.ActionBar" parent="Widget.Sherlock.Light.ActionBar.Solid.Inverse">
+    &lt;item name="background">@drawable/bg_striped&lt;/item>
+    &lt;item name="android:background">@drawable/bg_striped&lt;/item>
+
+    &lt;item name="backgroundSplit">@drawable/bg_striped_split&lt;/item>
+    &lt;item name="android:backgroundSplit">@drawable/bg_striped_split&lt;/item>
+&lt;/style></pre>
+
+		<h2>Gotchas</h2>
+		<ul>
+			<li>If you application targets API 14 or newer in your <code>AndroidManifest.xml</code> the home icon will automatically be disabled. You can re-enable it to register click events by calling <a href="http://developer.android.com/reference/android/app/ActionBar.html#setHomeButtonEnabled(boolean)"><code>setHomeButtonEnabled(true)</code></a>. As always, the callback will have an ID of <code>android.R.id.home</code>.</li>
+			<li>If you are using list navigation pay special attention to the 'List Navigation' example in the demos sample for direction on proper use. You need to use the library-provided layouts for both the item view and dropdown view as well as use the themed context from the action bar.</li>
+		</ul>
+	</div>
+	<div class="fourth last">
+		<h1>Learning By Example</h1>
+		<p>Since there is only so much that a guide like this can convey it is strongly recommended that you study the source code to the sample applications. They have been engineered to showcase all of the features of the action bar and their correct usage.</p>
+		<p>The samples are included in your library download in the <code>samples/</code> folder. You can also always find them by going to the <a href="http://github.com/JakeWharton/ActionBarSherlock">repository</a> directly.</p>
+		<p>If you have any ideas for additional samples please <a href="support.html">contact Jake Wharton</a> or send a pull request to the <code>dev</code> branch.</p>
+	</div>
+</div>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2011 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+
+    <!-- Variation on the Holo Light theme that styles the Action Bar -->
+    <style name="Theme.AndroidDevelopers" parent="Theme.Sherlock.Light.ForceOverflow">
+        <item name="android:actionBarItemBackground">@drawable/ad_selectable_background</item>
+        <item name="actionBarItemBackground">@drawable/ad_selectable_background</item>
+        <item name="android:popupMenuStyle">@style/MyPopupMenu</item>
+        <item name="popupMenuStyle">@style/MyPopupMenu</item>
+        <item name="android:dropDownListViewStyle">@style/MyDropDownListView</item>
+        <item name="dropDownListViewStyle">@style/MyDropDownListView</item>
+        <item name="android:actionBarTabStyle">@style/MyActionBarTabStyle</item>
+        <item name="actionBarTabStyle">@style/MyActionBarTabStyle</item>
+        <item name="android:actionDropDownStyle">@style/MyDropDownNav</item>
+        <item name="actionDropDownStyle">@style/MyDropDownNav</item>
+        <item name="android:listChoiceIndicatorMultiple">@drawable/ad_btn_check_holo_light</item>
+        <item name="android:listChoiceIndicatorSingle">@drawable/ad_btn_radio_holo_light</item>
+        <!--<item name="android:actionOverflowButtonStyle">@style/MyOverflowButton</item>-->
+    </style>
+
+    <!-- style the overflow menu -->
+    <style name="MyPopupMenu" parent="Widget.Sherlock.Light.PopupMenu">
+        <item name="android:popupBackground">@drawable/ad_menu_dropdown_panel_holo_light</item>
+    </style>
+
+    <!-- style the items within the overflow menu -->
+    <style name="MyDropDownListView" parent="Widget.Sherlock.ListView.DropDown">
+        <item name="android:listSelector">@drawable/ad_selectable_background</item>
+    </style>
+
+    <!-- style for the tabs -->
+    <style name="MyActionBarTabStyle" parent="Widget.Sherlock.Light.ActionBar.TabBar">
+        <item name="android:background">@drawable/actionbar_tab_bg</item>
+        <item name="android:paddingLeft">32dp</item>
+        <item name="android:paddingRight">32dp</item>
+    </style>
+
+    <!-- style the list navigation -->
+    <style name="MyDropDownNav" parent="Widget.Sherlock.Light.Spinner.DropDown.ActionBar">
+        <item name="android:background">@drawable/ad_spinner_background_holo_light</item>
+        <item name="android:popupBackground">@drawable/ad_menu_dropdown_panel_holo_light</item>
+        <item name="android:dropDownSelector">@drawable/ad_selectable_background</item>
+    </style>
+
+    <!-- the following can be used to style the overflow menu button
+         only do this if you have an *extremely* good reason to!! -->
+    <!--<style name="MyOverflowButton" parent="Widget.Sherlock.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_menu_view</item>
+        <item name="android:background">@drawable/action_button_background</item>
+    </style>-->
+
+</resources>

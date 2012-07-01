@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: http://actionbarsherlock.com/sitemap.xml

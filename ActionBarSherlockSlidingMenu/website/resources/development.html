@@ -1,0 +1,32 @@
+---
+title: Development
+layout: default
+---
+
+<div class="row">
+	<div class="three-fourths">
+		<h1>Development</h1>
+		<p>The ActionBarSherlock library along with its plugins and sample applications are all built using Apache Maven. Maven will automate the process of compiling and assembling the <code>apklib</code>, <code>jar</code>s, and <code>apk</code>s for each module.</p>
+		<p>Using Maven is <strong>NOT</strong> a requirement for contributing to development. It is merely used for automated testing and releasing of the libary and its sample applications.</p>
+
+		<h3 id="prerequisites">Prerequisites</h3>
+		<p>Maven compilation requires that you have the <code>ANDROID_HOME</code> environment variable defined as the path to your Android SDK directory.</p>
+		<p>For example, the following line is in my <code>~/.bash_profile</code> which sets this variable:</p>
+		<pre>export ANDROID_HOME=/home/jake/vendor/android_sdk/</pre>
+
+		<h3 id="compiling">Compiling</h3>
+		<p>Once the prerequisites have been successfully installed, building is as easy as running <code>mvn clean package</code>. The <code>apklib</code> for the library will be located in the <code>library/target/</code> folder.</p>
+		<p>You can find a <code>jar</code> for each plugin in its respective <code>target/</code> folder. The <code>apk</code>s for each of the samples are their respective <code>target/</code> folders as well.</p>
+
+		<h3 id="ide">IDE</h3>
+		<p>Even though the project uses Maven, each folder within the repository still maintains the standard Android project layout. By specifying the desired folder as an existing source for a new Android project, you should be able to successfully import the sources.</p>
+		<p>The library should be created as a project first. Any plugins and/or sample applications you also wish to create projects for can then be created.</p>
+		<p>If your IDE supports Maven you can point it at the parent <code>pom.xml</code> file in the root of the repository which will load all of the modules automatically.</p>
+	</div>
+	<div class="fourth last">
+		<h1>Getting The Code</h1>
+		<p>The source code repository is hosted on GitHub at <a href="https://github.com/JakeWharton/ActionBarSherlock">JakeWharton/ActionBarSherlock</a>.</p>
+		<p>The GitHub project is also the location of <a href="https://github.com/JakeWharton/ActionBarSherlock/issues">the issue tracker</a> as well as the source code to this website.</p>
+		<p class="centered"><a class="img" href="https://github.com/JakeWharton/ActionBarSherlock"><img src="static/octocat.png" alt="View project on GitHub"/></a></p>
+	</div>
+</div>

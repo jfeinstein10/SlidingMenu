@@ -1,0 +1,115 @@
+---
+title: Download
+layout: default
+---
+
+<script type="text/javascript">
+$(function() {
+	$.getJSON('https://api.github.com/repos/JakeWharton/ActionBarSherlock/tags?callback=?', function(response) {
+		var meta = response.meta
+		  , data = response.data
+		;
+
+		data.sort(function(o1, o2) {
+			return (o1.name > o2.name) ? -1 : 1;
+		});
+
+		var last = data[0];
+		var lastSha = last.commit.sha;
+		var lastDate = $('#latest-date').html('<em>Date unavailable</em>');
+		$('.latest-version').html(last.name);
+		$('#latest-zip').attr('href', last.zipball_url);
+		$('#latest-tarball').attr('href', last.tarball_url);
+
+		var previous = $('#previous-releases').empty();
+		$.each(data, function(index) {
+			previous.append(
+				$('<dt>Version ' + this.name + '<span class="normal"> &mdash; <em id="' + this.commit.sha + '">Date unavailable</em></span></dt>'),
+				$('<dd><a class="img" href="' + this.zipball_url + '">Zip</a> &middot; <a class="img" href="' + this.tarball_url + '">Tarball</a></dd>')
+			);
+			$.getJSON(this.commit.url + '?callback=?', function(inner) {
+				var d = new Date(inner.data.commit.author.date);
+				var month = d.getMonth() + 1;
+				if (month < 10) {
+					month = '0' + month;
+				}
+				var day = d.getDate();
+				if (day < 10) {
+					day = '0' + day;
+				}
+				var date = d.getFullYear() + '-' + month + '-' + day;
+				$('#' + inner.data.sha).html(date);
+				if (inner.data.sha === lastSha) {
+					lastDate.html(date);
+				}
+			});
+
+			//Only most recent 10 tags
+			if (index == 9) {
+				return false;
+			}
+		});
+	});
+
+	$.getJSON('https://api.github.com/repos/JakeWharton/ActionBarSherlock/downloads?callback=?', function(response) {
+		var meta = response.meta
+		  , data = response.data
+		;
+
+		var samples = $('#sample-apps').empty();
+		$.each(data, function() {
+			if (/apk$/.test(this.html_url)) {
+				samples.append(
+					$('<dt class="normal"/>').html(this.description.substring(0, 8) === "Sample: " ? this.description.substring(8) : this.description),
+					$('<dd class="sample-app"/>').append(
+						$('<a/>').attr('href', this.html_url).html('APK'),
+						' &middot; ',
+						$('<a/>').attr('href', 'http://chart.apis.google.com/chart?chs=545x545&cht=qr&chl=' + this.html_url + '&.png').html('QR Code').colorbox()
+					)
+				);
+			}/* else if (/jar$/.test(this.html_url)) {
+				plugins.append(
+					$('<dt class="normal"/>').html(this.description.substring(0, 26) === "ActionBarSherlock Plugin: " ? this.description.substring(26) : this.description),
+					$('<dd class="plugin"/>').append(
+						$('<a/>').attr('href', this.html_url).html('JAR')
+					)
+				);
+			}*/
+		});
+	});
+});
+</script>
+
+<div class="row">
+	<div class="three-fourths">
+		<h1>Download</h1>
+		<p><strong>Version <span class="latest-version">(loading)</span></strong> &mdash; <span id="latest-date">(loading)</span> (<a id="changelog" href="https://github.com/JakeWharton/ActionBarSherlock/tree/master/CHANGELOG.md#readme">change log</a>)</p>
+		<p><a class="img dl" id="latest-zip" href="https://github.com/JakeWharton/ActionBarSherlock/downloads"><img src="static/down_grey.png" alt="Zip"/> Download .zip</a></p>
+		<p><a class="img dl" id="latest-tarball" href="https://github.com/JakeWharton/ActionBarSherlock/downloads"><img src="static/down_grey.png" alt="Tarball"/> Download .tgz</a></p>
+		<!-- Download icon by Ddate Kaspar / Franziska Sponsel -->
+
+		<h3>Plugins</h3>
+		<dl id="plugins">
+			<dt class="normal"><a href="https://github.com/JakeWharton/ActionBarSherlock-Plugin-Maps/downloads">Google Maps</a></dt>
+			<dd class="plugin">Base activity which extends from <code>MapActivity</code>.</dd>
+		</dl>
+
+		<h3>Sample Applications</h3>
+		<dl id="sample-apps">
+			<dt class="normal">(loading)</dt>
+		</dl>
+
+		<h3>Third-Party Plugins</h3>
+		<dl id="third-party">
+			<dt class="normal"><a href="https://github.com/rtyley/roboguice-sherlock">RoboGuice-Sherlock</a> &mdash; Roberto Tyley</dt>
+			<dd class="plugin">Base activities and base fragments which allow for easy use of RoboGuice and ActionBarSherlock together.</dd>
+		</dl>
+	</div>
+	<div class="fourth last">
+		<h1>Release History</h1>
+		<dl id="previous-releases">
+			<dt class="normal">(loading)</dt>
+		</dl>
+		<p><a href="https://github.com/JakeWharton/ActionBarSherlock/tags">View all &raquo;</a></p>
+	</div>
+</div>

@@ -1,0 +1,236 @@
+/* ============================== */
+/* ! Layout for desktop version   */
+/* ============================== */
+
+	body {
+		font-family: "Helvetica Neue", Helvetica, sans-serif;
+		font-size: 0.85em;
+		background: #222 url('black_linen_v2.png') repeat;
+		color: #aaa;
+		padding: 30px 0 20px;
+		text-shadow: 1px 0px 3px #000;
+	}
+	body#home {
+		padding: 50px 0 20px;
+	}
+	h1 {
+		color: #ddd;
+		border-bottom: 3px solid #333;
+		margin-bottom: 0.75em;
+		font-size: 1.5em;
+	}
+	h2 {
+		color: #ccc;
+		border-bottom: 1px solid #333;
+		margin-top: 1.5em;
+		margin-bottom: 0.75em;
+		font-size: 1.35em;
+	}
+	h3 {
+		color: #c5c5c5;
+		margin-top: 2em;
+		margin-bottom: 0.75em;
+		font-size: 1.25em;
+	}
+	p { margin: 1em 0; }
+	p.lead { font-weight: bold; font-size: 1.2em; }
+	p.link { font-family: "Courier New", Monaco, "DejaVu Sans Mono", monospace; margin-left: 1em; font-size: 0.9em; }
+	ul, ol { margin: 1em 0 1em 2em; }
+	li { margin: 0.25em 0; }
+	dt { font-weight: bold; }
+	dd { margin: 0.25em 0 1em 1em; }
+	a img { border: 0; vertical-align: middle; }
+	a:link, a:visited, a:active { color: #72a4b4; text-shadow: 1px 0px 1px #000; text-decoration: none; font-weight: bold; }
+	a:hover { border-bottom: 1px #72a4b4 dotted; }
+	a.img:hover { border-bottom: 0px; }
+
+	.normal { font-weight: normal; }
+	.centered { text-align: center; }
+
+	.warning { border: 1px solid #d33; padding: 1em; margin: 2em 3em; background-color: rgba(255, 0, 0, 0.2); color: #ddd; }
+
+	#header { margin: 0; }
+
+	#nav { margin: 1em 0 2em; }
+	#nav ul { margin: 0; padding: 0; overflow: hidden; }
+	#nav li { list-style: none; margin: 1em; padding: 0 0 1px 0; float: left; }
+	#nav li:first-child { margin-left: 0; }
+	#nav li:last-child { margin-right: 0; }
+
+	#feature { color: #ddd; padding-bottom: 10px; }
+	#features { margin-top: 60px; }
+	.feature { padding-bottom: 1px; }
+	.feature h1 a:link, .feature h1 a:visited, .feature h1 a:active { color: #fff; }
+	.feature h1 a:hover { border-bottom: none; }
+	#apps { margin-top: 60px; }
+	.app { margin-bottom: 2em; float: left; }
+	.app img { float: left; }
+	.app .info { margin-left: 90px; }
+	.app h4 { margin: 0; font-size: 1.25em; }
+	.app p { margin: .5em 0; }
+
+	.gallery { margin: 1em; background-color: rgba(0, 0, 0, 0.1); padding: 1em 0 0 1em; overflow: hidden; }
+	.gallery a { display: inline-block; float: left; margin: 0 1em 1em 0; }
+
+	#footer { margin-top: 60px; font-size: 0.9em; color: #666; }
+	#footer p { margin: 0; }
+	#footer a:link, #footer a:visited, #footer a:active { color: #666; text-decoration: underline; text-shadow: 1px 0px 3px #000; }
+	#footer a:hover { border-bottom: 0; color: #888; }
+	#footer .social { text-align: right; }
+
+	#sherlock { float: left; margin-right: 30px; }
+	#sherlock a:hover { border-bottom: none; }
+
+	#download { text-align: center; margin-top: 2.5em; margin-bottom: 2em; white-space: nowrap; }
+	#download p { background: #333; display: inline; padding: 8px 15px; border-radius: 10px; text-shadow: none; font-weight: bold; }
+	#download p span { padding-right: 5px; }
+	#download p a { padding: 1px 3px; }
+	#download_more { font-weight: normal; color: #666; text-shadow: none; font-size: 0.9em; }
+	#download_more:hover { border-bottom: none; color: #999; }
+
+	#theming ul li { color: #666; }
+	#theming ul li code { color: #bbb; }
+
+	#faq-table { border-collapse: collapse; width: 100%; border-top: 1px solid #333; margin-top: 50px; }
+	#faq-table th, #faq-table td { border-bottom: 1px solid #333; padding: 1.5em 0; text-align: left; vertical-align: top; }
+	#faq-table th { color: #ccc; padding-right: 1em; width: 50%; }
+	#faq-table td { padding-left: 1em; width: 50%; }
+	#faq-table td p:first-child { margin-top: 0; }
+	#faq-table td p:last-child { margin-bottom: 0; }
+
+	#changelog-content {
+		color: #444;
+		text-shadow: 1px 0px 3px #ddd;
+	}
+	#changelog-content h1 { color: #000; }
+	#changelog-content h2 { color: #222; }
+	#changelog-content a:link, #changelog-content a:visited, #changelog-content a:active, #changelog-content a:hover { color: #33d; text-shadow: 0px 0px 0px; font-weight: normal; }
+	#changelog-content a:hover { border-bottom-color: #33f; }
+
+	.dl {
+		font-size: 24px;
+		line-height: 24px;
+	}
+
+
+/*
+    ColorBox Core Style:
+    The following CSS is consistent between example themes and should not be altered.
+*/
+#colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:9999; overflow:hidden;}
+#cboxOverlay{position:fixed; width:100%; height:100%;}
+#cboxMiddleLeft, #cboxBottomLeft{clear:left;}
+#cboxContent{position:relative;}
+#cboxLoadedContent{overflow:auto;}
+#cboxTitle{margin:0;}
+#cboxLoadingOverlay, #cboxLoadingGraphic{position:absolute; top:0; left:0; width:100%;}
+#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow{cursor:pointer;}
+.cboxPhoto{float:left; margin:auto; border:0; display:block;}
+.cboxIframe{width:100%; height:100%; display:block; border:0;}
+
+/*
+    User Style:
+    Change the following styles to modify the appearance of ColorBox.  They are
+    ordered & tabbed in a way that represents the nesting of the generated HTML.
+*/
+#cboxOverlay{background:url('overlay.png') repeat 0 0;}
+#colorbox{}
+    #cboxTopLeft{width:21px; height:21px; background:url('controls.png') no-repeat -100px 0;}
+    #cboxTopRight{width:21px; height:21px; background:url('controls.png') no-repeat -129px 0;}
+    #cboxBottomLeft{width:21px; height:21px; background:url('controls.png') no-repeat -100px -29px;}
+    #cboxBottomRight{width:21px; height:21px; background:url('controls.png') no-repeat -129px -29px;}
+    #cboxMiddleLeft{width:21px; background:url('controls.png') left top repeat-y;}
+    #cboxMiddleRight{width:21px; background:url('controls.png') right top repeat-y;}
+    #cboxTopCenter{height:21px; background:url('border.png') 0 0 repeat-x;}
+    #cboxBottomCenter{height:21px; background:url('border.png') 0 -29px repeat-x;}
+    #cboxContent{background:#fff; overflow:hidden;}
+        #cboxError{padding:50px; border:1px solid #ccc;}
+        #cboxLoadedContent{margin-bottom:28px;}
+        #cboxTitle{position:absolute; bottom:4px; left:0; text-align:center; width:100%; text-shadow: none; color: #333;}
+        #cboxCurrent{display:none;}
+        #cboxSlideshow{position:absolute; bottom:4px; right:30px; color:#0092ef;}
+        #cboxPrevious{position:absolute; bottom:0; left:0; background:url('controls.png') no-repeat -75px 0; width:25px; height:25px; text-indent:-9999px;}
+        #cboxPrevious.hover{background-position:-75px -25px;}
+        #cboxNext{position:absolute; bottom:0; left:27px; background:url('controls.png') no-repeat -50px 0; width:25px; height:25px; text-indent:-9999px;}
+        #cboxNext.hover{background-position:-50px -25px;}
+        #cboxLoadingOverlay{background:url('loading_background.png') no-repeat center center;}
+        #cboxLoadingGraphic{background:url('loading.gif') no-repeat center center;}
+        #cboxClose{position:absolute; bottom:0; right:0; background:url('controls.png') no-repeat -25px 0; width:25px; height:25px; text-indent:-9999px;}
+        #cboxClose.hover{background-position:-25px -25px;}
+
+/*
+  The following fixes a problem where IE7 and IE8 replace a PNG's alpha transparency with a black fill
+  when an alpha filter (opacity change) is set on the element or ancestor element.  This style is not applied to IE9.
+*/
+.cboxIE #cboxTopLeft,
+.cboxIE #cboxTopCenter,
+.cboxIE #cboxTopRight,
+.cboxIE #cboxBottomLeft,
+.cboxIE #cboxBottomCenter,
+.cboxIE #cboxBottomRight,
+.cboxIE #cboxMiddleLeft,
+.cboxIE #cboxMiddleRight {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF);
+}
+
+/*
+  The following provides PNG transparency support for IE6
+*/
+.cboxIE6 #cboxTopLeft{background:url(images/ie6/borderTopLeft.png);}
+.cboxIE6 #cboxTopCenter{background:url(images/ie6/borderTopCenter.png);}
+.cboxIE6 #cboxTopRight{background:url(images/ie6/borderTopRight.png);}
+.cboxIE6 #cboxBottomLeft{background:url(images/ie6/borderBottomLeft.png);}
+.cboxIE6 #cboxBottomCenter{background:url(images/ie6/borderBottomCenter.png);}
+.cboxIE6 #cboxBottomRight{background:url(images/ie6/borderBottomRight.png);}
+.cboxIE6 #cboxMiddleLeft{background:url(images/ie6/borderMiddleLeft.png);}
+.cboxIE6 #cboxMiddleRight{background:url(images/ie6/borderMiddleRight.png);}
+
+.cboxIE6 #cboxTopLeft,
+.cboxIE6 #cboxTopCenter,
+.cboxIE6 #cboxTopRight,
+.cboxIE6 #cboxBottomLeft,
+.cboxIE6 #cboxBottomCenter,
+.cboxIE6 #cboxBottomRight,
+.cboxIE6 #cboxMiddleLeft,
+.cboxIE6 #cboxMiddleRight {
+    _behavior: expression(this.src = this.src ? this.src : this.currentStyle.backgroundImage.split('"')[1], this.style.background = "none", this.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src=" + this.src + ", sizingMethod='scale')");
+}
+
+
+/* ============================= */
+/* ! Layout for mobile version   */
+/* ============================= */
+
+@media handheld, only screen and (max-width: 767px) {
+	body { }
+	#body { padding: 0; }
+	#nav li { margin: 0.5em 0; width: 29%; text-align: center; padding: 0 2%; }
+
+	h1, h2, h3, h4, h5, h6 { margin-top: 40px; }
+
+	#header { padding-right: 15px; }
+	#header.small { padding-right: 40px; }
+	#features { margin-top: 0; }
+	#footer { margin-top: 50px; }
+	#sherlock { display: none; }
+	#footer .social { text-align: left; }
+	#github img { height: 100px; }
+
+	#faq-table { display: block; width: 100%; }
+	#faq-table tbody { display: block; }
+	#faq-table tr { display: block; width: 100%; }
+	#faq-table th, #faq-table td { display: block; width: 100%; padding-right: 0; padding-left: 0; margin: 0; }
+	#faq-table th { border-bottom: none; padding-bottom: 0; }
+}
+
+
+/* ========================================== */
+/* ! Provide higher res assets for iPhone 4   */
+/* ========================================== */
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+/*	.logo {
+		background: url(logo2x.jpg) no-repeat;
+		background-size: 212px 303px;
+	}*/
+}

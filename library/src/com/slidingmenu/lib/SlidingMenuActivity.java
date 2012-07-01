@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -18,25 +17,25 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.actionbarsherlock.ActionBarSherlockCompat;
+import com.actionbarsherlock.app.SherlockActivity;
 import com.slidingmenu.lib.CustomViewAbove.LayoutParams;
-import com.slidingmenu.lib.actionbar.ActionBarActivity;
-import com.slidingmenu.lib.actionbar.ActionBarHelper;
 
-public class SlidingMenuActivity extends ActionBarActivity {
+public class SlidingMenuActivity extends SherlockActivity {
 
 	private SlidingMenu mSlidingMenu;
-	private View mLayout;
-	private boolean mContentViewCalled = false;
-	private boolean mBehindContentViewCalled = false;
+	private View mMainLayout;
+	private boolean mContentViewCalled = true;
+	private boolean mBehindContentViewCalled = true;
 	private SlidingMenuList mMenuList;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		View blah = getWindow().getDecorView();
 //		getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 		super.setContentView(R.layout.slidingmenumain);
 		mSlidingMenu = (SlidingMenu) super.findViewById(R.id.slidingmenulayout);
-		mLayout = super.findViewById(R.id.slidingmenulayout);
-		mActionBarHelper.setRefreshActionItemState(true);
+		mMainLayout = super.findViewById(R.id.slidingmenulayout);
 	}
 
 	public void onPostCreate(Bundle savedInstanceState) {
@@ -70,19 +69,12 @@ public class SlidingMenuActivity extends ActionBarActivity {
 		if (!mContentViewCalled) {
 			mContentViewCalled = true;
 		}
-		RelativeLayout layout = new RelativeLayout(this);
-		layout.setLayoutParams(new ViewGroup.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
-
-		RelativeLayout.LayoutParams p1 = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, 
-				(int) getResources().getDimension(R.dimen.actionbar_compat_height));
-		p1.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
-		layout.addView(mActionBarHelper.getActionBar(), p1);
-
-		RelativeLayout.LayoutParams p2 = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
-		p2.addRule(RelativeLayout.BELOW, mActionBarHelper.getActionBar().getId());
-		p2.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
-		layout.addView(v, p2);
-		mSlidingMenu.setAboveContent(layout, params);
+		View blah = getWindow().getDecorView();
+		RelativeLayout mainView = new RelativeLayout(this);
+		((ActionBarSherlockCompat)getSherlock()).generateLayout(mainView);
+		getSherlock().setContentView(v);
+		mSlidingMenu.setAboveContent(mainView, params);
+		blah = getWindow().getDecorView();
 	}
 
 	public void setBehindContentView(int id) {
@@ -101,7 +93,7 @@ public class SlidingMenuActivity extends ActionBarActivity {
 	}
 
 	private boolean isStatic() {
-		return mLayout instanceof LinearLayout;
+		return mMainLayout instanceof LinearLayout;
 	}
 
 	public int getBehindOffset() {
@@ -137,12 +129,12 @@ public class SlidingMenuActivity extends ActionBarActivity {
 	}
 
 	public void showAbove() {
-		//		if (isStatic()) return;
+		if (isStatic()) return;
 		mSlidingMenu.showAbove();
 	}
 
 	public void showBehind() {
-		//		if (isStatic()) return;
+		if (isStatic()) return;
 		mSlidingMenu.showBehind();
 	}
 
