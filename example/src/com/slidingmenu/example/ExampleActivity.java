@@ -16,7 +16,6 @@ public class ExampleActivity extends SlidingMenuActivity {
 		setBehindOffset((int)getResources().getDimension(R.dimen.actionbar_home_width));
 		setBehindScrollScale(0.5f);
 		this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		View v = this.getWindow().getDecorView();
 	}
 	
 	public boolean onOptionsItemSelected(MenuItem item) {

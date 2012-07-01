@@ -30,7 +30,6 @@ public class SlidingMenuActivity extends SherlockActivity {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		View blah = getWindow().getDecorView();
 //		getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 		super.setContentView(R.layout.slidingmenumain);
 		mSlidingMenu = (SlidingMenu) super.findViewById(R.id.slidingmenulayout);
@@ -59,12 +58,10 @@ public class SlidingMenuActivity extends SherlockActivity {
 		if (!mContentViewCalled) {
 			mContentViewCalled = true;
 		}
-		View blah = getWindow().getDecorView();
 		RelativeLayout mainView = new RelativeLayout(this);
 		((ActionBarSherlockCompat)getSherlock()).generateLayout(mainView);
 		getSherlock().setContentView(v);
-		mSlidingMenu.setAboveContent(mainView, params);
-		blah = getWindow().getDecorView();
+		mSlidingMenu.setAboveView(mainView, params);
 	}
 
 	public void setBehindContentView(int id) {
@@ -79,7 +76,7 @@ public class SlidingMenuActivity extends SherlockActivity {
 		if (!mBehindContentViewCalled) {
 			mBehindContentViewCalled = true;
 		}
-		mSlidingMenu.setBehindContent(v);
+		mSlidingMenu.setBehindView(v);
 	}
 
 	private boolean isStatic() {
