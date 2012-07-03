@@ -3,12 +3,15 @@ SlidingMenu
 
 A sample Android project to explore creating slide-in menus like in the Spotify and Facebook applications. You may use it in your Android apps provided that you cite this project and include the license in your app. Thanks!
 
-Here's a YouTube video of it in action : ![Example Video][1]
+Here's a YouTube video of it in action :  http://www.youtube.com/watch?v=dfR9kR55E8I
 
 How to Use
 ==========
+In order to integrate SlidingMenu into your own projects you can do one of two things.
 
+1 - You can embed the SlidingMenu at the Activity level by making your Activity extend SlidingMenuActivity.
 
+2 - You can use the SlidingMenu view directly in your xml layouts or programmatically in you Java code.
 
 Developed By
 ============
@@ -30,5 +33,3 @@ License
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-
-[1]: http://www.youtube.com/watch?v=dfR9kR55E8I
