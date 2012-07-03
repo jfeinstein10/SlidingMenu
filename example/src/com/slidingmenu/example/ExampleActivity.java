@@ -1,13 +1,12 @@
 package com.slidingmenu.example;
 
 import android.os.Bundle;
-import android.view.View;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.slidingmenu.lib.SlidingMenuActivity;
+import com.slidingmenu.lib.app.SlidingActivity;
 
-public class ExampleActivity extends SlidingMenuActivity {
+public class ExampleActivity extends SlidingActivity {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

@@ -1,4 +1,4 @@
-package com.slidingmenu.lib;
+package com.slidingmenu.lib.app;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -19,8 +19,10 @@ import android.widget.TextView;
 import com.actionbarsherlock.ActionBarSherlockCompat;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.slidingmenu.lib.CustomViewAbove.LayoutParams;
+import com.slidingmenu.lib.R;
+import com.slidingmenu.lib.SlidingMenu;
 
-public class SlidingMenuActivity extends SherlockActivity {
+public class SlidingActivity extends SherlockActivity {
 
 	private SlidingMenu mSlidingMenu;
 	private View mMainLayout;
@@ -193,7 +195,7 @@ public class SlidingMenuActivity extends SherlockActivity {
 			mListener = listener;
 		}
 		public View toListViewRow() {
-			View v = SlidingMenuActivity.this.getLayoutInflater().inflate(R.layout.slidingmenurow, null);
+			View v = SlidingActivity.this.getLayoutInflater().inflate(R.layout.slidingmenurow, null);
 			((TextView)v.findViewById(R.id.slidingmenurowtitle)).setText(mTitle);
 			((ImageView)v.findViewById(R.id.slidingmenurowicon)).setImageDrawable(mIcon);
 			return v;
