@@ -2,7 +2,9 @@ SlidingMenu
 ===========
 
 A sample Android project to explore creating slide-in menus like in the Spotify and Facebook applications. 
-You can use it all you want in your Android apps provided that you cite this project and include the license in your app.
+You can use it all you want in your Android apps provided that you cite this project and include the 
+license in your app. Also, remember to include the [ActionBarSherlock][2] license if you choose to use the
+provided ActionBar.
 
 Here's a very early (~3 weeks ago) demo video of it in action :  http://www.youtube.com/watch?v=dfR9kR55E8I
 
