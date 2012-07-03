@@ -32,6 +32,7 @@ rows of a ListView.
 
 Customizing SlidingMenu
 -----------------------
+To come soon!
 
 Developed By
 ------------
