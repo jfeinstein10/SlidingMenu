@@ -13,7 +13,7 @@ A better video showing the new [ActionBarSherlock][2] integration will come soon
 Also, you can follow the project on Twitter : [@SlidingMenu][1]
 
 How to Integrate this Library into Your Projects
-================================================
+------------------------------------------------
 In order to integrate SlidingMenu into your own projects you can do one of two things.
 
 __1.__      You can embed the SlidingMenu at the Activity level by making your Activity extend SlidingMenuActivity.
@@ -30,14 +30,14 @@ rows of a ListView.
 * So. Many. Possibilities.
 
 Customizing SlidingMenu
-=======================
+-----------------------
 
 Developed By
-============
+------------
 * Jeremy Feinstein
 
 License
-=======
+-------
 
     Copyright 2012 Jeremy Feinstein
     
