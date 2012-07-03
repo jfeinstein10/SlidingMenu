@@ -15,17 +15,15 @@ How to Integrate this Library into Your Projects
 In order to integrate SlidingMenu into your own projects you can do one of two things.
 
 1 - You can embed the SlidingMenu at the Activity level by making your Activity extend SlidingMenuActivity.
-If you choose to do it this way, you have access to a built-in ActionBar via Jake Wharton's [ActionBarSherlock][2].
+* If you choose to do it this way, you have access to a built-in ActionBar via Jake Wharton's [ActionBarSherlock][2].
 The ActionBar will slide with the "above" portion of the SlidingMenu.
-
 * In your Activity's onCreate method, you will have to call setContentView, as usual, and also setBehindContentView,
 which has the same syntax as setContentView. setBehindContentView will place the view in the "behind" portion of
 the SlidingMenu. You also have access to methods such as toggle() and showMenu() at the Activity level. 
-
 * More variants of SlidingMenuActivity will be coming soon, such as SlidingFragmentActivity, etc.
 
 2 - You can use the SlidingMenu view directly in your xml layouts or programmatically in you Java code.
-This way, you can treat SlidingMenu as you would any other view type and put it in crazy awesome places like in the
+* This way, you can treat SlidingMenu as you would any other view type and put it in crazy awesome places like in the
 rows of a ListView: 
 * So. Many. Possibilities.
 
