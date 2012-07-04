@@ -46,7 +46,17 @@ public class ExampleActivity extends SlidingListActivity implements TabListener 
 
 	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
-		
+		switch (tab.getPosition()) {
+		case 0:
+			findViewById(R.id.main).setBackgroundResource(android.R.color.white);
+			break;
+		case 1:
+			findViewById(R.id.main).setBackgroundResource(android.R.color.black);
+			break;
+		case 2:
+			findViewById(R.id.main).setBackgroundResource(android.R.color.darker_gray);
+			break;
+		}
 	}
 
 	@Override
