@@ -1104,44 +1104,44 @@ public class CustomViewAbove extends ViewGroup {
 		 */
 		protected void onPageScrolled(int position, float offset, int offsetPixels) {
 			// Offset any decor views if needed - keep them on-screen at all times.
-//			if (mDecorChildCount > 0) {
-//				final int scrollX = getScrollX();
-//				int paddingLeft = getPaddingLeft();
-//				int paddingRight = getPaddingRight();
-//				final int width = getWidth();
-//				final int childCount = getChildCount();
-//				for (int i = 0; i < childCount; i++) {
-//					final View child = getChildAt(i);
-//					final LayoutParams lp = (LayoutParams) child.getLayoutParams();
-//					if (!lp.isDecor) continue;
-//
-//					final int hgrav = lp.gravity & Gravity.HORIZONTAL_GRAVITY_MASK;
-//					int childLeft = 0;
-//					switch (hgrav) {
-//					default:
-//						childLeft = paddingLeft;
-//						break;
-//					case Gravity.LEFT:
-//						childLeft = paddingLeft;
-//						paddingLeft += child.getWidth();
-//						break;
-//					case Gravity.CENTER_HORIZONTAL:
-//						childLeft = Math.max((width - child.getMeasuredWidth()) / 2,
-//								paddingLeft);
-//						break;
-//					case Gravity.RIGHT:
-//						childLeft = width - paddingRight - child.getMeasuredWidth();
-//						paddingRight += child.getMeasuredWidth();
-//						break;
-//					}
-//					childLeft += scrollX;
-//
-//					final int childOffset = childLeft - child.getLeft();
-//					if (childOffset != 0) {
-//						child.offsetLeftAndRight(childOffset);
-//					}
-//				}
-//			}
+			//			if (mDecorChildCount > 0) {
+			//				final int scrollX = getScrollX();
+			//				int paddingLeft = getPaddingLeft();
+			//				int paddingRight = getPaddingRight();
+			//				final int width = getWidth();
+			//				final int childCount = getChildCount();
+			//				for (int i = 0; i < childCount; i++) {
+			//					final View child = getChildAt(i);
+			//					final LayoutParams lp = (LayoutParams) child.getLayoutParams();
+			//					if (!lp.isDecor) continue;
+			//
+			//					final int hgrav = lp.gravity & Gravity.HORIZONTAL_GRAVITY_MASK;
+			//					int childLeft = 0;
+			//					switch (hgrav) {
+			//					default:
+			//						childLeft = paddingLeft;
+			//						break;
+			//					case Gravity.LEFT:
+			//						childLeft = paddingLeft;
+			//						paddingLeft += child.getWidth();
+			//						break;
+			//					case Gravity.CENTER_HORIZONTAL:
+			//						childLeft = Math.max((width - child.getMeasuredWidth()) / 2,
+			//								paddingLeft);
+			//						break;
+			//					case Gravity.RIGHT:
+			//						childLeft = width - paddingRight - child.getMeasuredWidth();
+			//						paddingRight += child.getMeasuredWidth();
+			//						break;
+			//					}
+			//					childLeft += scrollX;
+			//
+			//					final int childOffset = childLeft - child.getLeft();
+			//					if (childOffset != 0) {
+			//						child.offsetLeftAndRight(childOffset);
+			//					}
+			//				}
+			//			}
 
 			if (mOnPageChangeListener != null) {
 				mOnPageChangeListener.onPageScrolled(position, offset, offsetPixels);
@@ -1466,9 +1466,13 @@ public class CustomViewAbove extends ViewGroup {
 			}
 			return true;
 		}
-		
+
 		private float mScrollScale;
-		
+
+		public float getScrollScale() {
+			return mScrollScale;
+		}
+
 		public void setScrollScale(float f) {
 			if (f >= 0 && f <= 1) {
 				mScrollScale = f;
@@ -1480,7 +1484,7 @@ public class CustomViewAbove extends ViewGroup {
 			super.scrollTo(x, y);
 			if (mCustomViewBehind != null && mEnabled) {
 				mCustomViewBehind.scrollTo((int)(x*mScrollScale), y);
-//				mCustomViewBehind.scrollTo(x*mScrollScale, y);
+				//				mCustomViewBehind.scrollTo(x*mScrollScale, y);
 			}
 		}
 

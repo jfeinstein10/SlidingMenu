@@ -1,0 +1,7 @@
+package com.slidingmenu.lib.app;
+
+import SherlockListActivity;
+
+public class SlidingListActivity extends SherlockListActivity {
+
+}

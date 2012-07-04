@@ -116,12 +116,37 @@ public class SlidingMenu extends RelativeLayout {
 	
 	/**
 	 * 
-	 * @param i The margin on the right of the screen that 
+	 * @return The margin on the right of the screen that the behind view scrolls to
+	 */
+	public int getBehindOffset() {
+		return ((RelativeLayout.LayoutParams)mViewBehind.getLayoutParams()).rightMargin;
+	}
+	
+	/**
+	 * 
+	 * @param i The margin on the right of the screen that the behind view scrolls to
 	 */
 	public void setBehindOffset(int i) {
 		((RelativeLayout.LayoutParams)mViewBehind.getLayoutParams()).setMargins(0, 0, i, 0);
 	}
-
+	
+	/**
+	 * 
+	 * @param res The dimension resource to be set as the behind offset
+	 */
+	public void setBehindOffsetRes(int res) {
+		int i = (int) getContext().getResources().getDimension(res);
+		setBehindOffset(i);
+	}
+	
+	/**
+	 * 
+	 * @return The scale of the parallax scroll
+	 */
+	public float getBehindScrollScale() {
+		return mViewAbove.getScrollScale();
+	}
+	
 	/**
 	 * 
 	 * @param f The scale of the parallax scroll (i.e. 1.0f scrolls 1 pixel for every

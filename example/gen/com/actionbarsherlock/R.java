@@ -147,22 +147,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int actionSpinnerItemStyle=0x7f010030;
-        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-         */
-        public static final int actionbarCompatItemHomeStyle=0x7f010053;
-        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-         */
-        public static final int actionbarCompatItemStyle=0x7f010052;
-        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-         */
-        public static final int actionbarCompatProgressIndicatorStyle=0x7f010054;
-        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-         */
-        public static final int actionbarCompatTitleStyle=0x7f010051;
         /**  Drawable used as a background for activated items. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
@@ -192,10 +176,35 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
          */
         public static final int backgroundStacked=0x7f010040;
-        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
          */
-        public static final int borderDrawable=0x7f010056;
+        public static final int behindOffset=0x7f010053;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int behindScrollScale=0x7f010054;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>left</code></td><td>0</td><td></td></tr>
+<tr><td><code>right</code></td><td>1</td><td></td></tr>
+</table>
+         */
+        public static final int behindSide=0x7f010055;
         /**  Small Button style. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
@@ -380,10 +389,6 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int logo=0x7f01003f;
-        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-         */
-        public static final int maskDrawable=0x7f010055;
         /**  The type of navigation to use. 
          <p>Must be one of the following constant values.</p>
 <table>
@@ -512,6 +517,14 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int verticalDivider=0x7f010049;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int viewAbove=0x7f010051;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int viewBehind=0x7f010052;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -616,11 +629,10 @@ containing a value of this type.
         public static final int abs__bright_foreground_inverse_holo_dark=0x7f060006;
         public static final int abs__bright_foreground_inverse_holo_light=0x7f060007;
         public static final int abs__holo_blue_light=0x7f060008;
-        public static final int abs__primary_text_disable_only_holo_dark=0x7f06000a;
-        public static final int abs__primary_text_disable_only_holo_light=0x7f06000b;
-        public static final int abs__primary_text_holo_dark=0x7f06000c;
-        public static final int abs__primary_text_holo_light=0x7f06000d;
-        public static final int actionbar_title_color=0x7f060009;
+        public static final int abs__primary_text_disable_only_holo_dark=0x7f060009;
+        public static final int abs__primary_text_disable_only_holo_light=0x7f06000a;
+        public static final int abs__primary_text_holo_dark=0x7f06000b;
+        public static final int abs__primary_text_holo_light=0x7f06000c;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -721,11 +733,8 @@ containing a value of this type.
  Minimum width for an action button in the menu area of an action bar 
          */
         public static final int action_button_min_width=0x7f07000b;
-        public static final int actionbar_compat_button_home_width=0x7f07000e;
-        public static final int actionbar_compat_button_width=0x7f07000d;
-        public static final int actionbar_compat_height=0x7f07000c;
-        public static final int actionbar_height=0x7f070010;
-        public static final int actionbar_home_width=0x7f07000f;
+        public static final int actionbar_height=0x7f07000d;
+        public static final int actionbar_home_width=0x7f07000c;
     }
     public static final class drawable {
         public static final int abs__ab_bottom_solid_dark_holo=0x7f020000;
@@ -821,69 +830,57 @@ containing a value of this type.
         public static final int abs__tab_unselected_focused_holo=0x7f02005a;
         public static final int abs__tab_unselected_holo=0x7f02005b;
         public static final int abs__tab_unselected_pressed_holo=0x7f02005c;
-        public static final int actionbar_compat_item=0x7f02005d;
-        public static final int actionbar_compat_item_focused=0x7f02005e;
-        public static final int actionbar_compat_item_pressed=0x7f02005f;
-        public static final int actionbar_shadow=0x7f020060;
-        public static final int ic_action_refresh=0x7f020061;
-        public static final int ic_action_search=0x7f020062;
-        public static final int ic_action_share=0x7f020063;
-        public static final int ic_home=0x7f020064;
-        public static final int ic_launcher=0x7f020065;
-        public static final int ic_menu_share=0x7f020066;
+        public static final int ic_launcher=0x7f02005d;
     }
     public static final class id {
-        public static final int abs__action_bar=0x7f040027;
-        public static final int abs__action_bar_container=0x7f040026;
-        public static final int abs__action_bar_subtitle=0x7f040016;
-        public static final int abs__action_bar_title=0x7f040015;
-        public static final int abs__action_context_bar=0x7f040028;
+        public static final int abs__action_bar=0x7f040024;
+        public static final int abs__action_bar_container=0x7f040023;
+        public static final int abs__action_bar_subtitle=0x7f040013;
+        public static final int abs__action_bar_title=0x7f040012;
+        public static final int abs__action_context_bar=0x7f040025;
         public static final int abs__action_menu_divider=0x7f04000c;
         public static final int abs__action_menu_presenter=0x7f04000d;
-        public static final int abs__action_mode_bar=0x7f04002b;
-        public static final int abs__action_mode_bar_stub=0x7f04002a;
-        public static final int abs__action_mode_close_button=0x7f040019;
-        public static final int abs__activity_chooser_view_content=0x7f04001a;
-        public static final int abs__checkbox=0x7f040023;
-        public static final int abs__content=0x7f040022;
-        public static final int abs__default_activity_button=0x7f04001d;
-        public static final int abs__expand_activities_button=0x7f04001b;
+        public static final int abs__action_mode_bar=0x7f040028;
+        public static final int abs__action_mode_bar_stub=0x7f040027;
+        public static final int abs__action_mode_close_button=0x7f040016;
+        public static final int abs__activity_chooser_view_content=0x7f040017;
+        public static final int abs__checkbox=0x7f040020;
+        public static final int abs__content=0x7f04001f;
+        public static final int abs__default_activity_button=0x7f04001a;
+        public static final int abs__expand_activities_button=0x7f040018;
         public static final int abs__home=0x7f04000a;
-        public static final int abs__icon=0x7f04001f;
-        public static final int abs__image=0x7f04001c;
-        public static final int abs__imageButton=0x7f040017;
-        public static final int abs__list_item=0x7f04001e;
+        public static final int abs__icon=0x7f04001c;
+        public static final int abs__image=0x7f040019;
+        public static final int abs__imageButton=0x7f040014;
+        public static final int abs__list_item=0x7f04001b;
         public static final int abs__progress_circular=0x7f04000e;
         public static final int abs__progress_horizontal=0x7f04000f;
-        public static final int abs__radio=0x7f040025;
-        public static final int abs__shortcut=0x7f040024;
-        public static final int abs__split_action_bar=0x7f040029;
-        public static final int abs__textButton=0x7f040018;
-        public static final int abs__title=0x7f040020;
-        public static final int abs__titleDivider=0x7f040021;
+        public static final int abs__radio=0x7f040022;
+        public static final int abs__shortcut=0x7f040021;
+        public static final int abs__split_action_bar=0x7f040026;
+        public static final int abs__textButton=0x7f040015;
+        public static final int abs__title=0x7f04001d;
+        public static final int abs__titleDivider=0x7f04001e;
         public static final int abs__up=0x7f04000b;
-        public static final int actionbar_compat=0x7f040010;
-        public static final int actionbar_compat_item_refresh=0x7f040013;
-        public static final int actionbar_compat_item_refresh_progress=0x7f040012;
-        public static final int actionbar_compat_title=0x7f040011;
-        public static final int button=0x7f04002e;
+        public static final int button=0x7f04002b;
         public static final int disableHome=0x7f040009;
         public static final int homeAsUp=0x7f040006;
+        public static final int item1=0x7f040031;
+        public static final int item2=0x7f040032;
+        public static final int left=0x7f040010;
         public static final int listMode=0x7f040002;
-        public static final int logo=0x7f04002c;
-        public static final int logo2=0x7f04002d;
-        public static final int menu_refresh=0x7f040014;
-        public static final int menu_search=0x7f040034;
-        public static final int menu_share=0x7f040035;
+        public static final int logo=0x7f040029;
+        public static final int logo2=0x7f04002a;
         public static final int normal=0x7f040001;
+        public static final int right=0x7f040011;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;
         public static final int showTitle=0x7f040007;
-        public static final int slidingmenubehind=0x7f040030;
-        public static final int slidingmenulayout=0x7f04002f;
-        public static final int slidingmenupager=0x7f040031;
-        public static final int slidingmenurowicon=0x7f040032;
-        public static final int slidingmenurowtitle=0x7f040033;
+        public static final int slidingmenubehind=0x7f04002d;
+        public static final int slidingmenulayout=0x7f04002c;
+        public static final int slidingmenupager=0x7f04002e;
+        public static final int slidingmenurowicon=0x7f04002f;
+        public static final int slidingmenurowtitle=0x7f040030;
         public static final int tabMode=0x7f040003;
         public static final int useLogo=0x7f040004;
         public static final int wrap_content=0x7f040000;
@@ -912,13 +909,13 @@ containing a value of this type.
         public static final int abs__screen_action_bar_overlay=0x7f030011;
         public static final int abs__screen_simple=0x7f030012;
         public static final int abs__screen_simple_overlay_action_mode=0x7f030013;
-        public static final int actionbar_compat=0x7f030014;
-        public static final int actionbar_indeterminate_progress=0x7f030015;
-        public static final int main=0x7f030016;
-        public static final int main2=0x7f030017;
-        public static final int sherlock_spinner_dropdown_item=0x7f030018;
-        public static final int sherlock_spinner_item=0x7f030019;
-        public static final int slidingmenumain=0x7f03001a;
+        public static final int list=0x7f030014;
+        public static final int main=0x7f030015;
+        public static final int main2=0x7f030016;
+        public static final int sherlock_spinner_dropdown_item=0x7f030017;
+        public static final int sherlock_spinner_item=0x7f030018;
+        public static final int slidingmenumain=0x7f030019;
+        public static final int slidingmenumainlist=0x7f03001a;
         public static final int slidingmenurow=0x7f03001b;
     }
     public static final class menu {
@@ -955,23 +952,10 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abs__shareactionprovider_share_with_application=0x7f090009;
-        public static final int alternate_title=0x7f09000b;
-        public static final int app_name=0x7f09000a;
-        public static final int hello=0x7f090010;
-        public static final int menu_refresh=0x7f09000d;
-        public static final int menu_search=0x7f09000e;
-        public static final int menu_share=0x7f09000f;
-        public static final int toggle_title=0x7f09000c;
+        public static final int app_name=0x7f09000b;
+        public static final int hello=0x7f09000a;
     }
     public static final class style {
-        public static final int ActionBarCompat=0x7f0a0059;
-        public static final int ActionBarCompatHomeItem=0x7f0a005f;
-        public static final int ActionBarCompatItem=0x7f0a005e;
-        public static final int ActionBarCompatItemBase=0x7f0a005a;
-        public static final int ActionBarCompatProgressIndicator=0x7f0a005b;
-        public static final int ActionBarCompatTitle=0x7f0a005d;
-        public static final int ActionBarCompatTitleBase=0x7f0a005c;
-        public static final int AppTheme=0x7f0a0058;
         public static final int DialogWindowTitle_Sherlock=0x7f0a0033;
         public static final int DialogWindowTitle_Sherlock_Light=0x7f0a0034;
         public static final int Sherlock___TextAppearance_Small=0x7f0a0047;
@@ -1062,100 +1046,6 @@ containing a value of this type.
         public static final int Widget_Sherlock_TextView_SpinnerItem=0x7f0a0032;
     }
     public static final class styleable {
-        /** Attributes that can be used with a AppTheme.
-           <p>Includes the following attributes:</p>
-           <table>
-           <colgroup align="left" />
-           <colgroup align="left" />
-           <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #AppTheme_actionbarCompatItemHomeStyle com.slidingmenu.example:actionbarCompatItemHomeStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppTheme_actionbarCompatItemStyle com.slidingmenu.example:actionbarCompatItemStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppTheme_actionbarCompatProgressIndicatorStyle com.slidingmenu.example:actionbarCompatProgressIndicatorStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #AppTheme_actionbarCompatTitleStyle com.slidingmenu.example:actionbarCompatTitleStyle}</code></td><td></td></tr>
-           </table>
-           @see #AppTheme_actionbarCompatItemHomeStyle
-           @see #AppTheme_actionbarCompatItemStyle
-           @see #AppTheme_actionbarCompatProgressIndicatorStyle
-           @see #AppTheme_actionbarCompatTitleStyle
-         */
-        public static final int[] AppTheme = {
-            0x7f010051, 0x7f010052, 0x7f010053, 0x7f010054
-        };
-        /**
-          <p>This symbol is the offset where the {@link com.slidingmenu.example.R.attr#actionbarCompatItemHomeStyle}
-          attribute's value can be found in the {@link #AppTheme} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:actionbarCompatItemHomeStyle
-        */
-        public static final int AppTheme_actionbarCompatItemHomeStyle = 2;
-        /**
-          <p>This symbol is the offset where the {@link com.slidingmenu.example.R.attr#actionbarCompatItemStyle}
-          attribute's value can be found in the {@link #AppTheme} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:actionbarCompatItemStyle
-        */
-        public static final int AppTheme_actionbarCompatItemStyle = 1;
-        /**
-          <p>This symbol is the offset where the {@link com.slidingmenu.example.R.attr#actionbarCompatProgressIndicatorStyle}
-          attribute's value can be found in the {@link #AppTheme} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:actionbarCompatProgressIndicatorStyle
-        */
-        public static final int AppTheme_actionbarCompatProgressIndicatorStyle = 3;
-        /**
-          <p>This symbol is the offset where the {@link com.slidingmenu.example.R.attr#actionbarCompatTitleStyle}
-          attribute's value can be found in the {@link #AppTheme} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:actionbarCompatTitleStyle
-        */
-        public static final int AppTheme_actionbarCompatTitleStyle = 0;
-        /** Attributes that can be used with a BezelImageView.
-           <p>Includes the following attributes:</p>
-           <table>
-           <colgroup align="left" />
-           <colgroup align="left" />
-           <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #BezelImageView_borderDrawable com.slidingmenu.example:borderDrawable}</code></td><td></td></tr>
-           <tr><td><code>{@link #BezelImageView_maskDrawable com.slidingmenu.example:maskDrawable}</code></td><td></td></tr>
-           </table>
-           @see #BezelImageView_borderDrawable
-           @see #BezelImageView_maskDrawable
-         */
-        public static final int[] BezelImageView = {
-            0x7f010055, 0x7f010056
-        };
-        /**
-          <p>This symbol is the offset where the {@link com.slidingmenu.example.R.attr#borderDrawable}
-          attribute's value can be found in the {@link #BezelImageView} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:borderDrawable
-        */
-        public static final int BezelImageView_borderDrawable = 1;
-        /**
-          <p>This symbol is the offset where the {@link com.slidingmenu.example.R.attr#maskDrawable}
-          attribute's value can be found in the {@link #BezelImageView} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:maskDrawable
-        */
-        public static final int BezelImageView_maskDrawable = 0;
         /**  Attributes used to style the Action Bar. 
            <p>Includes the following attributes:</p>
            <table>
@@ -2986,5 +2876,94 @@ containing a value of this type.
           @attr name android:windowSplitActionBar
         */
         public static final int SherlockTheme_windowSplitActionBar = 48;
+        /** Attributes that can be used with a SlidingMenu.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #SlidingMenu_behindOffset com.slidingmenu.example:behindOffset}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_behindScrollScale com.slidingmenu.example:behindScrollScale}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_behindSide com.slidingmenu.example:behindSide}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_viewAbove com.slidingmenu.example:viewAbove}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_viewBehind com.slidingmenu.example:viewBehind}</code></td><td></td></tr>
+           </table>
+           @see #SlidingMenu_behindOffset
+           @see #SlidingMenu_behindScrollScale
+           @see #SlidingMenu_behindSide
+           @see #SlidingMenu_viewAbove
+           @see #SlidingMenu_viewBehind
+         */
+        public static final int[] SlidingMenu = {
+            0x7f010051, 0x7f010052, 0x7f010053, 0x7f010054,
+            0x7f010055
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.slidingmenu.example.R.attr#behindOffset}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:behindOffset
+        */
+        public static final int SlidingMenu_behindOffset = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.slidingmenu.example.R.attr#behindScrollScale}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:behindScrollScale
+        */
+        public static final int SlidingMenu_behindScrollScale = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.slidingmenu.example.R.attr#behindSide}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>left</code></td><td>0</td><td></td></tr>
+<tr><td><code>right</code></td><td>1</td><td></td></tr>
+</table>
+          @attr name android:behindSide
+        */
+        public static final int SlidingMenu_behindSide = 4;
+        /**
+          <p>This symbol is the offset where the {@link com.slidingmenu.example.R.attr#viewAbove}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:viewAbove
+        */
+        public static final int SlidingMenu_viewAbove = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.slidingmenu.example.R.attr#viewBehind}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:viewBehind
+        */
+        public static final int SlidingMenu_viewBehind = 1;
     };
 }

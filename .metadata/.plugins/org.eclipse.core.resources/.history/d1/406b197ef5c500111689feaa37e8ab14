@@ -1,0 +1,5 @@
+package com.slidingmenu.lib.app;
+
+public abstract class SlidingActivityBase {
+
+}

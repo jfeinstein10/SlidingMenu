@@ -133,10 +133,13 @@ public class ActionBarImpl extends ActionBar {
             mContainerView.requestLayout();
         }
     };
+    
+    public ActionBarImpl(Activity activity, int features) {
+    	this(activity, features, activity.getWindow().getDecorView());
+    }
 
-    public ActionBarImpl(Activity activity, int features, ViewGroup decor) {
+    public ActionBarImpl(Activity activity, int features, View decor) {
         mActivity = activity;
-        View blah = activity.getWindow().getDecorView();
         init(decor);
 
         //window.hasFeature() workaround for pre-3.0

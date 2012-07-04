@@ -132,9 +132,9 @@ public class ActionBarSherlockCompat extends ActionBarSherlock implements MenuBu
 
         // Initializing the window decor can change window feature flags.
         // Make sure that we have the correct set before performing the test below.
-//        if (mDecor == null) {
-//            installDecor();
-//        }
+        if (mDecor == null) {
+            installDecor();
+        }
 
         if ((aActionBar != null) || !hasFeature(Window.FEATURE_ACTION_BAR) || hasFeature(Window.FEATURE_NO_TITLE) || mActivity.isChild()) {
             return;
@@ -745,9 +745,9 @@ public class ActionBarSherlockCompat extends ActionBarSherlock implements MenuBu
         if (mCircularProgressBar != null) {
             return mCircularProgressBar;
         }
-//        if (mContentParent == null && shouldInstallDecor) {
-//            installDecor();
-//        }
+        if (mContentParent == null && shouldInstallDecor) {
+            installDecor();
+        }
         mCircularProgressBar = (IcsProgressBar)mDecor.findViewById(R.id.abs__progress_circular);
         if (mCircularProgressBar != null) {
             mCircularProgressBar.setVisibility(View.INVISIBLE);
@@ -759,9 +759,9 @@ public class ActionBarSherlockCompat extends ActionBarSherlock implements MenuBu
         if (mHorizontalProgressBar != null) {
             return mHorizontalProgressBar;
         }
-//        if (mContentParent == null && shouldInstallDecor) {
-//            installDecor();
-//        }
+        if (mContentParent == null && shouldInstallDecor) {
+            installDecor();
+        }
         mHorizontalProgressBar = (IcsProgressBar)mDecor.findViewById(R.id.abs__progress_horizontal);
         if (mHorizontalProgressBar != null) {
             mHorizontalProgressBar.setVisibility(View.INVISIBLE);
@@ -825,9 +825,21 @@ public class ActionBarSherlockCompat extends ActionBarSherlock implements MenuBu
 
         mUiOptions = (mUiOptions & ~mask) | (uiOptions & mask);
     }
-
+    
     private void installDecor() {
+    	installDecor(null);
+    }
+
+    public void installDecor(ViewGroup decor) {
         if (DEBUG) Log.d(TAG, "[installDecor]");
+        
+        if (decor != null) {
+        	mDecor = decor;
+        }
+        
+        if (mDecor == null) {
+            mDecor = (ViewGroup)mActivity.getWindow().getDecorView().findViewById(android.R.id.content);
+        }
         
         if (mContentParent == null) {
             //Since we are not operating at the window level we need to take
@@ -960,11 +972,6 @@ public class ActionBarSherlockCompat extends ActionBarSherlock implements MenuBu
     
     public int plusOne() {
     	return 1;
-    }
-    
-    public void generateLayout(ViewGroup decor) {
-    	mDecor = decor;
-    	installDecor();
     }
 
     public ViewGroup generateLayout() {

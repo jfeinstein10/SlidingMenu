@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="com.actionbarsherlock.ActionBarSherlockCompat"/>
+<fullyQualifiedTypeName name="com.slidingmenu.lib.SlidingMenuActivity"/>
+<fullyQualifiedTypeName name="com.actionbarsherlock.R.id"/>
+<fullyQualifiedTypeName name="android.view.Window"/>
+<fullyQualifiedTypeName name="com.actionbarsherlock.view.Window"/>
+<fullyQualifiedTypeName name="com.actionbarsherlock.view.MenuItem"/>
+<fullyQualifiedTypeName name="com.actionbarsherlock.view.Menu"/>
+<fullyQualifiedTypeName name="com.slidingmenu.example.R.menu"/>
+<fullyQualifiedTypeName name="com.slidingmenu.lib.R.attr"/>
+<fullyQualifiedTypeName name="com.slidingmenu.lib.R.styleable"/>
+<fullyQualifiedTypeName name="com.slidingmenu.lib.R"/>
+<fullyQualifiedTypeName name="android.widget.RelativeLayout.LayoutParams"/>
+<fullyQualifiedTypeName name="com.slidingmenu.example.R.dimen"/>
+<fullyQualifiedTypeName name="android.R"/>
+<fullyQualifiedTypeName name="android.R.color"/>
+<fullyQualifiedTypeName name="com.actionbarsherlock.app.ActionBar"/>
+</qualifiedTypeNameHistroy>

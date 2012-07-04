@@ -1,0 +1,12 @@
+package com.slidingmenu.lib.app;
+
+import com.slidingmenu.lib.SlidingMenu;
+
+public interface SlidingActivityBase {
+
+	public SlidingMenu getSlidingMenu();
+	
+	boolean isStatic();
+	
+	
+}

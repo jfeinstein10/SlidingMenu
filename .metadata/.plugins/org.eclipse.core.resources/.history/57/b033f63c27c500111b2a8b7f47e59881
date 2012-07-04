@@ -1,0 +1,17 @@
+package com.slidingmenu.lib;
+
+import android.app.Activity;
+import android.content.Context;
+import android.preference.PreferenceScreen;
+import android.widget.LinearLayout;
+
+public class MenuScreen extends LinearLayout {
+	
+	private PreferenceScreen mPrefs;
+
+	public MenuScreen(Context context) {
+		super(context);
+	}
+	
+
+}

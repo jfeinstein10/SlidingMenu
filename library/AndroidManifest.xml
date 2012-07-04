@@ -10,6 +10,9 @@
 
     <application >
         <activity android:name=".SlidingMenuActivity" />
+        <activity android:name=".SlidingFragmentActivity" />
+        <activity android:name=".SlidingListActivity" />
+        <activity android:name=".SlidingPreferenceActivity" />
     </application>
 
 </manifest>

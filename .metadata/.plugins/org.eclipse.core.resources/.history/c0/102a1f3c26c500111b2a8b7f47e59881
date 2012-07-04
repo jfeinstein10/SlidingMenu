@@ -1,0 +1,7 @@
+package com.slidingmenu.lib;
+
+import android.preference.PreferenceScreen;
+
+public class MenuScreen extends PreferenceScreen {
+
+}
