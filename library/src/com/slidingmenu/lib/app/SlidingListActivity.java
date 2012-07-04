@@ -34,9 +34,9 @@ public class SlidingListActivity extends SherlockListActivity implements Sliding
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		View v = getWindow().getDecorView();
 		LayoutInflater inflater = getLayoutInflater();
-		super.setContentView(inflater.inflate(R.layout.slidingmenumainlist, null));
+		View v = inflater.inflate(R.layout.slidingmenumainlist, null);
+		super.setContentView(v);
 		mSlidingMenu = (SlidingMenu) super.findViewById(R.id.slidingmenulayout);
 		// generate the ActionBar inside an arbitrary RelativeLayout
 		RelativeLayout mainView = new RelativeLayout(this);
@@ -44,8 +44,8 @@ public class SlidingListActivity extends SherlockListActivity implements Sliding
 		mSlidingMenu.setAboveView(mainView, new ViewGroup.LayoutParams(
 				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		mMainLayout = super.findViewById(R.id.slidingmenulayout);
-//		mMenuScreen = new MenuScreen(this, new Preference(this).getPreferenceManager());
-//		setBehindContentView(mMenuScreen);
+		//		mMenuScreen = new MenuScreen(this, new Preference(this).getPreferenceManager());
+		//		setBehindContentView(mMenuScreen);
 	}
 
 	public void onPostCreate(Bundle savedInstanceState) {
@@ -91,15 +91,15 @@ public class SlidingListActivity extends SherlockListActivity implements Sliding
 	public boolean isStatic() {
 		return mMainLayout instanceof LinearLayout;
 	}
-	
+
 	public SlidingMenu getSlidingMenu() {
 		return mSlidingMenu;
 	}
 
-	@Override
-	public View findViewById(int id) {
-		return mSlidingMenu.findViewById(id);
-	}
+//	@Override
+//	public View findViewById(int id) {
+//		return mSlidingMenu.findViewById(id);
+//	}
 
 	public void toggle() {
 		//		if (isStatic()) return;

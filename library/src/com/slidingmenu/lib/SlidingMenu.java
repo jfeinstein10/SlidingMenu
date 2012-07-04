@@ -40,7 +40,7 @@ public class SlidingMenu extends RelativeLayout {
 		if (viewAbove != -1) {
 			LayoutInflater inflater = (LayoutInflater) 
 					context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			setAboveView(inflater.inflate(viewAbove, this), null);
+			setAboveView(inflater.inflate(viewAbove, null), null);
 		}
 		int viewBehind = ta.getResourceId(R.styleable.SlidingMenu_viewBehind, -1);
 		if (viewBehind != -1) {
