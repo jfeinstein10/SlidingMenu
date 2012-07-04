@@ -1,7 +1,0 @@
-package com.slidingmenu.lib.app;
-
-import SherlockFragmentActivity;
-
-public class SlidingFragmentActivity extends SherlockFragmentActivity {
-
-}

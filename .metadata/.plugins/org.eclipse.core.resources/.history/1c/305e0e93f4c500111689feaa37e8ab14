@@ -1,7 +1,0 @@
-package com.slidingmenu.lib.app;
-
-import SherlockPreferenceActivity;
-
-public class SlidingPreferenceActivity extends SherlockPreferenceActivity {
-
-}

@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename Java project &apos;ActionBarSherlock2&apos; to &apos;ActionBarSherlockSlidingMenu&apos;&#x0A;- Original element: &apos;ActionBarSherlock2&apos;&#x0A;- Renamed element: &apos;ActionBarSherlock2&apos;&#x0A;- Update references to refactored element" description="Rename Java project &apos;ActionBarSherlock2&apos;" flags="7" id="org.eclipse.jdt.ui.rename.java.project" input="=ActionBarSherlock2" name="ActionBarSherlockSlidingMenu" references="true" stamp="1341126013458" version="1.0"/>
-</session>

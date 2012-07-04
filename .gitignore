@@ -6,3 +6,5 @@
 *.ear
 bin/
 gen/
+.metadata/
+*.project

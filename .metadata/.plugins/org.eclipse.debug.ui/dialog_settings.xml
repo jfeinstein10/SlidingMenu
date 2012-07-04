@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<section name="Workbench">
-	<section name="org.eclipse.debug.ui.SELECT_LAUNCH_SHORTCUT_DIALOG">
-		<item value="297" key="DIALOG_WIDTH"/>
-		<item value="248" key="DIALOG_HEIGHT"/>
-		<item value="1|Lucida Grande|10.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
-	</section>
-</section>

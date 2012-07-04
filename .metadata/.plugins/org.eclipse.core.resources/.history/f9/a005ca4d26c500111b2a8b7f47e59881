@@ -1,7 +1,0 @@
-package com.slidingmenu.lib;
-
-import android.widget.LinearLayout;
-
-public class MenuScreen extends LinearLayout {
-
-}

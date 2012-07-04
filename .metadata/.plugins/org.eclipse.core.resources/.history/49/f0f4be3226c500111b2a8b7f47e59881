@@ -1,7 +1,0 @@
-package com.slidingmenu.lib;
-
-import PreferenceScreen;
-
-public class MenuScreen extends PreferenceScreen {
-
-}
