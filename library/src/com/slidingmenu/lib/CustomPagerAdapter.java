@@ -14,16 +14,14 @@ public class CustomPagerAdapter {
 	public static final int POSITION_NONE = -2;
 
 	private View mBehind;
-	private View mContent;	
-	private LayoutParams mContentParams;
+	private View mContent;
 
 	public void setBehind(View v) {
 		mBehind = v;
 	}
 
-	public void setContent(View v, LayoutParams params) {
+	public void setContent(View v) {
 		mContent = v;
-		mContentParams = params;
 	}
 
 	/**
@@ -58,22 +56,20 @@ public class CustomPagerAdapter {
 	 */
 	public Object instantiateItem(ViewGroup container, int position) {
 		View view = null;
-		LayoutParams params = null;
 		switch (position) {
 		case 0:
 			view = mBehind;
 			break;
 		case 1:
 			view = mContent;
-			params = mContentParams;
 			break;
 		}
 		if (container instanceof CustomViewAbove) {
 			CustomViewAbove pager = (CustomViewAbove) container;
-			pager.addView(view, position, params);
+			pager.addView(view, position);
 		} else if (container instanceof CustomViewBehind) {
 			CustomViewBehind pager = (CustomViewBehind) container;
-			pager.addView(view, position, params);
+			pager.addView(view, position);
 		}
 		return view;    
 	}

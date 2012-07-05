@@ -842,8 +842,8 @@ public class CustomViewAbove extends ViewGroup {
 			mAdapter.notifyDataSetChanged();
 		}
 
-		public void setContent(View v, ViewGroup.LayoutParams params) {
-			mAdapter.setContent(v, params);
+		public void setContent(View v) {
+			mAdapter.setContent(v);
 
 			ItemInfo ii = new ItemInfo();
 			ii.position = 1;

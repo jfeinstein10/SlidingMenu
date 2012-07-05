@@ -19,7 +19,6 @@ import android.widget.TextView;
 
 import com.actionbarsherlock.ActionBarSherlockCompat;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.slidingmenu.lib.MenuScreen;
 import com.slidingmenu.lib.R;
 import com.slidingmenu.lib.SlidingMenu;
 
@@ -27,7 +26,6 @@ public class SlidingFragmentActivity extends SherlockFragmentActivity implements
 
 	private SlidingMenu mSlidingMenu;
 	private View mMainLayout;
-	private MenuScreen mMenuScreen;
 	private boolean mContentViewCalled = true;
 	private boolean mBehindContentViewCalled = true;
 	private SlidingMenuList mMenuList;
@@ -39,11 +37,8 @@ public class SlidingFragmentActivity extends SherlockFragmentActivity implements
 		// generate the ActionBar inside an arbitrary RelativeLayout
 		RelativeLayout mainView = new RelativeLayout(this);
 		((ActionBarSherlockCompat)getSherlock()).installDecor(mainView);
-		mSlidingMenu.setAboveView(mainView, new ViewGroup.LayoutParams(
-				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+		mSlidingMenu.setAboveView(mainView);
 		mMainLayout = super.findViewById(R.id.slidingmenulayout);
-//		mMenuScreen = new MenuScreen(this, new Preference(this).getPreferenceManager());
-//		setBehindContentView(mMenuScreen);
 	}
 
 	public void onPostCreate(Bundle savedInstanceState) {
