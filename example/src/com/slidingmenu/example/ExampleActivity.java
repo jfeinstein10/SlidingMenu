@@ -8,6 +8,7 @@ import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.ActionBar.TabListener;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.slidingmenu.lib.SlidingMenu;
 import com.slidingmenu.lib.app.SlidingListActivity;
 
 public class ExampleActivity extends SlidingListActivity implements TabListener {
@@ -18,6 +19,7 @@ public class ExampleActivity extends SlidingListActivity implements TabListener 
 		setBehindContentView(R.layout.main2);
 		getSlidingMenu().setBehindOffsetRes(R.dimen.actionbar_home_width);
 		getSlidingMenu().setBehindScrollScale(0.5f);
+		getSlidingMenu().setAboveTouchMode(SlidingMenu.TOUCHMODE_FULLSCREEN);
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		actionBar.setDisplayHomeAsUpEnabled(true);

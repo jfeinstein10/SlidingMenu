@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 public class SlidingMenu extends RelativeLayout {
+
+	public static final int TOUCHMODE_FULLSCREEN = 0;
+	public static final int TOUCHMODE_MARGIN = 1;
 	
 	private CustomViewAbove mViewAbove;
 	private CustomViewBehind mViewBehind;
@@ -154,6 +157,30 @@ public class SlidingMenu extends RelativeLayout {
 	 */
 	public void setBehindScrollScale(float f) {
 		mViewAbove.setScrollScale(f);
+	}
+
+	public int getAboveTouchMode() {
+		return mViewAbove.getAboveTouchMode();
+	}
+	
+	public void setAboveTouchMode(int i) {
+		if (i != TOUCHMODE_FULLSCREEN && i != TOUCHMODE_MARGIN) {
+			throw new IllegalStateException("TouchMode must be set to either" +
+					"TOUCHMODE_FULLSCREEN or TOUCHMODE_MARGIN.");
+		}
+		mViewAbove.setAboveTouchMode(i);
+	}
+
+	public int getBehindTouchMode() {
+		return mViewAbove.getBehindTouchMode();
+	}
+	
+	public void setBehindTouchMode(int i) {
+		if (i != TOUCHMODE_FULLSCREEN && i != TOUCHMODE_MARGIN) {
+			throw new IllegalStateException("TouchMode must be set to either" +
+					"TOUCHMODE_FULLSCREEN or TOUCHMODE_MARGIN.");
+		}
+		mViewAbove.setBehindTouchMode(i);
 	}
 
 }
