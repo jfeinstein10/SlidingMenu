@@ -76,9 +76,12 @@ public class SlidingMenu extends RelativeLayout {
 		mViewBehind.dataSetChanged();
 	}
 	
-	public void setEnabled(boolean b) {
-		mViewAbove.setEnabled(b);
-		mViewBehind.setEnabled(b);
+	public void setSlidingEnabled(boolean b) {
+		mViewAbove.setSlidingEnabled(b);
+	}
+	
+	public boolean isSlidingEnabled() {
+		return mViewAbove.isSlidingEnabled();
 	}
 	
 	/**
@@ -88,7 +91,7 @@ public class SlidingMenu extends RelativeLayout {
 	 */
 	public void setStatic(boolean b) {
 		if (b) {
-			mViewAbove.setPagingEnabled(false);
+			setSlidingEnabled(false);
 			mViewAbove.setCustomViewBehind(null);
 			mViewAbove.setCurrentItem(1);
 			mViewBehind.setCurrentItem(0);	
@@ -96,7 +99,7 @@ public class SlidingMenu extends RelativeLayout {
 			mViewAbove.setCurrentItem(1);
 			mViewBehind.setCurrentItem(1);
 			mViewAbove.setCustomViewBehind(mViewBehind);
-			mViewAbove.setPagingEnabled(true);
+			setSlidingEnabled(true);
 		}
 	}
 
