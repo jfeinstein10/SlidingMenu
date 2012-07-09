@@ -6,9 +6,7 @@ You can use it all you want in your Android apps provided that you cite this pro
 license in your app. Also, remember to include the [ActionBarSherlock][2] license if you choose to use the
 provided ActionBar.
 
-Here's a very early (~3 weeks ago) demo video of it in action :  http://www.youtube.com/watch?v=dfR9kR55E8I
-
-A better video showing the new [ActionBarSherlock][2] integration will come soon!
+Here's a recent video of the example application in this repository : http://youtu.be/8vNaANLHw-c
 
 Also, you can follow the project on Twitter : [@SlidingMenu][1]
 
