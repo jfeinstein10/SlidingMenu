@@ -76,6 +76,11 @@ public class SlidingMenu extends RelativeLayout {
 		mViewBehind.dataSetChanged();
 	}
 	
+	public void setEnabled(boolean b) {
+		mViewAbove.setEnabled(b);
+		mViewBehind.setEnabled(b);
+	}
+	
 	/**
 	 * 
 	 * @param b Whether or not the SlidingMenu is in a static mode 
