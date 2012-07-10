@@ -19,8 +19,8 @@ __1.__      You can embed the SlidingMenu at the Activity level by making your A
 The ActionBar will slide with the "above" portion of the SlidingMenu.
 * In your Activity's onCreate method, you will have to call `setContentView`, as usual, and also 
 `setBehindContentView`, which has the same syntax as setContentView. `setBehindContentView` will place 
-the view in the "behind" portion of the SlidingMenu. You also have access to methods such as `toggle()`,
-`showAbove()` `showBehind()` at the Activity level. 
+the view in the "behind" portion of the SlidingMenu. You will have access to the `getSlidingMenu` method so you can
+customize the SlidingMenu to your liking.
 * More variants of `SlidingMenuActivity` will be coming soon, such as `SlidingFragmentActivity`, etc.
 
 __2.__      You can use the SlidingMenu view directly in your xml layouts or programmatically in you Java code.
@@ -41,10 +41,14 @@ If you decide to use SlidingMenu as a view, you can define it in your xml layout
     behindOffset="@dimen/YOUR_OFFSET"
     behindScrollScale="@dimen/YOUR_SCALE" />
 ```
-
-Customizing SlidingMenu
------------------------
-To come soon!
+* `viewAbove` - a reference to the layout that you want to use as the above view of the SlidingMenu
+* `viewBehind` - a reference to the layout that you want to use as the behind view of the SlidingMenu
+* `behindOffset` - a dimension representing the number of pixels that you want the above view to show when the
+behind view is showing
+* `behindScrollScale` - a float representing the relationship between the above view scrolling and the behind
+behind view scrolling. If set to 0.5f, the behind view will scroll 1px for every 2px that the above view scrolls.
+If set to 1.0f, the behind view will scroll 1px for every 1px that the above view scrolls. And if set to 0.0f, the
+behind view will never scroll; it will be static. This one is fun to play around with.
 
 Developed By
 ------------
