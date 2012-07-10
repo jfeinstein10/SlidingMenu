@@ -41,18 +41,16 @@ public class SlidingMenu extends RelativeLayout {
 		// set the above and behind views if defined in xml
 		int viewAbove = ta.getResourceId(R.styleable.SlidingMenu_viewAbove, -1);
 		if (viewAbove != -1) {
-			LayoutInflater inflater = (LayoutInflater) 
-					context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			setAboveView(inflater.inflate(viewAbove, null));
+			View v = LayoutInflater.from(context).inflate(viewAbove, null);
+			setAboveView(v);
 		}
 		int viewBehind = ta.getResourceId(R.styleable.SlidingMenu_viewBehind, -1);
 		if (viewBehind != -1) {
-			LayoutInflater inflater = (LayoutInflater) 
-					context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			setBehindView(inflater.inflate(viewBehind, null));
+			View v = LayoutInflater.from(context).inflate(viewBehind, null);
+			setBehindView(v);
 		}
 		// set the offset and scroll scale if defined in xml
-		int offsetBehind = ta.getInt(R.styleable.SlidingMenu_behindOffset, 0);
+		int offsetBehind = (int) ta.getDimension(R.styleable.SlidingMenu_behindOffset, 0);
 		setBehindOffset(offsetBehind);
 		float scrollOffsetBehind = ta.getFloat(R.styleable.SlidingMenu_behindScrollScale, 0.0f);
 		setBehindScrollScale(scrollOffsetBehind);

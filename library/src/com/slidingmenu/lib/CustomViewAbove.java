@@ -544,11 +544,11 @@ public class CustomViewAbove extends ViewGroup {
 			//			return getWidth() - (int)homeWidth;
 		}
 
-		public boolean isPagingEnabled() {
+		public boolean isSlidingEnabled() {
 			return mEnabled;
 		}
 
-		public void setPagingEnabled(boolean b) {
+		public void setSlidingEnabled(boolean b) {
 			mEnabled = b;
 		}
 
