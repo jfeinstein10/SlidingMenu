@@ -33,13 +33,14 @@ Usage
 If you decide to use SlidingMenu as a view, you can define it in your xml layouts like this:
 ```xml
 <com.slidingmenu.lib.SlidingMenu
+    xmlns:sliding="http://schemas.android.com/apk/res-auto"
     android:id="@+id/slidingmenulayout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    viewAbove="@layout/YOUR_ABOVE_VIEW"
-    viewBehind="@layout/YOUR_BEHIND_BEHIND"
-    behindOffset="@dimen/YOUR_OFFSET"
-    behindScrollScale="@dimen/YOUR_SCALE" />
+    sliding:viewAbove="@layout/YOUR_ABOVE_VIEW"
+    sliding:viewBehind="@layout/YOUR_BEHIND_BEHIND"
+    sliding:behindOffset="@dimen/YOUR_OFFSET"
+    sliding:behindScrollScale="@dimen/YOUR_SCALE" />
 ```
 * `viewAbove` - a reference to the layout that you want to use as the above view of the SlidingMenu
 * `viewBehind` - a reference to the layout that you want to use as the behind view of the SlidingMenu
