@@ -19,8 +19,8 @@ __1.__      You can embed the SlidingMenu at the Activity level by making your A
 The ActionBar will slide with the "above" portion of the SlidingMenu.
 * In your Activity's onCreate method, you will have to call `setContentView`, as usual, and also 
 `setBehindContentView`, which has the same syntax as setContentView. `setBehindContentView` will place 
-the view in the "behind" portion of the SlidingMenu. You also have access to methods such as `toggle()`,
-`showAbove()` `showBehind()` at the Activity level. 
+the view in the "behind" portion of the SlidingMenu. You will have access to the `getSlidingMenu` method so you can
+customize the SlidingMenu to your liking.
 * More variants of `SlidingMenuActivity` will be coming soon, such as `SlidingFragmentActivity`, etc.
 
 __2.__      You can use the SlidingMenu view directly in your xml layouts or programmatically in you Java code.
@@ -28,9 +28,28 @@ __2.__      You can use the SlidingMenu view directly in your xml layouts or pro
 rows of a ListView.
 * So. Many. Possibilities.
 
-Customizing SlidingMenu
------------------------
-To come soon!
+Usage
+-----
+If you decide to use SlidingMenu as a view, you can define it in your xml layouts like this:
+```xml
+<com.slidingmenu.lib.SlidingMenu
+    xmlns:sliding="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/slidingmenulayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    sliding:viewAbove="@layout/YOUR_ABOVE_VIEW"
+    sliding:viewBehind="@layout/YOUR_BEHIND_BEHIND"
+    sliding:behindOffset="@dimen/YOUR_OFFSET"
+    sliding:behindScrollScale="@dimen/YOUR_SCALE" />
+```
+* `viewAbove` - a reference to the layout that you want to use as the above view of the SlidingMenu
+* `viewBehind` - a reference to the layout that you want to use as the behind view of the SlidingMenu
+* `behindOffset` - a dimension representing the number of pixels that you want the above view to show when the
+behind view is showing
+* `behindScrollScale` - a float representing the relationship between the above view scrolling and the behind
+behind view scrolling. If set to 0.5f, the behind view will scroll 1px for every 2px that the above view scrolls.
+If set to 1.0f, the behind view will scroll 1px for every 1px that the above view scrolls. And if set to 0.0f, the
+behind view will never scroll; it will be static. This one is fun to play around with.
 
 Developed By
 ------------
