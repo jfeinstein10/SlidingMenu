@@ -28,6 +28,20 @@ __2.__      You can use the SlidingMenu view directly in your xml layouts or pro
 rows of a ListView.
 * So. Many. Possibilities.
 
+Usage
+-----
+If you decide to use SlidingMenu as a view, you can define it in your xml layouts like this:
+```xml
+<com.slidingmenu.lib.SlidingMenu
+    android:id="@+id/slidingmenulayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    viewAbove="@layout/YOUR_ABOVE_VIEW"
+    viewBehind="@layout/YOUR_BEHIND_BEHIND"
+    behindOffset="@dimen/YOUR_OFFSET"
+    behindScrollScale="@dimen/YOUR_SCALE" />
+```
+
 Customizing SlidingMenu
 -----------------------
 To come soon!
