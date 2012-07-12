@@ -57,6 +57,8 @@ public class SlidingMenu extends RelativeLayout {
 		setBehindOffset(offsetBehind);
 		float scrollOffsetBehind = ta.getFloat(R.styleable.SlidingMenu_behindScrollScale, 0.0f);
 		setBehindScrollScale(scrollOffsetBehind);
+		
+		showAbove();
 	}
 	
 	public void setViewAbove(int res) {
@@ -171,7 +173,7 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	public int getTouchModeAbove() {
-		return mViewAbove.getAboveTouchMode();
+		return mViewAbove.getTouchModeAbove();
 	}
 	
 	public void setTouchModeAbove(int i) {
@@ -179,11 +181,11 @@ public class SlidingMenu extends RelativeLayout {
 			throw new IllegalStateException("TouchMode must be set to either" +
 					"TOUCHMODE_FULLSCREEN or TOUCHMODE_MARGIN.");
 		}
-		mViewAbove.setAboveTouchMode(i);
+		mViewAbove.setTouchModeAbove(i);
 	}
 
 	public int getTouchModeBehind() {
-		return mViewAbove.getBehindTouchMode();
+		return mViewAbove.getTouchModeBehind();
 	}
 	
 	public void setTouchModeBehind(int i) {
@@ -191,7 +193,7 @@ public class SlidingMenu extends RelativeLayout {
 			throw new IllegalStateException("TouchMode must be set to either" +
 					"TOUCHMODE_FULLSCREEN or TOUCHMODE_MARGIN.");
 		}
-		mViewAbove.setBehindTouchMode(i);
+		mViewAbove.setTouchModeBehind(i);
 	}
 
 }

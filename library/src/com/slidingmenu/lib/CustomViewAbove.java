@@ -1116,28 +1116,28 @@ public class CustomViewAbove extends ViewGroup {
 			}
 		}
 
-		private int mAboveTouchMode = SlidingMenu.TOUCHMODE_MARGIN;
-		private int mBehindTouchMode = SlidingMenu.TOUCHMODE_MARGIN;
+		private int mTouchModeAbove = SlidingMenu.TOUCHMODE_MARGIN;
+		private int mTouchModeBehind = SlidingMenu.TOUCHMODE_MARGIN;
 
-		public void setAboveTouchMode(int i) {
-			mAboveTouchMode = i;
+		public void setTouchModeAbove(int i) {
+			mTouchModeAbove = i;
 		}
 
-		public int getAboveTouchMode() {
-			return mAboveTouchMode;
+		public int getTouchModeAbove() {
+			return mTouchModeAbove;
 		}
 
-		public void setBehindTouchMode(int i) {
-			mBehindTouchMode = i;
+		public void setTouchModeBehind(int i) {
+			mTouchModeBehind = i;
 		}
 
-		public int getBehindTouchMode() {
-			return mBehindTouchMode;
+		public int getTouchModeBehind() {
+			return mTouchModeBehind;
 		}
 
 		private boolean thisTouchAllowed(float x) {
 			if (isMenuOpen()) {
-				switch (mBehindTouchMode) {
+				switch (mTouchModeBehind) {
 				case SlidingMenu.TOUCHMODE_FULLSCREEN:
 					return true;
 				case SlidingMenu.TOUCHMODE_MARGIN:
@@ -1146,7 +1146,7 @@ public class CustomViewAbove extends ViewGroup {
 					return false;
 				}
 			} else {
-				switch (mAboveTouchMode) {
+				switch (mTouchModeAbove) {
 				case SlidingMenu.TOUCHMODE_FULLSCREEN:
 					return true;
 				case SlidingMenu.TOUCHMODE_MARGIN:
