@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 public class SlidingMenu extends RelativeLayout {
@@ -14,7 +13,7 @@ public class SlidingMenu extends RelativeLayout {
 	public static final int TOUCHMODE_MARGIN = 1;
 	
 	private CustomViewAbove mViewAbove;
-	private CustomViewBehind mViewBehind;
+	private CustomViewBehind2 mViewBehind;
 	
 	public SlidingMenu(Context context) {
 		this(context, null);
@@ -28,13 +27,13 @@ public class SlidingMenu extends RelativeLayout {
 		super(context, attrs, defStyle);
 		
 		LayoutParams behindParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-		mViewBehind = new CustomViewBehind(context);
+		mViewBehind = new CustomViewBehind2(context);
 		addView(mViewBehind, behindParams);
 		LayoutParams aboveParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		mViewAbove = new CustomViewAbove(context);
 		addView(mViewAbove, aboveParams);
-		// register the CustomViewBehind with the CustomViewAbove
-		mViewAbove.setCustomViewBehind(mViewBehind);
+		// register the CustomViewBehind2 with the CustomViewAbove
+		mViewAbove.setCustomViewBehind2(mViewBehind);
 		
 		// now style everything!
 		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.SlidingMenu);
@@ -42,12 +41,12 @@ public class SlidingMenu extends RelativeLayout {
 		int viewAbove = ta.getResourceId(R.styleable.SlidingMenu_viewAbove, -1);
 		if (viewAbove != -1) {
 			View v = LayoutInflater.from(context).inflate(viewAbove, null);
-			setAboveView(v);
+			setViewAbove(v);
 		}
 		int viewBehind = ta.getResourceId(R.styleable.SlidingMenu_viewBehind, -1);
 		if (viewBehind != -1) {
 			View v = LayoutInflater.from(context).inflate(viewBehind, null);
-			setBehindView(v);
+			setViewBehind(v);
 		}
 		// set the offset and scroll scale if defined in xml
 		int offsetBehind = (int) ta.getDimension(R.styleable.SlidingMenu_behindOffset, 0);
@@ -55,20 +54,22 @@ public class SlidingMenu extends RelativeLayout {
 		float scrollOffsetBehind = ta.getFloat(R.styleable.SlidingMenu_behindScrollScale, 0.0f);
 		setBehindScrollScale(scrollOffsetBehind);
 	}
-
-	public void registerViews(CustomViewAbove va, CustomViewBehind vb) {
-		mViewAbove = va;
-		mViewBehind = vb;
-		mViewAbove.setCustomViewBehind(mViewBehind);
+	
+	public void setViewAbove(int res) {
+		setViewAbove(LayoutInflater.from(getContext()).inflate(res, null));
 	}
 	
-	public void setAboveView(View v) {
+	public void setViewAbove(View v) {
 		mViewAbove.setContent(v);
 		mViewAbove.invalidate();
 		mViewAbove.dataSetChanged();
 	}
 	
-	public void setBehindView(View v) {
+	public void setViewBehind(int res) {
+		setViewBehind(LayoutInflater.from(getContext()).inflate(res, null));
+	}
+	
+	public void setViewBehind(View v) {
 		mViewBehind.setContent(v);
 		mViewBehind.invalidate();
 		mViewBehind.dataSetChanged();
@@ -90,13 +91,13 @@ public class SlidingMenu extends RelativeLayout {
 	public void setStatic(boolean b) {
 		if (b) {
 			setSlidingEnabled(false);
-			mViewAbove.setCustomViewBehind(null);
+			mViewAbove.setCustomViewBehind2(null);
 			mViewAbove.setCurrentItem(1);
 			mViewBehind.setCurrentItem(0);	
 		} else {
 			mViewAbove.setCurrentItem(1);
 			mViewBehind.setCurrentItem(1);
-			mViewAbove.setCustomViewBehind(mViewBehind);
+			mViewAbove.setCustomViewBehind2(mViewBehind);
 			setSlidingEnabled(true);
 		}
 	}

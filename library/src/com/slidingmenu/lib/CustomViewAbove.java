@@ -70,7 +70,6 @@ public class CustomViewAbove extends ViewGroup {
 		private ItemInfo mWindow;
 		private ItemInfo mContent;
 
-		private CustomPagerAdapter mAdapter;
 		private int mCurItem;   // Index of currently displayed page.
 		private int mRestoredCurItem = -1;
 		private Parcelable mRestoredAdapterState = null;
@@ -125,7 +124,7 @@ public class CustomViewAbove extends ViewGroup {
 
 		private boolean mLastTouchAllowed = false;
 		private int mSlidingMenuThreshold = 30;
-		private CustomViewBehind mCustomViewBehind;
+		private CustomViewBehind2 mCustomViewBehind2;
 		private boolean mEnabled = true;
 
 		private OnPageChangeListener mOnPageChangeListener;
@@ -224,15 +223,15 @@ public class CustomViewAbove extends ViewGroup {
 
 		public CustomViewAbove(Context context) {
 			super(context);
-			initCustomViewPager();
+			initCustomViewAbove();
 		}
 
 		public CustomViewAbove(Context context, AttributeSet attrs) {
 			super(context, attrs);
-			initCustomViewPager();
+			initCustomViewAbove();
 		}
 
-		void initCustomViewPager() {
+		void initCustomViewAbove() {
 			setWillNotDraw(false);
 			setDescendantFocusability(FOCUS_AFTER_DESCENDANTS);
 			setFocusable(true);
@@ -242,8 +241,10 @@ public class CustomViewAbove extends ViewGroup {
 			mTouchSlop = ViewConfigurationCompat.getScaledPagingTouchSlop(configuration);
 			mMinimumVelocity = configuration.getScaledMinimumFlingVelocity();
 			mMaximumVelocity = configuration.getScaledMaximumFlingVelocity();
-			setAdapter(new CustomPagerAdapter());
-			setTransparentWindow();
+
+			View v = new View(getContext());
+			v.setBackgroundColor(android.R.color.transparent);
+			setMenu(v);
 
 			final float density = context.getResources().getDisplayMetrics().density;
 			mFlingDistance = (int) (MIN_DISTANCE_FOR_FLING * density);
@@ -257,50 +258,6 @@ public class CustomViewAbove extends ViewGroup {
 			mScrollState = newState;
 			if (mOnPageChangeListener != null) {
 				mOnPageChangeListener.onPageScrollStateChanged(newState);
-			}
-		}
-
-		/**
-		 * Set a CustomPagerAdapter that will supply views for this pager as needed.
-		 *
-		 * @param adapter Adapter to use
-		 */
-		private void setAdapter(CustomPagerAdapter adapter) {
-			if (mAdapter != null) {
-				mAdapter.unregisterDataSetObserver(mObserver);
-				mAdapter.startUpdate(this);
-				mAdapter.destroyItem(this, mWindow.position, mWindow.object);
-				mAdapter.destroyItem(this, mContent.position, mWindow.object);
-				mAdapter.finishUpdate(this);
-				mWindow = null;
-				mContent = null;
-				removeNonDecorViews();
-				mCurItem = 0;
-				scrollTo(0, 0);
-			}
-
-			final CustomPagerAdapter oldAdapter = mAdapter;
-			mAdapter = adapter;
-
-			if (mAdapter != null) {
-				if (mObserver == null) {
-					mObserver = new PagerObserver();
-				}
-				mAdapter.registerDataSetObserver(mObserver);
-				mPopulatePending = false;
-				if (mRestoredCurItem >= 0) {
-					mAdapter.restoreState(mRestoredAdapterState, mRestoredClassLoader);
-					setCurrentItemInternal(mRestoredCurItem, false, true);
-					mRestoredCurItem = -1;
-					mRestoredAdapterState = null;
-					mRestoredClassLoader = null;
-				} else {
-					populate();
-				}
-			}
-
-			if (mAdapterChangeListener != null && oldAdapter != adapter) {
-				mAdapterChangeListener.onAdapterChanged(oldAdapter, adapter);
 			}
 		}
 
@@ -320,9 +277,9 @@ public class CustomViewAbove extends ViewGroup {
 		 *
 		 * @return The currently registered CustomPagerAdapter
 		 */
-		public CustomPagerAdapter getAdapter() {
-			return mAdapter;
-		}
+		//		public CustomPagerAdapter getAdapter() {
+		//			return mAdapter;
+		//		}
 
 		void setOnAdapterChangeListener(OnAdapterChangeListener listener) {
 			mAdapterChangeListener = listener;
@@ -359,8 +316,20 @@ public class CustomViewAbove extends ViewGroup {
 			setCurrentItemInternal(item, smoothScroll, always, 0);
 		}
 
+		boolean isNull() {
+			return mContent == null;
+		}
+
+		int getCount() {
+			int count = 0;
+			if (mWindow != null) count += 1;
+			if (mContent != null) count += 1;
+			return count;
+		}
+
 		void setCurrentItemInternal(int item, boolean smoothScroll, boolean always, int velocity) {
-			if (mAdapter == null || mAdapter.getCount() <= 0) {
+			//			if (mAdapter == null || mAdapter.getCount() <= 0) {
+			if (isNull()) {
 				setScrollingCacheEnabled(false);
 				return;
 			}
@@ -370,8 +339,10 @@ public class CustomViewAbove extends ViewGroup {
 			}
 			if (item < 0) {
 				item = 0;
-			} else if (item >= mAdapter.getCount()) {
-				item = mAdapter.getCount() - 1;
+				//			} else if (item >= mAdapter.getCount()) {
+				//				item = mAdapter.getCount() - 1;
+			} else if (item >= getCount()) {
+				item = getCount() - 1;
 			}
 			if (item > 0 && item < getItems().size()) {
 				// We are doing a jump by more than one page.  To avoid
@@ -383,8 +354,6 @@ public class CustomViewAbove extends ViewGroup {
 			final boolean dispatchSelected = mCurItem != item;
 			mCurItem = item;
 			populate();
-			//        final int destX = (getWidth() + mPageMargin) * item;
-			// TODO
 			final int destX = getChildLeft(mCurItem);
 			if (smoothScroll) {
 				smoothScrollTo(destX, 0, velocity);
@@ -535,13 +504,11 @@ public class CustomViewAbove extends ViewGroup {
 		}
 
 		public int getBehindWidth() {
-			if (mCustomViewBehind == null) {
+			if (mCustomViewBehind2 == null) {
 				return 0;
 			} else {
-				return mCustomViewBehind.getWidth();
+				return mCustomViewBehind2.getWidth();
 			}
-			//			float homeWidth = getContext().getResources().getDimension(R.dimen.actionbar_home_width);
-			//			return getWidth() - (int)homeWidth;
 		}
 
 		public boolean isSlidingEnabled() {
@@ -624,21 +591,12 @@ public class CustomViewAbove extends ViewGroup {
 
 		void dataSetChanged() {
 			// This method only gets called if our observer is attached, so mAdapter is non-null.
-			boolean needPopulate = getItems().size() < mAdapter.getCount();
+			boolean needPopulate = getItems().size() < getCount();
 			int newCurrItem = -1;
-
-			boolean isUpdating = false;
-			// TODO
-			if (mWindow != null) {
-
-			}
-			if (mContent != null) {
-
-			}
 			ArrayList<ItemInfo> items = getItems();
 			for (int i = 0; i < items.size(); i++) {
 				final ItemInfo ii = items.get(i);
-				final int newPos = mAdapter.getItemPosition(ii.object);
+				final int newPos = ii.position;
 
 				if (newPos == CustomPagerAdapter.POSITION_UNCHANGED) {
 					continue;
@@ -647,18 +605,11 @@ public class CustomViewAbove extends ViewGroup {
 				if (newPos == CustomPagerAdapter.POSITION_NONE) {
 					items.remove(i);
 					i--;
-
-					if (!isUpdating) {
-						mAdapter.startUpdate(this);
-						isUpdating = true;
-					}
-
-					mAdapter.destroyItem(this, ii.position, ii.object);
 					needPopulate = true;
 
 					if (mCurItem == ii.position) {
 						// Keep the current item in the valid range
-						newCurrItem = Math.max(0, Math.min(mCurItem, mAdapter.getCount() - 1));
+						newCurrItem = Math.max(0, Math.min(mCurItem, getCount() - 1));
 					}
 					continue;
 				}
@@ -674,10 +625,6 @@ public class CustomViewAbove extends ViewGroup {
 				}
 			}
 
-			if (isUpdating) {
-				mAdapter.finishUpdate(this);
-			}
-
 			if (newCurrItem >= 0) {
 				setCurrentItemInternal(newCurrItem, false, true);
 				needPopulate = true;
@@ -689,10 +636,6 @@ public class CustomViewAbove extends ViewGroup {
 		}
 
 		void populate() {
-			if (mAdapter == null) {
-				return;
-			}
-
 			// Bail now if we are waiting to populate.  This is to hold off
 			// on creating views from the time the user releases their finger to
 			// fling to a new position until we have finished the scroll to
@@ -709,8 +652,6 @@ public class CustomViewAbove extends ViewGroup {
 				return;
 			}
 
-			mAdapter.startUpdate(this);
-
 			if (DEBUG) {
 				Log.i(TAG, "Current page list:");
 				for (int i=0; i<getItems().size(); i++) {
@@ -724,10 +665,6 @@ public class CustomViewAbove extends ViewGroup {
 			} else if (mContent != null && mContent.position == mCurItem) {
 				curItem = mContent;
 			}
-
-			mAdapter.setPrimaryItem(this, mCurItem, curItem != null ? curItem.object : null);
-
-			mAdapter.finishUpdate(this);
 
 			if (hasFocus()) {
 				View currentFocused = findFocus();
@@ -803,9 +740,6 @@ public class CustomViewAbove extends ViewGroup {
 			Parcelable superState = super.onSaveInstanceState();
 			SavedState ss = new SavedState(superState);
 			ss.position = mCurItem;
-			if (mAdapter != null) {
-				ss.adapterState = mAdapter.saveState();
-			}
 			return ss;
 		}
 
@@ -819,43 +753,36 @@ public class CustomViewAbove extends ViewGroup {
 			SavedState ss = (SavedState)state;
 			super.onRestoreInstanceState(ss.getSuperState());
 
-			if (mAdapter != null) {
-				mAdapter.restoreState(ss.adapterState, ss.loader);
-				setCurrentItemInternal(ss.position, false, true);
-			} else {
-				mRestoredCurItem = ss.position;
-				mRestoredAdapterState = ss.adapterState;
-				mRestoredClassLoader = ss.loader;
-			}
+			setCurrentItemInternal(ss.position, false, true);
+			mRestoredCurItem = ss.position;
+			mRestoredAdapterState = ss.adapterState;
+			mRestoredClassLoader = ss.loader;
 		}
 
-		private void setTransparentWindow() {
-			View v = new View(getContext());
-			v.setBackgroundColor(android.R.color.transparent);
-			mAdapter.setBehind(v);
-
+		protected void setMenu(View v) {
 			ItemInfo ii = new ItemInfo();
 			ii.position = 0;
-			ii.object = mAdapter.instantiateItem(this, 0);
+			ii.object = v;
+			if (mWindow != null) {
+				removeView((View)mWindow.object);
+			}
+			addView(v);
 			mWindow = ii;
-
-			mAdapter.notifyDataSetChanged();
 		}
 
 		public void setContent(View v) {
-			mAdapter.setContent(v);
-
 			ItemInfo ii = new ItemInfo();
 			ii.position = 1;
-			ii.object = mAdapter.instantiateItem(this, 1);
+			ii.object = v;
+			if (mContent != null) {
+				removeView((View)mContent.object);
+			}
+			addView(v);
 			mContent = ii;
-
-			mAdapter.notifyDataSetChanged();
-			setCurrentItem(1);
 		}
 
-		public void setCustomViewBehind(CustomViewBehind cvb) {
-			mCustomViewBehind = cvb;
+		public void setCustomViewBehind2(CustomViewBehind2 cvb) {
+			mCustomViewBehind2 = cvb;
 		}
 
 		public void addView(View child, int index, ViewGroup.LayoutParams params) {
@@ -884,9 +811,9 @@ public class CustomViewAbove extends ViewGroup {
 		}
 
 		ItemInfo infoForChild(View child) {
-			if (mAdapter.isViewFromObject(child, mWindow.object)) {
+			if (child.equals(mWindow.object)) {
 				return mWindow;
-			} else if (mAdapter.isViewFromObject(child, mContent.object)) {
+			} else if (child.equals(mContent.object)) {
 				return mContent;
 			}
 			return null;
@@ -1184,19 +1111,19 @@ public class CustomViewAbove extends ViewGroup {
 
 		private int mAboveTouchMode = SlidingMenu.TOUCHMODE_MARGIN;
 		private int mBehindTouchMode = SlidingMenu.TOUCHMODE_MARGIN;
-		
+
 		public void setAboveTouchMode(int i) {
 			mAboveTouchMode = i;
 		}
-		
+
 		public int getAboveTouchMode() {
 			return mAboveTouchMode;
 		}
-		
+
 		public void setBehindTouchMode(int i) {
 			mBehindTouchMode = i;
 		}
-		
+
 		public int getBehindTouchMode() {
 			return mBehindTouchMode;
 		}
@@ -1391,7 +1318,7 @@ public class CustomViewAbove extends ViewGroup {
 				return false;
 			}
 
-			if (mAdapter == null || mAdapter.getCount() == 0) {
+			if (getCount() == 0) {
 				// Nothing to present or scroll; nothing to touch.
 				return false;
 			}
@@ -1515,9 +1442,8 @@ public class CustomViewAbove extends ViewGroup {
 		@Override
 		public void scrollTo(int x, int y) {
 			super.scrollTo(x, y);
-			if (mCustomViewBehind != null && mEnabled) {
-				mCustomViewBehind.scrollTo((int)(x*mScrollScale), y);
-				//				mCustomViewBehind.scrollTo(x*mScrollScale, y);
+			if (mCustomViewBehind2 != null && mEnabled) {
+				mCustomViewBehind2.scrollTo((int)(x*mScrollScale), y);
 			}
 		}
 
@@ -1615,10 +1541,6 @@ public class CustomViewAbove extends ViewGroup {
 							y + scrollY >= child.getTop() && y + scrollY < child.getBottom() &&
 							canScroll(child, true, dx, x + scrollX - child.getLeft(),
 									y + scrollY - child.getTop())) {
-						//					if (x + scrollX >= getChildLeft(i) && x + scrollX < getChildRight(i) &&
-						//							y + scrollY >= child.getTop() && y + scrollY < child.getBottom() &&
-						//							canScroll(child, true, dx, x + scrollX - getChildLeft(i),
-						//									y + scrollY - child.getTop())) {
 						return true;
 					}
 				}
@@ -1715,7 +1637,7 @@ public class CustomViewAbove extends ViewGroup {
 		}
 
 		boolean pageRight() {
-			if (mAdapter != null && mCurItem < (mAdapter.getCount()-1)) {
+			if (mCurItem < (getCount()-1)) {
 				setCurrentItem(mCurItem+1, true);
 				return true;
 			}

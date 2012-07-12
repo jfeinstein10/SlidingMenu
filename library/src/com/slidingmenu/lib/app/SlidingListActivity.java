@@ -39,7 +39,7 @@ public class SlidingListActivity extends SherlockListActivity implements Sliding
 		// generate the ActionBar inside an arbitrary RelativeLayout
 		RelativeLayout mainView = new RelativeLayout(this);
 		((ActionBarSherlockCompat)getSherlock()).installDecor(mainView);
-		mSlidingMenu.setAboveView(mainView);
+		mSlidingMenu.setViewAbove(mainView);
 		mMainLayout = super.findViewById(R.id.slidingmenulayout);
 	}
 
@@ -80,7 +80,7 @@ public class SlidingListActivity extends SherlockListActivity implements Sliding
 		if (!mBehindContentViewCalled) {
 			mBehindContentViewCalled = true;
 		}
-		mSlidingMenu.setBehindView(v);
+		mSlidingMenu.setViewBehind(v);
 	}
 
 	public boolean isStatic() {
