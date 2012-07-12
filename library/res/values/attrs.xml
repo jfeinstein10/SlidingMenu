@@ -21,9 +21,13 @@
         <attr name="viewBehind" format="reference" />
         <attr name="behindOffset" format="dimension" />
         <attr name="behindScrollScale" format="float" />
-        <attr name="behindSide">
-            <enum name="left" value="0" />
-            <enum name="right" value="1" />
+        <attr name="aboveTouchMode">
+            <enum name="margin" value="0" />
+            <enum name="fullscreen" value="1" />
+        </attr>
+        <attr name="behindTouchMode">
+            <enum name="margin" value="0" />
+            <enum name="fullscreen" value="1" />
         </attr>
     </declare-styleable>
 

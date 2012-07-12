@@ -9,8 +9,8 @@ import android.widget.RelativeLayout;
 
 public class SlidingMenu extends RelativeLayout {
 
-	public static final int TOUCHMODE_FULLSCREEN = 0;
-	public static final int TOUCHMODE_MARGIN = 1;
+	public static final int TOUCHMODE_MARGIN = 0;
+	public static final int TOUCHMODE_FULLSCREEN = 1;
 	
 	private CustomViewAbove mViewAbove;
 	private CustomViewBehind mViewBehind;
@@ -48,6 +48,10 @@ public class SlidingMenu extends RelativeLayout {
 			View v = LayoutInflater.from(context).inflate(viewBehind, null);
 			setViewBehind(v);
 		}
+		int touchModeAbove = ta.getInt(R.styleable.SlidingMenu_aboveTouchMode, TOUCHMODE_MARGIN);
+		setTouchModeAbove(touchModeAbove);
+		int touchModeBehind = ta.getInt(R.styleable.SlidingMenu_behindTouchMode, TOUCHMODE_MARGIN);
+		setTouchModeBehind(touchModeBehind);
 		// set the offset and scroll scale if defined in xml
 		int offsetBehind = (int) ta.getDimension(R.styleable.SlidingMenu_behindOffset, 0);
 		setBehindOffset(offsetBehind);
@@ -166,11 +170,11 @@ public class SlidingMenu extends RelativeLayout {
 		mViewAbove.setScrollScale(f);
 	}
 
-	public int getAboveTouchMode() {
+	public int getTouchModeAbove() {
 		return mViewAbove.getAboveTouchMode();
 	}
 	
-	public void setAboveTouchMode(int i) {
+	public void setTouchModeAbove(int i) {
 		if (i != TOUCHMODE_FULLSCREEN && i != TOUCHMODE_MARGIN) {
 			throw new IllegalStateException("TouchMode must be set to either" +
 					"TOUCHMODE_FULLSCREEN or TOUCHMODE_MARGIN.");
@@ -178,11 +182,11 @@ public class SlidingMenu extends RelativeLayout {
 		mViewAbove.setAboveTouchMode(i);
 	}
 
-	public int getBehindTouchMode() {
+	public int getTouchModeBehind() {
 		return mViewAbove.getBehindTouchMode();
 	}
 	
-	public void setBehindTouchMode(int i) {
+	public void setTouchModeBehind(int i) {
 		if (i != TOUCHMODE_FULLSCREEN && i != TOUCHMODE_MARGIN) {
 			throw new IllegalStateException("TouchMode must be set to either" +
 					"TOUCHMODE_FULLSCREEN or TOUCHMODE_MARGIN.");
