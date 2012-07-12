@@ -13,7 +13,7 @@ public class SlidingMenu extends RelativeLayout {
 	public static final int TOUCHMODE_FULLSCREEN = 1;
 	
 	private CustomViewAbove mViewAbove;
-	private CustomViewBehind mViewBehind;
+	private CustomViewBehind2 mViewBehind;
 	
 	public SlidingMenu(Context context) {
 		this(context, null);
@@ -27,13 +27,13 @@ public class SlidingMenu extends RelativeLayout {
 		super(context, attrs, defStyle);
 		
 		LayoutParams behindParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-		mViewBehind = new CustomViewBehind(context);
+		mViewBehind = new CustomViewBehind2(context);
 		addView(mViewBehind, behindParams);
 		LayoutParams aboveParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		mViewAbove = new CustomViewAbove(context);
 		addView(mViewAbove, aboveParams);
-		// register the CustomViewBehind with the CustomViewAbove
-		mViewAbove.setCustomViewBehind(mViewBehind);
+		// register the CustomViewBehind2 with the CustomViewAbove
+		mViewAbove.setCustomViewBehind2(mViewBehind);
 		
 		// now style everything!
 		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.SlidingMenu);
@@ -97,13 +97,13 @@ public class SlidingMenu extends RelativeLayout {
 	public void setStatic(boolean b) {
 		if (b) {
 			setSlidingEnabled(false);
-			mViewAbove.setCustomViewBehind(null);
+			mViewAbove.setCustomViewBehind2(null);
 			mViewAbove.setCurrentItem(1);
 			mViewBehind.setCurrentItem(0);	
 		} else {
 			mViewAbove.setCurrentItem(1);
 			mViewBehind.setCurrentItem(1);
-			mViewAbove.setCustomViewBehind(mViewBehind);
+			mViewAbove.setCustomViewBehind2(mViewBehind);
 			setSlidingEnabled(true);
 		}
 	}

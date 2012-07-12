@@ -24,6 +24,7 @@ import android.util.Log;
 import android.view.FocusFinder;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.SoundEffectConstants;
 import android.view.VelocityTracker;
@@ -33,6 +34,8 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.animation.Interpolator;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Scroller;
 
 public class CustomViewAbove extends ViewGroup {
@@ -124,7 +127,7 @@ public class CustomViewAbove extends ViewGroup {
 
 		private boolean mLastTouchAllowed = false;
 		private int mSlidingMenuThreshold = 30;
-		private CustomViewBehind mCustomViewBehind;
+		private CustomViewBehind2 mCustomViewBehind2;
 		private boolean mEnabled = true;
 
 		private OnPageChangeListener mOnPageChangeListener;
@@ -246,8 +249,10 @@ public class CustomViewAbove extends ViewGroup {
 			mMaximumVelocity = configuration.getScaledMaximumFlingVelocity();
 
 			if (isAbove) {
-				View v = new View(getContext());
-				v.setBackgroundColor(android.R.color.transparent);
+				View v = new LinearLayout(getContext());
+				v.setBackgroundResource(android.R.color.transparent);
+//				ImageView v = new ImageView(getContext());
+//				v.setImageResource(R.drawable.ic_launcher);
 				setMenu(v);
 			}
 
@@ -509,10 +514,10 @@ public class CustomViewAbove extends ViewGroup {
 		}
 
 		public int getBehindWidth() {
-			if (mCustomViewBehind == null) {
+			if (mCustomViewBehind2 == null) {
 				return 0;
 			} else {
-				return mCustomViewBehind.getWidth();
+				return mCustomViewBehind2.getWidth();
 			}
 		}
 
@@ -771,7 +776,7 @@ public class CustomViewAbove extends ViewGroup {
 			if (mWindow != null) {
 				removeView((View)mWindow.object);
 			}
-			addView(v, 0);
+			addView(v);
 			mWindow = ii;
 		}
 
@@ -782,12 +787,12 @@ public class CustomViewAbove extends ViewGroup {
 			if (mContent != null) {
 				removeView((View)mContent.object);
 			}
-			addView(v, 1);
+			addView(v);
 			mContent = ii;
 		}
 
-		public void setCustomViewBehind(CustomViewBehind cvb) {
-			mCustomViewBehind = cvb;
+		public void setCustomViewBehind2(CustomViewBehind2 cvb) {
+			mCustomViewBehind2 = cvb;
 		}
 
 		public void addView(View child, int index, ViewGroup.LayoutParams params) {
@@ -816,9 +821,9 @@ public class CustomViewAbove extends ViewGroup {
 		}
 
 		ItemInfo infoForChild(View child) {
-			if (child.equals(mWindow.object)) {
+			if (mWindow != null && child.equals(mWindow.object)) {
 				return mWindow;
-			} else if (child.equals(mContent.object)) {
+			} else if (mContent != null && child.equals(mContent.object)) {
 				return mContent;
 			}
 			return null;
@@ -880,7 +885,8 @@ public class CustomViewAbove extends ViewGroup {
 						} else if (consumeHorizontal) {
 							heightMode = MeasureSpec.EXACTLY;
 						}
-
+						int pos = infoForChild(child).position;
+						childWidthSize = getChildWidth(pos);
 						final int widthSpec = MeasureSpec.makeMeasureSpec(childWidthSize, widthMode);
 						final int heightSpec = MeasureSpec.makeMeasureSpec(childHeightSize, heightMode);
 						child.measure(widthSpec, heightSpec);
@@ -966,11 +972,11 @@ public class CustomViewAbove extends ViewGroup {
 				final View child = getChildAt(i);
 				if (child.getVisibility() != GONE) {
 					final LayoutParams lp = (LayoutParams) child.getLayoutParams();
-					ItemInfo ii;
+					int pos = infoForChild(child).position;
 					int childLeft = 0;
 					int childTop = 0;
-					childLeft = getChildLeft(i);
-					int childWidth = getChildWidth(i);
+					childLeft = getChildLeft(pos);
+					int childWidth = getChildWidth(pos);
 					Log.v(TAG, "Child#" + i + " left:" + childLeft +
 							" right:" + (childLeft + child.getMeasuredWidth()));
 					child.layout(childLeft, childTop,
@@ -1449,8 +1455,8 @@ public class CustomViewAbove extends ViewGroup {
 		@Override
 		public void scrollTo(int x, int y) {
 			super.scrollTo(x, y);
-			if (mCustomViewBehind != null && mEnabled) {
-				mCustomViewBehind.scrollTo((int)(x*mScrollScale), y);
+			if (mCustomViewBehind2 != null && mEnabled) {
+				mCustomViewBehind2.scrollTo((int)(x*mScrollScale), y);
 			}
 		}
 
