@@ -15,7 +15,7 @@ public class CustomViewBehind2 extends CustomViewAbove {
 	}
 
 	public CustomViewBehind2(Context context, AttributeSet attrs) {
-		super(context, attrs, true);
+		super(context, attrs, false);
 	}
 
 	public int getDestScrollX() {
@@ -56,10 +56,10 @@ public class CustomViewBehind2 extends CustomViewAbove {
 		return params.width;
 	}
 
-//	@Override
-//	public void setContent(View v) {
-//		super.setMenu(v);
-//	}
+	@Override
+	public void setContent(View v) {
+		super.setMenu(v);
+	}
 	
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent e) {

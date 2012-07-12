@@ -976,11 +976,10 @@ public class CustomViewAbove extends ViewGroup {
 					int childLeft = 0;
 					int childTop = 0;
 					childLeft = getChildLeft(pos);
-					int childWidth = getChildWidth(pos);
 					Log.v(TAG, "Child#" + i + " left:" + childLeft +
 							" right:" + (childLeft + child.getMeasuredWidth()));
 					child.layout(childLeft, childTop,
-							childLeft + childWidth,
+							childLeft + child.getMeasuredWidth(),
 							childTop + child.getMeasuredHeight());
 				}
 			}
