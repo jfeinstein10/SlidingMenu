@@ -11,11 +11,11 @@ public class CustomViewBehind2 extends CustomViewAbove {
 	private static final String TAG = "CustomViewBehind2";
 
 	public CustomViewBehind2(Context context) {
-		super(context);
+		this(context, null);
 	}
 
 	public CustomViewBehind2(Context context, AttributeSet attrs) {
-		super(context, attrs);
+		super(context, attrs, false);
 	}
 
 	public int getDestScrollX() {

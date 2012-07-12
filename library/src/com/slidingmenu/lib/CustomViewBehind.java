@@ -31,7 +31,7 @@ import android.view.animation.Interpolator;
 import android.widget.Scroller;
 
 public class CustomViewBehind extends ViewGroup {
-	private static final String TAG = "CustomViewPager";
+	private static final String TAG = "CustomViewBehind";
 	private static final boolean DEBUG = false;
 
 	private static final boolean USE_CACHE = false;
@@ -763,6 +763,9 @@ public class CustomViewBehind extends ViewGroup {
 			ItemInfo ii = new ItemInfo();
 			ii.position = 0;
 			ii.object = mAdapter.instantiateItem(this, 0);
+			if (mContent != null) {
+				removeView((View)mContent.object);
+			}
 			mContent = ii;
 
 			mAdapter.notifyDataSetChanged();
@@ -946,24 +949,26 @@ public class CustomViewBehind extends ViewGroup {
 					ItemInfo ii;
 					int childLeft = 0;
 					int childTop = 0;
-					if (lp.isDecor) {
-						decorCount++;
-						childLeft = getChildLeft(i);
-						int childWidth = child.getMeasuredWidth();
-						child.layout(childLeft, childTop,
-								childLeft + child.getMeasuredWidth(),
-								childTop + child.getMeasuredHeight());
-					} else if ((ii = infoForChild(child)) != null) {
+//					if (lp.isDecor) {
+//						decorCount++;
+//						childLeft = getChildLeft(i);
+//						int childWidth = child.getMeasuredWidth();
+//						child.layout(childLeft, childTop,
+//								childLeft + child.getMeasuredWidth(),
+//								childTop + child.getMeasuredHeight());
+//					} else if ((ii = infoForChild(child)) != null) {
 						childTop = paddingTop;
 						if (DEBUG) Log.v(TAG, "Positioning #" + i + " " + child + " f=" + ii.object
 								+ ":" + childLeft + "," + childTop + " " + child.getMeasuredWidth()
 								+ "x" + child.getMeasuredHeight());
 						// TODO PADDING!
 						childLeft = getChildLeft(i);
+						Log.v(TAG, "Child#" + i + " left:" + childLeft +
+								" right:" + (childLeft + child.getMeasuredWidth()));
 						child.layout(childLeft, childTop,
 								childLeft + child.getMeasuredWidth(),
 								childTop + child.getMeasuredHeight());
-					}
+//					}
 				}
 			}
 			mTopPageBounds = paddingTop;

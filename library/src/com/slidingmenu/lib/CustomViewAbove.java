@@ -36,7 +36,7 @@ import android.view.animation.Interpolator;
 import android.widget.Scroller;
 
 public class CustomViewAbove extends ViewGroup {
-	private static final String TAG = "CustomViewPager";
+	private static final String TAG = "CustomViewAbove";
 	private static final boolean DEBUG = false;
 
 	private static final boolean USE_CACHE = false;
@@ -124,7 +124,7 @@ public class CustomViewAbove extends ViewGroup {
 
 		private boolean mLastTouchAllowed = false;
 		private int mSlidingMenuThreshold = 30;
-		private CustomViewBehind2 mCustomViewBehind2;
+		private CustomViewBehind mCustomViewBehind;
 		private boolean mEnabled = true;
 
 		private OnPageChangeListener mOnPageChangeListener;
@@ -222,16 +222,19 @@ public class CustomViewAbove extends ViewGroup {
 		interface Decor {}
 
 		public CustomViewAbove(Context context) {
-			super(context);
-			initCustomViewAbove();
+			this(context, null);
 		}
 
 		public CustomViewAbove(Context context, AttributeSet attrs) {
-			super(context, attrs);
-			initCustomViewAbove();
+			this(context, attrs, true);
 		}
 
-		void initCustomViewAbove() {
+		public CustomViewAbove(Context context, AttributeSet attrs, boolean isAbove) {
+			super(context, attrs);
+			initCustomViewAbove(isAbove);
+		}
+
+		void initCustomViewAbove(boolean isAbove) {
 			setWillNotDraw(false);
 			setDescendantFocusability(FOCUS_AFTER_DESCENDANTS);
 			setFocusable(true);
@@ -242,9 +245,11 @@ public class CustomViewAbove extends ViewGroup {
 			mMinimumVelocity = configuration.getScaledMinimumFlingVelocity();
 			mMaximumVelocity = configuration.getScaledMaximumFlingVelocity();
 
-			View v = new View(getContext());
-			v.setBackgroundColor(android.R.color.transparent);
-			setMenu(v);
+			if (isAbove) {
+				View v = new View(getContext());
+				v.setBackgroundColor(android.R.color.transparent);
+				setMenu(v);
+			}
 
 			final float density = context.getResources().getDisplayMetrics().density;
 			mFlingDistance = (int) (MIN_DISTANCE_FOR_FLING * density);
@@ -504,10 +509,10 @@ public class CustomViewAbove extends ViewGroup {
 		}
 
 		public int getBehindWidth() {
-			if (mCustomViewBehind2 == null) {
+			if (mCustomViewBehind == null) {
 				return 0;
 			} else {
-				return mCustomViewBehind2.getWidth();
+				return mCustomViewBehind.getWidth();
 			}
 		}
 
@@ -766,7 +771,7 @@ public class CustomViewAbove extends ViewGroup {
 			if (mWindow != null) {
 				removeView((View)mWindow.object);
 			}
-			addView(v);
+			addView(v, 0);
 			mWindow = ii;
 		}
 
@@ -777,12 +782,12 @@ public class CustomViewAbove extends ViewGroup {
 			if (mContent != null) {
 				removeView((View)mContent.object);
 			}
-			addView(v);
+			addView(v, 1);
 			mContent = ii;
 		}
 
-		public void setCustomViewBehind2(CustomViewBehind2 cvb) {
-			mCustomViewBehind2 = cvb;
+		public void setCustomViewBehind(CustomViewBehind cvb) {
+			mCustomViewBehind = cvb;
 		}
 
 		public void addView(View child, int index, ViewGroup.LayoutParams params) {
@@ -966,6 +971,8 @@ public class CustomViewAbove extends ViewGroup {
 					int childTop = 0;
 					childLeft = getChildLeft(i);
 					int childWidth = getChildWidth(i);
+					Log.v(TAG, "Child#" + i + " left:" + childLeft +
+							" right:" + (childLeft + child.getMeasuredWidth()));
 					child.layout(childLeft, childTop,
 							childLeft + childWidth,
 							childTop + child.getMeasuredHeight());
@@ -1442,8 +1449,8 @@ public class CustomViewAbove extends ViewGroup {
 		@Override
 		public void scrollTo(int x, int y) {
 			super.scrollTo(x, y);
-			if (mCustomViewBehind2 != null && mEnabled) {
-				mCustomViewBehind2.scrollTo((int)(x*mScrollScale), y);
+			if (mCustomViewBehind != null && mEnabled) {
+				mCustomViewBehind.scrollTo((int)(x*mScrollScale), y);
 			}
 		}
 
