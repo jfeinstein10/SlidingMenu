@@ -127,7 +127,7 @@ public class CustomViewAbove extends ViewGroup {
 
 		private boolean mLastTouchAllowed = false;
 		private int mSlidingMenuThreshold = 30;
-		private CustomViewBehind2 mCustomViewBehind2;
+		private CustomViewBehind mCustomViewBehind2;
 		private boolean mEnabled = true;
 
 		private OnPageChangeListener mOnPageChangeListener;
@@ -791,7 +791,7 @@ public class CustomViewAbove extends ViewGroup {
 			mContent = ii;
 		}
 
-		public void setCustomViewBehind2(CustomViewBehind2 cvb) {
+		public void setCustomViewBehind2(CustomViewBehind cvb) {
 			mCustomViewBehind2 = cvb;
 		}
 

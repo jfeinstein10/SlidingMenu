@@ -13,7 +13,7 @@ public class SlidingMenu extends RelativeLayout {
 	public static final int TOUCHMODE_FULLSCREEN = 1;
 	
 	private CustomViewAbove mViewAbove;
-	private CustomViewBehind2 mViewBehind;
+	private CustomViewBehind mViewBehind;
 	
 	public SlidingMenu(Context context) {
 		this(context, null);
@@ -27,7 +27,7 @@ public class SlidingMenu extends RelativeLayout {
 		super(context, attrs, defStyle);
 		
 		LayoutParams behindParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-		mViewBehind = new CustomViewBehind2(context);
+		mViewBehind = new CustomViewBehind(context);
 		addView(mViewBehind, behindParams);
 		LayoutParams aboveParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		mViewAbove = new CustomViewAbove(context);
