@@ -1,7 +1,8 @@
 package com.slidingmenu.example;
 
+import android.annotation.TargetApi;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
@@ -9,17 +10,23 @@ import com.actionbarsherlock.app.ActionBar.TabListener;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.slidingmenu.lib.SlidingMenu;
-import com.slidingmenu.lib.app.SlidingListActivity;
+import com.slidingmenu.lib.app.SlidingFragmentActivity;
 
-public class ExampleActivity extends SlidingListActivity implements TabListener {
+@TargetApi(11)
+public class ExampleActivity extends SlidingFragmentActivity implements TabListener {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		setBehindContentView(R.layout.main2);
+		setBehindContentView(R.layout.frame);
+
+		FragmentTransaction t = this.getFragmentManager().beginTransaction();
+		t.add(R.id.frame, new SampleListFragment());
+		t.commit();
+
 		getSlidingMenu().setBehindOffsetRes(R.dimen.actionbar_home_width);
 		getSlidingMenu().setBehindScrollScale(0.5f);
-		getSlidingMenu().setAboveTouchMode(SlidingMenu.TOUCHMODE_FULLSCREEN);
+		getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		actionBar.setDisplayHomeAsUpEnabled(true);
@@ -30,7 +37,7 @@ public class ExampleActivity extends SlidingListActivity implements TabListener 
 			actionBar.addTab(tab);
 		}
 	}
-	
+
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
@@ -46,7 +53,6 @@ public class ExampleActivity extends SlidingListActivity implements TabListener 
 		return true;
 	}
 
-	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
 		switch (tab.getPosition()) {
 		case 0:
@@ -61,16 +67,44 @@ public class ExampleActivity extends SlidingListActivity implements TabListener 
 		}
 	}
 
-	@Override
 	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	public void onTabReselected(Tab tab, FragmentTransaction ft) {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
-	public void onTabReselected(Tab tab, FragmentTransaction ft) {
+	public void onTabSelected(Tab tab,
+			android.support.v4.app.FragmentTransaction ft) {
+		switch (tab.getPosition()) {
+		case 0:
+			findViewById(R.id.main).setBackgroundResource(android.R.color.white);
+			break;
+		case 1:
+			findViewById(R.id.main).setBackgroundResource(android.R.color.black);
+			break;
+		case 2:
+			findViewById(R.id.main).setBackgroundResource(android.R.color.darker_gray);
+			break;
+		}
+	}
+
+	@Override
+	public void onTabUnselected(Tab tab,
+			android.support.v4.app.FragmentTransaction ft) {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	@Override
+	public void onTabReselected(Tab tab,
+			android.support.v4.app.FragmentTransaction ft) {
+		// TODO Auto-generated method stub
+
 	}
 
 
