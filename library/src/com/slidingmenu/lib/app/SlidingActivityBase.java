@@ -10,9 +10,7 @@ public interface SlidingActivityBase {
 	public void setBehindContentView(View v, LayoutParams p);
 
 	public SlidingMenu getSlidingMenu();
-	
-	boolean isStatic();
-	
+		
 	public void toggle();
 	
 	public void showAbove();

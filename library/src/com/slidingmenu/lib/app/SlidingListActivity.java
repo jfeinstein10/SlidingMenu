@@ -17,7 +17,6 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.actionbarsherlock.ActionBarSherlockCompat;
 import com.actionbarsherlock.app.SherlockListActivity;
 import com.slidingmenu.lib.R;
 import com.slidingmenu.lib.SlidingMenu;
@@ -38,7 +37,7 @@ public class SlidingListActivity extends SherlockListActivity implements Sliding
 		mSlidingMenu = (SlidingMenu) super.findViewById(R.id.slidingmenulayout);
 		// generate the ActionBar inside an arbitrary RelativeLayout
 		RelativeLayout mainView = new RelativeLayout(this);
-		((ActionBarSherlockCompat)getSherlock()).installDecor(mainView);
+//		((ActionBarSherlockCompat)getSherlock()).installDecor(mainView);
 		mSlidingMenu.setViewAbove(mainView);
 		mMainLayout = super.findViewById(R.id.slidingmenulayout);
 	}

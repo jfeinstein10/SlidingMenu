@@ -9,15 +9,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.actionbarsherlock.ActionBarSherlockCompat;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.slidingmenu.lib.R;
 import com.slidingmenu.lib.SlidingMenu;
@@ -25,20 +24,22 @@ import com.slidingmenu.lib.SlidingMenu;
 public class SlidingFragmentActivity extends SherlockFragmentActivity implements SlidingActivityBase {
 
 	private SlidingMenu mSlidingMenu;
-	private View mMainLayout;
+	private ViewGroup mContentView;
 	private boolean mContentViewCalled = true;
 	private boolean mBehindContentViewCalled = true;
 	private SlidingMenuList mMenuList;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		super.setContentView(R.layout.slidingmenumain);
-		mSlidingMenu = (SlidingMenu) super.findViewById(R.id.slidingmenulayout);
-		// generate the ActionBar inside an arbitrary RelativeLayout
-		RelativeLayout mainView = new RelativeLayout(this);
-		((ActionBarSherlockCompat)getSherlock()).installDecor(mainView);
-		mSlidingMenu.setViewAbove(mainView);
-		mMainLayout = super.findViewById(R.id.slidingmenulayout);
+		// unregister the current content view
+		getWindow().getDecorView().findViewById(android.R.id.content).setId(View.NO_ID);
+		// register a new content view
+		mContentView = new RelativeLayout(this);
+		mContentView.setId(android.R.id.content);
+		// set up the SlidingMenu
+		mSlidingMenu = (SlidingMenu) getLayoutInflater().inflate(R.layout.slidingmenumain, null);
+		mSlidingMenu.setViewAbove(mContentView);
+		super.setContentView(mSlidingMenu);
 	}
 
 	public void onPostCreate(Bundle savedInstanceState) {
@@ -47,8 +48,19 @@ public class SlidingFragmentActivity extends SherlockFragmentActivity implements
 			throw new IllegalStateException("Both setContentView and " +
 					"setBehindContentView must be called in onCreate.");
 		}
-		mSlidingMenu.setStatic(isStatic());
 	}
+
+//	public Window getWindow() {
+//		if (mWindowHelper == null) {
+//			return super.getWindow();
+//		} else {
+//			return mWindowHelper;
+//		}
+//	}
+//
+//	private Window getWindowInternal() {
+//		return super.getWindow();
+//	}
 
 	@Override
 	public void setContentView(int id) {
@@ -63,7 +75,7 @@ public class SlidingFragmentActivity extends SherlockFragmentActivity implements
 		if (!mContentViewCalled) {
 			mContentViewCalled = true;
 		}
-		getSherlock().setContentView(v);
+		mContentView.addView(v);
 	}
 
 	public void setBehindContentView(int id) {
@@ -81,10 +93,6 @@ public class SlidingFragmentActivity extends SherlockFragmentActivity implements
 		mSlidingMenu.setViewBehind(v);
 	}
 
-	public boolean isStatic() {
-		return mMainLayout instanceof LinearLayout;
-	}
-	
 	public SlidingMenu getSlidingMenu() {
 		return mSlidingMenu;
 	}
@@ -104,12 +112,10 @@ public class SlidingFragmentActivity extends SherlockFragmentActivity implements
 	}
 
 	public void showAbove() {
-		if (isStatic()) return;
 		mSlidingMenu.showAbove();
 	}
 
 	public void showBehind() {
-		if (isStatic()) return;
 		mSlidingMenu.showBehind();
 	}
 

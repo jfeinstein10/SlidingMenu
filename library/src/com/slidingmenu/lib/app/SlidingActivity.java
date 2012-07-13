@@ -9,15 +9,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.actionbarsherlock.ActionBarSherlockCompat;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.slidingmenu.lib.R;
 import com.slidingmenu.lib.SlidingMenu;
@@ -26,6 +25,7 @@ public class SlidingActivity extends SherlockActivity implements SlidingActivity
 
 	private SlidingMenu mSlidingMenu;
 	private View mMainLayout;
+	private WindowHelper mWindowHelper;
 	private boolean mContentViewCalled = true;
 	private boolean mBehindContentViewCalled = true;
 	private SlidingMenuList mMenuList;
@@ -34,10 +34,8 @@ public class SlidingActivity extends SherlockActivity implements SlidingActivity
 		super.onCreate(savedInstanceState);
 		super.setContentView(R.layout.slidingmenumain);
 		mSlidingMenu = (SlidingMenu) super.findViewById(R.id.slidingmenulayout);
+		mWindowHelper = new WindowHelper(this, super.getWindow(), mSlidingMenu);
 		// generate the ActionBar inside an arbitrary RelativeLayout
-		RelativeLayout mainView = new RelativeLayout(this);
-		((ActionBarSherlockCompat)getSherlock()).installDecor(mainView);
-		mSlidingMenu.setViewAbove(mainView);
 		mMainLayout = super.findViewById(R.id.slidingmenulayout);
 	}
 
@@ -49,8 +47,11 @@ public class SlidingActivity extends SherlockActivity implements SlidingActivity
 		}
 		mSlidingMenu.setStatic(isStatic());
 	}
+	
+	public Window getWindow() {
+		return mWindowHelper;
+	}
 
-	@Override
 	public void setContentView(int id) {
 		setContentView(getLayoutInflater().inflate(id, null));
 	}
