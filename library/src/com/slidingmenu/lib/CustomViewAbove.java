@@ -1225,8 +1225,8 @@ public class CustomViewAbove extends ViewGroup {
 				mLastMotionY = ev.getY();
 				mActivePointerId = MotionEventCompat.getPointerId(ev, 0);
 				
-				if (mScrollState == SCROLL_STATE_SETTLING ||
-						(this.mTouchModeAbove != SlidingMenu.TOUCHMODE_FULLSCREEN && thisTouchAllowed(ev.getX()))) {
+				if (mScrollState == SCROLL_STATE_SETTLING || isMenuOpen() ||
+						(mTouchModeAbove != SlidingMenu.TOUCHMODE_FULLSCREEN && thisTouchAllowed(ev.getX()))) {
 					// Let the user 'catch' the pager as it animates.
 					mIsBeingDragged = true;
 					mIsUnableToDrag = false;
