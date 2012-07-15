@@ -8,7 +8,9 @@
         android:minSdkVersion="4"
         android:targetSdkVersion="14" />
 
-    <application >
+    <application>
+        <uses-library android:name="com.google.android.maps" />
+
         <activity android:name=".SlidingMenuActivity" />
         <activity android:name=".SlidingFragmentActivity" />
         <activity android:name=".SlidingListActivity" />
