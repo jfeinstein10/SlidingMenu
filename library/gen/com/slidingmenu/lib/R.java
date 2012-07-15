@@ -9,6 +9,17 @@ package com.slidingmenu.lib;
 
 public final class R {
     public static final class attr {
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>margin</code></td><td>0</td><td></td></tr>
+<tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
+</table>
+         */
+        public static int aboveTouchMode=0x7f010055;
         /**  Specified if we are forcing an action item overflow menu. 
          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
@@ -200,11 +211,11 @@ containing a value of this type.
 <colgroup align="left" />
 <colgroup align="left" />
 <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
-<tr><td><code>left</code></td><td>0</td><td></td></tr>
-<tr><td><code>right</code></td><td>1</td><td></td></tr>
+<tr><td><code>margin</code></td><td>0</td><td></td></tr>
+<tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
 </table>
          */
-        public static int behindSide=0x7f010055;
+        public static int behindTouchMode=0x7f010056;
         /**  Small Button style. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
@@ -861,11 +872,11 @@ containing a value of this type.
         public static int abs__titleDivider=0x7f04001e;
         public static int abs__up=0x7f04000b;
         public static int disableHome=0x7f040009;
+        public static int fullscreen=0x7f040011;
         public static int homeAsUp=0x7f040006;
-        public static int left=0x7f040010;
         public static int listMode=0x7f040002;
+        public static int margin=0x7f040010;
         public static int normal=0x7f040001;
-        public static int right=0x7f040011;
         public static int showCustom=0x7f040008;
         public static int showHome=0x7f040005;
         public static int showTitle=0x7f040007;
@@ -2868,22 +2879,41 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #SlidingMenu_aboveTouchMode com.slidingmenu.lib:aboveTouchMode}</code></td><td></td></tr>
            <tr><td><code>{@link #SlidingMenu_behindOffset com.slidingmenu.lib:behindOffset}</code></td><td></td></tr>
            <tr><td><code>{@link #SlidingMenu_behindScrollScale com.slidingmenu.lib:behindScrollScale}</code></td><td></td></tr>
-           <tr><td><code>{@link #SlidingMenu_behindSide com.slidingmenu.lib:behindSide}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_behindTouchMode com.slidingmenu.lib:behindTouchMode}</code></td><td></td></tr>
            <tr><td><code>{@link #SlidingMenu_viewAbove com.slidingmenu.lib:viewAbove}</code></td><td></td></tr>
            <tr><td><code>{@link #SlidingMenu_viewBehind com.slidingmenu.lib:viewBehind}</code></td><td></td></tr>
            </table>
+           @see #SlidingMenu_aboveTouchMode
            @see #SlidingMenu_behindOffset
            @see #SlidingMenu_behindScrollScale
-           @see #SlidingMenu_behindSide
+           @see #SlidingMenu_behindTouchMode
            @see #SlidingMenu_viewAbove
            @see #SlidingMenu_viewBehind
          */
         public static final int[] SlidingMenu = {
             0x7f010051, 0x7f010052, 0x7f010053, 0x7f010054,
-            0x7f010055
+            0x7f010055, 0x7f010056
         };
+        /**
+          <p>This symbol is the offset where the {@link com.slidingmenu.lib.R.attr#aboveTouchMode}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>margin</code></td><td>0</td><td></td></tr>
+<tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
+</table>
+          @attr name android:aboveTouchMode
+        */
+        public static final int SlidingMenu_aboveTouchMode = 4;
         /**
           <p>This symbol is the offset where the {@link com.slidingmenu.lib.R.attr#behindOffset}
           attribute's value can be found in the {@link #SlidingMenu} array.
@@ -2915,7 +2945,7 @@ containing a value of this type.
         */
         public static final int SlidingMenu_behindScrollScale = 3;
         /**
-          <p>This symbol is the offset where the {@link com.slidingmenu.lib.R.attr#behindSide}
+          <p>This symbol is the offset where the {@link com.slidingmenu.lib.R.attr#behindTouchMode}
           attribute's value can be found in the {@link #SlidingMenu} array.
 
 
@@ -2925,12 +2955,12 @@ containing a value of this type.
 <colgroup align="left" />
 <colgroup align="left" />
 <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
-<tr><td><code>left</code></td><td>0</td><td></td></tr>
-<tr><td><code>right</code></td><td>1</td><td></td></tr>
+<tr><td><code>margin</code></td><td>0</td><td></td></tr>
+<tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
 </table>
-          @attr name android:behindSide
+          @attr name android:behindTouchMode
         */
-        public static final int SlidingMenu_behindSide = 4;
+        public static final int SlidingMenu_behindTouchMode = 5;
         /**
           <p>This symbol is the offset where the {@link com.slidingmenu.lib.R.attr#viewAbove}
           attribute's value can be found in the {@link #SlidingMenu} array.

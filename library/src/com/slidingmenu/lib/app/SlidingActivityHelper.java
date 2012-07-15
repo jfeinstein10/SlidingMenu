@@ -34,6 +34,7 @@ public class SlidingActivityHelper {
 		// set up the SlidingMenu
 		mSlidingMenu = (SlidingMenu) LayoutInflater.from(mActivity).inflate(R.layout.slidingmenumain, null);
 		mSlidingMenu.setViewAbove(mContentView);
+		mSlidingMenu.setBackgroundDrawable(mActivity.getWindow().getDecorView().getBackground());
 		mActivity.getWindow().setContentView(mSlidingMenu);
 	}
 

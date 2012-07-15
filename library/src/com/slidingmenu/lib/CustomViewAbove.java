@@ -126,7 +126,7 @@ public class CustomViewAbove extends ViewGroup {
 		private boolean mCalledSuper;
 
 		private boolean mLastTouchAllowed = false;
-		private int mSlidingMenuThreshold = 30;
+		private int mSlidingMenuThreshold = 10;
 		private CustomViewBehind mCustomViewBehind2;
 		private boolean mEnabled = true;
 
@@ -251,8 +251,8 @@ public class CustomViewAbove extends ViewGroup {
 			if (isAbove) {
 				View v = new LinearLayout(getContext());
 				v.setBackgroundResource(android.R.color.transparent);
-//				ImageView v = new ImageView(getContext());
-//				v.setImageResource(R.drawable.ic_launcher);
+				//				ImageView v = new ImageView(getContext());
+				//				v.setImageResource(R.drawable.ic_launcher);
 				setMenu(v);
 			}
 
@@ -354,7 +354,7 @@ public class CustomViewAbove extends ViewGroup {
 			} else if (item >= getCount()) {
 				item = getCount() - 1;
 			}
-			if (item > 0 && item < getItems().size()) {
+			if (item > 0 && item < getCount()) {
 				// We are doing a jump by more than one page.  To avoid
 				// glitches, we want to keep all current pages in the view
 				// until the scroll ends.
@@ -601,7 +601,7 @@ public class CustomViewAbove extends ViewGroup {
 
 		void dataSetChanged() {
 			// This method only gets called if our observer is attached, so mAdapter is non-null.
-			boolean needPopulate = getItems().size() < getCount();
+			boolean needPopulate = false;
 			int newCurrItem = -1;
 			ArrayList<ItemInfo> items = getItems();
 			for (int i = 0; i < items.size(); i++) {
@@ -664,7 +664,7 @@ public class CustomViewAbove extends ViewGroup {
 
 			if (DEBUG) {
 				Log.i(TAG, "Current page list:");
-				for (int i=0; i<getItems().size(); i++) {
+				for (int i=0; i<getCount(); i++) {
 					Log.i(TAG, "#" + i + ": page " + getItems().get(i).position);
 				}
 			}
@@ -1042,46 +1042,6 @@ public class CustomViewAbove extends ViewGroup {
 		 * @param offsetPixels Value in pixels indicating the offset from position.
 		 */
 		protected void onPageScrolled(int position, float offset, int offsetPixels) {
-			// Offset any decor views if needed - keep them on-screen at all times.
-			//			if (mDecorChildCount > 0) {
-			//				final int scrollX = getScrollX();
-			//				int paddingLeft = getPaddingLeft();
-			//				int paddingRight = getPaddingRight();
-			//				final int width = getWidth();
-			//				final int childCount = getChildCount();
-			//				for (int i = 0; i < childCount; i++) {
-			//					final View child = getChildAt(i);
-			//					final LayoutParams lp = (LayoutParams) child.getLayoutParams();
-			//					if (!lp.isDecor) continue;
-			//
-			//					final int hgrav = lp.gravity & Gravity.HORIZONTAL_GRAVITY_MASK;
-			//					int childLeft = 0;
-			//					switch (hgrav) {
-			//					default:
-			//						childLeft = paddingLeft;
-			//						break;
-			//					case Gravity.LEFT:
-			//						childLeft = paddingLeft;
-			//						paddingLeft += child.getWidth();
-			//						break;
-			//					case Gravity.CENTER_HORIZONTAL:
-			//						childLeft = Math.max((width - child.getMeasuredWidth()) / 2,
-			//								paddingLeft);
-			//						break;
-			//					case Gravity.RIGHT:
-			//						childLeft = width - paddingRight - child.getMeasuredWidth();
-			//						paddingRight += child.getMeasuredWidth();
-			//						break;
-			//					}
-			//					childLeft += scrollX;
-			//
-			//					final int childOffset = childLeft - child.getLeft();
-			//					if (childOffset != 0) {
-			//						child.offsetLeftAndRight(childOffset);
-			//					}
-			//				}
-			//			}
-
 			if (mOnPageChangeListener != null) {
 				mOnPageChangeListener.onPageScrolled(position, offset, offsetPixels);
 			}
@@ -1172,7 +1132,7 @@ public class CustomViewAbove extends ViewGroup {
 			if (!mEnabled) {
 				return false;
 			}
-
+			
 			if (!thisTouchAllowed(ev.getX())) {
 				return false;
 			}
@@ -1264,8 +1224,9 @@ public class CustomViewAbove extends ViewGroup {
 				mLastMotionX = mInitialMotionX = ev.getX();
 				mLastMotionY = ev.getY();
 				mActivePointerId = MotionEventCompat.getPointerId(ev, 0);
-
-				if (mScrollState == SCROLL_STATE_SETTLING) {
+				
+				if (mScrollState == SCROLL_STATE_SETTLING ||
+						(this.mTouchModeAbove != SlidingMenu.TOUCHMODE_FULLSCREEN && thisTouchAllowed(ev.getX()))) {
 					// Let the user 'catch' the pager as it animates.
 					mIsBeingDragged = true;
 					mIsUnableToDrag = false;
@@ -1311,7 +1272,7 @@ public class CustomViewAbove extends ViewGroup {
 
 			if (!mLastTouchAllowed && !thisTouchAllowed(ev.getX())) {
 				return false;
-			}			
+			}
 
 			final int action = ev.getAction();
 
@@ -1322,12 +1283,6 @@ public class CustomViewAbove extends ViewGroup {
 				mLastTouchAllowed = false;
 			} else {
 				mLastTouchAllowed = true;
-			}
-
-			if (action == MotionEvent.ACTION_DOWN && ev.getEdgeFlags() != 0) {
-				// Don't handle edge touches immediately -- they may actually belong to one of our
-				// descendants.
-				return false;
 			}
 
 			if (getCount() == 0) {
