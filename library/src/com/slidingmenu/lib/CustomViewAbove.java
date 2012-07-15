@@ -1132,7 +1132,7 @@ public class CustomViewAbove extends ViewGroup {
 			if (!mEnabled) {
 				return false;
 			}
-			
+
 			if (!thisTouchAllowed(ev.getX())) {
 				return false;
 			}
@@ -1224,13 +1224,19 @@ public class CustomViewAbove extends ViewGroup {
 				mLastMotionX = mInitialMotionX = ev.getX();
 				mLastMotionY = ev.getY();
 				mActivePointerId = MotionEventCompat.getPointerId(ev, 0);
-				
-				if (mScrollState == SCROLL_STATE_SETTLING || isMenuOpen() ||
-						(mTouchModeAbove != SlidingMenu.TOUCHMODE_FULLSCREEN && thisTouchAllowed(ev.getX()))) {
+
+				if (mScrollState == SCROLL_STATE_SETTLING) {
 					// Let the user 'catch' the pager as it animates.
 					mIsBeingDragged = true;
 					mIsUnableToDrag = false;
 					setScrollState(SCROLL_STATE_DRAGGING);
+				} else if (isMenuOpen() ||
+						(mTouchModeAbove != SlidingMenu.TOUCHMODE_FULLSCREEN && thisTouchAllowed(ev.getX()))) {
+					// we want to intercept this touch even though we are not dragging
+					// so that we can close the menu on a touch
+					mIsBeingDragged = false;
+					mIsUnableToDrag = false;
+					return true;
 				} else {
 					completeScroll();
 					mIsBeingDragged = false;
@@ -1369,6 +1375,9 @@ public class CustomViewAbove extends ViewGroup {
 
 					mActivePointerId = INVALID_POINTER;
 					endDrag();
+				} else if (isMenuOpen()) {
+					// close the menu
+					setCurrentItem(1);
 				}
 				break;
 			case MotionEvent.ACTION_CANCEL:
