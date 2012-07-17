@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.ListView;
 
 import com.actionbarsherlock.app.SherlockListActivity;
 import com.slidingmenu.lib.SlidingMenu;
@@ -16,6 +17,10 @@ public class SlidingListActivity extends SherlockListActivity implements Sliding
 		super.onCreate(savedInstanceState);
 		mHelper = new SlidingActivityHelper(this);
 		mHelper.onCreate(savedInstanceState);
+		// we need to create the default ListView
+		ListView lv = new ListView(this);
+		lv.setId(android.R.id.list);
+		mHelper.setContentView(lv, null);
 	}
 
 	public void onPostCreate(Bundle savedInstanceState) {
