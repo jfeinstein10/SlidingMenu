@@ -17,10 +17,6 @@ public class SlidingListActivity extends SherlockListActivity implements Sliding
 		super.onCreate(savedInstanceState);
 		mHelper = new SlidingActivityHelper(this);
 		mHelper.onCreate(savedInstanceState);
-		// we need to create the default ListView
-		ListView lv = new ListView(this);
-		lv.setId(android.R.id.list);
-		mHelper.setContentView(lv, null);
 	}
 
 	public void onPostCreate(Bundle savedInstanceState) {

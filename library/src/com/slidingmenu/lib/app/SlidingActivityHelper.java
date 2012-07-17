@@ -31,6 +31,14 @@ public class SlidingActivityHelper {
 		// register a new content view
 		mContentView = new RelativeLayout(mActivity);
 		mContentView.setId(android.R.id.content);
+
+		// customize based on type of Activity
+		if (mActivity instanceof SlidingListActivity) {
+            ListView lv = new ListView(mActivity);
+            lv.setId(android.R.id.list);
+            mContentView.addView(lv);
+        }
+
 		// set up the SlidingMenu
 		mSlidingMenu = (SlidingMenu) LayoutInflater.from(mActivity).inflate(R.layout.slidingmenumain, null);
 		mSlidingMenu.setViewAbove(mContentView);
