@@ -3,7 +3,6 @@ package com.slidingmenu.example;
 import java.util.List;
 import java.util.Vector;
 
-import android.annotation.TargetApi;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,10 +16,8 @@ import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.ActionBar.TabListener;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.slidingmenu.lib.SlidingMenu;
 import com.slidingmenu.lib.app.SlidingFragmentActivity;
 
-@TargetApi(11)
 public class ExampleActivity extends SlidingFragmentActivity implements TabListener {
 
 	public void onCreate(Bundle savedInstanceState) {

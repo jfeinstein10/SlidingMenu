@@ -132,7 +132,6 @@ public class CustomViewAbove extends ViewGroup {
 
 		private OnPageChangeListener mOnPageChangeListener;
 		private OnPageChangeListener mInternalPageChangeListener;
-		private OnAdapterChangeListener mAdapterChangeListener;
 
 		/**
 		 * Indicates that the pager is in an idle, settled state. The current page
@@ -212,13 +211,6 @@ public class CustomViewAbove extends ViewGroup {
 		}
 
 		/**
-		 * Used internally to monitor when adapters are switched.
-		 */
-		interface OnAdapterChangeListener {
-			public void onAdapterChanged(CustomPagerAdapter oldAdapter, CustomPagerAdapter newAdapter);
-		}
-
-		/**
 		 * Used internally to tag special types of child views that should be added as
 		 * pager decorations by default.
 		 */
@@ -236,6 +228,10 @@ public class CustomViewAbove extends ViewGroup {
 			super(context, attrs);
 			initCustomViewAbove(isAbove);
 		}
+		
+		void initCustomViewAbove() {
+			initCustomViewAbove(false);
+		}
 
 		void initCustomViewAbove(boolean isAbove) {
 			setWillNotDraw(false);
@@ -251,8 +247,6 @@ public class CustomViewAbove extends ViewGroup {
 			if (isAbove) {
 				View v = new LinearLayout(getContext());
 				v.setBackgroundResource(android.R.color.transparent);
-				//				ImageView v = new ImageView(getContext());
-				//				v.setImageResource(R.drawable.ic_launcher);
 				setMenu(v);
 			}
 
@@ -280,19 +274,6 @@ public class CustomViewAbove extends ViewGroup {
 					i--;
 				}
 			}
-		}
-
-		/**
-		 * Retrieve the current adapter supplying pages.
-		 *
-		 * @return The currently registered CustomPagerAdapter
-		 */
-		//		public CustomPagerAdapter getAdapter() {
-		//			return mAdapter;
-		//		}
-
-		void setOnAdapterChangeListener(OnAdapterChangeListener listener) {
-			mAdapterChangeListener = listener;
 		}
 
 		/**
@@ -338,7 +319,6 @@ public class CustomViewAbove extends ViewGroup {
 		}
 
 		void setCurrentItemInternal(int item, boolean smoothScroll, boolean always, int velocity) {
-			//			if (mAdapter == null || mAdapter.getCount() <= 0) {
 			if (isNull()) {
 				setScrollingCacheEnabled(false);
 				return;
@@ -349,8 +329,6 @@ public class CustomViewAbove extends ViewGroup {
 			}
 			if (item < 0) {
 				item = 0;
-				//			} else if (item >= mAdapter.getCount()) {
-				//				item = mAdapter.getCount() - 1;
 			} else if (item >= getCount()) {
 				item = getCount() - 1;
 			}
@@ -607,22 +585,6 @@ public class CustomViewAbove extends ViewGroup {
 			for (int i = 0; i < items.size(); i++) {
 				final ItemInfo ii = items.get(i);
 				final int newPos = ii.position;
-
-				if (newPos == CustomPagerAdapter.POSITION_UNCHANGED) {
-					continue;
-				}
-
-				if (newPos == CustomPagerAdapter.POSITION_NONE) {
-					items.remove(i);
-					i--;
-					needPopulate = true;
-
-					if (mCurItem == ii.position) {
-						// Keep the current item in the valid range
-						newCurrItem = Math.max(0, Math.min(mCurItem, getCount() - 1));
-					}
-					continue;
-				}
 
 				if (ii.position != newPos) {
 					if (ii.position == mCurItem) {
@@ -1100,13 +1062,13 @@ public class CustomViewAbove extends ViewGroup {
 			return mTouchModeBehind;
 		}
 
-		private boolean thisTouchAllowed(float x) {
+		private boolean thisTouchAllowed(MotionEvent ev) {
 			if (isMenuOpen()) {
 				switch (mTouchModeBehind) {
 				case SlidingMenu.TOUCHMODE_FULLSCREEN:
 					return true;
 				case SlidingMenu.TOUCHMODE_MARGIN:
-					return x >= getBehindWidth() && x <= getWidth();
+					return ev.getX() >= getBehindWidth() && ev.getX() <= getWidth();
 				default:
 					return false;
 				}
@@ -1115,7 +1077,7 @@ public class CustomViewAbove extends ViewGroup {
 				case SlidingMenu.TOUCHMODE_FULLSCREEN:
 					return true;
 				case SlidingMenu.TOUCHMODE_MARGIN:
-					return x >= 0 && x <= mSlidingMenuThreshold;
+					return ev.getX() >= 0 && ev.getX() <= mSlidingMenuThreshold;
 				default:
 					return false;
 				}
@@ -1133,7 +1095,7 @@ public class CustomViewAbove extends ViewGroup {
 				return false;
 			}
 
-			if (!thisTouchAllowed(ev.getX())) {
+			if (!thisTouchAllowed(ev)) {
 				return false;
 			}
 
@@ -1231,7 +1193,7 @@ public class CustomViewAbove extends ViewGroup {
 					mIsUnableToDrag = false;
 					setScrollState(SCROLL_STATE_DRAGGING);
 				} else if (isMenuOpen() ||
-						(mTouchModeAbove != SlidingMenu.TOUCHMODE_FULLSCREEN && thisTouchAllowed(ev.getX()))) {
+						(mTouchModeAbove != SlidingMenu.TOUCHMODE_FULLSCREEN && thisTouchAllowed(ev))) {
 					// we want to intercept this touch even though we are not dragging
 					// so that we can close the menu on a touch
 					mIsBeingDragged = false;
@@ -1276,7 +1238,7 @@ public class CustomViewAbove extends ViewGroup {
 				return false;
 			}
 
-			if (!mLastTouchAllowed && !thisTouchAllowed(ev.getX())) {
+			if (!mLastTouchAllowed && !thisTouchAllowed(ev)) {
 				return false;
 			}
 
@@ -1295,7 +1257,6 @@ public class CustomViewAbove extends ViewGroup {
 				// Nothing to present or scroll; nothing to touch.
 				return false;
 			}
-
 			if (mVelocityTracker == null) {
 				mVelocityTracker = VelocityTracker.obtain();
 			}

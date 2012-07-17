@@ -1,7 +1,9 @@
 package com.slidingmenu.lib;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +36,9 @@ public class SlidingMenu extends RelativeLayout {
 		addView(mViewAbove, aboveParams);
 		// register the CustomViewBehind2 with the CustomViewAbove
 		mViewAbove.setCustomViewBehind2(mViewBehind);
+//		Drawable bg = ((Activity)context).getWindow().getDecorView().getBackground();
+//		mViewBehind.setBackgroundDrawable(bg);
+//		mViewAbove.setBackgroundDrawable(bg);
 		
 		// now style everything!
 		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.SlidingMenu);
