@@ -7,17 +7,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager.LayoutParams;
 import android.view.View;
 import android.widget.SpinnerAdapter;
 
 import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.ActionBar.OnMenuVisibilityListener;
-import com.actionbarsherlock.app.ActionBar.OnNavigationListener;
-import com.actionbarsherlock.app.ActionBar.Tab;
-import com.actionbarsherlock.app.ActionBar.TabListener;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
-
 
 public class ActionBarWrapper extends ActionBar implements android.app.ActionBar.OnNavigationListener, android.app.ActionBar.OnMenuVisibilityListener {
     private final Activity mActivity;
@@ -223,7 +217,6 @@ public class ActionBarWrapper extends ActionBar implements android.app.ActionBar
         public TabWrapper(android.app.ActionBar.Tab nativeTab) {
             mNativeTab = nativeTab;
             mNativeTab.setTag(this);
-            mNativeTab.setTabListener(this);
         }
 
         @Override
@@ -295,6 +288,7 @@ public class ActionBarWrapper extends ActionBar implements android.app.ActionBar
 
         @Override
         public Tab setTabListener(TabListener listener) {
+            mNativeTab.setTabListener(listener != null ? this : null);
             mListener = listener;
             return this;
         }

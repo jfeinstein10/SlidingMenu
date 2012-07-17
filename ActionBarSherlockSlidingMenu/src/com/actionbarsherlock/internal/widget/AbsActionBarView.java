@@ -32,7 +32,7 @@ import com.actionbarsherlock.internal.nineoldandroids.view.NineViewGroup;
 import com.actionbarsherlock.internal.view.menu.ActionMenuPresenter;
 import com.actionbarsherlock.internal.view.menu.ActionMenuView;
 
-import static com.actionbarsherlock.ResourcesCompat.getResources_getBoolean;
+import static com.actionbarsherlock.internal.ResourcesCompat.getResources_getBoolean;
 
 public abstract class AbsActionBarView extends NineViewGroup {
     protected ActionMenuView mMenuView;

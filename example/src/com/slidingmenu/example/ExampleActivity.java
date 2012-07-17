@@ -37,7 +37,7 @@ public class ExampleActivity extends SlidingFragmentActivity implements TabListe
 
 		getSlidingMenu().setBehindOffsetRes(R.dimen.actionbar_home_width);
 		getSlidingMenu().setBehindScrollScale(0.5f);
-//		getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+		//		getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		actionBar.setDisplayHomeAsUpEnabled(true);

@@ -16,11 +16,8 @@
 
 package com.actionbarsherlock.internal.app;
 
-import static com.actionbarsherlock.ResourcesCompat.getResources_getBoolean;
-
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -34,19 +31,17 @@ import android.util.TypedValue;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.SpinnerAdapter;
-
 import com.actionbarsherlock.R;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.internal.nineoldandroids.animation.Animator;
-import com.actionbarsherlock.internal.nineoldandroids.animation.Animator.AnimatorListener;
 import com.actionbarsherlock.internal.nineoldandroids.animation.AnimatorListenerAdapter;
 import com.actionbarsherlock.internal.nineoldandroids.animation.AnimatorSet;
 import com.actionbarsherlock.internal.nineoldandroids.animation.ObjectAnimator;
+import com.actionbarsherlock.internal.nineoldandroids.animation.Animator.AnimatorListener;
 import com.actionbarsherlock.internal.nineoldandroids.widget.NineFrameLayout;
 import com.actionbarsherlock.internal.view.menu.MenuBuilder;
 import com.actionbarsherlock.internal.view.menu.MenuPopupHelper;
@@ -59,6 +54,7 @@ import com.actionbarsherlock.view.ActionMode;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import static com.actionbarsherlock.internal.ResourcesCompat.getResources_getBoolean;
 
 /**
  * ActionBarImpl is the ActionBar implementation used
@@ -68,10 +64,12 @@ import com.actionbarsherlock.view.MenuItem;
  * which is normally hidden.
  */
 public class ActionBarImpl extends ActionBar {
+    //UNUSED private static final String TAG = "ActionBarImpl";
 
     private Context mContext;
     private Context mThemedContext;
     private Activity mActivity;
+    //UNUSED private Dialog mDialog;
 
     private ActionBarContainer mContainerView;
     private ActionBarView mActionView;
@@ -133,13 +131,11 @@ public class ActionBarImpl extends ActionBar {
             mContainerView.requestLayout();
         }
     };
-    
-    public ActionBarImpl(Activity activity, int features) {
-    	this(activity, features, activity.getWindow().getDecorView());
-    }
 
-    public ActionBarImpl(Activity activity, int features, View decor) {
+    public ActionBarImpl(Activity activity, int features) {
         mActivity = activity;
+        Window window = activity.getWindow();
+        View decor = window.getDecorView();
         init(decor);
 
         //window.hasFeature() workaround for pre-3.0
@@ -149,6 +145,7 @@ public class ActionBarImpl extends ActionBar {
     }
 
     public ActionBarImpl(Dialog dialog) {
+        //UNUSED mDialog = dialog;
         init(dialog.getWindow().getDecorView());
     }
 
