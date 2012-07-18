@@ -19,8 +19,7 @@ public class SlidingActivityHelper {
 
 	private SlidingMenu mSlidingMenu;
 	private ViewGroup mContentView;
-	private boolean mContentViewCalled = true;
-	private boolean mBehindContentViewCalled = true;
+	private boolean mBehindContentViewCalled = false;
 
 	public SlidingActivityHelper(Activity activity) {
 		mActivity = activity;
@@ -48,9 +47,9 @@ public class SlidingActivityHelper {
 	}
 
 	public void onPostCreate(Bundle savedInstanceState) {
-		if (!mContentViewCalled || !mBehindContentViewCalled) {
-			throw new IllegalStateException("Both setContentView and " +
-					"setBehindContentView must be called in onCreate.");
+		if (!mBehindContentViewCalled) {
+			throw new IllegalStateException("Both setBehindContentView must be called " +
+					"in onCreate in addition to setContentView.");
 		}
 	}
 	
