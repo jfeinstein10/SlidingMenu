@@ -6,6 +6,9 @@
 *.ear
 *.apk
 bin/
+bin
 gen/
+gen
 .metadata/
+.metadata
 *.project
