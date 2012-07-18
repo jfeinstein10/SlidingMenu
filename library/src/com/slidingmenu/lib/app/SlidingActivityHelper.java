@@ -37,7 +37,7 @@ public class SlidingActivityHelper {
 		if (mActivity instanceof SlidingListActivity) {
             ListView lv = new ListView(mActivity);
             lv.setId(android.R.id.list);
-            mContentView.addView(lv);
+            mContentView.addView(lv, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
         }
 
 		// set up the SlidingMenu
@@ -52,14 +52,6 @@ public class SlidingActivityHelper {
 			throw new IllegalStateException("Both setContentView and " +
 					"setBehindContentView must be called in onCreate.");
 		}
-	}
-
-	public void setContentView(View v, LayoutParams params) {
-		if (!mContentViewCalled) {
-			mContentViewCalled = true;
-		}
-		mContentView.addView(v);
-		showAbove();
 	}
 	
 	public void setBehindContentView(View v, LayoutParams params) {

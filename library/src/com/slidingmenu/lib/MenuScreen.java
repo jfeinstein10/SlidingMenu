@@ -35,6 +35,5 @@ public class MenuScreen extends LinearLayout {
 		cbp.setTitle(title);
 		cat.addPreference(cbp);
 	}
-	
 
 }

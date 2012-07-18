@@ -661,75 +661,75 @@ public class CustomViewAbove extends ViewGroup {
 		 * state, in which case it should implement a subclass of this which
 		 * contains that state.
 		 */
-		public static class SavedState extends BaseSavedState {
-			int position;
-			Parcelable adapterState;
-			ClassLoader loader;
-
-			public SavedState(Parcelable superState) {
-				super(superState);
-			}
-
-
-			public void writeToParcel(Parcel out, int flags) {
-				super.writeToParcel(out, flags);
-				out.writeInt(position);
-				out.writeParcelable(adapterState, flags);
-			}
-
-
-			public String toString() {
-				return "FragmentPager.SavedState{"
-						+ Integer.toHexString(System.identityHashCode(this))
-						+ " position=" + position + "}";
-			}
-
-			public static final Parcelable.Creator<SavedState> CREATOR
-			= ParcelableCompat.newCreator(new ParcelableCompatCreatorCallbacks<SavedState>() {
-
-				public SavedState createFromParcel(Parcel in, ClassLoader loader) {
-					return new SavedState(in, loader);
-				}
-
-				public SavedState[] newArray(int size) {
-					return new SavedState[size];
-				}
-			});
-
-			SavedState(Parcel in, ClassLoader loader) {
-				super(in);
-				if (loader == null) {
-					loader = getClass().getClassLoader();
-				}
-				position = in.readInt();
-				adapterState = in.readParcelable(loader);
-				this.loader = loader;
-			}
-		}
-
-
-		public Parcelable onSaveInstanceState() {
-			Parcelable superState = super.onSaveInstanceState();
-			SavedState ss = new SavedState(superState);
-			ss.position = mCurItem;
-			return ss;
-		}
-
-
-		public void onRestoreInstanceState(Parcelable state) {
-			if (!(state instanceof SavedState)) {
-				super.onRestoreInstanceState(state);
-				return;
-			}
-
-			SavedState ss = (SavedState)state;
-			super.onRestoreInstanceState(ss.getSuperState());
-
-			setCurrentItemInternal(ss.position, false, true);
-			mRestoredCurItem = ss.position;
-			mRestoredAdapterState = ss.adapterState;
-			mRestoredClassLoader = ss.loader;
-		}
+//		public static class SavedState extends BaseSavedState {
+//			int position;
+//			Parcelable adapterState;
+//			ClassLoader loader;
+//
+//			public SavedState(Parcelable superState) {
+//				super(superState);
+//			}
+//
+//
+//			public void writeToParcel(Parcel out, int flags) {
+//				super.writeToParcel(out, flags);
+//				out.writeInt(position);
+//				out.writeParcelable(adapterState, flags);
+//			}
+//
+//
+//			public String toString() {
+//				return "FragmentPager.SavedState{"
+//						+ Integer.toHexString(System.identityHashCode(this))
+//						+ " position=" + position + "}";
+//			}
+//
+//			public static final Parcelable.Creator<SavedState> CREATOR
+//			= ParcelableCompat.newCreator(new ParcelableCompatCreatorCallbacks<SavedState>() {
+//
+//				public SavedState createFromParcel(Parcel in, ClassLoader loader) {
+//					return new SavedState(in, loader);
+//				}
+//
+//				public SavedState[] newArray(int size) {
+//					return new SavedState[size];
+//				}
+//			});
+//
+//			SavedState(Parcel in, ClassLoader loader) {
+//				super(in);
+//				if (loader == null) {
+//					loader = getClass().getClassLoader();
+//				}
+//				position = in.readInt();
+//				adapterState = in.readParcelable(loader);
+//				this.loader = loader;
+//			}
+//		}
+//
+//
+//		public Parcelable onSaveInstanceState() {
+//			Parcelable superState = super.onSaveInstanceState();
+//			SavedState ss = new SavedState(superState);
+//			ss.position = mCurItem;
+//			return ss;
+//		}
+//
+//
+//		public void onRestoreInstanceState(Parcelable state) {
+//			if (!(state instanceof SavedState)) {
+//				super.onRestoreInstanceState(state);
+//				return;
+//			}
+//
+//			SavedState ss = (SavedState)state;
+//			super.onRestoreInstanceState(ss.getSuperState());
+//
+//			setCurrentItemInternal(ss.position, false, true);
+//			mRestoredCurItem = ss.position;
+//			mRestoredAdapterState = ss.adapterState;
+//			mRestoredClassLoader = ss.loader;
+//		}
 
 		protected void setMenu(View v) {
 			ItemInfo ii = new ItemInfo();

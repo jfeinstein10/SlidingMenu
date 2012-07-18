@@ -23,18 +23,6 @@ public class SlidingFragmentActivity extends SherlockFragmentActivity implements
 		mHelper.onPostCreate(savedInstanceState);
 	}
 
-	public void setContentView(int id) {
-		setContentView(getLayoutInflater().inflate(id, null));
-	}
-
-	public void setContentView(View v) {
-		setContentView(v, null);
-	}
-
-	public void setContentView(View v, LayoutParams params) {
-		mHelper.setContentView(v, params);
-	}
-
 	public void setBehindContentView(int id) {
 		setBehindContentView(getLayoutInflater().inflate(id, null));
 	}

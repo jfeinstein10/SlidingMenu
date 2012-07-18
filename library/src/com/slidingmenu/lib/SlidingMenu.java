@@ -1,9 +1,11 @@
 package com.slidingmenu.lib;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.support.v4.os.ParcelableCompat;
+import android.support.v4.os.ParcelableCompatCreatorCallbacks;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,6 +76,7 @@ public class SlidingMenu extends RelativeLayout {
 		mViewAbove.setContent(v);
 		mViewAbove.invalidate();
 		mViewAbove.dataSetChanged();
+		showAbove();
 	}
 	
 	public void setViewBehind(int res) {
@@ -199,6 +202,63 @@ public class SlidingMenu extends RelativeLayout {
 					"TOUCHMODE_FULLSCREEN or TOUCHMODE_MARGIN.");
 		}
 		mViewAbove.setTouchModeBehind(i);
+	}
+	
+	public static class SavedState extends BaseSavedState {
+		boolean mBehindShowing;
+
+		public SavedState(Parcelable superState) {
+			super(superState);
+		}
+
+		public void writeToParcel(Parcel out, int flags) {
+			super.writeToParcel(out, flags);
+			out.writeBooleanArray(new boolean[]{mBehindShowing});
+		}
+
+		public static final Parcelable.Creator<SavedState> CREATOR
+		= ParcelableCompat.newCreator(new ParcelableCompatCreatorCallbacks<SavedState>() {
+
+			public SavedState createFromParcel(Parcel in, ClassLoader loader) {
+				return new SavedState(in);
+			}
+
+			public SavedState[] newArray(int size) {
+				return new SavedState[size];
+			}
+		});
+
+		SavedState(Parcel in) {
+			super(in);
+			boolean[] showing = new boolean[1];
+			in.readBooleanArray(showing);
+			mBehindShowing = showing[0];
+		}
+	}
+
+
+	public Parcelable onSaveInstanceState() {
+		Parcelable superState = super.onSaveInstanceState();
+		SavedState ss = new SavedState(superState);
+		ss.mBehindShowing = isBehindShowing();
+		return ss;
+	}
+
+
+	public void onRestoreInstanceState(Parcelable state) {
+		if (!(state instanceof SavedState)) {
+			super.onRestoreInstanceState(state);
+			return;
+		}
+
+		SavedState ss = (SavedState)state;
+		super.onRestoreInstanceState(ss.getSuperState());
+
+		if (ss.mBehindShowing) {
+			showBehind();
+		} else {
+			showAbove();
+		}
 	}
 
 }
