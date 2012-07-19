@@ -12,11 +12,11 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
-  -->
+-->
 
 <resources>
 
-   	<declare-styleable name="SlidingMenu">
+    <declare-styleable name="SlidingMenu">
         <attr name="viewAbove" format="reference" />
         <attr name="viewBehind" format="reference" />
         <attr name="behindOffset" format="dimension" />
@@ -29,6 +29,8 @@
             <enum name="margin" value="0" />
             <enum name="fullscreen" value="1" />
         </attr>
+        <attr name="shadowDrawable" format="reference" />
+        <attr name="shadowWidth" format="dimension" />
     </declare-styleable>
 
 </resources>

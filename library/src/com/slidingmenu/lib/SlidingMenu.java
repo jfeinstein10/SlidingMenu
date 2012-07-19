@@ -8,6 +8,7 @@ import android.support.v4.os.ParcelableCompat;
 import android.support.v4.os.ParcelableCompatCreatorCallbacks;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
 
@@ -15,21 +16,21 @@ public class SlidingMenu extends RelativeLayout {
 
 	public static final int TOUCHMODE_MARGIN = 0;
 	public static final int TOUCHMODE_FULLSCREEN = 1;
-	
+
 	private CustomViewAbove mViewAbove;
 	private CustomViewBehind mViewBehind;
-	
+
 	public SlidingMenu(Context context) {
 		this(context, null);
 	}
-	
+
 	public SlidingMenu(Context context, AttributeSet attrs) {
 		this(context, attrs, 0);
 	}
 
 	public SlidingMenu(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
-		
+
 		LayoutParams behindParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		mViewBehind = new CustomViewBehind(context);
 		addView(mViewBehind, behindParams);
@@ -38,10 +39,7 @@ public class SlidingMenu extends RelativeLayout {
 		addView(mViewAbove, aboveParams);
 		// register the CustomViewBehind2 with the CustomViewAbove
 		mViewAbove.setCustomViewBehind2(mViewBehind);
-//		Drawable bg = ((Activity)context).getWindow().getDecorView().getBackground();
-//		mViewBehind.setBackgroundDrawable(bg);
-//		mViewAbove.setBackgroundDrawable(bg);
-		
+
 		// now style everything!
 		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.SlidingMenu);
 		// set the above and behind views if defined in xml
@@ -64,39 +62,45 @@ public class SlidingMenu extends RelativeLayout {
 		setBehindOffset(offsetBehind);
 		float scrollOffsetBehind = ta.getFloat(R.styleable.SlidingMenu_behindScrollScale, 0.0f);
 		setBehindScrollScale(scrollOffsetBehind);
-		
+		int shadowRes = ta.getResourceId(R.styleable.SlidingMenu_shadowDrawable, -1);
+		if (shadowRes != -1) {
+			setShadowDrawable(shadowRes);
+		}
+		int shadowWidth = (int) ta.getDimension(R.styleable.SlidingMenu_shadowWidth, 0);
+		setShadowWidth(shadowWidth);
+
 		showAbove();
 	}
-	
+
 	public void setViewAbove(int res) {
 		setViewAbove(LayoutInflater.from(getContext()).inflate(res, null));
 	}
-	
+
 	public void setViewAbove(View v) {
 		mViewAbove.setContent(v);
 		mViewAbove.invalidate();
 		mViewAbove.dataSetChanged();
 		showAbove();
 	}
-	
+
 	public void setViewBehind(int res) {
 		setViewBehind(LayoutInflater.from(getContext()).inflate(res, null));
 	}
-	
+
 	public void setViewBehind(View v) {
 		mViewBehind.setContent(v);
 		mViewBehind.invalidate();
 		mViewBehind.dataSetChanged();
 	}
-	
+
 	public void setSlidingEnabled(boolean b) {
 		mViewAbove.setSlidingEnabled(b);
 	}
-	
+
 	public boolean isSlidingEnabled() {
 		return mViewAbove.isSlidingEnabled();
 	}
-	
+
 	/**
 	 * 
 	 * @param b Whether or not the SlidingMenu is in a static mode 
@@ -137,7 +141,7 @@ public class SlidingMenu extends RelativeLayout {
 	public boolean isBehindShowing() {
 		return mViewAbove.getCurrentItem() == 0;
 	}
-	
+
 	/**
 	 * 
 	 * @return The margin on the right of the screen that the behind view scrolls to
@@ -145,7 +149,7 @@ public class SlidingMenu extends RelativeLayout {
 	public int getBehindOffset() {
 		return ((RelativeLayout.LayoutParams)mViewBehind.getLayoutParams()).rightMargin;
 	}
-	
+
 	/**
 	 * 
 	 * @param i The margin on the right of the screen that the behind view scrolls to
@@ -153,7 +157,7 @@ public class SlidingMenu extends RelativeLayout {
 	public void setBehindOffset(int i) {
 		((RelativeLayout.LayoutParams)mViewBehind.getLayoutParams()).setMargins(0, 0, i, 0);
 	}
-	
+
 	/**
 	 * 
 	 * @param res The dimension resource to be set as the behind offset
@@ -162,7 +166,7 @@ public class SlidingMenu extends RelativeLayout {
 		int i = (int) getContext().getResources().getDimension(res);
 		setBehindOffset(i);
 	}
-	
+
 	/**
 	 * 
 	 * @return The scale of the parallax scroll
@@ -170,7 +174,7 @@ public class SlidingMenu extends RelativeLayout {
 	public float getBehindScrollScale() {
 		return mViewAbove.getScrollScale();
 	}
-	
+
 	/**
 	 * 
 	 * @param f The scale of the parallax scroll (i.e. 1.0f scrolls 1 pixel for every
@@ -183,7 +187,7 @@ public class SlidingMenu extends RelativeLayout {
 	public int getTouchModeAbove() {
 		return mViewAbove.getTouchModeAbove();
 	}
-	
+
 	public void setTouchModeAbove(int i) {
 		if (i != TOUCHMODE_FULLSCREEN && i != TOUCHMODE_MARGIN) {
 			throw new IllegalStateException("TouchMode must be set to either" +
@@ -195,7 +199,7 @@ public class SlidingMenu extends RelativeLayout {
 	public int getTouchModeBehind() {
 		return mViewAbove.getTouchModeBehind();
 	}
-	
+
 	public void setTouchModeBehind(int i) {
 		if (i != TOUCHMODE_FULLSCREEN && i != TOUCHMODE_MARGIN) {
 			throw new IllegalStateException("TouchMode must be set to either" +
@@ -203,7 +207,19 @@ public class SlidingMenu extends RelativeLayout {
 		}
 		mViewAbove.setTouchModeBehind(i);
 	}
-	
+
+	public void setShadowDrawable(int resId) {
+		mViewAbove.setShadowDrawable(resId);
+	}
+
+	public void setShadowWidthRes(int resId) {
+		setShadowWidth((int)getResources().getDimension(resId));
+	}
+
+	public void setShadowWidth(int pixels) {
+		mViewAbove.setShadowWidth(pixels);
+	}
+
 	public static class SavedState extends BaseSavedState {
 		boolean mBehindShowing;
 

@@ -73,15 +73,11 @@ public class CustomViewAbove extends ViewGroup {
 		private ItemInfo mWindow;
 		private ItemInfo mContent;
 
-		private int mCurItem;   // Index of currently displayed page.
-		private int mRestoredCurItem = -1;
-		private Parcelable mRestoredAdapterState = null;
-		private ClassLoader mRestoredClassLoader = null;
+		private int mCurItem;
 		private Scroller mScroller;
-		private PagerObserver mObserver;
 
-		private int mPageMargin;
-		private Drawable mMarginDrawable;
+		private int mShadowWidth;
+		private Drawable mShadowDrawable;
 		private int mTopPageBounds;
 		private int mBottomPageBounds;
 
@@ -228,7 +224,7 @@ public class CustomViewAbove extends ViewGroup {
 			super(context, attrs);
 			initCustomViewAbove(isAbove);
 		}
-		
+
 		void initCustomViewAbove() {
 			initCustomViewAbove(false);
 		}
@@ -388,19 +384,19 @@ public class CustomViewAbove extends ViewGroup {
 		/**
 		 * Set the margin between pages.
 		 *
-		 * @param marginPixels Distance between adjacent pages in pixels
-		 * @see #getPageMargin()
-		 * @see #setPageMarginDrawable(Drawable)
-		 * @see #setPageMarginDrawable(int)
+		 * @param shadowWidth Distance between adjacent pages in pixels
+		 * @see #getShadowWidth()
+		 * @see #setShadowDrawable(Drawable)
+		 * @see #setShadowDrawable(int)
 		 */
-		public void setPageMargin(int marginPixels) {
-			final int oldMargin = mPageMargin;
-			mPageMargin = marginPixels;
+		public void setShadowWidth(int shadowWidth) {
+			final int oldWidth = mShadowWidth;
+			mShadowWidth = shadowWidth;
 
-			final int width = getWidth();
-			recomputeScrollPosition(width, width, marginPixels, oldMargin);
-
-			requestLayout();
+			//			final int width = getWidth();
+			//			recomputeScrollPosition(width, width, shadowWidth, oldWidth);
+			//
+			//			requestLayout();
 		}
 
 		/**
@@ -408,8 +404,8 @@ public class CustomViewAbove extends ViewGroup {
 		 *
 		 * @return The size of the margin in pixels
 		 */
-		public int getPageMargin() {
-			return mPageMargin;
+		public int getShadowWidth() {
+			return mShadowWidth;
 		}
 
 		/**
@@ -417,8 +413,8 @@ public class CustomViewAbove extends ViewGroup {
 		 *
 		 * @param d Drawable to display between pages
 		 */
-		public void setPageMarginDrawable(Drawable d) {
-			mMarginDrawable = d;
+		public void setShadowDrawable(Drawable d) {
+			mShadowDrawable = d;
 			if (d != null) refreshDrawableState();
 			setWillNotDraw(d == null);
 			invalidate();
@@ -429,19 +425,19 @@ public class CustomViewAbove extends ViewGroup {
 		 *
 		 * @param resId Resource ID of a drawable to display between pages
 		 */
-		public void setPageMarginDrawable(int resId) {
-			setPageMarginDrawable(getContext().getResources().getDrawable(resId));
+		public void setShadowDrawable(int resId) {
+			setShadowDrawable(getContext().getResources().getDrawable(resId));
 		}
 
 
 		protected boolean verifyDrawable(Drawable who) {
-			return super.verifyDrawable(who) || who == mMarginDrawable;
+			return super.verifyDrawable(who) || who == mShadowDrawable;
 		}
 
 
 		protected void drawableStateChanged() {
 			super.drawableStateChanged();
-			final Drawable d = mMarginDrawable;
+			final Drawable d = mShadowDrawable;
 			if (d != null && d.isStateful()) {
 				d.setState(getDrawableState());
 			}
@@ -555,7 +551,7 @@ public class CustomViewAbove extends ViewGroup {
 			if (velocity > 0) {
 				duration = 4 * Math.round(1000 * Math.abs(distance / velocity));
 			} else {
-				final float pageDelta = (float) Math.abs(dx) / (width + mPageMargin);
+				final float pageDelta = (float) Math.abs(dx) / (width + mShadowWidth);
 				duration = (int) ((pageDelta + 1) * 100);
 				// TODO set custom duration!
 				duration = MAX_SETTLE_DURATION;
@@ -661,75 +657,75 @@ public class CustomViewAbove extends ViewGroup {
 		 * state, in which case it should implement a subclass of this which
 		 * contains that state.
 		 */
-//		public static class SavedState extends BaseSavedState {
-//			int position;
-//			Parcelable adapterState;
-//			ClassLoader loader;
-//
-//			public SavedState(Parcelable superState) {
-//				super(superState);
-//			}
-//
-//
-//			public void writeToParcel(Parcel out, int flags) {
-//				super.writeToParcel(out, flags);
-//				out.writeInt(position);
-//				out.writeParcelable(adapterState, flags);
-//			}
-//
-//
-//			public String toString() {
-//				return "FragmentPager.SavedState{"
-//						+ Integer.toHexString(System.identityHashCode(this))
-//						+ " position=" + position + "}";
-//			}
-//
-//			public static final Parcelable.Creator<SavedState> CREATOR
-//			= ParcelableCompat.newCreator(new ParcelableCompatCreatorCallbacks<SavedState>() {
-//
-//				public SavedState createFromParcel(Parcel in, ClassLoader loader) {
-//					return new SavedState(in, loader);
-//				}
-//
-//				public SavedState[] newArray(int size) {
-//					return new SavedState[size];
-//				}
-//			});
-//
-//			SavedState(Parcel in, ClassLoader loader) {
-//				super(in);
-//				if (loader == null) {
-//					loader = getClass().getClassLoader();
-//				}
-//				position = in.readInt();
-//				adapterState = in.readParcelable(loader);
-//				this.loader = loader;
-//			}
-//		}
-//
-//
-//		public Parcelable onSaveInstanceState() {
-//			Parcelable superState = super.onSaveInstanceState();
-//			SavedState ss = new SavedState(superState);
-//			ss.position = mCurItem;
-//			return ss;
-//		}
-//
-//
-//		public void onRestoreInstanceState(Parcelable state) {
-//			if (!(state instanceof SavedState)) {
-//				super.onRestoreInstanceState(state);
-//				return;
-//			}
-//
-//			SavedState ss = (SavedState)state;
-//			super.onRestoreInstanceState(ss.getSuperState());
-//
-//			setCurrentItemInternal(ss.position, false, true);
-//			mRestoredCurItem = ss.position;
-//			mRestoredAdapterState = ss.adapterState;
-//			mRestoredClassLoader = ss.loader;
-//		}
+		//		public static class SavedState extends BaseSavedState {
+		//			int position;
+		//			Parcelable adapterState;
+		//			ClassLoader loader;
+		//
+		//			public SavedState(Parcelable superState) {
+		//				super(superState);
+		//			}
+		//
+		//
+		//			public void writeToParcel(Parcel out, int flags) {
+		//				super.writeToParcel(out, flags);
+		//				out.writeInt(position);
+		//				out.writeParcelable(adapterState, flags);
+		//			}
+		//
+		//
+		//			public String toString() {
+		//				return "FragmentPager.SavedState{"
+		//						+ Integer.toHexString(System.identityHashCode(this))
+		//						+ " position=" + position + "}";
+		//			}
+		//
+		//			public static final Parcelable.Creator<SavedState> CREATOR
+		//			= ParcelableCompat.newCreator(new ParcelableCompatCreatorCallbacks<SavedState>() {
+		//
+		//				public SavedState createFromParcel(Parcel in, ClassLoader loader) {
+		//					return new SavedState(in, loader);
+		//				}
+		//
+		//				public SavedState[] newArray(int size) {
+		//					return new SavedState[size];
+		//				}
+		//			});
+		//
+		//			SavedState(Parcel in, ClassLoader loader) {
+		//				super(in);
+		//				if (loader == null) {
+		//					loader = getClass().getClassLoader();
+		//				}
+		//				position = in.readInt();
+		//				adapterState = in.readParcelable(loader);
+		//				this.loader = loader;
+		//			}
+		//		}
+		//
+		//
+		//		public Parcelable onSaveInstanceState() {
+		//			Parcelable superState = super.onSaveInstanceState();
+		//			SavedState ss = new SavedState(superState);
+		//			ss.position = mCurItem;
+		//			return ss;
+		//		}
+		//
+		//
+		//		public void onRestoreInstanceState(Parcelable state) {
+		//			if (!(state instanceof SavedState)) {
+		//				super.onRestoreInstanceState(state);
+		//				return;
+		//			}
+		//
+		//			SavedState ss = (SavedState)state;
+		//			super.onRestoreInstanceState(ss.getSuperState());
+		//
+		//			setCurrentItemInternal(ss.position, false, true);
+		//			mRestoredCurItem = ss.position;
+		//			mRestoredAdapterState = ss.adapterState;
+		//			mRestoredClassLoader = ss.loader;
+		//		}
 
 		protected void setMenu(View v) {
 			ItemInfo ii = new ItemInfo();
@@ -892,7 +888,7 @@ public class CustomViewAbove extends ViewGroup {
 
 			// Make sure scroll position is set correctly.
 			if (w != oldw) {
-				recomputeScrollPosition(w, oldw, mPageMargin, mPageMargin);
+				recomputeScrollPosition(w, oldw, mShadowWidth, mShadowWidth);
 			}
 		}
 
@@ -933,13 +929,10 @@ public class CustomViewAbove extends ViewGroup {
 			for (int i = 0; i < count; i++) {
 				final View child = getChildAt(i);
 				if (child.getVisibility() != GONE) {
-					final LayoutParams lp = (LayoutParams) child.getLayoutParams();
 					int pos = infoForChild(child).position;
 					int childLeft = 0;
 					int childTop = 0;
 					childLeft = getChildLeft(pos);
-					Log.v(TAG, "Child#" + i + " left:" + childLeft +
-							" right:" + (childLeft + child.getMeasuredWidth()));
 					child.layout(childLeft, childTop,
 							childLeft + child.getMeasuredWidth(),
 							childTop + child.getMeasuredHeight());
@@ -978,7 +971,7 @@ public class CustomViewAbove extends ViewGroup {
 
 		private void pageScrolled(int xpos) {
 			// TODO
-			final int widthWithMargin = getChildWidth(mCurItem) + mPageMargin;
+			final int widthWithMargin = getChildWidth(mCurItem) + mShadowWidth;
 			final int position = xpos / widthWithMargin;
 			final int offsetPixels = xpos % widthWithMargin;
 			final float offset = (float) offsetPixels / widthWithMargin;
@@ -1322,7 +1315,7 @@ public class CustomViewAbove extends ViewGroup {
 					int initialVelocity = (int) VelocityTrackerCompat.getXVelocity(
 							velocityTracker, mActivePointerId);
 					mPopulatePending = true;
-					final int widthWithMargin = getChildWidth(mCurItem) + mPageMargin;
+					final int widthWithMargin = getChildWidth(mCurItem) + mShadowWidth;
 					final int scrollX = getScrollX();
 					final int currentPage = scrollX / widthWithMargin;
 					final float pageOffset = (float) (scrollX % widthWithMargin) / widthWithMargin;
@@ -1382,6 +1375,7 @@ public class CustomViewAbove extends ViewGroup {
 			if (mCustomViewBehind2 != null && mEnabled) {
 				mCustomViewBehind2.scrollTo((int)(x*mScrollScale), y);
 			}
+			invalidate();
 		}
 
 		private int determineTargetPage(int currentPage, float pageOffset, int velocity, int deltaX) {
@@ -1396,19 +1390,12 @@ public class CustomViewAbove extends ViewGroup {
 
 		protected void onDraw(Canvas canvas) {
 			super.onDraw(canvas);
-
 			// Draw the margin drawable if needed.
-			if (mPageMargin > 0 && mMarginDrawable != null) {
-				final int scrollX = getDestScrollX();
-				final int width = getChildWidth(mCurItem);
-				final int offset = scrollX % (width + mPageMargin);
-				if (offset != 0) {
-					// Pages fit completely when settled; we only need to draw when in between
-					final int left = scrollX - offset + width;
-					mMarginDrawable.setBounds(left, mTopPageBounds, left + mPageMargin,
-							mBottomPageBounds);
-					mMarginDrawable.draw(canvas);
-				}
+			if (mShadowWidth > 0 && mShadowDrawable != null) {
+				final int left = this.getBehindWidth() - mShadowWidth;
+				mShadowDrawable.setBounds(left, mTopPageBounds, left + mShadowWidth,
+						mBottomPageBounds);
+				mShadowDrawable.draw(canvas);
 			}
 		}
 
