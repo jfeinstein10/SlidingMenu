@@ -1,6 +1,8 @@
 package com.slidingmenu.lib.app;
 
 import android.app.Activity;
+import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -26,18 +28,28 @@ public class SlidingActivityHelper {
 	}
 
 	public void onCreate(Bundle savedInstanceState) {
-		// unregister the current content view
-		mActivity.getWindow().getDecorView().findViewById(android.R.id.content).setId(View.NO_ID);
-		// register a new content view
+
 		mContentView = new RelativeLayout(mActivity);
-		mContentView.setId(android.R.id.content);
+//		if (Build.VERSION.SDK_INT < 11) {
+			// unregister the current content view
+			mActivity.getWindow().getDecorView().findViewById(android.R.id.content).setId(View.NO_ID);
+			// register a new content view
+			mContentView.setId(android.R.id.content);
+//		} else {
+//			int content = Resources.getSystem().getIdentifier("content", "id", "android");
+//			int c2 = android.R.id.content;
+//			// unregister the current content view
+//			mActivity.getWindow().getDecorView().findViewById(content).setId(View.NO_ID);
+//			// register a new content view
+//			mContentView.setId(content);
+//		}
 
 		// customize based on type of Activity
 		if (mActivity instanceof SlidingListActivity) {
-            ListView lv = new ListView(mActivity);
-            lv.setId(android.R.id.list);
-            mContentView.addView(lv, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
-        }
+			ListView lv = new ListView(mActivity);
+			lv.setId(android.R.id.list);
+			mContentView.addView(lv, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+		}
 
 		// set up the SlidingMenu
 		mSlidingMenu = (SlidingMenu) LayoutInflater.from(mActivity).inflate(R.layout.slidingmenumain, null);
@@ -52,18 +64,18 @@ public class SlidingActivityHelper {
 					"in onCreate in addition to setContentView.");
 		}
 	}
-	
+
 	public void setBehindContentView(View v, LayoutParams params) {
 		if (!mBehindContentViewCalled) {
 			mBehindContentViewCalled = true;
 		}
 		mSlidingMenu.setViewBehind(v);
 	}
-	
+
 	public SlidingMenu getSlidingMenu() {
 		return mSlidingMenu;
 	}
-	
+
 	public void toggle() {
 		if (mSlidingMenu.isBehindShowing()) {
 			showAbove();

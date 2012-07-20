@@ -16,5 +16,6 @@
 
 <resources>
     <dimen name="actionbar_home_width">60dp</dimen>
-    <dimen name="actionbar_height">48dp</dimen>
+    <dimen name="list_padding">10dp</dimen>
+    <dimen name="shadow_width">15dp</dimen>
 </resources>

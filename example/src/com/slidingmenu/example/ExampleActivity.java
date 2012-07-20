@@ -1,7 +1,7 @@
 package com.slidingmenu.example;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,7 +9,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.view.View;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
@@ -18,63 +17,81 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.slidingmenu.lib.app.SlidingFragmentActivity;
 
-public class ExampleActivity extends SlidingFragmentActivity implements TabListener {
+public class ExampleActivity extends SlidingFragmentActivity {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		// set the Above View
 		setContentView(R.layout.pager);
 		ViewPager vp = (ViewPager) findViewById(R.id.pager);
-		List<Fragment> fragments = new Vector<Fragment>();
-		fragments.add(new SampleListFragment());
-		fragments.add(new SampleListFragment());
-		fragments.add(new SampleListFragment());
-		vp.setAdapter(new PagerAdapter(super.getSupportFragmentManager(), fragments));
+		PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), 
+				vp, getSupportActionBar());
+		for (int i = 0; i < 3; i++) {
+			adapter.addTab(new SampleListFragment());
+		}
+		
+		// set the Behind View
 		setBehindContentView(R.layout.frame);
-
 		FragmentTransaction t = this.getSupportFragmentManager().beginTransaction();
 		t.add(R.id.frame, new SampleListFragment());
 		t.commit();
 
+		// customize the SlidingMenu
+		getSlidingMenu().setShadowWidthRes(R.dimen.shadow_width);
+		getSlidingMenu().setShadowDrawable(R.drawable.shadow);
 		getSlidingMenu().setBehindOffsetRes(R.dimen.actionbar_home_width);
 		getSlidingMenu().setBehindScrollScale(0.5f);
-		//		getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+
+		// customize the ActionBar
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		actionBar.setDisplayHomeAsUpEnabled(true);
-		for (int i = 0; i < 3; i++) {
-			Tab tab = actionBar.newTab();
-			tab.setText("Tab " + i);
-			tab.setTabListener(this);
-			actionBar.addTab(tab);
-		}
-		View v = this.getWindow().getDecorView();
-		View a = findViewById(android.R.id.home);
 	}
-	public class PagerAdapter extends FragmentPagerAdapter {
+	
+	public class PagerAdapter extends FragmentPagerAdapter implements 
+	ViewPager.OnPageChangeListener, TabListener{
 
-		private List<Fragment> fragments;
-		/**
-		 * @param fm
-		 * @param fragments
-		 */
-		public PagerAdapter(FragmentManager fm, List<Fragment> fragments) {
+		private List<Fragment> mFragments = new ArrayList<Fragment>();
+		private ViewPager mPager;
+		private ActionBar mActionBar;
+
+		public PagerAdapter(FragmentManager fm, ViewPager vp, ActionBar ab) {
 			super(fm);
-			this.fragments = fragments;
+			mPager = vp;
+			mPager.setAdapter(this);
+			mPager.setOnPageChangeListener(this);
+			mActionBar = ab;
 		}
-		/* (non-Javadoc)
-		 * @see android.support.v4.app.FragmentPagerAdapter#getItem(int)
-		 */
+		
+		public void addTab(Fragment frag) {
+			mFragments.add(frag);
+			mActionBar.addTab(mActionBar.newTab().setTabListener(this).
+					setText("Tab "+mFragments.size()));
+		}
+		
 		@Override
 		public Fragment getItem(int position) {
-			return this.fragments.get(position);
+			return mFragments.get(position);
 		}
 
-		/* (non-Javadoc)
-		 * @see android.support.v4.view.PagerAdapter#getCount()
-		 */
 		@Override
 		public int getCount() {
-			return this.fragments.size();
+			return mFragments.size();
+		}
+
+		@Override
+		public void onTabSelected(Tab tab, FragmentTransaction ft) {
+			mPager.setCurrentItem(tab.getPosition());
+		}
+
+		public void onTabUnselected(Tab tab, FragmentTransaction ft) { }
+		public void onTabReselected(Tab tab, FragmentTransaction ft) { }
+		public void onPageScrollStateChanged(int arg0) { }
+		public void onPageScrolled(int arg0, float arg1, int arg2) { }
+
+		@Override
+		public void onPageSelected(int position) {
+			mActionBar.setSelectedNavigationItem(position);
 		}
 	}
 
@@ -92,31 +109,5 @@ public class ExampleActivity extends SlidingFragmentActivity implements TabListe
 		this.getSupportMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-
-	public void onTabSelected(Tab tab, FragmentTransaction ft) {
-		//		switch (tab.getPosition()) {
-		//		case 0:
-		//			findViewById(R.id.main).setBackgroundResource(android.R.color.white);
-		//			break;
-		//		case 1:
-		//			findViewById(R.id.main).setBackgroundResource(android.R.color.black);
-		//			break;
-		//		case 2:
-		//			findViewById(R.id.main).setBackgroundResource(android.R.color.darker_gray);
-		//			break;
-		//		}
-	}
-
-	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void onTabReselected(Tab tab, FragmentTransaction ft) {
-		// TODO Auto-generated method stub
-
-	}
-
-
 
 }

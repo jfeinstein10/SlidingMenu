@@ -392,11 +392,7 @@ public class CustomViewAbove extends ViewGroup {
 		public void setShadowWidth(int shadowWidth) {
 			final int oldWidth = mShadowWidth;
 			mShadowWidth = shadowWidth;
-
-			//			final int width = getWidth();
-			//			recomputeScrollPosition(width, width, shadowWidth, oldWidth);
-			//
-			//			requestLayout();
+			invalidate();
 		}
 
 		/**
