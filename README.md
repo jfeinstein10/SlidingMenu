@@ -42,7 +42,9 @@ If you decide to use SlidingMenu as a view, you can define it in your xml layout
     sliding:touchModeAbove="margin|fullscreen"
     sliding:touchModeBehind="margin|fullscreen"
     sliding:behindOffset="@dimen/YOUR_OFFSET"
-    sliding:behindScrollScale="@dimen/YOUR_SCALE"/>
+    sliding:behindScrollScale="@dimen/YOUR_SCALE"
+    sliding:shadowDrawable="@drawable/YOUR_SHADOW"
+    sliding:shadowWidth="@dimen/YOUR_SHADOW_WIDTH" />
 ```
 * `viewAbove` - a reference to the layout that you want to use as the above view of the SlidingMenu
 * `viewBehind` - a reference to the layout that you want to use as the behind view of the SlidingMenu
@@ -57,6 +59,9 @@ behind view is showing. Default is 0.
 behind view scrolling. If set to 0.5f, the behind view will scroll 1px for every 2px that the above view scrolls.
 If set to 1.0f, the behind view will scroll 1px for every 1px that the above view scrolls. And if set to 0.0f, the
 behind view will never scroll; it will be static. This one is fun to play around with. Default is 0.
+* `shadowDrawable` - a reference to a drawable to be used as a drop shadow from the above view onto the below view.
+Default is no shadow for now.
+* `shadowWidth` - a dimension representing the width of the shadow drawable. Default is 0.
 
 Developed By
 ------------
