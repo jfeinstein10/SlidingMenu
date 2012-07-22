@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.ListView;
 
 import com.slidingmenu.lib.SlidingMenu;
 
@@ -16,6 +17,9 @@ public class SlidingListActivity extends ListActivity implements SlidingActivity
 		super.onCreate(savedInstanceState);
 		mHelper = new SlidingActivityHelper(this);
 		mHelper.onCreate(savedInstanceState);
+		ListView listView = new ListView(this);
+		listView.setId(android.R.id.list);
+		setContentView(listView);
 	}
 
 	public void onPostCreate(Bundle savedInstanceState) {
