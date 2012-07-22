@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 
+import com.slidingmenu.lib.R;
 import com.slidingmenu.lib.SlidingMenu;
 
 public class SlidingActivityHelper {
@@ -27,7 +28,7 @@ public class SlidingActivityHelper {
 	}
 
 	public void onCreate(Bundle savedInstanceState) {
-		mSlidingMenu = new SlidingMenu(mActivity);
+		mSlidingMenu = (SlidingMenu) mActivity.getLayoutInflater().inflate(R.layout.slidingmenumain, null);
 	}
 
 	public void onPostCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class SlidingActivityHelper {
 				decor.removeView(child);
 				newDecor.addView(child);
 			}
-			decor.addView(mSlidingMenu, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+			decor.addView(mSlidingMenu);
 			mSlidingMenu.setViewAbove(newDecor);
 		} else {
 			ViewGroup parent = (ViewGroup) mViewAbove.getParent();
@@ -52,7 +53,7 @@ public class SlidingActivityHelper {
 				parent.removeView(mViewAbove);
 			}
 			mSlidingMenu.setViewAbove(mViewAbove);
-			mActivity.setContentView(mSlidingMenu);
+			mActivity.getWindow().setContentView(mSlidingMenu);
 		}
 	}
 

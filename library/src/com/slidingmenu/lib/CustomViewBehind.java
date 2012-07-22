@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 public class CustomViewBehind extends CustomViewAbove {
 	
-	private static final String TAG = "CustomViewBehind2";
+	private static final String TAG = "CustomViewBehind";
 
 	public CustomViewBehind(Context context) {
 		this(context, null);

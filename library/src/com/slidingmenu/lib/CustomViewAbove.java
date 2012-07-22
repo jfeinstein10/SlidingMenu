@@ -849,6 +849,9 @@ public class CustomViewAbove extends ViewGroup {
 					child.layout(childLeft, childTop,
 							childLeft + child.getMeasuredWidth(),
 							childTop + child.getMeasuredHeight());
+					Log.v(TAG, "top: " + childTop + ", left: " + childLeft +
+							", height: " + child.getMeasuredHeight() + 
+							", width:" + child.getMeasuredWidth());
 				}
 			}
 			mTopPageBounds = paddingTop;
@@ -1213,7 +1216,6 @@ public class CustomViewAbove extends ViewGroup {
 						scrollX = leftBound;
 					} else if (scrollX > rightBound) {
 						scrollX = rightBound;
-						//						scrollX = getChildWidth(mCurItem);
 					}
 					// Don't lose the rounded component
 					mLastMotionX += scrollX - (int) scrollX;
@@ -1312,10 +1314,17 @@ public class CustomViewAbove extends ViewGroup {
 				mShadowDrawable.draw(canvas);
 			}
 
-			if (mFadeEnabled) {
-				final float openPercent = (mScroller.getCurrX()) / (float) behindWidth;
-				onDrawBehindFade(canvas, openPercent, behindWidth);
-			}
+//			if (mFadeEnabled) {
+//				float openPercent = 0;
+//		        if (mScrollState == SCROLL_STATE_DRAGGING) {
+//		            openPercent= (behindWidth - Math.min(mLastMotionX, behindWidth)) / (float) behindWidth;
+//		            Log.v("STATE_DRAGGING", "openPercent: "+openPercent);
+//		        } else {
+//		            openPercent= (mScroller.getCurrX()) / (float) behindWidth;
+//		            Log.v("STATE_SETTLING", "openPercent: "+openPercent+", scrollerX: "+mScroller.getCurrX());
+//		        }
+//				onDrawBehindFade(canvas, openPercent, behindWidth);
+//			}
 		}
 		
 		private float mFadeDegree;

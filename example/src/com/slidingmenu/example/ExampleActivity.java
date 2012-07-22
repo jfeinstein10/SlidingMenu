@@ -37,6 +37,7 @@ public class ExampleActivity extends SlidingFragmentActivity {
 		t.commit();
 
 		// customize the SlidingMenu
+		this.setSlidingActionBarEnabled(false);
 		getSlidingMenu().setShadowWidthRes(R.dimen.shadow_width);
 		getSlidingMenu().setShadowDrawable(R.drawable.shadow);
 		getSlidingMenu().setBehindOffsetRes(R.dimen.actionbar_home_width);
@@ -47,6 +48,7 @@ public class ExampleActivity extends SlidingFragmentActivity {
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		actionBar.setDisplayHomeAsUpEnabled(true);
 	}
+	
 	
 	public class PagerAdapter extends FragmentPagerAdapter implements 
 	ViewPager.OnPageChangeListener, TabListener{

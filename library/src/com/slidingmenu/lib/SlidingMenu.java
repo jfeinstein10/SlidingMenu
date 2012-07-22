@@ -157,7 +157,11 @@ public class SlidingMenu extends RelativeLayout {
 	 * @param i The margin on the right of the screen that the behind view scrolls to
 	 */
 	public void setBehindOffset(int i) {
-		((RelativeLayout.LayoutParams)mViewBehind.getLayoutParams()).setMargins(0, 0, i, 0);
+		RelativeLayout.LayoutParams params = ((RelativeLayout.LayoutParams)mViewBehind.getLayoutParams());
+		int bottom = params.bottomMargin;
+		int top = params.topMargin;
+		int left = params.leftMargin;
+		((RelativeLayout.LayoutParams)mViewBehind.getLayoutParams()).setMargins(left, top, i, bottom);
 	}
 
 	/**
