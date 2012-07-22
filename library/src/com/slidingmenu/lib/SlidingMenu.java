@@ -60,7 +60,7 @@ public class SlidingMenu extends RelativeLayout {
 		// set the offset and scroll scale if defined in xml
 		int offsetBehind = (int) ta.getDimension(R.styleable.SlidingMenu_behindOffset, 0);
 		setBehindOffset(offsetBehind);
-		float scrollOffsetBehind = ta.getFloat(R.styleable.SlidingMenu_behindScrollScale, 0.0f);
+		float scrollOffsetBehind = ta.getFloat(R.styleable.SlidingMenu_behindScrollScale, 0.25f);
 		setBehindScrollScale(scrollOffsetBehind);
 		int shadowRes = ta.getResourceId(R.styleable.SlidingMenu_shadowDrawable, -1);
 		if (shadowRes != -1) {
@@ -68,7 +68,10 @@ public class SlidingMenu extends RelativeLayout {
 		}
 		int shadowWidth = (int) ta.getDimension(R.styleable.SlidingMenu_shadowWidth, 0);
 		setShadowWidth(shadowWidth);
-
+		boolean fadeEnabled = ta.getBoolean(R.styleable.SlidingMenu_behindFadeEnabled, true);
+		setFadeEnabled(fadeEnabled);
+		float fadeDeg = ta.getFloat(R.styleable.SlidingMenu_behindFadeDegree, 0.5f);
+		setFadeDegree(fadeDeg);
 		showAbove();
 	}
 
@@ -218,6 +221,14 @@ public class SlidingMenu extends RelativeLayout {
 
 	public void setShadowWidth(int pixels) {
 		mViewAbove.setShadowWidth(pixels);
+	}
+	
+	public void setFadeEnabled(boolean b) {
+		mViewAbove.setBehindFadeEnabled(b);
+	}
+	
+	public void setFadeDegree(float f) {
+		mViewAbove.setBehindFadeDegree(f);
 	}
 
 	public static class SavedState extends BaseSavedState {

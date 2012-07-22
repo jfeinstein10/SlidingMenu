@@ -7,13 +7,11 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.database.DataSetObserver;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.support.v4.os.ParcelableCompat;
-import android.support.v4.os.ParcelableCompatCreatorCallbacks;
 import android.support.v4.view.KeyEventCompat;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.VelocityTrackerCompat;
@@ -24,7 +22,6 @@ import android.util.Log;
 import android.view.FocusFinder;
 import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.SoundEffectConstants;
 import android.view.VelocityTracker;
@@ -34,7 +31,6 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.animation.Interpolator;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
 
@@ -647,82 +643,6 @@ public class CustomViewAbove extends ViewGroup {
 			}
 		}
 
-		/**
-		 * This is the persistent state that is saved by CustomViewPager.  Only needed
-		 * if you are creating a sublass of CustomViewPager that must save its own
-		 * state, in which case it should implement a subclass of this which
-		 * contains that state.
-		 */
-		//		public static class SavedState extends BaseSavedState {
-		//			int position;
-		//			Parcelable adapterState;
-		//			ClassLoader loader;
-		//
-		//			public SavedState(Parcelable superState) {
-		//				super(superState);
-		//			}
-		//
-		//
-		//			public void writeToParcel(Parcel out, int flags) {
-		//				super.writeToParcel(out, flags);
-		//				out.writeInt(position);
-		//				out.writeParcelable(adapterState, flags);
-		//			}
-		//
-		//
-		//			public String toString() {
-		//				return "FragmentPager.SavedState{"
-		//						+ Integer.toHexString(System.identityHashCode(this))
-		//						+ " position=" + position + "}";
-		//			}
-		//
-		//			public static final Parcelable.Creator<SavedState> CREATOR
-		//			= ParcelableCompat.newCreator(new ParcelableCompatCreatorCallbacks<SavedState>() {
-		//
-		//				public SavedState createFromParcel(Parcel in, ClassLoader loader) {
-		//					return new SavedState(in, loader);
-		//				}
-		//
-		//				public SavedState[] newArray(int size) {
-		//					return new SavedState[size];
-		//				}
-		//			});
-		//
-		//			SavedState(Parcel in, ClassLoader loader) {
-		//				super(in);
-		//				if (loader == null) {
-		//					loader = getClass().getClassLoader();
-		//				}
-		//				position = in.readInt();
-		//				adapterState = in.readParcelable(loader);
-		//				this.loader = loader;
-		//			}
-		//		}
-		//
-		//
-		//		public Parcelable onSaveInstanceState() {
-		//			Parcelable superState = super.onSaveInstanceState();
-		//			SavedState ss = new SavedState(superState);
-		//			ss.position = mCurItem;
-		//			return ss;
-		//		}
-		//
-		//
-		//		public void onRestoreInstanceState(Parcelable state) {
-		//			if (!(state instanceof SavedState)) {
-		//				super.onRestoreInstanceState(state);
-		//				return;
-		//			}
-		//
-		//			SavedState ss = (SavedState)state;
-		//			super.onRestoreInstanceState(ss.getSuperState());
-		//
-		//			setCurrentItemInternal(ss.position, false, true);
-		//			mRestoredCurItem = ss.position;
-		//			mRestoredAdapterState = ss.adapterState;
-		//			mRestoredClassLoader = ss.loader;
-		//		}
-
 		protected void setMenu(View v) {
 			ItemInfo ii = new ItemInfo();
 			ii.position = 0;
@@ -878,10 +798,8 @@ public class CustomViewAbove extends ViewGroup {
 			}
 		}
 
-
 		protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 			super.onSizeChanged(w, h, oldw, oldh);
-
 			// Make sure scroll position is set correctly.
 			if (w != oldw) {
 				recomputeScrollPosition(w, oldw, mShadowWidth, mShadowWidth);
@@ -910,7 +828,6 @@ public class CustomViewAbove extends ViewGroup {
 				}
 			}
 		}
-
 
 		protected void onLayout(boolean changed, int l, int t, int r, int b) {
 			mInLayout = true;
@@ -1386,14 +1303,41 @@ public class CustomViewAbove extends ViewGroup {
 
 		protected void onDraw(Canvas canvas) {
 			super.onDraw(canvas);
+			final int behindWidth = getBehindWidth();
 			// Draw the margin drawable if needed.
 			if (mShadowWidth > 0 && mShadowDrawable != null) {
-				final int left = this.getBehindWidth() - mShadowWidth;
+				final int left = behindWidth - mShadowWidth;
 				mShadowDrawable.setBounds(left, mTopPageBounds, left + mShadowWidth,
 						mBottomPageBounds);
 				mShadowDrawable.draw(canvas);
 			}
+
+			if (mFadeEnabled) {
+				final float openPercent = (mScroller.getCurrX()) / (float) behindWidth;
+				onDrawBehindFade(canvas, openPercent, behindWidth);
+			}
 		}
+		
+		private float mFadeDegree;
+	    private Paint mBehindFadePaint = new Paint();
+	    private boolean mFadeEnabled;
+
+	    private void onDrawBehindFade(Canvas canvas, float openPercent, int width) {
+	        final int alpha = (int) (mFadeDegree * 255 * openPercent);
+
+	        if (alpha > 0) {
+	            mBehindFadePaint.setColor(Color.argb(alpha, 0, 0, 0));
+	            canvas.drawRect(0, 0, width, getHeight(), mBehindFadePaint);
+	        }
+	    }
+	    
+	    public void setBehindFadeEnabled(boolean b) {
+	    	mFadeEnabled = b;
+	    }
+	    
+	    public void setBehindFadeDegree(float f) {
+	    	mFadeDegree = f;
+	    }
 
 		private void onSecondaryPointerUp(MotionEvent ev) {
 			final int pointerIndex = MotionEventCompat.getActionIndex(ev);

@@ -1,14 +1,14 @@
 package com.slidingmenu.lib.app;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
@@ -20,58 +20,48 @@ public class SlidingActivityHelper {
 	private Activity mActivity;
 
 	private SlidingMenu mSlidingMenu;
-	private ViewGroup mContentView;
-	private boolean mBehindContentViewCalled = false;
-
+	
+	private boolean mViewBehindSet = false;
+	
 	public SlidingActivityHelper(Activity activity) {
 		mActivity = activity;
 	}
 
 	public void onCreate(Bundle savedInstanceState) {
-
-		mContentView = new RelativeLayout(mActivity);
-//		if (Build.VERSION.SDK_INT < 11) {
-			// unregister the current content view
-			mActivity.getWindow().getDecorView().findViewById(android.R.id.content).setId(View.NO_ID);
-			// register a new content view
-			mContentView.setId(android.R.id.content);
-//		} else {
-//			int content = Resources.getSystem().getIdentifier("content", "id", "android");
-//			int c2 = android.R.id.content;
-//			// unregister the current content view
-//			mActivity.getWindow().getDecorView().findViewById(content).setId(View.NO_ID);
-//			// register a new content view
-//			mContentView.setId(content);
-//		}
-
-		// customize based on type of Activity
-		if (mActivity instanceof SlidingListActivity) {
-			ListView lv = new ListView(mActivity);
-			lv.setId(android.R.id.list);
-			mContentView.addView(lv, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
-		}
-
-		// set up the SlidingMenu
-		mSlidingMenu = (SlidingMenu) LayoutInflater.from(mActivity).inflate(R.layout.slidingmenumain, null);
-		mSlidingMenu.setViewAbove(mContentView);
-		mSlidingMenu.setBackgroundDrawable(mActivity.getWindow().getDecorView().getBackground());
-		mActivity.getWindow().setContentView(mSlidingMenu);
+		mSlidingMenu = new SlidingMenu(mActivity);
 	}
 
 	public void onPostCreate(Bundle savedInstanceState) {
-		if (!mBehindContentViewCalled) {
+		if (!mViewBehindSet) {
 			throw new IllegalStateException("Both setBehindContentView must be called " +
 					"in onCreate in addition to setContentView.");
 		}
+		ViewGroup decor = (ViewGroup) mActivity.getWindow().getDecorView();
+		LinearLayout newDecor = new LinearLayout(mActivity);
+		while (decor.getChildCount() > 0) {
+			View child = decor.getChildAt(0);
+			decor.removeView(child);
+			newDecor.addView(child);
+		}
+		decor.addView(mSlidingMenu, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+		mSlidingMenu.setViewAbove(newDecor);
+	}
+	
+	public View findViewById(int id) {
+		View v;
+		if (mSlidingMenu != null) {
+			v = mSlidingMenu.findViewById(id);
+			if (v != null) 
+				return v;
+		}
+		return mActivity.findViewById(id);
 	}
 
 	public void setBehindContentView(View v, LayoutParams params) {
-		if (!mBehindContentViewCalled) {
-			mBehindContentViewCalled = true;
-		}
 		mSlidingMenu.setViewBehind(v);
+		mViewBehindSet = true;
 	}
-
+	
 	public SlidingMenu getSlidingMenu() {
 		return mSlidingMenu;
 	}

@@ -22,6 +22,10 @@ public class SlidingActivity extends SherlockActivity implements SlidingActivity
 		super.onPostCreate(savedInstanceState);
 		mHelper.onPostCreate(savedInstanceState);
 	}
+	
+	public View findViewById(int id) {
+		return mHelper.findViewById(id);
+	}
 
 	public void setBehindContentView(int id) {
 		setBehindContentView(getLayoutInflater().inflate(id, null));
