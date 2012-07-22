@@ -57,7 +57,6 @@ public class SlidingMenu extends RelativeLayout {
 		setTouchModeAbove(touchModeAbove);
 		int touchModeBehind = ta.getInt(R.styleable.SlidingMenu_behindTouchMode, TOUCHMODE_MARGIN);
 		setTouchModeBehind(touchModeBehind);
-		// set the offset and scroll scale if defined in xml
 		int offsetBehind = (int) ta.getDimension(R.styleable.SlidingMenu_behindOffset, 0);
 		setBehindOffset(offsetBehind);
 		float scrollOffsetBehind = ta.getFloat(R.styleable.SlidingMenu_behindScrollScale, 0.25f);
@@ -72,7 +71,7 @@ public class SlidingMenu extends RelativeLayout {
 		setFadeEnabled(fadeEnabled);
 		float fadeDeg = ta.getFloat(R.styleable.SlidingMenu_behindFadeDegree, 0.5f);
 		setFadeDegree(fadeDeg);
-		showAbove();
+//		showAbove();
 	}
 
 	public void setViewAbove(int res) {

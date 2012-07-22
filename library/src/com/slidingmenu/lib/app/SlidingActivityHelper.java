@@ -16,6 +16,7 @@ public class SlidingActivityHelper {
 
 	private SlidingMenu mSlidingMenu;
 	private View mViewAbove;
+	private boolean mBroadcasting = false;
 
 	private boolean mViewBehindSet = false;
 	private boolean mOnPostCreateCalled = false;
@@ -36,7 +37,6 @@ public class SlidingActivityHelper {
 		}
 		mOnPostCreateCalled = true;
 		if (mEnableSlide) {
-			mActivity.getWindow().setContentView(mViewAbove);
 			ViewGroup decor = (ViewGroup) mActivity.getWindow().getDecorView();
 			LinearLayout newDecor = new LinearLayout(mActivity);
 			while (decor.getChildCount() > 0) {
@@ -44,11 +44,15 @@ public class SlidingActivityHelper {
 				decor.removeView(child);
 				newDecor.addView(child);
 			}
-			decor.addView(mSlidingMenu, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+			decor.addView(mSlidingMenu, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 			mSlidingMenu.setViewAbove(newDecor);
 		} else {
+			ViewGroup parent = (ViewGroup) mViewAbove.getParent();
+			if (parent != null) {
+				parent.removeView(mViewAbove);
+			}
 			mSlidingMenu.setViewAbove(mViewAbove);
-			mActivity.getWindow().setContentView(mSlidingMenu);
+			mActivity.setContentView(mSlidingMenu);
 		}
 	}
 
@@ -65,16 +69,17 @@ public class SlidingActivityHelper {
 			if (v != null) 
 				return v;
 		}
-		if (mViewAbove != null) {
-			v = mViewAbove.findViewById(id);
-			if (v != null)
-				return v;
-		}
 		return null;
 	}
 	
-	public void setAboveContentView(View v, LayoutParams params) {
-		mViewAbove = v;
+	public void registerAboveContentView(View v, LayoutParams params) {
+		if (!mBroadcasting)
+			mViewAbove = v;
+	}
+	
+	public void setContentView(View v) {
+		mBroadcasting = true;
+		mActivity.setContentView(v);
 	}
 
 	public void setBehindContentView(View v, LayoutParams params) {

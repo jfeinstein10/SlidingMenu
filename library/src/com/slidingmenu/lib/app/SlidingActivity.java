@@ -1,14 +1,14 @@
 package com.slidingmenu.lib.app;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 
+import com.actionbarsherlock.app.SherlockActivity;
 import com.slidingmenu.lib.SlidingMenu;
 
-public class SlidingActivity extends Activity implements SlidingActivityBase {
+public class SlidingActivity extends SherlockActivity implements SlidingActivityBase {
 
 	private SlidingActivityHelper mHelper;
 
@@ -24,6 +24,9 @@ public class SlidingActivity extends Activity implements SlidingActivityBase {
 	}
 	
 	public View findViewById(int id) {
+		View v = super.findViewById(id);
+		if (v != null)
+			return v;
 		return mHelper.findViewById(id);
 	}
 	
@@ -32,11 +35,12 @@ public class SlidingActivity extends Activity implements SlidingActivityBase {
 	}
 
 	public void setContentView(View v) {
-		setContentView(v, null);
+		setContentView(v, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 	}
 
 	public void setContentView(View v, LayoutParams params) {
-		mHelper.setAboveContentView(v, params);
+		super.setContentView(v, params);
+		mHelper.registerAboveContentView(v, params);
 	}
 
 	public void setBehindContentView(int id) {
@@ -44,7 +48,7 @@ public class SlidingActivity extends Activity implements SlidingActivityBase {
 	}
 
 	public void setBehindContentView(View v) {
-		setBehindContentView(v, null);
+		setBehindContentView(v, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 	}
 
 	public void setBehindContentView(View v, LayoutParams params) {

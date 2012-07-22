@@ -40,7 +40,7 @@ public class ExampleActivity extends SlidingFragmentActivity {
 		getSlidingMenu().setShadowWidthRes(R.dimen.shadow_width);
 		getSlidingMenu().setShadowDrawable(R.drawable.shadow);
 		getSlidingMenu().setBehindOffsetRes(R.dimen.actionbar_home_width);
-		getSlidingMenu().setBehindScrollScale(0.5f);
+		getSlidingMenu().setBehindScrollScale(0.25f);
 
 		// customize the ActionBar
 		ActionBar actionBar = getSupportActionBar();
