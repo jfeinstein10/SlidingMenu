@@ -31,6 +31,8 @@
         </attr>
         <attr name="shadowDrawable" format="reference" />
         <attr name="shadowWidth" format="dimension" />
+        <attr name="behindFadeEnabled" format="boolean" />
+        <attr name="behindFadeDegree" format="float" />
     </declare-styleable>
 
 </resources>

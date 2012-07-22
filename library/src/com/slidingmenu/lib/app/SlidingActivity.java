@@ -1,14 +1,14 @@
 package com.slidingmenu.lib.app;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 
-import com.actionbarsherlock.app.SherlockActivity;
 import com.slidingmenu.lib.SlidingMenu;
 
-public class SlidingActivity extends SherlockActivity implements SlidingActivityBase {
+public class SlidingActivity extends Activity implements SlidingActivityBase {
 
 	private SlidingActivityHelper mHelper;
 
@@ -25,6 +25,18 @@ public class SlidingActivity extends SherlockActivity implements SlidingActivity
 	
 	public View findViewById(int id) {
 		return mHelper.findViewById(id);
+	}
+	
+	public void setContentView(int id) {
+		setContentView(getLayoutInflater().inflate(id, null));
+	}
+
+	public void setContentView(View v) {
+		setContentView(v, null);
+	}
+
+	public void setContentView(View v, LayoutParams params) {
+		mHelper.setAboveContentView(v, params);
 	}
 
 	public void setBehindContentView(int id) {
@@ -53,6 +65,10 @@ public class SlidingActivity extends SherlockActivity implements SlidingActivity
 
 	public void showBehind() {
 		mHelper.showBehind();
+	}
+	
+	public void setSlidingActionBarEnabled(boolean b) {
+		mHelper.setSlidingActionBarEnabled(b);
 	}
 
 	@Override

@@ -15,6 +15,6 @@ public interface SlidingActivityBase {
 	
 	public void showAbove();
 	
-	public void showBehind();	
+	public void showBehind();
 	
 }

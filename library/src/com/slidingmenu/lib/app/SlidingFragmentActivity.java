@@ -27,17 +27,17 @@ public class SlidingFragmentActivity extends FragmentActivity implements Sliding
 		return mHelper.findViewById(id);
 	}
 	
-//	public void setContentView(int id) {
-//		setContentView(getLayoutInflater().inflate(id, null));
-//	}
-//	
-//	public void setContentView(View v) {
-//		setContentView(v, null);
-//	}
-//	
-//	public void setContentView(View v, LayoutParams params) {
-//		mHelper.setAboveContentView(v, params);
-//	}
+	public void setContentView(int id) {
+		setBehindContentView(getLayoutInflater().inflate(id, null));
+	}
+
+	public void setContentView(View v) {
+		setBehindContentView(v, null);
+	}
+
+	public void setContentView(View v, LayoutParams params) {
+		mHelper.setAboveContentView(v, params);
+	}
 
 	public void setBehindContentView(int id) {
 		setBehindContentView(getLayoutInflater().inflate(id, null));
@@ -67,6 +67,10 @@ public class SlidingFragmentActivity extends FragmentActivity implements Sliding
 		mHelper.showBehind();
 	}
 
+	public void setSlidingActionBarEnabled(boolean b) {
+		mHelper.setSlidingActionBarEnabled(b);
+	}
+	
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		boolean b = mHelper.onKeyDown(keyCode, event);
