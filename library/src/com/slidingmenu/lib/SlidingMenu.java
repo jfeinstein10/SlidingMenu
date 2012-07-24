@@ -1,15 +1,22 @@
 package com.slidingmenu.lib;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Rect;
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.v4.os.ParcelableCompat;
 import android.support.v4.os.ParcelableCompatCreatorCallbacks;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
 public class SlidingMenu extends RelativeLayout {
@@ -71,7 +78,7 @@ public class SlidingMenu extends RelativeLayout {
 		setFadeEnabled(fadeEnabled);
 		float fadeDeg = ta.getFloat(R.styleable.SlidingMenu_behindFadeDegree, 0.5f);
 		setFadeDegree(fadeDeg);
-//		showAbove();
+		//		showAbove();
 	}
 
 	public void setViewAbove(int res) {
@@ -161,7 +168,7 @@ public class SlidingMenu extends RelativeLayout {
 		int bottom = params.bottomMargin;
 		int top = params.topMargin;
 		int left = params.leftMargin;
-		((RelativeLayout.LayoutParams)mViewBehind.getLayoutParams()).setMargins(left, top, i, bottom);
+		params.setMargins(left, top, i, bottom);
 	}
 
 	/**
@@ -225,11 +232,11 @@ public class SlidingMenu extends RelativeLayout {
 	public void setShadowWidth(int pixels) {
 		mViewAbove.setShadowWidth(pixels);
 	}
-	
+
 	public void setFadeEnabled(boolean b) {
 		mViewAbove.setBehindFadeEnabled(b);
 	}
-	
+
 	public void setFadeDegree(float f) {
 		mViewAbove.setBehindFadeDegree(f);
 	}
@@ -289,6 +296,50 @@ public class SlidingMenu extends RelativeLayout {
 		} else {
 			showAbove();
 		}
+	}
+
+	private static final int LOW_DPI_STATUS_BAR_HEIGHT = 19;
+
+	private static final int MEDIUM_DPI_STATUS_BAR_HEIGHT = 25;
+
+	private static final int HIGH_DPI_STATUS_BAR_HEIGHT = 38;
+
+	@SuppressLint("NewApi")
+	@Override
+	public void setFitsSystemWindows(boolean b) {
+		if (Build.VERSION.SDK_INT >= 14) {
+			super.setFitsSystemWindows(b);
+		} else {
+			int topMargin = 0;
+			if (b) {
+				topMargin = getStatusBarHeight();
+			}
+			RelativeLayout.LayoutParams params = ((RelativeLayout.LayoutParams)mViewBehind.getLayoutParams());
+			int bottom = params.bottomMargin;
+			int left = params.leftMargin;
+			int right = params.rightMargin;
+			params.setMargins(left, topMargin, right, bottom);
+		}
+	}
+
+	private int getStatusBarHeight() {
+		DisplayMetrics displayMetrics = new DisplayMetrics();
+		((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getMetrics(displayMetrics);
+		int statusBarHeight = 0;
+		switch (displayMetrics.densityDpi) {
+		case DisplayMetrics.DENSITY_HIGH:
+			statusBarHeight = HIGH_DPI_STATUS_BAR_HEIGHT;
+			break;
+		case DisplayMetrics.DENSITY_MEDIUM:
+			statusBarHeight = MEDIUM_DPI_STATUS_BAR_HEIGHT;
+			break;
+		case DisplayMetrics.DENSITY_LOW:
+			statusBarHeight = LOW_DPI_STATUS_BAR_HEIGHT;
+			break;
+		default:
+			statusBarHeight = MEDIUM_DPI_STATUS_BAR_HEIGHT;
+		}
+		return statusBarHeight;
 	}
 
 }

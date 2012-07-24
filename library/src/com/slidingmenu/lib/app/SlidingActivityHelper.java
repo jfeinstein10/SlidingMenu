@@ -5,10 +5,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.ViewGroup.LayoutParams;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -21,9 +23,9 @@ public class SlidingActivityHelper {
 
 	private SlidingMenu mSlidingMenu;
 	private View mViewAbove;
+	private View mViewBehind;
 	private boolean mBroadcasting = false;
 
-	private boolean mViewBehindSet = false;
 	private boolean mOnPostCreateCalled = false;
 	private boolean mEnableSlide = true;
 
@@ -32,11 +34,11 @@ public class SlidingActivityHelper {
 	}
 
 	public void onCreate(Bundle savedInstanceState) {
-		mSlidingMenu = (SlidingMenu) mActivity.getLayoutInflater().inflate(R.layout.slidingmenumain, null);
+		mSlidingMenu = (SlidingMenu) LayoutInflater.from(mActivity).inflate(R.layout.slidingmenumain, null);
 	}
 
 	public void onPostCreate(Bundle savedInstanceState) {
-		if (!mViewBehindSet || mViewAbove == null) {
+		if (mViewBehind == null || mViewAbove == null) {
 			throw new IllegalStateException("Both setBehindContentView must be called " +
 					"in onCreate in addition to setContentView.");
 		}
@@ -44,10 +46,7 @@ public class SlidingActivityHelper {
 		mOnPostCreateCalled = true;
 
 		if (mEnableSlide) {
-			if (Build.VERSION.SDK_INT >= 14) {
-				// make sure it clears the status bar
-				mSlidingMenu.setFitsSystemWindows(true);
-			}
+			mSlidingMenu.setFitsSystemWindows(true);
 			// move everything into the SlidingMenu
 			ViewGroup decor = (ViewGroup) mActivity.getWindow().getDecorView();
 			ViewGroup decorChild = (ViewGroup) decor.getChildAt(0);
@@ -92,8 +91,8 @@ public class SlidingActivityHelper {
 	}
 
 	public void setBehindContentView(View v, LayoutParams params) {
-		mSlidingMenu.setViewBehind(v);
-		mViewBehindSet = true;
+		mViewBehind = v;
+		mSlidingMenu.setViewBehind(mViewBehind);
 	}
 
 	public SlidingMenu getSlidingMenu() {
