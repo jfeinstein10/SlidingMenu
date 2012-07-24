@@ -2,11 +2,14 @@ package com.slidingmenu.lib.app;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.slidingmenu.lib.R;
 import com.slidingmenu.lib.SlidingMenu;
@@ -36,18 +39,20 @@ public class SlidingActivityHelper {
 			throw new IllegalStateException("Both setBehindContentView must be called " +
 					"in onCreate in addition to setContentView.");
 		}
+
 		mOnPostCreateCalled = true;
+
 		if (mEnableSlide) {
+			// make sure it clears the status bar
+			mSlidingMenu.setFitsSystemWindows(true);
+			// move everything into the SlidingMenu
 			ViewGroup decor = (ViewGroup) mActivity.getWindow().getDecorView();
-			LinearLayout newDecor = new LinearLayout(mActivity);
-			while (decor.getChildCount() > 0) {
-				View child = decor.getChildAt(0);
-				decor.removeView(child);
-				newDecor.addView(child);
-			}
+			ViewGroup decorChild = (ViewGroup) decor.getChildAt(0);
+			decor.removeView(decorChild);
+			mSlidingMenu.setViewAbove(decorChild);
 			decor.addView(mSlidingMenu);
-			mSlidingMenu.setViewAbove(newDecor);
 		} else {
+			// take the above view out of 
 			ViewGroup parent = (ViewGroup) mViewAbove.getParent();
 			if (parent != null) {
 				parent.removeView(mViewAbove);
@@ -72,12 +77,12 @@ public class SlidingActivityHelper {
 		}
 		return null;
 	}
-	
+
 	public void registerAboveContentView(View v, LayoutParams params) {
 		if (!mBroadcasting)
 			mViewAbove = v;
 	}
-	
+
 	public void setContentView(View v) {
 		mBroadcasting = true;
 		mActivity.setContentView(v);
