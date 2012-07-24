@@ -1,6 +1,7 @@
 package com.slidingmenu.lib.app;
 
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -43,8 +44,10 @@ public class SlidingActivityHelper {
 		mOnPostCreateCalled = true;
 
 		if (mEnableSlide) {
-			// make sure it clears the status bar
-			mSlidingMenu.setFitsSystemWindows(true);
+			if (Build.VERSION.SDK_INT >= 14) {
+				// make sure it clears the status bar
+				mSlidingMenu.setFitsSystemWindows(true);
+			}
 			// move everything into the SlidingMenu
 			ViewGroup decor = (ViewGroup) mActivity.getWindow().getDecorView();
 			ViewGroup decorChild = (ViewGroup) decor.getChildAt(0);
