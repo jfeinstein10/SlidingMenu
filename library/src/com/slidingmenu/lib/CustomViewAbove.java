@@ -748,7 +748,7 @@ public class CustomViewAbove extends ViewGroup {
 					if (lp != null && lp.isDecor) {
 						final int hgrav = lp.gravity & Gravity.HORIZONTAL_GRAVITY_MASK;
 						final int vgrav = lp.gravity & Gravity.VERTICAL_GRAVITY_MASK;
-						Log.d(TAG, "gravity: " + lp.gravity + " hgrav: " + hgrav + " vgrav: " + vgrav);
+						if (DEBUG) Log.d(TAG, "gravity: " + lp.gravity + " hgrav: " + hgrav + " vgrav: " + vgrav);
 						int widthMode = MeasureSpec.AT_MOST;
 						int heightMode = MeasureSpec.AT_MOST;
 						boolean consumeVertical = vgrav == Gravity.TOP || vgrav == Gravity.BOTTOM;
