@@ -1286,7 +1286,7 @@ public class CustomViewAbove extends ViewGroup {
 
 		@Override
 		public void scrollTo(int x, int y) {
-//			super.scrollTo(x, y);
+			super.scrollTo(x, y);
 			if (mCustomViewBehind2 != null && mEnabled) {
 				mCustomViewBehind2.scrollTo((int)(x*mScrollScale), y);
 			}
