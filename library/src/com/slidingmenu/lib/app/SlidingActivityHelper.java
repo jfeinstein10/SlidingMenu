@@ -1,18 +1,13 @@
 package com.slidingmenu.lib.app;
 
 import android.app.Activity;
-import android.os.Build;
+import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.ViewGroup.LayoutParams;
-import android.view.WindowManager;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.slidingmenu.lib.R;
 import com.slidingmenu.lib.SlidingMenu;
@@ -50,6 +45,8 @@ public class SlidingActivityHelper {
 			// move everything into the SlidingMenu
 			ViewGroup decor = (ViewGroup) mActivity.getWindow().getDecorView();
 			ViewGroup decorChild = (ViewGroup) decor.getChildAt(0);
+			TypedArray a = mActivity.getTheme().obtainStyledAttributes(new int[] {android.R.attr.windowBackground});
+			decorChild.setBackgroundResource(a.getResourceId(0, 0));
 			decor.removeView(decorChild);
 			mSlidingMenu.setViewAbove(decorChild);
 			decor.addView(mSlidingMenu);

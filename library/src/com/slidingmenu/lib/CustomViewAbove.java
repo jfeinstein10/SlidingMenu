@@ -849,9 +849,10 @@ public class CustomViewAbove extends ViewGroup {
 					child.layout(childLeft, childTop,
 							childLeft + child.getMeasuredWidth(),
 							childTop + child.getMeasuredHeight());
-					Log.v(TAG, "top: " + childTop + ", left: " + childLeft +
-							", height: " + child.getMeasuredHeight() + 
-							", width:" + child.getMeasuredWidth());
+					if (DEBUG)
+						Log.v(TAG, "top: " + childTop + ", left: " + childLeft +
+								", height: " + child.getMeasuredHeight() + 
+								", width:" + child.getMeasuredWidth());
 				}
 			}
 			mTopPageBounds = paddingTop;
