@@ -10,18 +10,23 @@ Here's a recent video of the example application in this repository : http://you
 
 Also, you can follow the project on Twitter : [@SlidingMenu][1]
 
+Setup
+-----
+* In Eclipse, just import the library as an Android library project. Project > Clean to generate the binaries 
+you need, like R.java, etc.
+* Then, just add SlidingMenu as a dependency to your existing project and you're good to go!
+
 How to Integrate this Library into Your Projects
 ------------------------------------------------
 In order to integrate SlidingMenu into your own projects you can do one of two things.
 
-__1.__      You can embed the SlidingMenu at the Activity level by making your Activity extend `SlidingMenuActivity`.
-* If you choose to do it this way, you have access to a built-in ActionBar via Jake Wharton's [ActionBarSherlock][2].
-The ActionBar will slide with the "above" portion of the SlidingMenu.
+__1.__      You can embed the SlidingMenu at the Activity level by making your Activity extend `SlidingActivity`.
 * In your Activity's onCreate method, you will have to call `setContentView`, as usual, and also 
 `setBehindContentView`, which has the same syntax as setContentView. `setBehindContentView` will place 
 the view in the "behind" portion of the SlidingMenu. You will have access to the `getSlidingMenu` method so you can
 customize the SlidingMenu to your liking.
-* More variants of `SlidingMenuActivity` will be coming soon, such as `SlidingFragmentActivity`, etc.
+* If you want to use another library such as ActionBarSherlock, you can just change the SlidingActivities to extend
+the SherlockActivities instead of the regular Activities.
 
 __2.__      You can use the SlidingMenu view directly in your xml layouts or programmatically in you Java code.
 * This way, you can treat SlidingMenu as you would any other view type and put it in crazy awesome places like in the
