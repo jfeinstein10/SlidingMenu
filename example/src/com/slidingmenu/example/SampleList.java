@@ -1,9 +1,7 @@
 package com.slidingmenu.example;
 
-import android.os.Bundle;
+import com.slidingmenu.lib.app.SlidingListActivity;
 
-import com.actionbarsherlock.app.SherlockListActivity;
-
-public class SampleList extends SherlockListActivity {
+public class SampleList extends SlidingListActivity {
 
 }
