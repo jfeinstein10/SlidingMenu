@@ -68,6 +68,11 @@ behind view will never scroll; it will be static. This one is fun to play around
 Default is no shadow for now.
 * `shadowWidth` - a dimension representing the width of the shadow drawable. Default is 0.
 
+Caveats
+-------
+* Your layouts have to be based on a viewgroup, unfortunatly this negates the `<merge>` optimisations.
+            
+
 Developed By
 ------------
 * Jeremy Feinstein
