@@ -12,13 +12,13 @@ public class SlidingFragmentActivity extends FragmentActivity implements Sliding
 	
 	private SlidingActivityHelper mHelper;
 
-	public void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mHelper = new SlidingActivityHelper(this);
 		mHelper.onCreate(savedInstanceState);
 	}
 
-	public void onPostCreate(Bundle savedInstanceState) {
+	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
 		mHelper.onPostCreate(savedInstanceState);
 	}
