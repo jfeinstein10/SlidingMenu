@@ -40,13 +40,17 @@ public class SlidingActivityHelper {
 
 		mOnPostCreateCalled = true;
 
+		// get the window background
+		TypedArray a = mActivity.getTheme().obtainStyledAttributes(new int[] {android.R.attr.windowBackground});
+		int background = a.getResourceId(0, 0);
+
 		if (mEnableSlide) {
 			mSlidingMenu.setFitsSystemWindows(true);
 			// move everything into the SlidingMenu
 			ViewGroup decor = (ViewGroup) mActivity.getWindow().getDecorView();
 			ViewGroup decorChild = (ViewGroup) decor.getChildAt(0);
-			TypedArray a = mActivity.getTheme().obtainStyledAttributes(new int[] {android.R.attr.windowBackground});
-			decorChild.setBackgroundResource(a.getResourceId(0, 0));
+			// save ActionBar themes that have transparent assets
+			decorChild.setBackgroundResource(background);
 			decor.removeView(decorChild);
 			mSlidingMenu.setViewAbove(decorChild);
 			decor.addView(mSlidingMenu);
@@ -56,8 +60,12 @@ public class SlidingActivityHelper {
 			if (parent != null) {
 				parent.removeView(mViewAbove);
 			}
+			// save people from having transparent backgrounds
+			if (mViewAbove.getBackground() == null) {
+				mViewAbove.setBackgroundResource(background);
+			}
 			mSlidingMenu.setViewAbove(mViewAbove);
-			mActivity.getWindow().setContentView(mSlidingMenu);
+			parent.addView(mSlidingMenu, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
 		}
 	}
 
