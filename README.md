@@ -63,7 +63,7 @@ behind view is showing. Default is 0.
 * `behindScrollScale` - a float representing the relationship between the above view scrolling and the behind
 behind view scrolling. If set to 0.5f, the behind view will scroll 1px for every 2px that the above view scrolls.
 If set to 1.0f, the behind view will scroll 1px for every 1px that the above view scrolls. And if set to 0.0f, the
-behind view will never scroll; it will be static. This one is fun to play around with. Default is 0.
+behind view will never scroll; it will be static. This one is fun to play around with. Default is 0.25f.
 * `shadowDrawable` - a reference to a drawable to be used as a drop shadow from the above view onto the below view.
 Default is no shadow for now.
 * `shadowWidth` - a dimension representing the width of the shadow drawable. Default is 0.
