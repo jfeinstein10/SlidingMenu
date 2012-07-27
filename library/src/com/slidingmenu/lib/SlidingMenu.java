@@ -3,6 +3,7 @@ package com.slidingmenu.lib;
 import com.slidingmenu.lib.CustomViewAbove.OnPageChangeListener;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Build;
@@ -333,9 +334,7 @@ public class SlidingMenu extends RelativeLayout {
 
 	private static final int HIGH_DPI_STATUS_BAR_HEIGHT = 38;
 
-	@SuppressLint("NewApi")
-	@Override
-	public void setFitsSystemWindows(boolean b) {
+	public void setFitsSysWindows(boolean b) {
 		if (Build.VERSION.SDK_INT >= 14) {
 			super.setFitsSystemWindows(b);
 		} else {
