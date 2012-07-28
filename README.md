@@ -3,8 +3,7 @@ SlidingMenu
 
 A sample Android project to explore creating slide-in menus like in the Spotify and Facebook applications. 
 You can use it all you want in your Android apps provided that you cite this project and include the 
-license in your app. Also, remember to include the [ActionBarSherlock][2] license if you choose to use the
-provided ActionBar.
+license in your app.
 
 Here's a recent video of the example application in this repository : http://youtu.be/8vNaANLHw-c
 
@@ -15,6 +14,13 @@ Setup
 * In Eclipse, just import the library as an Android library project. Project > Clean to generate the binaries 
 you need, like R.java, etc.
 * Then, just add SlidingMenu as a dependency to your existing project and you're good to go!
+
+Setup with ActionBarSherlock
+----------------------------
+* Setup as above.
+* Checkout a clean copy of [ActionBarSherlock][2] and import into your Eclipse workspace.
+* Add ActionBarSherlock as a dependency to SlidingMenu
+* Go into the SlidingActivities that you plan on using make them extend Sherlock___Activity instead of ___Activity. 
 
 How to Integrate this Library into Your Projects
 ------------------------------------------------
