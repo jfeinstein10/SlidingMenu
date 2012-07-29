@@ -12,6 +12,3 @@ gen
 .metadata/
 .metadata
 *.project
-
-
-library/.settings/org.eclipse.jdt.ui.prefs
