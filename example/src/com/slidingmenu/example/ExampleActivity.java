@@ -34,9 +34,13 @@ public class ExampleActivity extends SlidingFragmentActivity {
 		
 		// set the Behind View
 		setBehindContentView(R.layout.frame);
-		FragmentTransaction t = this.getFragmentManager().beginTransaction();
-		t.add(R.id.frame, new SampleListFragment());
-		t.commit();
+		FragmentManager fragmentManager = getFragmentManager();  // and add the fragment if necessary
+		SampleListFragment fragment = (SampleListFragment)fragmentManager.findFragmentById(R.id.frame);
+		if (fragment == null) {
+			FragmentTransaction fragmentTransaction = this.getFragmentManager().beginTransaction();
+			fragmentTransaction.add(R.id.frame, new SampleListFragment(), "menuItems");
+			fragmentTransaction.commit();			
+		}
 
 		// customize the SlidingMenu
 		this.setSlidingActionBarEnabled(true);

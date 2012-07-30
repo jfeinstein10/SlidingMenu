@@ -1,0 +1,39 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<modelVersion>4.0.0</modelVersion>
+<groupId>deploy.com.slidingmenu</groupId>
+<artifactId>lib</artifactId>
+<version>20120727</version>
+<packaging>apklib</packaging>
+<name>Prototype SlidingMenu</name>
+
+    <repositories>
+        <repository>
+            <id>YOUR_PRIVATE_REPO</id>
+            <url>http://YOUR_REPO_URL/ENDPOINT/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+        <groupId>deploy.com.google.android</groupId>
+        <artifactId>support-v13</artifactId>
+        <version>9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.roboguice</groupId>
+            <artifactId>roboguice</artifactId>
+            <version>2.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                <artifactId>android-maven-plugin</artifactId>
+                <extensions>true</extensions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

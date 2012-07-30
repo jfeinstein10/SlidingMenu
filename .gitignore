@@ -12,3 +12,6 @@ gen
 .metadata/
 .metadata
 *.project
+
+# Ignore our deployment pom
+library/sliding-menu.pom
