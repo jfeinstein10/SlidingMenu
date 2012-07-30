@@ -118,7 +118,7 @@ public class CustomViewAbove extends ViewGroup {
 		private boolean mCalledSuper;
 
 		private boolean mLastTouchAllowed = false;
-		private int mSlidingMenuThreshold = 10;
+		private final int mSlidingMenuThreshold = 10;
 		private CustomViewBehind mCustomViewBehind2;
 		private boolean mEnabled = true;
 
@@ -422,11 +422,13 @@ public class CustomViewAbove extends ViewGroup {
 		}
 
 
+		@Override
 		protected boolean verifyDrawable(Drawable who) {
 			return super.verifyDrawable(who) || who == mShadowDrawable;
 		}
 
 
+		@Override
 		protected void drawableStateChanged() {
 			super.drawableStateChanged();
 			final Drawable d = mShadowDrawable;
@@ -669,6 +671,7 @@ public class CustomViewAbove extends ViewGroup {
 			mCustomViewBehind2 = cvb;
 		}
 
+		@Override
 		public void addView(View child, int index, ViewGroup.LayoutParams params) {
 			if (!checkLayoutParams(params)) {
 				params = generateLayoutParams(params);
@@ -715,12 +718,14 @@ public class CustomViewAbove extends ViewGroup {
 		}
 
 
+		@Override
 		protected void onAttachedToWindow() {
 			super.onAttachedToWindow();
 			mFirstLayout = true;
 		}
 
 
+		@Override
 		protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 			// For simple implementation, or internal size is always 0.
 			// We depend on the container to specify the layout size of
@@ -798,14 +803,25 @@ public class CustomViewAbove extends ViewGroup {
 			}
 		}
 
+		@Override
 		protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 			super.onSizeChanged(w, h, oldw, oldh);
+			
+			if (DEBUG) Log.v(TAG, "OnSizeChange oldWidth [" + oldw + "] newWidth [" + w + "]");
 			// Make sure scroll position is set correctly.
 			if (w != oldw) {
-				recomputeScrollPosition(w, oldw, mShadowWidth, mShadowWidth);
+                // [ChrisJ] - This fixes the onConfiguration change for orientation issue..
+                // maybe worth having a look why the recomputeScroll pos is screwing
+                // up?
+			    completeScroll();
+			    scrollTo(getChildLeft(mCurItem), getScrollY());
+			    //recomputeScrollPosition(w, oldw, mShadowWidth, mShadowWidth);
 			}
 		}
 
+		/*
+		 * FIXME: [ChrisJ] Look at this to improve, this causes orientation change issues.
+		 */
 		private void recomputeScrollPosition(int width, int oldWidth, int margin, int oldMargin) {
 			final int widthWithMargin = width + margin;
 			if (oldWidth > 0) {
@@ -829,6 +845,7 @@ public class CustomViewAbove extends ViewGroup {
 			}
 		}
 
+		@Override
 		protected void onLayout(boolean changed, int l, int t, int r, int b) {
 			mInLayout = true;
 			populate();
@@ -861,6 +878,7 @@ public class CustomViewAbove extends ViewGroup {
 		}
 
 
+		@Override
 		public void computeScroll() {
 			if (DEBUG) Log.i(TAG, "computeScroll: finished=" + mScroller.isFinished());
 			if (!mScroller.isFinished()) {
@@ -994,6 +1012,7 @@ public class CustomViewAbove extends ViewGroup {
 			}
 		}
 
+		@Override
 		public boolean onInterceptTouchEvent(MotionEvent ev) {
 			/*
 			 * This method JUST determines whether we want to intercept the motion.
@@ -1143,6 +1162,7 @@ public class CustomViewAbove extends ViewGroup {
 		}
 
 
+		@Override
 		public boolean onTouchEvent(MotionEvent ev) {
 			if (!mEnabled) {
 				return false;
@@ -1304,6 +1324,7 @@ public class CustomViewAbove extends ViewGroup {
 			return targetPage;
 		}
 
+		@Override
 		protected void onDraw(Canvas canvas) {
 			super.onDraw(canvas);
 			final int behindWidth = getBehindWidth();
@@ -1329,7 +1350,7 @@ public class CustomViewAbove extends ViewGroup {
 		}
 		
 		private float mFadeDegree;
-	    private Paint mBehindFadePaint = new Paint();
+	    private final Paint mBehindFadePaint = new Paint();
 	    private boolean mFadeEnabled;
 
 	    private void onDrawBehindFade(Canvas canvas, float openPercent, int width) {
@@ -1424,6 +1445,7 @@ public class CustomViewAbove extends ViewGroup {
 		}
 
 
+		@Override
 		public boolean dispatchKeyEvent(KeyEvent event) {
 			// Let the focused view and/or our descendants get the key first
 			return super.dispatchKeyEvent(event) || executeKeyEvent(event);
@@ -1522,6 +1544,7 @@ public class CustomViewAbove extends ViewGroup {
 		 * We only want the current page that is being shown to be focusable.
 		 */
 
+		@Override
 		public void addFocusables(ArrayList<View> views, int direction, int focusableMode) {
 			final int focusableCount = views.size();
 
@@ -1566,6 +1589,7 @@ public class CustomViewAbove extends ViewGroup {
 		 * We only want the current page that is being shown to be touchable.
 		 */
 
+		@Override
 		public void addTouchables(ArrayList<View> views) {
 			// Note that we don't call super.addTouchables(), which means that
 			// we don't call View.addTouchables().  This is okay because a CustomViewPager
@@ -1585,6 +1609,7 @@ public class CustomViewAbove extends ViewGroup {
 		 * We only want the current page that is being shown to be focusable.
 		 */
 
+		@Override
 		protected boolean onRequestFocusInDescendants(int direction,
 				Rect previouslyFocusedRect) {
 			int index;
@@ -1615,6 +1640,7 @@ public class CustomViewAbove extends ViewGroup {
 		}
 
 
+		@Override
 		public boolean dispatchPopulateAccessibilityEvent(AccessibilityEvent event) {
 			// CustomViewPagers should only report accessibility info for the current page,
 			// otherwise things get very confusing.
@@ -1637,31 +1663,37 @@ public class CustomViewAbove extends ViewGroup {
 		}
 
 
+		@Override
 		protected ViewGroup.LayoutParams generateDefaultLayoutParams() {
 			return new LayoutParams();
 		}
 
 
+		@Override
 		protected ViewGroup.LayoutParams generateLayoutParams(ViewGroup.LayoutParams p) {
 			return generateDefaultLayoutParams();
 		}
 
 
+		@Override
 		protected boolean checkLayoutParams(ViewGroup.LayoutParams p) {
 			return p instanceof LayoutParams && super.checkLayoutParams(p);
 		}
 
 
+		@Override
 		public ViewGroup.LayoutParams generateLayoutParams(AttributeSet attrs) {
 			return new LayoutParams(getContext(), attrs);
 		}
 
 		private class PagerObserver extends DataSetObserver {
 
+			@Override
 			public void onChanged() {
 				dataSetChanged();
 			}
 
+			@Override
 			public void onInvalidated() {
 				dataSetChanged();
 			}

@@ -14,6 +14,7 @@
         android:theme="@android:style/Theme.Holo" >
         <activity
             android:name=".ExampleActivity"
+            android:configChanges="orientation|screenSize|screenLayout"
             android:uiOptions="splitActionBarWhenNarrow" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
