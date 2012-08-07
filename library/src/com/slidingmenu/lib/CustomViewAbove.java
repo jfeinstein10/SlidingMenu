@@ -242,6 +242,27 @@ public class CustomViewAbove extends ViewGroup {
 				setMenu(v);
 			}
 
+			setInternalPageChangeListener(new SimpleOnPageChangeListener() {
+
+				public void onPageSelected(int position) {
+					if (mCustomViewBehind2 != null) {
+						switch (position) {
+						case 0:
+							mCustomViewBehind2.setEnabled(false);
+							mCustomViewBehind2.setFocusable(false);
+							mCustomViewBehind2.setClickable(false);
+							break;
+						case 1:
+							mCustomViewBehind2.setEnabled(true);
+							mCustomViewBehind2.setFocusable(true);
+							mCustomViewBehind2.setClickable(true);
+							break;
+						}
+					}
+				}
+
+			});
+
 			final float density = context.getResources().getDisplayMetrics().density;
 			mFlingDistance = (int) (MIN_DISTANCE_FOR_FLING * density);
 		}
@@ -806,16 +827,16 @@ public class CustomViewAbove extends ViewGroup {
 		@Override
 		protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 			super.onSizeChanged(w, h, oldw, oldh);
-			
+
 			if (DEBUG) Log.v(TAG, "OnSizeChange oldWidth [" + oldw + "] newWidth [" + w + "]");
 			// Make sure scroll position is set correctly.
 			if (w != oldw) {
-                // [ChrisJ] - This fixes the onConfiguration change for orientation issue..
-                // maybe worth having a look why the recomputeScroll pos is screwing
-                // up?
-			    completeScroll();
-			    scrollTo(getChildLeft(mCurItem), getScrollY());
-			    //recomputeScrollPosition(w, oldw, mShadowWidth, mShadowWidth);
+				// [ChrisJ] - This fixes the onConfiguration change for orientation issue..
+				// maybe worth having a look why the recomputeScroll pos is screwing
+				// up?
+				completeScroll();
+				scrollTo(getChildLeft(mCurItem), getScrollY());
+				//recomputeScrollPosition(w, oldw, mShadowWidth, mShadowWidth);
 			}
 		}
 
@@ -1336,39 +1357,39 @@ public class CustomViewAbove extends ViewGroup {
 				mShadowDrawable.draw(canvas);
 			}
 
-//			if (mFadeEnabled) {
-//				float openPercent = 0;
-//		        if (mScrollState == SCROLL_STATE_DRAGGING) {
-//		            openPercent= (behindWidth - Math.min(mLastMotionX, behindWidth)) / (float) behindWidth;
-//		            Log.v("STATE_DRAGGING", "openPercent: "+openPercent);
-//		        } else {
-//		            openPercent= (mScroller.getCurrX()) / (float) behindWidth;
-//		            Log.v("STATE_SETTLING", "openPercent: "+openPercent+", scrollerX: "+mScroller.getCurrX());
-//		        }
-//				onDrawBehindFade(canvas, openPercent, behindWidth);
-//			}
+			//			if (mFadeEnabled) {
+			//				float openPercent = 0;
+			//		        if (mScrollState == SCROLL_STATE_DRAGGING) {
+			//		            openPercent= (behindWidth - Math.min(mLastMotionX, behindWidth)) / (float) behindWidth;
+			//		            Log.v("STATE_DRAGGING", "openPercent: "+openPercent);
+			//		        } else {
+			//		            openPercent= (mScroller.getCurrX()) / (float) behindWidth;
+			//		            Log.v("STATE_SETTLING", "openPercent: "+openPercent+", scrollerX: "+mScroller.getCurrX());
+			//		        }
+			//				onDrawBehindFade(canvas, openPercent, behindWidth);
+			//			}
 		}
-		
+
 		private float mFadeDegree;
-	    private final Paint mBehindFadePaint = new Paint();
-	    private boolean mFadeEnabled;
+		private final Paint mBehindFadePaint = new Paint();
+		private boolean mFadeEnabled;
 
-	    private void onDrawBehindFade(Canvas canvas, float openPercent, int width) {
-	        final int alpha = (int) (mFadeDegree * 255 * openPercent);
+		private void onDrawBehindFade(Canvas canvas, float openPercent, int width) {
+			final int alpha = (int) (mFadeDegree * 255 * openPercent);
 
-	        if (alpha > 0) {
-	            mBehindFadePaint.setColor(Color.argb(alpha, 0, 0, 0));
-	            canvas.drawRect(0, 0, width, getHeight(), mBehindFadePaint);
-	        }
-	    }
-	    
-	    public void setBehindFadeEnabled(boolean b) {
-	    	mFadeEnabled = b;
-	    }
-	    
-	    public void setBehindFadeDegree(float f) {
-	    	mFadeDegree = f;
-	    }
+			if (alpha > 0) {
+				mBehindFadePaint.setColor(Color.argb(alpha, 0, 0, 0));
+				canvas.drawRect(0, 0, width, getHeight(), mBehindFadePaint);
+			}
+		}
+
+		public void setBehindFadeEnabled(boolean b) {
+			mFadeEnabled = b;
+		}
+
+		public void setBehindFadeDegree(float f) {
+			mFadeDegree = f;
+		}
 
 		private void onSecondaryPointerUp(MotionEvent ev) {
 			final int pointerIndex = MotionEventCompat.getActionIndex(ev);
