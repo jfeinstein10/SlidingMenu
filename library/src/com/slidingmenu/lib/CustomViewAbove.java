@@ -36,7 +36,7 @@ import android.widget.Scroller;
 
 public class CustomViewAbove extends ViewGroup {
 	private static final String TAG = "CustomViewAbove";
-	private static final boolean DEBUG = false;
+	private static final boolean DEBUG = true;
 
 	private static final boolean USE_CACHE = false;
 
@@ -901,7 +901,6 @@ public class CustomViewAbove extends ViewGroup {
 
 		@Override
 		public void computeScroll() {
-			if (DEBUG) Log.i(TAG, "computeScroll: finished=" + mScroller.isFinished());
 			if (!mScroller.isFinished()) {
 				if (mScroller.computeScrollOffset()) {
 					if (DEBUG) Log.i(TAG, "computeScroll: still scrolling");
@@ -1044,6 +1043,9 @@ public class CustomViewAbove extends ViewGroup {
 			if (!mEnabled) {
 				return false;
 			}
+			
+			if (ev.getAction() == MotionEventCompat.ACTION_POINTER_UP && DEBUG)
+				Log.v(TAG, "ACTION_POINTER_UPin onInterceptTouchEvent");
 
 			if (!thisTouchAllowed(ev)) {
 				return false;
@@ -1189,14 +1191,16 @@ public class CustomViewAbove extends ViewGroup {
 				return false;
 			}
 
+			if (ev.getAction() == MotionEventCompat.ACTION_POINTER_UP && DEBUG)
+				Log.v(TAG, "ACTION_POINTER_UPin onTouchEvent");
+
 			if (!mLastTouchAllowed && !thisTouchAllowed(ev)) {
 				return false;
 			}
 
 			final int action = ev.getAction();
 
-			if (action == MotionEvent.ACTION_UP || 
-					action == MotionEvent.ACTION_POINTER_UP ||
+			if (action == MotionEvent.ACTION_UP ||
 					action == MotionEvent.ACTION_CANCEL ||
 					action == MotionEvent.ACTION_OUTSIDE) {
 				mLastTouchAllowed = false;
@@ -1311,6 +1315,8 @@ public class CustomViewAbove extends ViewGroup {
 						MotionEventCompat.findPointerIndex(ev, mActivePointerId));
 				break;
 			}
+			if (mActivePointerId == INVALID_POINTER)
+				mLastTouchAllowed = false;
 			return true;
 		}
 
@@ -1392,6 +1398,7 @@ public class CustomViewAbove extends ViewGroup {
 		}
 
 		private void onSecondaryPointerUp(MotionEvent ev) {
+			if (DEBUG) Log.v(TAG, "onSecondaryPointerUp called");
 			final int pointerIndex = MotionEventCompat.getActionIndex(ev);
 			final int pointerId = MotionEventCompat.getPointerId(ev, pointerIndex);
 			if (pointerId == mActivePointerId) {
@@ -1400,6 +1407,7 @@ public class CustomViewAbove extends ViewGroup {
 				final int newPointerIndex = pointerIndex == 0 ? 1 : 0;
 				mLastMotionX = MotionEventCompat.getX(ev, newPointerIndex);
 				mActivePointerId = MotionEventCompat.getPointerId(ev, newPointerIndex);
+				if (DEBUG) Log.v(TAG, "New active pointer [" + mActivePointerId + "]");
 				if (mVelocityTracker != null) {
 					mVelocityTracker.clear();
 				}
