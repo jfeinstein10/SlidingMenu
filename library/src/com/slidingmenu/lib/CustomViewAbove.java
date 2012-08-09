@@ -35,8 +35,9 @@ import android.widget.LinearLayout;
 import android.widget.Scroller;
 
 public class CustomViewAbove extends ViewGroup {
+	
 	private static final String TAG = "CustomViewAbove";
-	private static final boolean DEBUG = true;
+	private static final boolean DEBUG = false;
 
 	private static final boolean USE_CACHE = false;
 
@@ -119,7 +120,7 @@ public class CustomViewAbove extends ViewGroup {
 
 		private boolean mLastTouchAllowed = false;
 		private final int mSlidingMenuThreshold = 10;
-		private CustomViewBehind mCustomViewBehind2;
+		private CustomViewBehind mCustomViewBehind;
 		private boolean mEnabled = true;
 
 		private OnPageChangeListener mOnPageChangeListener;
@@ -245,17 +246,13 @@ public class CustomViewAbove extends ViewGroup {
 			setInternalPageChangeListener(new SimpleOnPageChangeListener() {
 
 				public void onPageSelected(int position) {
-					if (mCustomViewBehind2 != null) {
+					if (mCustomViewBehind != null) {
 						switch (position) {
 						case 0:
-							mCustomViewBehind2.setEnabled(false);
-							mCustomViewBehind2.setFocusable(false);
-							mCustomViewBehind2.setClickable(false);
+							mCustomViewBehind.setChildrenEnabled(true);
 							break;
 						case 1:
-							mCustomViewBehind2.setEnabled(true);
-							mCustomViewBehind2.setFocusable(true);
-							mCustomViewBehind2.setClickable(true);
+							mCustomViewBehind.setChildrenEnabled(false);
 							break;
 						}
 					}
@@ -503,10 +500,10 @@ public class CustomViewAbove extends ViewGroup {
 		}
 
 		public int getBehindWidth() {
-			if (mCustomViewBehind2 == null) {
+			if (mCustomViewBehind == null) {
 				return 0;
 			} else {
-				return mCustomViewBehind2.getWidth();
+				return mCustomViewBehind.getWidth();
 			}
 		}
 
@@ -689,7 +686,7 @@ public class CustomViewAbove extends ViewGroup {
 		}
 
 		public void setCustomViewBehind2(CustomViewBehind cvb) {
-			mCustomViewBehind2 = cvb;
+			mCustomViewBehind = cvb;
 		}
 
 		@Override
@@ -1335,8 +1332,8 @@ public class CustomViewAbove extends ViewGroup {
 		@Override
 		public void scrollTo(int x, int y) {
 			super.scrollTo(x, y);
-			if (mCustomViewBehind2 != null && mEnabled) {
-				mCustomViewBehind2.scrollTo((int)(x*mScrollScale), y);
+			if (mCustomViewBehind != null && mEnabled) {
+				mCustomViewBehind.scrollTo((int)(x*mScrollScale), y);
 			}
 			invalidate();
 		}

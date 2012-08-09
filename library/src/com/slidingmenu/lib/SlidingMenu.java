@@ -1,10 +1,9 @@
 package com.slidingmenu.lib;
 
-import com.slidingmenu.lib.CustomViewAbove.OnPageChangeListener;
-
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Parcel;
@@ -18,6 +17,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
+import com.slidingmenu.lib.CustomViewAbove.OnPageChangeListener;
+
 public class SlidingMenu extends RelativeLayout {
 
 	public static final int TOUCHMODE_MARGIN = 0;
@@ -25,14 +26,14 @@ public class SlidingMenu extends RelativeLayout {
 
 	private CustomViewAbove mViewAbove;
 	private CustomViewBehind mViewBehind;
-	
+
 	private OnOpenListener mOpenListener;
 	private OnCloseListener mCloseListener;
-	
+
 	public interface OnOpenListener {
 		public void onOpen();
 	}
-	
+
 	public interface OnCloseListener {
 		public void onClose();
 	}
@@ -262,11 +263,11 @@ public class SlidingMenu extends RelativeLayout {
 	public void setFadeDegree(float f) {
 		mViewAbove.setBehindFadeDegree(f);
 	}
-	
+
 	public void setOnOpenListener(OnOpenListener listener) {
 		mOpenListener = listener;
 	}
-	
+
 	public void setOnCloseListener(OnCloseListener listener) {
 		mCloseListener = listener;
 	}
@@ -329,11 +330,34 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	private static final int LOW_DPI_STATUS_BAR_HEIGHT = 19;
-
 	private static final int MEDIUM_DPI_STATUS_BAR_HEIGHT = 25;
-
 	private static final int HIGH_DPI_STATUS_BAR_HEIGHT = 38;
+	private static final int XHIGH_DPI_STATUS_BAR_HEIGHT = 50;
 
+	/**
+	 * Find the height of the current system status bar.
+	 * If this cannot be determined rely on a default.
+	 */
+	private static final int mHeightId = Resources.getSystem()
+			.getIdentifier("status_bar_height", "dimen", "android");
+	private static final int mBarHeight;
+
+	// Try to retrieve the system's status bar height
+	// by querying the system's resources.
+	static {
+
+		int mHeight = -1;
+
+		if (mHeightId != 0) {
+			try {
+				mHeight = Resources.getSystem().getDimensionPixelSize(mHeightId);
+			} catch(Resources.NotFoundException e) { }
+		}
+
+		mBarHeight = mHeight;
+	};
+
+	@SuppressLint("NewApi")
 	public void setFitsSysWindows(boolean b) {
 		if (Build.VERSION.SDK_INT >= 14) {
 			super.setFitsSystemWindows(b);
@@ -351,10 +375,14 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	private int getStatusBarHeight() {
+		if (mBarHeight >= 0) return mBarHeight;
 		DisplayMetrics displayMetrics = new DisplayMetrics();
 		((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getMetrics(displayMetrics);
 		int statusBarHeight = 0;
 		switch (displayMetrics.densityDpi) {
+		case DisplayMetrics.DENSITY_XHIGH:
+			statusBarHeight = XHIGH_DPI_STATUS_BAR_HEIGHT;
+			break;
 		case DisplayMetrics.DENSITY_HIGH:
 			statusBarHeight = HIGH_DPI_STATUS_BAR_HEIGHT;
 			break;
