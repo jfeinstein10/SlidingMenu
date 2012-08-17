@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class CustomViewBehind extends CustomViewAbove {
-	
+
 	private static final String TAG = "CustomViewBehind";
+
+	private CustomViewAbove mViewAbove;
 	private boolean mChildrenEnabled;
 
 	public CustomViewBehind(Context context) {
@@ -17,6 +19,17 @@ public class CustomViewBehind extends CustomViewAbove {
 
 	public CustomViewBehind(Context context, AttributeSet attrs) {
 		super(context, attrs, false);
+	}
+
+	public void setCustomViewAbove(CustomViewAbove customViewAbove) {
+		mViewAbove = customViewAbove;
+		mViewAbove.setTouchModeBehind(mTouchMode);
+	}
+
+	public void setTouchMode(int i) {
+		mTouchMode = i;
+		if (mViewAbove != null)
+			mViewAbove.setTouchModeBehind(i);
 	}
 
 	public int getChildLeft(int i) {
@@ -47,16 +60,18 @@ public class CustomViewBehind extends CustomViewAbove {
 	public void setContent(View v) {
 		super.setMenu(v);
 	}
-	
+
 	public void setChildrenEnabled(boolean enabled) {
 		mChildrenEnabled = enabled;
 	}
-	
+
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent e) {
+		if (!mChildrenEnabled)
+			return !mChildrenEnabled;
 		return !mChildrenEnabled;
 	}
-	
+
 	@Override
 	public boolean onTouchEvent(MotionEvent e) {
 		return false;

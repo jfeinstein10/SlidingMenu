@@ -1,10 +1,10 @@
 package com.slidingmenu.lib;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Point;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -56,7 +56,8 @@ public class SlidingMenu extends RelativeLayout {
 		mViewAbove = new CustomViewAbove(context);
 		addView(mViewAbove, aboveParams);
 		// register the CustomViewBehind2 with the CustomViewAbove
-		mViewAbove.setCustomViewBehind2(mViewBehind);
+		mViewAbove.setCustomViewBehind(mViewBehind);
+		mViewBehind.setCustomViewAbove(mViewAbove);
 		mViewAbove.setOnPageChangeListener(new OnPageChangeListener() {
 			public void onPageScrolled(int position, float positionOffset,
 					int positionOffsetPixels) { }
@@ -87,8 +88,17 @@ public class SlidingMenu extends RelativeLayout {
 		setTouchModeAbove(touchModeAbove);
 		int touchModeBehind = ta.getInt(R.styleable.SlidingMenu_behindTouchMode, TOUCHMODE_MARGIN);
 		setTouchModeBehind(touchModeBehind);
-		int offsetBehind = (int) ta.getDimension(R.styleable.SlidingMenu_behindOffset, 0);
-		setBehindOffset(offsetBehind);
+		
+		int offsetBehind = (int) ta.getDimension(R.styleable.SlidingMenu_behindOffset, -1);
+		int widthBehind = (int) ta.getDimension(R.styleable.SlidingMenu_behindWidth, -1);
+		if (offsetBehind != -1 && widthBehind != -1)
+			throw new IllegalStateException("Cannot set both behindOffset and behindWidth for a SlidingMenu");
+		else if (offsetBehind != -1)
+			setBehindOffset(offsetBehind);
+		else if (widthBehind != -1)
+			setBehindWidth(widthBehind);
+		else
+			setBehindOffset(0);
 		float scrollOffsetBehind = ta.getFloat(R.styleable.SlidingMenu_behindScrollScale, 0.25f);
 		setBehindScrollScale(scrollOffsetBehind);
 		int shadowRes = ta.getResourceId(R.styleable.SlidingMenu_shadowDrawable, -1);
@@ -141,13 +151,13 @@ public class SlidingMenu extends RelativeLayout {
 	public void setStatic(boolean b) {
 		if (b) {
 			setSlidingEnabled(false);
-			mViewAbove.setCustomViewBehind2(null);
+			mViewAbove.setCustomViewBehind(null);
 			mViewAbove.setCurrentItem(1);
 			mViewBehind.setCurrentItem(0);	
 		} else {
 			mViewAbove.setCurrentItem(1);
 			mViewBehind.setCurrentItem(1);
-			mViewAbove.setCustomViewBehind2(mViewBehind);
+			mViewAbove.setCustomViewBehind(mViewBehind);
 			setSlidingEnabled(true);
 		}
 	}
@@ -194,6 +204,20 @@ public class SlidingMenu extends RelativeLayout {
 		params.setMargins(left, top, i, bottom);
 	}
 
+	@SuppressLint("NewApi")
+	public void setBehindWidth(int i) {
+		WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+		int width;
+		if (Build.VERSION.SDK_INT >= 13) {
+			Point point = new Point();
+			wm.getDefaultDisplay().getSize(point);
+			width = point.x;
+		} else {
+			width = wm.getDefaultDisplay().getWidth();
+		}
+		setBehindOffset(width-i);
+	}
+
 	/**
 	 * 
 	 * @param res The dimension resource to be set as the behind offset
@@ -221,7 +245,7 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	public int getTouchModeAbove() {
-		return mViewAbove.getTouchModeAbove();
+		return mViewAbove.getTouchMode();
 	}
 
 	public void setTouchModeAbove(int i) {
@@ -229,11 +253,11 @@ public class SlidingMenu extends RelativeLayout {
 			throw new IllegalStateException("TouchMode must be set to either" +
 					"TOUCHMODE_FULLSCREEN or TOUCHMODE_MARGIN.");
 		}
-		mViewAbove.setTouchModeAbove(i);
+		mViewAbove.setTouchMode(i);
 	}
 
 	public int getTouchModeBehind() {
-		return mViewAbove.getTouchModeBehind();
+		return mViewBehind.getTouchMode();
 	}
 
 	public void setTouchModeBehind(int i) {
@@ -241,7 +265,7 @@ public class SlidingMenu extends RelativeLayout {
 			throw new IllegalStateException("TouchMode must be set to either" +
 					"TOUCHMODE_FULLSCREEN or TOUCHMODE_MARGIN.");
 		}
-		mViewAbove.setTouchModeBehind(i);
+		mViewBehind.setTouchMode(i);
 	}
 
 	public void setShadowDrawable(int resId) {

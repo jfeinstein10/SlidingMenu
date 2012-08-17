@@ -20,6 +20,7 @@
         <attr name="viewAbove" format="reference" />
         <attr name="viewBehind" format="reference" />
         <attr name="behindOffset" format="dimension" />
+        <attr name="behindWidth" format="dimension" />
         <attr name="behindScrollScale" format="float" />
         <attr name="aboveTouchMode">
             <enum name="margin" value="0" />

@@ -100,7 +100,7 @@ public class CustomViewAbove extends ViewGroup {
 		 * ID of the active pointer. This is used to retain consistency during
 		 * drags/flings if multiple pointers are used.
 		 */
-		private int mActivePointerId = INVALID_POINTER;
+		protected int mActivePointerId = INVALID_POINTER;
 		/**
 		 * Sentinel value for no current active pointer.
 		 * Used by {@link #mActivePointerId}.
@@ -110,9 +110,9 @@ public class CustomViewAbove extends ViewGroup {
 		/**
 		 * Determines speed during touch scrolling
 		 */
-		private VelocityTracker mVelocityTracker;
+		protected VelocityTracker mVelocityTracker;
 		private int mMinimumVelocity;
-		private int mMaximumVelocity;
+		protected int mMaximumVelocity;
 		private int mFlingDistance;
 
 		private boolean mFirstLayout = true;
@@ -685,7 +685,7 @@ public class CustomViewAbove extends ViewGroup {
 			mContent = ii;
 		}
 
-		public void setCustomViewBehind2(CustomViewBehind cvb) {
+		public void setCustomViewBehind(CustomViewBehind cvb) {
 			mCustomViewBehind = cvb;
 		}
 
@@ -988,22 +988,22 @@ public class CustomViewAbove extends ViewGroup {
 			}
 		}
 
-		private int mTouchModeAbove = SlidingMenu.TOUCHMODE_MARGIN;
+		protected int mTouchMode = SlidingMenu.TOUCHMODE_MARGIN;
 		private int mTouchModeBehind = SlidingMenu.TOUCHMODE_MARGIN;
 
-		public void setTouchModeAbove(int i) {
-			mTouchModeAbove = i;
+		public void setTouchMode(int i) {
+			mTouchMode = i;
 		}
 
-		public int getTouchModeAbove() {
-			return mTouchModeAbove;
+		public int getTouchMode() {
+			return mTouchMode;
 		}
 
-		public void setTouchModeBehind(int i) {
+		protected void setTouchModeBehind(int i) {
 			mTouchModeBehind = i;
 		}
 
-		public int getTouchModeBehind() {
+		protected int getTouchModeBehind() {
 			return mTouchModeBehind;
 		}
 
@@ -1018,7 +1018,7 @@ public class CustomViewAbove extends ViewGroup {
 					return false;
 				}
 			} else {
-				switch (mTouchModeAbove) {
+				switch (mTouchMode) {
 				case SlidingMenu.TOUCHMODE_FULLSCREEN:
 					return true;
 				case SlidingMenu.TOUCHMODE_MARGIN:
@@ -1142,7 +1142,7 @@ public class CustomViewAbove extends ViewGroup {
 					mIsUnableToDrag = false;
 					setScrollState(SCROLL_STATE_DRAGGING);
 				} else if (isMenuOpen() ||
-						(mTouchModeAbove != SlidingMenu.TOUCHMODE_FULLSCREEN && thisTouchAllowed(ev))) {
+						(mTouchMode != SlidingMenu.TOUCHMODE_FULLSCREEN && thisTouchAllowed(ev))) {
 					// we want to intercept this touch even though we are not dragging
 					// so that we can close the menu on a touch
 					mIsBeingDragged = false;

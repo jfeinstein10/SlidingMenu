@@ -57,27 +57,22 @@ public class SlidingActivity extends Activity implements SlidingActivityBase {
 		setBehindContentView(v, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 	}
 
-	@Override
 	public void setBehindContentView(View v, LayoutParams params) {
 		mHelper.setBehindContentView(v, params);
 	}
 
-	@Override
 	public SlidingMenu getSlidingMenu() {
 		return mHelper.getSlidingMenu();
 	}
 
-	@Override
 	public void toggle() {
 		mHelper.toggle();
 	}
 
-	@Override
 	public void showAbove() {
 		mHelper.showAbove();
 	}
 
-	@Override
 	public void showBehind() {
 		mHelper.showBehind();
 	}
