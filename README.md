@@ -53,10 +53,12 @@ If you decide to use SlidingMenu as a view, you can define it in your xml layout
     sliding:touchModeAbove="margin|fullscreen"
     sliding:touchModeBehind="margin|fullscreen"
     sliding:behindOffset="@dimen/YOUR_OFFSET"
+    sliding:behindWidth="@dimen/YOUR_WIDTH"
     sliding:behindScrollScale="@dimen/YOUR_SCALE"
     sliding:shadowDrawable="@drawable/YOUR_SHADOW"
     sliding:shadowWidth="@dimen/YOUR_SHADOW_WIDTH" />
 ```
+NOTE : you cannot use both behindOffset and behindWidth. You will get an exception if you try.
 * `viewAbove` - a reference to the layout that you want to use as the above view of the SlidingMenu
 * `viewBehind` - a reference to the layout that you want to use as the behind view of the SlidingMenu
 * `touchModeAbove` - an enum that designates what part of the screen is touchable when the above view is 
@@ -66,6 +68,8 @@ is showing. Margin means only what is showing of the above view. Fullscreen mean
 Default is margin.
 * `behindOffset` - a dimension representing the number of pixels that you want the above view to show when the
 behind view is showing. Default is 0.
+* `behindWidth` - a dimension representing the width of the behind view. Default is the width of the screen
+(equivalent to behindOffset = 0).
 * `behindScrollScale` - a float representing the relationship between the above view scrolling and the behind
 behind view scrolling. If set to 0.5f, the behind view will scroll 1px for every 2px that the above view scrolls.
 If set to 1.0f, the behind view will scroll 1px for every 1px that the above view scrolls. And if set to 0.0f, the
