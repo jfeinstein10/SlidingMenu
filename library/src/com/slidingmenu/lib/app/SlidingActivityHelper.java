@@ -55,7 +55,7 @@ public class SlidingActivityHelper {
 			mSlidingMenu.setViewAbove(decorChild);
 			decor.addView(mSlidingMenu);
 		} else {
-			// take the above view out of 
+			// take the above view out of
 			ViewGroup parent = (ViewGroup) mViewAbove.getParent();
 			if (parent != null) {
 				parent.removeView(mViewAbove);
@@ -79,7 +79,7 @@ public class SlidingActivityHelper {
 		View v;
 		if (mSlidingMenu != null) {
 			v = mSlidingMenu.findViewById(id);
-			if (v != null) 
+			if (v != null)
 				return v;
 		}
 		return null;
@@ -120,7 +120,7 @@ public class SlidingActivityHelper {
 		mSlidingMenu.showBehind();
 	}
 
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
+	public boolean onKeyUp(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK && mSlidingMenu.isBehindShowing()) {
 			showAbove();
 			return true;
