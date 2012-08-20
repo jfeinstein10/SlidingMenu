@@ -12,6 +12,7 @@ import android.support.v4.os.ParcelableCompat;
 import android.support.v4.os.ParcelableCompatCreatorCallbacks;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -26,16 +27,25 @@ public class SlidingMenu extends RelativeLayout {
 
 	private CustomViewAbove mViewAbove;
 	private CustomViewBehind mViewBehind;
-
 	private OnOpenListener mOpenListener;
 	private OnCloseListener mCloseListener;
+	private OnOpenedListener mOpenedListener;
+	private OnClosedListener mClosedListener;
 
 	public interface OnOpenListener {
 		public void onOpen();
 	}
 
+	public interface OnOpenedListener {
+		public void onOpened();
+	}
+
 	public interface OnCloseListener {
 		public void onClose();
+	}
+
+	public interface OnClosedListener {
+		public void onClosed();
 	}
 
 	public SlidingMenu(Context context) {
@@ -59,13 +69,27 @@ public class SlidingMenu extends RelativeLayout {
 		mViewAbove.setCustomViewBehind(mViewBehind);
 		mViewBehind.setCustomViewAbove(mViewAbove);
 		mViewAbove.setOnPageChangeListener(new OnPageChangeListener() {
+			public static final int POSITION_OPEN = 0;
+			public static final int POSITION_CLOSE = 1;
+
 			public void onPageScrolled(int position, float positionOffset,
 					int positionOffsetPixels) { }
-			public void onPageScrollStateChanged(int state) { }
-			public void onPageSelected(int position) {
-				if (position == 0 && mOpenListener != null) {
+
+			public void onPageScrollStateChanged(int state) {
+				if (state == CustomViewAbove.SCROLL_STATE_IDLE){
+					if (mViewAbove.getCurrentItem() == POSITION_OPEN && mOpenedListener != null) {
+						mOpenedListener.onOpened();
+					}
+					else if (mViewAbove.getCurrentItem() == POSITION_CLOSE && mClosedListener != null) {
+						mClosedListener.onClosed();
+					}
+				}
+			}
+
+		public void onPageSelected(int position) {
+				if (position == POSITION_OPEN && mOpenListener != null) {
 					mOpenListener.onOpen();
-				} else if (position == 1 && mCloseListener != null) {
+				} else if (position == POSITION_CLOSE && mCloseListener != null) {
 					mCloseListener.onClose();
 				}
 			}			
@@ -294,6 +318,16 @@ public class SlidingMenu extends RelativeLayout {
 
 	public void setOnCloseListener(OnCloseListener listener) {
 		mCloseListener = listener;
+	}
+
+	public void setOnOpenedListener(OnOpenedListener listener) {
+
+		mOpenedListener = listener;
+	}
+
+	public void setOnClosedListener(OnClosedListener listener) {
+
+		mClosedListener = listener;
 	}
 
 	public static class SavedState extends BaseSavedState {
