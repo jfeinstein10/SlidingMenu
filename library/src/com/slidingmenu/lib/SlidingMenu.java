@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.graphics.Point;
 import android.os.Build;
 import android.os.Parcel;
@@ -46,6 +47,10 @@ public class SlidingMenu extends RelativeLayout {
 
 	public interface OnClosedListener {
 		public void onClosed();
+	}
+	
+	public interface SlidingMenuCanvasTransformer {
+		public void transformCanvas(Canvas canvas, int widthAvailable);
 	}
 
 	public SlidingMenu(Context context) {
@@ -305,11 +310,11 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	public void setFadeEnabled(boolean b) {
-		mViewAbove.setBehindFadeEnabled(b);
+		mViewBehind.setBehindFadeEnabled(b);
 	}
 
 	public void setFadeDegree(float f) {
-		mViewAbove.setBehindFadeDegree(f);
+		mViewBehind.setBehindFadeDegree(f);
 	}
 
 	public void setOnOpenListener(OnOpenListener listener) {

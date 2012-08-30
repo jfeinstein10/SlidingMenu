@@ -1362,39 +1362,6 @@ public class CustomViewAbove extends ViewGroup {
 						mBottomPageBounds);
 				mShadowDrawable.draw(canvas);
 			}
-
-			//			if (mFadeEnabled) {
-			//				float openPercent = 0;
-			//		        if (mScrollState == SCROLL_STATE_DRAGGING) {
-			//		            openPercent= (behindWidth - Math.min(mLastMotionX, behindWidth)) / (float) behindWidth;
-			//		            Log.v("STATE_DRAGGING", "openPercent: "+openPercent);
-			//		        } else {
-			//		            openPercent= (mScroller.getCurrX()) / (float) behindWidth;
-			//		            Log.v("STATE_SETTLING", "openPercent: "+openPercent+", scrollerX: "+mScroller.getCurrX());
-			//		        }
-			//				onDrawBehindFade(canvas, openPercent, behindWidth);
-			//			}
-		}
-
-		private float mFadeDegree;
-		private final Paint mBehindFadePaint = new Paint();
-		private boolean mFadeEnabled;
-
-		private void onDrawBehindFade(Canvas canvas, float openPercent, int width) {
-			final int alpha = (int) (mFadeDegree * 255 * openPercent);
-
-			if (alpha > 0) {
-				mBehindFadePaint.setColor(Color.argb(alpha, 0, 0, 0));
-				canvas.drawRect(0, 0, width, getHeight(), mBehindFadePaint);
-			}
-		}
-
-		public void setBehindFadeEnabled(boolean b) {
-			mFadeEnabled = b;
-		}
-
-		public void setBehindFadeDegree(float f) {
-			mFadeDegree = f;
 		}
 
 		private void onSecondaryPointerUp(MotionEvent ev) {
