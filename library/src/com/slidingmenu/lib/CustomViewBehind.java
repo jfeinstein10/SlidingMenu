@@ -9,14 +9,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.slidingmenu.lib.SlidingMenu.SlidingMenuCanvasTransformer;
+import com.slidingmenu.lib.SlidingMenu.CanvasTransformer;
 
 public class CustomViewBehind extends CustomViewAbove {
 
 	private static final String TAG = "CustomViewBehind";
 
 	private CustomViewAbove mViewAbove;
-	private SlidingMenuCanvasTransformer mTransformer;
+	private CanvasTransformer mTransformer;
 	private boolean mChildrenEnabled;
 
 	public CustomViewBehind(Context context) {
@@ -36,6 +36,10 @@ public class CustomViewBehind extends CustomViewAbove {
 		mTouchMode = i;
 		if (mViewAbove != null)
 			mViewAbove.setTouchModeBehind(i);
+	}
+	
+	public void setCanvasTransformer(CanvasTransformer t) {
+		mTransformer = t;
 	}
 
 	public int getChildLeft(int i) {
@@ -98,13 +102,13 @@ public class CustomViewBehind extends CustomViewAbove {
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 
-		if (mTransformer != null)
-			mTransformer.transformCanvas(canvas, (int) (mScrollX / mViewAbove.getScrollScale()));
+		float percentOpen = mScrollX / (getWidth() * mViewAbove.getScrollScale());
 		
-		if (mFadeEnabled) {
-			float openPercent = mScrollX / (getWidth() * mViewAbove.getScrollScale());
-			onDrawBehindFade(canvas, openPercent);
-		}
+		if (mTransformer != null)
+			mTransformer.transformCanvas(canvas, (int) (mScrollX / mViewAbove.getScrollScale()), percentOpen);
+		
+		if (mFadeEnabled)
+			onDrawBehindFade(canvas, percentOpen);
 	}
 
 	private void onDrawBehindFade(Canvas canvas, float openPercent) {

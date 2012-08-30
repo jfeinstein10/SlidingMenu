@@ -49,8 +49,8 @@ public class SlidingMenu extends RelativeLayout {
 		public void onClosed();
 	}
 	
-	public interface SlidingMenuCanvasTransformer {
-		public void transformCanvas(Canvas canvas, int widthAvailable);
+	public interface CanvasTransformer {
+		public void transformCanvas(Canvas canvas, int widthAvailable, float percentOpen);
 	}
 
 	public SlidingMenu(Context context) {
@@ -271,6 +271,10 @@ public class SlidingMenu extends RelativeLayout {
 	 */
 	public void setBehindScrollScale(float f) {
 		mViewAbove.setScrollScale(f);
+	}
+	
+	public void setBehindCanvasTransformer(CanvasTransformer t) {
+		mViewBehind.setCanvasTransformer(t);
 	}
 
 	public int getTouchModeAbove() {

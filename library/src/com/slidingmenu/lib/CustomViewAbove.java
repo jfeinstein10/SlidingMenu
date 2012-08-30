@@ -496,7 +496,7 @@ public class CustomViewAbove extends ViewGroup {
 			if (i <= 0) {
 				return getBehindWidth();
 			} else {
-				return getChildAt(i).getMeasuredWidth();
+				return getChildAt(i).getWidth();
 			}
 		}
 
