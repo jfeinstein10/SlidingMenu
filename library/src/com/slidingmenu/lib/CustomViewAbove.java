@@ -19,6 +19,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewConfigurationCompat;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.FocusFinder;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -1022,7 +1023,9 @@ public class CustomViewAbove extends ViewGroup {
 				case SlidingMenu.TOUCHMODE_FULLSCREEN:
 					return true;
 				case SlidingMenu.TOUCHMODE_MARGIN:
-					return ev.getX() >= 0 && ev.getX() <= mSlidingMenuThreshold;
+					int pixels = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 
+							mSlidingMenuThreshold, getResources().getDisplayMetrics());
+					return ev.getX() >= 0 && ev.getX() <= pixels;
 				default:
 					return false;
 				}
