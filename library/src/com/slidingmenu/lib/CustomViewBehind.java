@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -95,12 +96,12 @@ public class CustomViewBehind extends CustomViewAbove {
 
 	private float mScrollX = 0.0f;
 	private boolean mFadeEnabled = true;
-	private float mFadeDegree = 0.5f;
+	private float mFadeDegree = 0.0f;
 	private final Paint mBehindFadePaint = new Paint();
 
 	@Override
-	protected void onDraw(Canvas canvas) {
-		super.onDraw(canvas);
+	protected void dispatchDraw(Canvas canvas) {
+		super.dispatchDraw(canvas);
 
 		float percentOpen = mScrollX / (getWidth() * mViewAbove.getScrollScale());
 		
@@ -113,8 +114,9 @@ public class CustomViewBehind extends CustomViewAbove {
 
 	private void onDrawBehindFade(Canvas canvas, float openPercent) {
 		final int alpha = (int) (mFadeDegree * 255 * openPercent);
+		Log.v(TAG, "open percent : " + openPercent + ", alpha : " + alpha);
 		if (alpha > 0) {
-			mBehindFadePaint.setColor(Color.argb(alpha, 255, 0, 0));
+			mBehindFadePaint.setColor(Color.argb(alpha, 0, 0, 0));
 			canvas.drawRect(0, 0, getWidth(), getHeight(), mBehindFadePaint);
 		}
 	}
@@ -124,6 +126,8 @@ public class CustomViewBehind extends CustomViewAbove {
 	}
 
 	public void setBehindFadeDegree(float f) {
+		if (f > 1.0f || f < 0.0f)
+			throw new IllegalStateException("The BehindFadeDegree must be between 0.0f and 1.0f");
 		mFadeDegree = f;
 	}
 
