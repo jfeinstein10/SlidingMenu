@@ -87,48 +87,15 @@ public class CustomViewBehind extends CustomViewAbove {
 	public boolean onTouchEvent(MotionEvent e) {
 		return false;
 	}
-	
-	@Override
-	public void scrollTo(int x, int y) {
-		super.scrollTo(x, y);
-		mScrollX = x;
-	}
-
-	private float mScrollX = 0.0f;
-	private boolean mFadeEnabled = true;
-	private float mFadeDegree = 0.0f;
-	private final Paint mBehindFadePaint = new Paint();
 
 	@Override
 	protected void dispatchDraw(Canvas canvas) {
 		super.dispatchDraw(canvas);
 
-		float percentOpen = mScrollX / (getWidth() * mViewAbove.getScrollScale());
+//		float percentOpen = 1 - (getWidth() - mViewAbove.getRealScrollX()) / getWidth();
 		
-		if (mTransformer != null)
-			mTransformer.transformCanvas(canvas, (int) (mScrollX / mViewAbove.getScrollScale()), percentOpen);
-		
-		if (mFadeEnabled)
-			onDrawBehindFade(canvas, percentOpen);
-	}
-
-	private void onDrawBehindFade(Canvas canvas, float openPercent) {
-		final int alpha = (int) (mFadeDegree * 255 * openPercent);
-		Log.v(TAG, "open percent : " + openPercent + ", alpha : " + alpha);
-		if (alpha > 0) {
-			mBehindFadePaint.setColor(Color.argb(alpha, 0, 0, 0));
-			canvas.drawRect(0, 0, getWidth(), getHeight(), mBehindFadePaint);
-		}
-	}
-
-	public void setBehindFadeEnabled(boolean b) {
-		mFadeEnabled = b;
-	}
-
-	public void setBehindFadeDegree(float f) {
-		if (f > 1.0f || f < 0.0f)
-			throw new IllegalStateException("The BehindFadeDegree must be between 0.0f and 1.0f");
-		mFadeDegree = f;
+//		if (mTransformer != null)
+//			mTransformer.transformCanvas(canvas, (int) (mScrollX / mViewAbove.getScrollScale()), percentOpen);
 	}
 
 }

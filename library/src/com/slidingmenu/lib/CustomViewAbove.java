@@ -36,7 +36,7 @@ import android.widget.LinearLayout;
 import android.widget.Scroller;
 
 public class CustomViewAbove extends ViewGroup {
-	
+
 	private static final String TAG = "CustomViewAbove";
 	private static final boolean DEBUG = false;
 
@@ -1043,7 +1043,7 @@ public class CustomViewAbove extends ViewGroup {
 			if (!mEnabled) {
 				return false;
 			}
-			
+
 			if (ev.getAction() == MotionEventCompat.ACTION_POINTER_UP && DEBUG)
 				Log.v(TAG, "ACTION_POINTER_UPin onInterceptTouchEvent");
 
@@ -1335,6 +1335,7 @@ public class CustomViewAbove extends ViewGroup {
 		@Override
 		public void scrollTo(int x, int y) {
 			super.scrollTo(x, y);
+			mScrollX = x;
 			if (mCustomViewBehind != null && mEnabled) {
 				mCustomViewBehind.scrollTo((int)(x*mScrollScale), y);
 			}
@@ -1352,8 +1353,8 @@ public class CustomViewAbove extends ViewGroup {
 		}
 
 		@Override
-		protected void onDraw(Canvas canvas) {
-			super.onDraw(canvas);
+		protected void dispatchDraw(Canvas canvas) {
+			super.dispatchDraw(canvas);
 			final int behindWidth = getBehindWidth();
 			// Draw the margin drawable if needed.
 			if (mShadowWidth > 0 && mShadowDrawable != null) {
@@ -1362,6 +1363,34 @@ public class CustomViewAbove extends ViewGroup {
 						mBottomPageBounds);
 				mShadowDrawable.draw(canvas);
 			}
+
+			float percentOpen = 1 - (getBehindWidth() - mScrollX) / getBehindWidth();
+			if (mFadeEnabled)
+				onDrawBehindFade(canvas, percentOpen);
+		}
+
+		private float mScrollX = 0.0f;
+		private boolean mFadeEnabled = true;
+		private float mFadeDegree = 1.0f;
+		private final Paint mBehindFadePaint = new Paint();
+
+		private void onDrawBehindFade(Canvas canvas, float openPercent) {
+			final int alpha = (int) (mFadeDegree * 255 * openPercent);
+			Log.v(TAG, "open percent : " + openPercent + ", alpha : " + alpha);
+			if (alpha > 0) {
+				mBehindFadePaint.setColor(Color.argb(alpha, 0, 0, 0));
+				canvas.drawRect(0, 0, getBehindWidth(), getHeight(), mBehindFadePaint);
+			}
+		}
+
+		public void setBehindFadeEnabled(boolean b) {
+			mFadeEnabled = b;
+		}
+
+		public void setBehindFadeDegree(float f) {
+			if (f > 1.0f || f < 0.0f)
+				throw new IllegalStateException("The BehindFadeDegree must be between 0.0f and 1.0f");
+			mFadeDegree = f;
 		}
 
 		private void onSecondaryPointerUp(MotionEvent ev) {
