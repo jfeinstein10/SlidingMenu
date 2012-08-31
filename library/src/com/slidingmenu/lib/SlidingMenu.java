@@ -1,5 +1,9 @@
 package com.slidingmenu.lib;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.concurrent.Executor;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
@@ -14,6 +18,7 @@ import android.support.v4.os.ParcelableCompatCreatorCallbacks;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -48,7 +53,7 @@ public class SlidingMenu extends RelativeLayout {
 	public interface OnClosedListener {
 		public void onClosed();
 	}
-	
+
 	public interface CanvasTransformer {
 		public void transformCanvas(Canvas canvas, int widthAvailable, float percentOpen);
 	}
@@ -91,7 +96,7 @@ public class SlidingMenu extends RelativeLayout {
 				}
 			}
 
-		public void onPageSelected(int position) {
+			public void onPageSelected(int position) {
 				if (position == POSITION_OPEN && mOpenListener != null) {
 					mOpenListener.onOpen();
 				} else if (position == POSITION_CLOSE && mCloseListener != null) {
@@ -117,7 +122,7 @@ public class SlidingMenu extends RelativeLayout {
 		setTouchModeAbove(touchModeAbove);
 		int touchModeBehind = ta.getInt(R.styleable.SlidingMenu_behindTouchMode, TOUCHMODE_MARGIN);
 		setTouchModeBehind(touchModeBehind);
-		
+
 		int offsetBehind = (int) ta.getDimension(R.styleable.SlidingMenu_behindOffset, -1);
 		int widthBehind = (int) ta.getDimension(R.styleable.SlidingMenu_behindWidth, -1);
 		if (offsetBehind != -1 && widthBehind != -1)
@@ -234,14 +239,18 @@ public class SlidingMenu extends RelativeLayout {
 
 	@SuppressLint("NewApi")
 	public void setBehindWidth(int i) {
-		WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
 		int width;
-		if (Build.VERSION.SDK_INT >= 13) {
-			Point point = new Point();
-			wm.getDefaultDisplay().getSize(point);
-			width = point.x;
-		} else {
-			width = wm.getDefaultDisplay().getWidth();
+		Display display = ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE))
+				.getDefaultDisplay();
+		try {
+			Class<?> cls = Display.class;
+			Class<?>[] parameterTypes = {Point.class};
+			Point parameter = new Point();
+			Method method = cls.getMethod("getSize", parameterTypes);
+			method.invoke(display, parameter);
+			width = parameter.x;
+		} catch (Exception e) {
+			width = display.getWidth();
 		}
 		setBehindOffset(width-i);
 	}
@@ -271,7 +280,7 @@ public class SlidingMenu extends RelativeLayout {
 	public void setBehindScrollScale(float f) {
 		mViewAbove.setScrollScale(f);
 	}
-	
+
 	public void setBehindCanvasTransformer(CanvasTransformer t) {
 		mViewBehind.setCanvasTransformer(t);
 	}
@@ -423,11 +432,13 @@ public class SlidingMenu extends RelativeLayout {
 		mBarHeight = mHeight;
 	};
 
-	@SuppressLint("NewApi")
 	public void setFitsSysWindows(boolean b) {
-		if (Build.VERSION.SDK_INT >= 14) {
-			super.setFitsSystemWindows(b);
-		} else {
+		try {
+			Class<?> cls = Display.class;
+			Class<?>[] parameterTypes = { boolean.class };
+			Method method = cls.getMethod("setFitsSystemWindows", parameterTypes);
+			method.invoke(this, b);
+		} catch (Exception e) {
 			int topMargin = 0;
 			if (b) {
 				topMargin = getStatusBarHeight();
