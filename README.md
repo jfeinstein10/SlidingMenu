@@ -56,7 +56,11 @@ If you decide to use SlidingMenu as a view, you can define it in your xml layout
     sliding:behindWidth="@dimen/YOUR_WIDTH"
     sliding:behindScrollScale="@dimen/YOUR_SCALE"
     sliding:shadowDrawable="@drawable/YOUR_SHADOW"
-    sliding:shadowWidth="@dimen/YOUR_SHADOW_WIDTH" />
+    sliding:shadowWidth="@dimen/YOUR_SHADOW_WIDTH"
+    sliding:fadeEnabled="true|false"
+    sliding:fadeDegree="float"
+    sliding:selectorEnabled="true|false"
+    sliding:selectorDrawable="@drawable/YOUR_SELECTOR"/>
 ```
 NOTE : you cannot use both behindOffset and behindWidth. You will get an exception if you try.
 * `viewAbove` - a reference to the layout that you want to use as the above view of the SlidingMenu
@@ -77,6 +81,15 @@ behind view will never scroll; it will be static. This one is fun to play around
 * `shadowDrawable` - a reference to a drawable to be used as a drop shadow from the above view onto the below view.
 Default is no shadow for now.
 * `shadowWidth` - a dimension representing the width of the shadow drawable. Default is 0.
+* `fadeEnabled` - a boolean representing whether or not the behind view should fade when the SlidingMenu is closing
+and "un-fade" when opening
+* `fadeDegree` - a float representing the "amount" of fade. `1.0f` would mean fade all the way to black when the
+SlidingMenu is closed. `0.0f` would mean do not fade at all.
+* `selectorEnabled` - a boolean representing whether or not a selector should be drawn on the left side of the above
+view showing a selected view on the behind view.
+* `selectorDrawable` - a reference to a drawable to be used as the selector
+NOTE : in order to have the selector drawn, you must call SlidingMenu.setSelectedView(View v) with the selected view.
+Note that this will most likely not work with items in a ListView because of the way that Android recycles item views.
 
 Caveats
 -------
