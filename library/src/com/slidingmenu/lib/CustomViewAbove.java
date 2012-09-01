@@ -1352,7 +1352,7 @@ public class CustomViewAbove extends ViewGroup {
 			}
 			return targetPage;
 		}
-		
+
 		protected float getPercentOpen() {
 			return 1 - (getBehindWidth() - mScrollX) / getBehindWidth();
 		}
@@ -1372,7 +1372,7 @@ public class CustomViewAbove extends ViewGroup {
 			if (mFadeEnabled)
 				onDrawBehindFade(canvas, getPercentOpen());
 		}
-		
+
 		@Override
 		protected void onDraw(Canvas canvas) {
 			super.onDraw(canvas);
@@ -1389,7 +1389,7 @@ public class CustomViewAbove extends ViewGroup {
 		// for the indicator
 		private boolean mSelectorEnabled;
 		private Bitmap mSelectorDrawable;
-		private View mSelectedView;
+		private int mSelectedMid;
 		private Paint mBehindSelectorPaint = new Paint();
 
 
@@ -1403,12 +1403,12 @@ public class CustomViewAbove extends ViewGroup {
 		}
 
 		private void onDrawMenuSelector(Canvas canvas, float openPercent) {
-			if (mSelectorDrawable != null && mSelectedView != null) {
+			if (mSelectorDrawable != null && mSelectedMid >= 0) {
 				// Get the fully opened left position
 				int left = getBehindWidth() - mSelectorDrawable.getWidth() + 1;
 				// Hide/Show selector as the behind view is opened/closed
 				left = left + (int)(mSelectorDrawable.getWidth() * openPercent);
-				int top = mSelectedView.getTop() + mSelectedView.getHeight()/2 - mSelectorDrawable.getHeight()/2;
+				int top = mSelectedMid - mSelectorDrawable.getHeight()/2;
 				canvas.drawBitmap(mSelectorDrawable, left, top, mBehindSelectorPaint);
 			}
 		}
@@ -1426,13 +1426,20 @@ public class CustomViewAbove extends ViewGroup {
 		public void setSelectorEnabled(boolean b) {
 			mSelectorEnabled = b;
 		}
-		
+
 		public void setSelectedView(View v) {
-			mSelectedView = v;
+			if (v == null)
+				mSelectedMid = -1;
+			else
+				mSelectedMid = v.getTop() + v.getHeight()/2;
+			invalidate();
+			forceLayout();
+			refreshDrawableState();
 		}
 
 		public void setSelectorDrawable(Bitmap b) {
 			mSelectorDrawable = b;
+			refreshDrawableState();
 		}
 
 		private void onSecondaryPointerUp(MotionEvent ev) {
