@@ -31,6 +31,7 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.view.Window;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.animation.Interpolator;
 import android.widget.LinearLayout;
@@ -1389,7 +1390,7 @@ public class CustomViewAbove extends ViewGroup {
 		// for the indicator
 		private boolean mSelectorEnabled;
 		private Bitmap mSelectorDrawable;
-		private int mSelectedMid;
+		private View mSelectedView;
 		private Paint mBehindSelectorPaint = new Paint();
 
 
@@ -1403,13 +1404,12 @@ public class CustomViewAbove extends ViewGroup {
 		}
 
 		private void onDrawMenuSelector(Canvas canvas, float openPercent) {
-			if (mSelectorDrawable != null && mSelectedMid >= 0) {
+			if (mSelectorDrawable != null && mSelectedView != null) {
 				// Get the fully opened left position
 				int left = getBehindWidth() - mSelectorDrawable.getWidth() + 1;
 				// Hide/Show selector as the behind view is opened/closed
 				left = left + (int)(mSelectorDrawable.getWidth() * openPercent);
-				int top = mSelectedMid - mSelectorDrawable.getHeight()/2;
-				canvas.drawBitmap(mSelectorDrawable, left, top, mBehindSelectorPaint);
+				canvas.drawBitmap(mSelectorDrawable, left, getSelectedMid(), mBehindSelectorPaint);
 			}
 		}
 
@@ -1428,13 +1428,24 @@ public class CustomViewAbove extends ViewGroup {
 		}
 
 		public void setSelectedView(View v) {
-			if (v == null)
-				mSelectedMid = -1;
-			else
-				mSelectedMid = v.getTop() + v.getHeight()/2;
+			mSelectedView = v;
 			invalidate();
-			forceLayout();
-			refreshDrawableState();
+		}
+		
+		private int getSelectedMid() {
+			// Get the offset due to the notification bar
+//		    Rect rectgle = new Rect();
+//		    Window window = getWindow();
+//		    window.getDecorView().getWindowVisibleDisplayFrame(rectgle);
+//		    int statusBarHeight = rectgle.top;
+//		    int contentViewTop = window.findViewById(Window.ID_ANDROID_CONTENT).getTop();
+//		    int titleBarHeight = contentViewTop - statusBarHeight;
+
+		    // Get the top coordinate of the view
+		    int[] location = new int[2];
+		    mSelectedView.getLocationInWindow(location);
+		    int y = location[1];
+			return y = y + ((mSelectedView.getHeight() / 2) - (mSelectorDrawable.getHeight() / 2));
 		}
 
 		public void setSelectorDrawable(Bitmap b) {
