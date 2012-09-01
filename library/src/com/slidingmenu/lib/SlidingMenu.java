@@ -1,23 +1,21 @@
 package com.slidingmenu.lib;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.concurrent.Executor;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Point;
-import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.v4.os.ParcelableCompat;
 import android.support.v4.os.ParcelableCompatCreatorCallbacks;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -109,15 +107,11 @@ public class SlidingMenu extends RelativeLayout {
 		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.SlidingMenu);
 		// set the above and behind views if defined in xml
 		int viewAbove = ta.getResourceId(R.styleable.SlidingMenu_viewAbove, -1);
-		if (viewAbove != -1) {
-			View v = LayoutInflater.from(context).inflate(viewAbove, null);
-			setViewAbove(v);
-		}
+		if (viewAbove != -1)
+			setViewAbove(LayoutInflater.from(context).inflate(viewAbove, null));
 		int viewBehind = ta.getResourceId(R.styleable.SlidingMenu_viewBehind, -1);
-		if (viewBehind != -1) {
-			View v = LayoutInflater.from(context).inflate(viewBehind, null);
-			setViewBehind(v);
-		}
+		if (viewBehind != -1)
+			setViewBehind(LayoutInflater.from(context).inflate(viewBehind, null));
 		int touchModeAbove = ta.getInt(R.styleable.SlidingMenu_aboveTouchMode, TOUCHMODE_MARGIN);
 		setTouchModeAbove(touchModeAbove);
 		int touchModeBehind = ta.getInt(R.styleable.SlidingMenu_behindTouchMode, TOUCHMODE_MARGIN);
@@ -145,6 +139,11 @@ public class SlidingMenu extends RelativeLayout {
 		setFadeEnabled(fadeEnabled);
 		float fadeDeg = ta.getFloat(R.styleable.SlidingMenu_behindFadeDegree, 0.66f);
 		setFadeDegree(fadeDeg);
+		boolean selectorEnabled = ta.getBoolean(R.styleable.SlidingMenu_selectorEnabled, false);
+		setSelectorEnabled(selectorEnabled);
+		int selectorRes = ta.getResourceId(R.styleable.SlidingMenu_selectorDrawable, -1);
+		if (selectorRes != -1)
+			setSelectorDrawable(selectorRes);
 	}
 
 	public void setViewAbove(int res) {
@@ -237,7 +236,6 @@ public class SlidingMenu extends RelativeLayout {
 		params.setMargins(left, top, i, bottom);
 	}
 
-	@SuppressLint("NewApi")
 	public void setBehindWidth(int i) {
 		int width;
 		Display display = ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE))
@@ -327,6 +325,22 @@ public class SlidingMenu extends RelativeLayout {
 
 	public void setFadeDegree(float f) {
 		mViewAbove.setBehindFadeDegree(f);
+	}
+
+	public void setSelectorEnabled(boolean b) {
+		mViewAbove.setSelectorEnabled(true);
+	}
+
+	public void setSelectedView(View v) {
+		mViewAbove.setSelectedView(v);
+	}
+
+	public void setSelectorDrawable(int res) {
+		mViewAbove.setSelectorDrawable(BitmapFactory.decodeResource(getResources(), res));
+	}
+
+	public void setSelectorDrawable(Bitmap b) {
+		mViewAbove.setSelectorDrawable(b);
 	}
 
 	public void setOnOpenListener(OnOpenListener listener) {

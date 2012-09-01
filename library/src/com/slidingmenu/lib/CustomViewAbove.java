@@ -6,6 +6,7 @@ import java.util.Comparator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.database.DataSetObserver;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -1351,6 +1352,10 @@ public class CustomViewAbove extends ViewGroup {
 			}
 			return targetPage;
 		}
+		
+		protected float getPercentOpen() {
+			return 1 - (getBehindWidth() - mScrollX) / getBehindWidth();
+		}
 
 		@Override
 		protected void dispatchDraw(Canvas canvas) {
@@ -1364,15 +1369,29 @@ public class CustomViewAbove extends ViewGroup {
 				mShadowDrawable.draw(canvas);
 			}
 
-			float percentOpen = 1 - (getBehindWidth() - mScrollX) / getBehindWidth();
 			if (mFadeEnabled)
-				onDrawBehindFade(canvas, percentOpen);
+				onDrawBehindFade(canvas, getPercentOpen());
+		}
+		
+		@Override
+		protected void onDraw(Canvas canvas) {
+			super.onDraw(canvas);
+			if (mSelectorEnabled)
+				onDrawMenuSelector(canvas, getPercentOpen());
 		}
 
+		// variables for drawing
 		private float mScrollX = 0.0f;
-		private boolean mFadeEnabled = true;
+		// for the fade
+		private boolean mFadeEnabled;
 		private float mFadeDegree = 1.0f;
 		private final Paint mBehindFadePaint = new Paint();
+		// for the indicator
+		private boolean mSelectorEnabled;
+		private Bitmap mSelectorDrawable;
+		private View mSelectedView;
+		private Paint mBehindSelectorPaint = new Paint();
+
 
 		private void onDrawBehindFade(Canvas canvas, float openPercent) {
 			final int alpha = (int) (mFadeDegree * 255 * openPercent);
@@ -1380,6 +1399,17 @@ public class CustomViewAbove extends ViewGroup {
 			if (alpha > 0) {
 				mBehindFadePaint.setColor(Color.argb(alpha, 0, 0, 0));
 				canvas.drawRect(0, 0, getBehindWidth(), getHeight(), mBehindFadePaint);
+			}
+		}
+
+		private void onDrawMenuSelector(Canvas canvas, float openPercent) {
+			if (mSelectorDrawable != null && mSelectedView != null) {
+				// Get the fully opened left position
+				int left = getBehindWidth() - mSelectorDrawable.getWidth() + 1;
+				// Hide/Show selector as the behind view is opened/closed
+				left = left + (int)(mSelectorDrawable.getWidth() * openPercent);
+				int top = mSelectedView.getTop() + mSelectedView.getHeight()/2 - mSelectorDrawable.getHeight()/2;
+				canvas.drawBitmap(mSelectorDrawable, left, top, mBehindSelectorPaint);
 			}
 		}
 
@@ -1391,6 +1421,18 @@ public class CustomViewAbove extends ViewGroup {
 			if (f > 1.0f || f < 0.0f)
 				throw new IllegalStateException("The BehindFadeDegree must be between 0.0f and 1.0f");
 			mFadeDegree = f;
+		}
+
+		public void setSelectorEnabled(boolean b) {
+			mSelectorEnabled = b;
+		}
+		
+		public void setSelectedView(View v) {
+			mSelectedView = v;
+		}
+
+		public void setSelectorDrawable(Bitmap b) {
+			mSelectorDrawable = b;
 		}
 
 		private void onSecondaryPointerUp(MotionEvent ev) {
