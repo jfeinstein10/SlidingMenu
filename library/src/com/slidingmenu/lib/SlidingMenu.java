@@ -2,7 +2,6 @@ package com.slidingmenu.lib;
 
 import java.lang.reflect.Method;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -153,7 +152,6 @@ public class SlidingMenu extends RelativeLayout {
 	public void setViewAbove(View v) {
 		mViewAbove.setContent(v);
 		mViewAbove.invalidate();
-		mViewAbove.dataSetChanged();
 		showAbove();
 	}
 
@@ -162,9 +160,8 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	public void setViewBehind(View v) {
-		mViewBehind.setContent(v);
+		mViewBehind.setMenu(v);
 		mViewBehind.invalidate();
-		mViewBehind.dataSetChanged();
 	}
 
 	public void setSlidingEnabled(boolean b) {
@@ -236,6 +233,7 @@ public class SlidingMenu extends RelativeLayout {
 		params.setMargins(left, top, i, bottom);
 	}
 
+	@SuppressWarnings("deprecation")
 	public void setBehindWidth(int i) {
 		int width;
 		Display display = ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE))
