@@ -115,7 +115,7 @@ public class CustomViewAbove extends ViewGroup {
 	 */
 	public static final int SCROLL_STATE_SETTLING = 2;
 
-	private int mScrollState = SCROLL_STATE_IDLE;
+//	private int mScrollState = SCROLL_STATE_IDLE;
 
 	/**
 	 * Callback interface for responding to changing state of the selected page.
@@ -238,16 +238,16 @@ public class CustomViewAbove extends ViewGroup {
 
 	}
 
-	private void setScrollState(int newState) {
-		if (mScrollState == newState) {
-			return;
-		}
-
-		mScrollState = newState;
-		if (mOnPageChangeListener != null) {
-			mOnPageChangeListener.onPageScrollStateChanged(newState);
-		}
-	}
+//	private void setScrollState(int newState) {
+//		if (mScrollState == newState) {
+//			return;
+//		}
+//
+//		mScrollState = newState;
+//		if (mOnPageChangeListener != null) {
+//			mOnPageChangeListener.onPageScrollStateChanged(newState);
+//		}
+//	}
 
 	/**
 	 * Set the currently selected page. If the CustomViewPager has already been through its first
@@ -278,49 +278,28 @@ public class CustomViewAbove extends ViewGroup {
 		setCurrentItemInternal(item, smoothScroll, always, 0);
 	}
 
-	boolean isNull() {
-		return mContent == null;
-	}
-
-	int getCount() {
-		int count = 0;
-		if (mMenu != null) count += 1;
-		if (mContent != null) count += 1;
-		return count;
-	}
-
 	void setCurrentItemInternal(int item, boolean smoothScroll, boolean always, int velocity) {
-		if (isNull()) {
-			setScrollingCacheEnabled(false);
-			return;
-		}
 		if (!always && mCurItem == item && mMenu != null && mContent != null) {
 			setScrollingCacheEnabled(false);
 			return;
 		}
 		if (item < 0) {
 			item = 0;
-		} else if (item >= getCount()) {
-			item = getCount() - 1;
+		} else if (item >= 2) {
+			item = 1;
 		}
 		final boolean dispatchSelected = mCurItem != item;
 		mCurItem = item;
 		final int destX = getChildLeft(mCurItem);
+		if (dispatchSelected && mOnPageChangeListener != null) {
+			mOnPageChangeListener.onPageSelected(item);
+		}
+		if (dispatchSelected && mInternalPageChangeListener != null) {
+			mInternalPageChangeListener.onPageSelected(item);
+		}
 		if (smoothScroll) {
 			smoothScrollTo(destX, 0, velocity);
-			if (dispatchSelected && mOnPageChangeListener != null) {
-				mOnPageChangeListener.onPageSelected(item);
-			}
-			if (dispatchSelected && mInternalPageChangeListener != null) {
-				mInternalPageChangeListener.onPageSelected(item);
-			}
 		} else {
-			if (dispatchSelected && mOnPageChangeListener != null) {
-				mOnPageChangeListener.onPageSelected(item);
-			}
-			if (dispatchSelected && mInternalPageChangeListener != null) {
-				mInternalPageChangeListener.onPageSelected(item);
-			}
 			completeScroll();
 			scrollTo(destX, 0);
 		}
@@ -496,13 +475,15 @@ public class CustomViewAbove extends ViewGroup {
 		int dy = y - sy;
 		if (dx == 0 && dy == 0) {
 			completeScroll();
-			setScrollState(SCROLL_STATE_IDLE);
+			if (mInternalPageChangeListener != null)
+				mInternalPageChangeListener.onPageScrollStateChanged(SCROLL_STATE_IDLE);
+			if (this.mOnPageChangeListener != null)
+				mOnPageChangeListener.onPageScrollStateChanged(SCROLL_STATE_IDLE);
 			return;
 		}
 
 		setScrollingCacheEnabled(true);
 		mScrolling = true;
-		setScrollState(SCROLL_STATE_SETTLING);
 
 		final int width = getCustomWidth();
 		final int halfWidth = width / 2;
@@ -561,8 +542,6 @@ public class CustomViewAbove extends ViewGroup {
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 		super.onSizeChanged(w, h, oldw, oldh);
-
-		if (DEBUG) Log.v(TAG, "OnSizeChange oldWidth [" + oldw + "] newWidth [" + w + "]");
 		// Make sure scroll position is set correctly.
 		if (w != oldw) {
 			// [ChrisJ] - This fixes the onConfiguration change for orientation issue..
@@ -579,9 +558,10 @@ public class CustomViewAbove extends ViewGroup {
 		final int height = b - t;
 
 		int contentLeft = getChildLeft(1);
-		int offset = (int) (mScrollScale * mScrollX);
+		float percentOpen = getPercentOpen();
+		int offset = (int) (mScrollX * (1 - mScrollScale));
+		Log.v(TAG, "offset:" + offset + "contentLeft:" + contentLeft);
 		mMenu.layout(0, 0, width, height);
-		mMenu.offsetLeftAndRight(offset);
 		mContent.layout(contentLeft, 0, contentLeft + width, height);
 	}
 
@@ -654,7 +634,10 @@ public class CustomViewAbove extends ViewGroup {
 			if (oldX != x || oldY != y) {
 				scrollTo(x, y);
 			}
-			setScrollState(SCROLL_STATE_IDLE);
+			if (mInternalPageChangeListener != null)
+				mInternalPageChangeListener.onPageScrollStateChanged(SCROLL_STATE_IDLE);
+			if (this.mOnPageChangeListener != null)
+				mOnPageChangeListener.onPageScrollStateChanged(SCROLL_STATE_IDLE);
 		}
 		mScrolling = false;
 	}
@@ -704,17 +687,8 @@ public class CustomViewAbove extends ViewGroup {
 
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent ev) {
-		/*
-		 * This method JUST determines whether we want to intercept the motion.
-		 * If we return true, onMotionEvent will be called and we do the actual
-		 * scrolling there.
-		 */
 
-		if (!mEnabled) {
-			return false;
-		}
-
-		if (!thisTouchAllowed(ev)) {
+		if (!mEnabled || !thisTouchAllowed(ev)) {
 			return false;
 		}
 
@@ -723,7 +697,6 @@ public class CustomViewAbove extends ViewGroup {
 		// Always take care of the touch gesture being complete.
 		if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP) {
 			// Release the drag.
-			if (DEBUG) Log.v(TAG, "Intercept done!");
 			mIsBeingDragged = false;
 			mIsUnableToDrag = false;
 			mActivePointerId = INVALID_POINTER;
@@ -738,11 +711,9 @@ public class CustomViewAbove extends ViewGroup {
 		// are dragging.
 		if (action != MotionEvent.ACTION_DOWN) {
 			if (mIsBeingDragged) {
-				if (DEBUG) Log.v(TAG, "Intercept returning true!");
 				return true;
 			}
 			if (mIsUnableToDrag) {
-				if (DEBUG) Log.v(TAG, "Intercept returning false!");
 				return false;
 			}
 		}
@@ -779,9 +750,7 @@ public class CustomViewAbove extends ViewGroup {
 				return false;
 			}
 			if (xDiff > mTouchSlop && xDiff > yDiff) {
-				if (DEBUG) Log.v(TAG, "Starting drag!");
 				mIsBeingDragged = true;
-				setScrollState(SCROLL_STATE_DRAGGING);
 				mLastMotionX = x;
 				setScrollingCacheEnabled(true);
 			} else {
@@ -806,12 +775,7 @@ public class CustomViewAbove extends ViewGroup {
 			mLastMotionY = ev.getY();
 			mActivePointerId = MotionEventCompat.getPointerId(ev, 0);
 
-			if (mScrollState == SCROLL_STATE_SETTLING) {
-				// Let the user 'catch' the pager as it animates.
-				mIsBeingDragged = true;
-				mIsUnableToDrag = false;
-				setScrollState(SCROLL_STATE_DRAGGING);
-			} else if (isMenuOpen() ||
+			if (isMenuOpen() ||
 					(mTouchMode != SlidingMenu.TOUCHMODE_FULLSCREEN && thisTouchAllowed(ev))) {
 				// we want to intercept this touch even though we are not dragging
 				// so that we can close the menu on a touch
@@ -872,17 +836,13 @@ public class CustomViewAbove extends ViewGroup {
 			mLastTouchAllowed = true;
 		}
 
-		if (getCount() == 0) {
-			// Nothing to present or scroll; nothing to touch.
-			return false;
-		}
 		if (mVelocityTracker == null) {
 			mVelocityTracker = VelocityTracker.obtain();
 		}
 		mVelocityTracker.addMovement(ev);
 
 		switch (action & MotionEventCompat.ACTION_MASK) {
-		case MotionEvent.ACTION_DOWN: {
+		case MotionEvent.ACTION_DOWN:
 			/*
 			 * If being flinged and user touches, stop the fling. isFinished
 			 * will be false if being flinged.
@@ -893,7 +853,6 @@ public class CustomViewAbove extends ViewGroup {
 			mLastMotionX = mInitialMotionX = ev.getX();
 			mActivePointerId = MotionEventCompat.getPointerId(ev, 0);
 			break;
-		}
 		case MotionEvent.ACTION_MOVE:
 			if (!mIsBeingDragged) {
 				final int pointerIndex = MotionEventCompat.findPointerIndex(ev, mActivePointerId);
@@ -906,7 +865,6 @@ public class CustomViewAbove extends ViewGroup {
 					if (DEBUG) Log.v(TAG, "Starting drag!");
 					mIsBeingDragged = true;
 					mLastMotionX = x;
-					setScrollState(SCROLL_STATE_DRAGGING);
 					setScrollingCacheEnabled(true);
 				}
 			}
@@ -989,9 +947,9 @@ public class CustomViewAbove extends ViewGroup {
 	}
 
 	public void setScrollScale(float f) {
-		if (f >= 0 && f <= 1) {
-			mScrollScale = f;
-		}
+		if (f < 0 && f > 1)
+			throw new IllegalStateException("ScrollScale must be between 0 and 1");
+		mScrollScale = f;
 	}
 
 	@Override
@@ -1001,6 +959,7 @@ public class CustomViewAbove extends ViewGroup {
 		if (mCustomViewBehind != null && mEnabled) {
 			mCustomViewBehind.scrollTo((int)(x*mScrollScale), y);
 		}
+		forceLayout();
 		invalidate();
 	}
 
@@ -1063,13 +1022,16 @@ public class CustomViewAbove extends ViewGroup {
 
 	private void onDrawMenuSelector(Canvas canvas, float openPercent) {
 		if (mSelectorDrawable != null && mSelectedView != null) {
-			int right = getChildLeft(1);
-			int left = (int) (right - mSelectorDrawable.getWidth() * (1 - openPercent));
+			String tag = (String) mSelectedView.getTag(R.id.selected_view);
+			if (tag.equals(TAG+"SelectedView")) {
+				int right = getChildLeft(1);
+				int left = (int) (right - mSelectorDrawable.getWidth() * (1 - openPercent));
 
-			canvas.save();
-			canvas.clipRect(left, 0, right, getHeight());
-			canvas.drawBitmap(mSelectorDrawable, left, getSelectedTop(), null);
-			canvas.restore();
+				canvas.save();
+				canvas.clipRect(left, 0, right, getHeight());
+				canvas.drawBitmap(mSelectorDrawable, left, getSelectedTop(), null);
+				canvas.restore();
+			}
 		}
 	}
 
@@ -1088,8 +1050,15 @@ public class CustomViewAbove extends ViewGroup {
 	}
 
 	public void setSelectedView(View v) {
-		mSelectedView = v;
-		invalidate();
+		if (mSelectedView != null) {
+			mSelectedView.setTag(R.id.selected_view, null);
+			mSelectedView = null;
+		}
+		if (v.getParent() != null) {
+			mSelectedView = v;
+			mSelectedView.setTag(R.id.selected_view, TAG+"SelectedView");
+			invalidate();
+		}
 	}
 
 	private int getSelectedTop() {
@@ -1266,7 +1235,7 @@ public class CustomViewAbove extends ViewGroup {
 	}
 
 	boolean pageRight() {
-		if (mCurItem < (getCount()-1)) {
+		if (mCurItem < 1) {
 			setCurrentItem(mCurItem+1, true);
 			return true;
 		}
