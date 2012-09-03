@@ -1,13 +1,10 @@
 package com.slidingmenu.lib;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.view.KeyEventCompat;
@@ -27,11 +24,15 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import android.view.accessibility.AccessibilityEvent;
 import android.view.animation.Interpolator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
+
+import com.slidingmenu.lib.SlidingMenu.OnCloseListener;
+import com.slidingmenu.lib.SlidingMenu.OnClosedListener;
+import com.slidingmenu.lib.SlidingMenu.OnOpenListener;
+import com.slidingmenu.lib.SlidingMenu.OnOpenedListener;
 
 public class CustomViewAbove extends ViewGroup {
 
@@ -99,21 +100,10 @@ public class CustomViewAbove extends ViewGroup {
 	private OnPageChangeListener mOnPageChangeListener;
 	private OnPageChangeListener mInternalPageChangeListener;
 
-	/**
-	 * Indicates that the pager is in an idle, settled state. The current page
-	 * is fully in view and no animation is in progress.
-	 */
-	public static final int SCROLL_STATE_IDLE = 0;
-
-	/**
-	 * Indicates that the pager is currently being dragged by the user.
-	 */
-	public static final int SCROLL_STATE_DRAGGING = 1;
-
-	/**
-	 * Indicates that the pager is in the process of settling to a final position.
-	 */
-	public static final int SCROLL_STATE_SETTLING = 2;
+	private OnCloseListener mCloseListener;
+	private OnOpenListener mOpenListener;
+	private OnClosedListener mClosedListener;
+	private OnOpenedListener mOpenedListener;
 
 //	private int mScrollState = SCROLL_STATE_IDLE;
 
@@ -140,18 +130,7 @@ public class CustomViewAbove extends ViewGroup {
 		 * @param position Position index of the new selected page.
 		 */
 		public void onPageSelected(int position);
-
-		/**
-		 * Called when the scroll state changes. Useful for discovering when the user
-		 * begins dragging, when the pager is automatically settling to the current page,
-		 * or when it is fully stopped/idle.
-		 *
-		 * @param state The new scroll state.
-		 * @see CustomViewAbove#SCROLL_STATE_IDLE
-		 * @see CustomViewAbove#SCROLL_STATE_DRAGGING
-		 * @see CustomViewAbove#SCROLL_STATE_SETTLING
-		 */
-		public void onPageScrollStateChanged(int state);
+		
 	}
 
 	/**
@@ -301,6 +280,22 @@ public class CustomViewAbove extends ViewGroup {
 	 */
 	public void setOnPageChangeListener(OnPageChangeListener listener) {
 		mOnPageChangeListener = listener;
+	}
+	
+	public void setOnOpenListener(OnOpenListener l) {
+		mOpenListener = l;
+	}
+	
+	public void setOnCloseListener(OnCloseListener l) {
+		mCloseListener = l;
+	}
+	
+	public void setOnOpenedListener(OnOpenedListener l) {
+		mOpenedListener = l;
+	}
+	
+	public void setOnClosedListener(OnClosedListener l) {
+		mClosedListener = l;
 	}
 
 	/**
@@ -463,10 +458,13 @@ public class CustomViewAbove extends ViewGroup {
 		int dy = y - sy;
 		if (dx == 0 && dy == 0) {
 			completeScroll();
-			if (mInternalPageChangeListener != null)
-				mInternalPageChangeListener.onPageScrollStateChanged(SCROLL_STATE_IDLE);
-			if (this.mOnPageChangeListener != null)
-				mOnPageChangeListener.onPageScrollStateChanged(SCROLL_STATE_IDLE);
+			if (isMenuOpen()) {
+				if (mOpenedListener != null)
+					mOpenedListener.onOpened();
+			} else {
+				if (mClosedListener != null)
+					mClosedListener.onClosed();
+			}
 			return;
 		}
 
@@ -621,10 +619,13 @@ public class CustomViewAbove extends ViewGroup {
 			if (oldX != x || oldY != y) {
 				scrollTo(x, y);
 			}
-			if (mInternalPageChangeListener != null)
-				mInternalPageChangeListener.onPageScrollStateChanged(SCROLL_STATE_IDLE);
-			if (this.mOnPageChangeListener != null)
-				mOnPageChangeListener.onPageScrollStateChanged(SCROLL_STATE_IDLE);
+			if (isMenuOpen()) {
+				if (mOpenedListener != null)
+					mOpenedListener.onOpened();
+			} else {
+				if (mClosedListener != null)
+					mClosedListener.onClosed();
+			}
 		}
 		mScrolling = false;
 	}
@@ -1226,124 +1227,6 @@ public class CustomViewAbove extends ViewGroup {
 			setCurrentItem(mCurItem+1, true);
 			return true;
 		}
-		return false;
-	}
-
-	/**
-	 * We only want the current page that is being shown to be focusable.
-	 */
-
-	@Override
-	public void addFocusables(ArrayList<View> views, int direction, int focusableMode) {
-		final int focusableCount = views.size();
-
-		final int descendantFocusability = getDescendantFocusability();
-
-		if (descendantFocusability != FOCUS_BLOCK_DESCENDANTS) {
-			for (int i = 0; i < getChildCount(); i++) {
-				final View child = getChildAt(i);
-				if (child.getVisibility() == VISIBLE) {
-					View focused = (isMenuOpen()) ? mMenu : mContent;
-					if (child.equals(focused)) {
-						child.addFocusables(views, direction, focusableMode);
-					}
-				}
-			}
-		}
-
-		// we add ourselves (if focusable) in all cases except for when we are
-		// FOCUS_AFTER_DESCENDANTS and there are some descendants focusable.  this is
-		// to avoid the focus search finding layouts when a more precise search
-		// among the focusable children would be more interesting.
-		if (descendantFocusability != FOCUS_AFTER_DESCENDANTS ||
-				// No focusable descendants
-				(focusableCount == views.size())) {
-			// Note that we can't call the superclass here, because it will
-			// add all views in.  So we need to do the same thing View does.
-			if (!isFocusable()) {
-				return;
-			}
-			if ((focusableMode & FOCUSABLES_TOUCH_MODE) == FOCUSABLES_TOUCH_MODE &&
-					isInTouchMode() && !isFocusableInTouchMode()) {
-				return;
-			}
-			if (views != null) {
-				views.add(this);
-			}
-		}
-	}
-
-	/**
-	 * We only want the current page that is being shown to be touchable.
-	 */
-
-	@Override
-	public void addTouchables(ArrayList<View> views) {
-		// Note that we don't call super.addTouchables(), which means that
-		// we don't call View.addTouchables().  This is okay because a CustomViewPager
-		// is itself not touchable.
-		for (int i = 0; i < getChildCount(); i++) {
-			final View child = getChildAt(i);
-			if (child.getVisibility() == VISIBLE) {
-				View focused = (isMenuOpen()) ? mMenu : mContent;
-				if (child.equals(focused)) {
-					child.addTouchables(views);
-				}
-			}
-		}
-	}
-
-	/**
-	 * We only want the current page that is being shown to be focusable.
-	 */
-
-	@Override
-	protected boolean onRequestFocusInDescendants(int direction,
-			Rect previouslyFocusedRect) {
-		int index;
-		int increment;
-		int end;
-		int count = getChildCount();
-		if ((direction & FOCUS_FORWARD) != 0) {
-			index = 0;
-			increment = 1;
-			end = count;
-		} else {
-			index = count - 1;
-			increment = -1;
-			end = -1;
-		}
-		for (int i = index; i != end; i += increment) {
-			View child = getChildAt(i);
-			if (child.getVisibility() == VISIBLE) {
-				View focused = (isMenuOpen()) ? mMenu : mContent;
-				if (child.equals(focused)) {
-					if (child.requestFocus(direction, previouslyFocusedRect)) {
-						return true;
-					}
-				}
-			}
-		}
-		return false;
-	}
-
-
-	@Override
-	public boolean dispatchPopulateAccessibilityEvent(AccessibilityEvent event) {
-		// CustomViewPagers should only report accessibility info for the current page,
-		// otherwise things get very confusing.
-		final int childCount = getChildCount();
-		for (int i = 0; i < childCount; i++) {
-			final View child = getChildAt(i);
-			if (child.getVisibility() == VISIBLE) {
-				View focused = (isMenuOpen()) ? mMenu : mContent;
-				if (child.equals(focused) &&
-						child.dispatchPopulateAccessibilityEvent(event)) {
-					return true;
-				}
-			}
-		}
-
 		return false;
 	}
 

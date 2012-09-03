@@ -33,8 +33,6 @@ public class SlidingMenu extends RelativeLayout {
 	private CustomViewBehind mViewBehind;
 	private OnOpenListener mOpenListener;
 	private OnCloseListener mCloseListener;
-	private OnOpenedListener mOpenedListener;
-	private OnClosedListener mClosedListener;
 
 	public interface OnOpenListener {
 		public void onOpen();
@@ -83,24 +81,13 @@ public class SlidingMenu extends RelativeLayout {
 			public void onPageScrolled(int position, float positionOffset,
 					int positionOffsetPixels) { }
 
-			public void onPageScrollStateChanged(int state) {
-				if (state == CustomViewAbove.SCROLL_STATE_IDLE){
-					if (mViewAbove.getCurrentItem() == POSITION_OPEN && mOpenedListener != null) {
-						mOpenedListener.onOpened();
-					}
-					else if (mViewAbove.getCurrentItem() == POSITION_CLOSE && mClosedListener != null) {
-						mClosedListener.onClosed();
-					}
-				}
-			}
-
 			public void onPageSelected(int position) {
 				if (position == POSITION_OPEN && mOpenListener != null) {
 					mOpenListener.onOpen();
 				} else if (position == POSITION_CLOSE && mCloseListener != null) {
 					mCloseListener.onClose();
 				}
-			}			
+			}
 		});
 
 		// now style everything!
@@ -343,21 +330,21 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	public void setOnOpenListener(OnOpenListener listener) {
+		mViewAbove.setOnOpenListener(listener);
 		mOpenListener = listener;
 	}
 
 	public void setOnCloseListener(OnCloseListener listener) {
+		mViewAbove.setOnCloseListener(listener);
 		mCloseListener = listener;
 	}
 
 	public void setOnOpenedListener(OnOpenedListener listener) {
-
-		mOpenedListener = listener;
+		mViewAbove.setOnOpenedListener(listener);
 	}
 
 	public void setOnClosedListener(OnClosedListener listener) {
-
-		mClosedListener = listener;
+		mViewAbove.setOnClosedListener(listener);
 	}
 
 	public static class SavedState extends BaseSavedState {
