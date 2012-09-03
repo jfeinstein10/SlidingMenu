@@ -22,7 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".PropertiesActivity" />
         <activity android:name=".CustomAnimation" />
+        <activity android:name=".CustomZoomAnimation" />
+        <activity android:name=".CustomRotateAnimation" />
         <activity android:name=".SlidingTitleBar" />
         <activity android:name=".SlidingContent" />
     </application>

@@ -1,9 +1,11 @@
 package com.slidingmenu.example;
 
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.Preference;
+import android.preference.PreferenceActivity;
+import android.preference.PreferenceScreen;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -11,18 +13,45 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class ExampleListActivity extends ListActivity {
+public class ExampleListActivity extends PreferenceActivity {
 	
 	private ActivityAdapter mAdapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mAdapter = new ActivityAdapter(this);
-		mAdapter.addInfo("Sliding Title Bar", new Intent(this, SlidingTitleBar.class));
-		mAdapter.addInfo("Sliding Content", new Intent(this, SlidingContent.class));
-		mAdapter.addInfo("Custom Opening Animation", new Intent(this, CustomAnimation.class));
+		this.addPreferencesFromResource(R.xml.main);
+//		mAdapter = new ActivityAdapter(this);
+//		mAdapter.addInfo("Sliding Title Bar", new Intent(this, SlidingTitleBar.class));
+//		mAdapter.addInfo("Sliding Content", new Intent(this, SlidingContent.class));
+//		mAdapter.addInfo("Custom Opening Animation (Zoom)", new Intent(this, CustomZoomAnimation.class));
+//		mAdapter.addInfo("Custom Opening Animation (Rotate)", new Intent(this, CustomRotateAnimation.class));
 		setListAdapter(mAdapter);
+	}
+	
+	@Override
+	public boolean onPreferenceTreeClick(PreferenceScreen screen, Preference pref) {
+		Class cls = null;
+		switch (pref.getTitleRes()) {
+		case R.string.properties:
+			cls = PropertiesActivity.class;
+			break;
+		case R.string.title_bar_slide:
+			cls = SlidingTitleBar.class;
+			break;
+		case R.string.title_bar_content:
+			cls = SlidingContent.class;
+			break;
+		case R.string.anim_zoom:
+			cls = CustomZoomAnimation.class;
+			break;
+		case R.string.anim_rot:
+			cls = CustomRotateAnimation.class;
+			break;
+		}
+		Intent intent = new Intent(this, cls);
+		startActivity(intent);
+		return true;
 	}
 	
 	@Override
