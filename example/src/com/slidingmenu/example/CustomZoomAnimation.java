@@ -7,6 +7,8 @@ import com.slidingmenu.lib.SlidingMenu.CanvasTransformer;
 public class CustomZoomAnimation extends CustomAnimation {
 
 	public CustomZoomAnimation() {
+		// see the class CustomAnimation for how to attach 
+		// the CanvasTransformer to the SlidingMenu
 		super(R.string.anim_zoom, new CanvasTransformer() {
 			@Override
 			public void transformCanvas(Canvas canvas, float percentOpen) {

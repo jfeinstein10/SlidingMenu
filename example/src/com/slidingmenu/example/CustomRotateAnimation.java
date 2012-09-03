@@ -13,10 +13,12 @@ public class CustomRotateAnimation extends CustomAnimation {
 		public float getInterpolation(float t) {
 			t -= 1.0f;
 			return t * t * t + 1.0f;
-		}		
+		}
 	};
 
 	public CustomRotateAnimation() {
+		// see the class CustomAnimation for how to attach 
+		// the CanvasTransformer to the SlidingMenu
 		super(R.string.anim_rot, new CanvasTransformer() {
 			@Override
 			public void transformCanvas(Canvas canvas, float percentOpen) {
