@@ -26,6 +26,7 @@
         <activity android:name=".CustomAnimation" />
         <activity android:name=".CustomZoomAnimation" />
         <activity android:name=".CustomRotateAnimation" />
+        <activity android:name=".CustomSlideAnimation" />
         <activity android:name=".SlidingTitleBar" />
         <activity android:name=".SlidingContent" />
     </application>

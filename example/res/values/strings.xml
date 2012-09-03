@@ -10,6 +10,7 @@
     
     <string name="animations">Custom Animations</string>
     <string name="anim_zoom">Zoom</string>
+    <string name="anim_slide">Slide</string>
     <string name="anim_rot">Rotate</string>
 
 </resources>

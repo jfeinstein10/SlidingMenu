@@ -5,6 +5,10 @@ import android.os.Bundle;
 
 public class SlidingContent extends BaseActivity {
 	
+	public SlidingContent() {
+		super(R.string.title_bar_content);
+	}
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

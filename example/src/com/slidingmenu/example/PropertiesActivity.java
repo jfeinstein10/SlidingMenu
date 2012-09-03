@@ -12,6 +12,10 @@ import com.slidingmenu.lib.SlidingMenu;
 
 public class PropertiesActivity extends BaseActivity {
 
+	public PropertiesActivity() {
+		super(R.string.properties);
+	}
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

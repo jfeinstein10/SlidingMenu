@@ -14,21 +14,22 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class ExampleListActivity extends PreferenceActivity {
-	
+
 	private ActivityAdapter mAdapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setTitle(R.string.app_name);
 		this.addPreferencesFromResource(R.xml.main);
-//		mAdapter = new ActivityAdapter(this);
-//		mAdapter.addInfo("Sliding Title Bar", new Intent(this, SlidingTitleBar.class));
-//		mAdapter.addInfo("Sliding Content", new Intent(this, SlidingContent.class));
-//		mAdapter.addInfo("Custom Opening Animation (Zoom)", new Intent(this, CustomZoomAnimation.class));
-//		mAdapter.addInfo("Custom Opening Animation (Rotate)", new Intent(this, CustomRotateAnimation.class));
+		//		mAdapter = new ActivityAdapter(this);
+		//		mAdapter.addInfo("Sliding Title Bar", new Intent(this, SlidingTitleBar.class));
+		//		mAdapter.addInfo("Sliding Content", new Intent(this, SlidingContent.class));
+		//		mAdapter.addInfo("Custom Opening Animation (Zoom)", new Intent(this, CustomZoomAnimation.class));
+		//		mAdapter.addInfo("Custom Opening Animation (Rotate)", new Intent(this, CustomRotateAnimation.class));
 		setListAdapter(mAdapter);
 	}
-	
+
 	@Override
 	public boolean onPreferenceTreeClick(PreferenceScreen screen, Preference pref) {
 		Class cls = null;
@@ -45,6 +46,9 @@ public class ExampleListActivity extends PreferenceActivity {
 		case R.string.anim_zoom:
 			cls = CustomZoomAnimation.class;
 			break;
+		case R.string.anim_slide:
+			cls = CustomSlideAnimation.class;
+			break;
 		case R.string.anim_rot:
 			cls = CustomRotateAnimation.class;
 			break;
@@ -53,13 +57,13 @@ public class ExampleListActivity extends PreferenceActivity {
 		startActivity(intent);
 		return true;
 	}
-	
+
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		ActivityInfo info = mAdapter.getItem(position);
 		startActivity(info.intent);
 	}
-	
+
 	public class ActivityInfo {
 		public String name;
 		public Intent intent;
@@ -68,17 +72,17 @@ public class ExampleListActivity extends PreferenceActivity {
 			this.intent = intent;
 		}
 	}
-	
+
 	public class ActivityAdapter extends ArrayAdapter<ActivityInfo> {
 
 		public ActivityAdapter(Context context) {
 			super(context, R.layout.row, R.id.row_title);
 		}
-		
+
 		public void addInfo(String name, Intent intent) {
 			this.add(new ActivityInfo(name, intent));
 		}
-		
+
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			if (convertView == null) {
@@ -90,6 +94,6 @@ public class ExampleListActivity extends PreferenceActivity {
 			title.setText(getItem(position).name);
 			return convertView;
 		}
-		
+
 	}
 }

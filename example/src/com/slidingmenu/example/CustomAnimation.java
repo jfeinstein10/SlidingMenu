@@ -10,7 +10,8 @@ public abstract class CustomAnimation extends BaseActivity {
 	
 	private CanvasTransformer mTransformer;
 	
-	public CustomAnimation(CanvasTransformer transformer) {
+	public CustomAnimation(int titleRes, CanvasTransformer transformer) {
+		super(titleRes);
 		mTransformer = transformer;
 	}
 
