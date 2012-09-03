@@ -2,13 +2,12 @@ package com.slidingmenu.lib;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
+import android.graphics.Matrix;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Transformation;
 
 import com.slidingmenu.lib.SlidingMenu.CanvasTransformer;
 
@@ -19,6 +18,12 @@ public class CustomViewBehind extends CustomViewAbove {
 	private CustomViewAbove mViewAbove;
 	private CanvasTransformer mTransformer;
 	private boolean mChildrenEnabled;
+
+	private class CustomTransform extends Transformation {
+		public CustomTransform(Matrix m) {
+			mMatrix = m;
+		}
+	}
 
 	public CustomViewBehind(Context context) {
 		this(context, null);
@@ -38,7 +43,7 @@ public class CustomViewBehind extends CustomViewAbove {
 		if (mViewAbove != null)
 			mViewAbove.setTouchModeBehind(i);
 	}
-	
+
 	public void setCanvasTransformer(CanvasTransformer t) {
 		mTransformer = t;
 	}
@@ -78,8 +83,6 @@ public class CustomViewBehind extends CustomViewAbove {
 
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent e) {
-		if (!mChildrenEnabled)
-			return !mChildrenEnabled;
 		return !mChildrenEnabled;
 	}
 
@@ -90,12 +93,13 @@ public class CustomViewBehind extends CustomViewAbove {
 
 	@Override
 	protected void dispatchDraw(Canvas canvas) {
-		super.dispatchDraw(canvas);
-
-//		float percentOpen = 1 - (getWidth() - mViewAbove.getRealScrollX()) / getWidth();
-		
-//		if (mTransformer != null)
-//			mTransformer.transformCanvas(canvas, (int) (mScrollX / mViewAbove.getScrollScale()), percentOpen);
+		if (mTransformer != null) {
+			canvas.save(Canvas.MATRIX_SAVE_FLAG);
+			mTransformer.transformCanvas(canvas, mViewAbove.getPercentOpen());
+			super.dispatchDraw(canvas);
+			canvas.restore();
+		} else
+			super.dispatchDraw(canvas);
 	}
 
 }

@@ -204,7 +204,6 @@ public class CustomViewAbove extends ViewGroup {
 		mTouchSlop = ViewConfigurationCompat.getScaledPagingTouchSlop(configuration);
 		mMinimumVelocity = configuration.getScaledMinimumFlingVelocity();
 		mMaximumVelocity = configuration.getScaledMaximumFlingVelocity();
-
 		setInternalPageChangeListener(new SimpleOnPageChangeListener() {
 
 			public void onPageSelected(int position) {
@@ -225,10 +224,10 @@ public class CustomViewAbove extends ViewGroup {
 		final float density = context.getResources().getDisplayMetrics().density;
 		mFlingDistance = (int) (MIN_DISTANCE_FOR_FLING * density);
 
-		mContent = new FrameLayout(getContext());
-		addView(mContent);
 		mMenu = new FrameLayout(getContext());
-		addView(mMenu);
+		super.addView(mMenu);
+		mContent = new FrameLayout(getContext());
+		super.addView(mContent);
 
 		if (isAbove) {
 			View v = new LinearLayout(getContext());
@@ -237,17 +236,6 @@ public class CustomViewAbove extends ViewGroup {
 		}
 
 	}
-
-//	private void setScrollState(int newState) {
-//		if (mScrollState == newState) {
-//			return;
-//		}
-//
-//		mScrollState = newState;
-//		if (mOnPageChangeListener != null) {
-//			mOnPageChangeListener.onPageScrollStateChanged(newState);
-//		}
-//	}
 
 	/**
 	 * Set the currently selected page. If the CustomViewPager has already been through its first
@@ -974,7 +962,7 @@ public class CustomViewAbove extends ViewGroup {
 	}
 
 	protected float getPercentOpen() {
-		return 1 - (getBehindWidth() - mScrollX) / getBehindWidth();
+		return (getBehindWidth() - mScrollX) / getBehindWidth();
 	}
 
 	@Override
@@ -1013,7 +1001,7 @@ public class CustomViewAbove extends ViewGroup {
 
 
 	private void onDrawBehindFade(Canvas canvas, float openPercent) {
-		final int alpha = (int) (mFadeDegree * 255 * openPercent);
+		final int alpha = (int) (mFadeDegree * 255 * Math.abs(1-openPercent));
 		if (alpha > 0) {
 			mBehindFadePaint.setColor(Color.argb(alpha, 0, 0, 0));
 			canvas.drawRect(0, 0, getBehindWidth(), getHeight(), mBehindFadePaint);
@@ -1025,7 +1013,7 @@ public class CustomViewAbove extends ViewGroup {
 			String tag = (String) mSelectedView.getTag(R.id.selected_view);
 			if (tag.equals(TAG+"SelectedView")) {
 				int right = getChildLeft(1);
-				int left = (int) (right - mSelectorDrawable.getWidth() * (1 - openPercent));
+				int left = (int) (right - mSelectorDrawable.getWidth() * openPercent);
 
 				canvas.save();
 				canvas.clipRect(left, 0, right, getHeight());
