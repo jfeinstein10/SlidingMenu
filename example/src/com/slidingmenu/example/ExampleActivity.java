@@ -3,24 +3,32 @@ package com.slidingmenu.example;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.annotation.TargetApi;
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.ListFragment;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 
+import com.slidingmenu.lib.SlidingMenu.CanvasTransformer;
 import com.slidingmenu.lib.app.SlidingFragmentActivity;
 
-@TargetApi(11)
+@SuppressLint("NewApi")
 public class ExampleActivity extends SlidingFragmentActivity {
 
+	private ListFragment mFrag;
+	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		// set the Above View
@@ -35,7 +43,8 @@ public class ExampleActivity extends SlidingFragmentActivity {
 		// set the Behind View
 		setBehindContentView(R.layout.frame);
 		FragmentTransaction t = this.getFragmentManager().beginTransaction();
-		t.replace(R.id.frame, new SampleListFragment());
+		mFrag = new SampleListFragment();
+		t.replace(R.id.frame, mFrag);
 		t.commit();
 
 		// customize the SlidingMenu
@@ -43,7 +52,15 @@ public class ExampleActivity extends SlidingFragmentActivity {
 		getSlidingMenu().setShadowWidthRes(R.dimen.shadow_width);
 		getSlidingMenu().setShadowDrawable(R.drawable.shadow);
 		getSlidingMenu().setBehindOffsetRes(R.dimen.actionbar_home_width);
-		getSlidingMenu().setBehindScrollScale(0.25f);
+		getSlidingMenu().setBehindScrollScale(0.0f);
+		getSlidingMenu().setSelectorEnabled(true);
+		getSlidingMenu().setSelectorDrawable(R.drawable.ic_launcher);
+		getSlidingMenu().setBehindCanvasTransformer(new CanvasTransformer() {
+			@Override
+			public void transformCanvas(Canvas canvas, float percentOpen) {
+				canvas.scale(percentOpen, percentOpen, canvas.getWidth()/2, canvas.getHeight()/2);
+			}
+		});
 
 		// customize the ActionBar
 		ActionBar actionBar = getActionBar();
@@ -51,6 +68,17 @@ public class ExampleActivity extends SlidingFragmentActivity {
 		actionBar.setDisplayHomeAsUpEnabled(true);
 	}
 	
+	@Override
+	public void onResume() {
+		super.onResume();
+		mFrag.getListView().setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				getSlidingMenu().setSelectedView(arg1);
+			}
+		});
+	}
 	
 	public class PagerAdapter extends FragmentPagerAdapter implements 
 	ViewPager.OnPageChangeListener, TabListener{

@@ -15,6 +15,7 @@ public class ExampleActivity2 extends FragmentActivity {
 		setContentView(R.layout.slidingmenu);
 		final SlidingMenu menu = (SlidingMenu) findViewById(R.id.blahblah);
 		menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+		View v = findViewById(R.id.main2);
 		Button btn = (Button) findViewById(R.id.button);
 		btn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
