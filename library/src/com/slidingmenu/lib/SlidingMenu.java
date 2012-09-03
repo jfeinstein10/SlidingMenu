@@ -2,13 +2,13 @@ package com.slidingmenu.lib;
 
 import java.lang.reflect.Method;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.graphics.Point;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -19,7 +19,10 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.RelativeLayout;
 
 import com.slidingmenu.lib.CustomViewAbove.OnPageChangeListener;
@@ -33,6 +36,42 @@ public class SlidingMenu extends RelativeLayout {
 	private CustomViewBehind mViewBehind;
 	private OnOpenListener mOpenListener;
 	private OnCloseListener mCloseListener;
+
+	public static void attachSlidingMenu(Activity activity, SlidingMenu sm, boolean slidingTitle) {
+
+		if (sm.getParent() != null)
+			throw new IllegalStateException("SlidingMenu cannot be attached to another view when" +
+					" calling the static method attachSlidingMenu");
+
+		if (slidingTitle) {
+			// get the window background
+			TypedArray a = activity.getTheme().obtainStyledAttributes(new int[] {android.R.attr.windowBackground});
+			int background = a.getResourceId(0, 0);
+			sm.setFitsSysWindows(true);
+			// move everything into the SlidingMenu
+			ViewGroup decor = (ViewGroup) activity.getWindow().getDecorView();
+			ViewGroup decorChild = (ViewGroup) decor.getChildAt(0);
+			decor.removeAllViews();
+			// save ActionBar themes that have transparent assets
+			decorChild.setBackgroundResource(background);
+			sm.setContent(decorChild);
+			decor.addView(sm);
+		} else {
+			// take the above view out of
+			ViewGroup content = (ViewGroup) activity.findViewById(Window.ID_ANDROID_CONTENT);
+			content.removeAllViews();
+			content.addView(sm, LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
+			//			if (parent != null) {
+			//				parent.removeView(mViewAbove);
+			//			}
+			//			// save people from having transparent backgrounds
+			//			if (mViewAbove.getBackground() == null) {
+			//				mViewAbove.setBackgroundResource(background);
+			//			}
+			//			mSlidingMenu.setViewAbove(mViewAbove);
+			//			parent.addView(mSlidingMenu, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+		}
+	}
 
 	public interface OnOpenListener {
 		public void onOpen();
@@ -95,10 +134,10 @@ public class SlidingMenu extends RelativeLayout {
 		// set the above and behind views if defined in xml
 		int viewAbove = ta.getResourceId(R.styleable.SlidingMenu_viewAbove, -1);
 		if (viewAbove != -1)
-			setViewAbove(LayoutInflater.from(context).inflate(viewAbove, null));
+			setContent(viewAbove);
 		int viewBehind = ta.getResourceId(R.styleable.SlidingMenu_viewBehind, -1);
 		if (viewBehind != -1)
-			setViewBehind(LayoutInflater.from(context).inflate(viewBehind, null));
+			setMenu(viewBehind);
 		int touchModeAbove = ta.getInt(R.styleable.SlidingMenu_aboveTouchMode, TOUCHMODE_MARGIN);
 		setTouchModeAbove(touchModeAbove);
 		int touchModeBehind = ta.getInt(R.styleable.SlidingMenu_behindTouchMode, TOUCHMODE_MARGIN);
@@ -133,21 +172,21 @@ public class SlidingMenu extends RelativeLayout {
 			setSelectorDrawable(selectorRes);
 	}
 
-	public void setViewAbove(int res) {
-		setViewAbove(LayoutInflater.from(getContext()).inflate(res, null));
+	public void setContent(int res) {
+		setContent(LayoutInflater.from(getContext()).inflate(res, null));
 	}
 
-	public void setViewAbove(View v) {
+	public void setContent(View v) {
 		mViewAbove.setContent(v);
 		mViewAbove.invalidate();
 		showAbove();
 	}
 
-	public void setViewBehind(int res) {
-		setViewBehind(LayoutInflater.from(getContext()).inflate(res, null));
+	public void setMenu(int res) {
+		setMenu(LayoutInflater.from(getContext()).inflate(res, null));
 	}
 
-	public void setViewBehind(View v) {
+	public void setMenu(View v) {
 		mViewBehind.setMenu(v);
 		mViewBehind.invalidate();
 	}

@@ -52,7 +52,7 @@ public class SlidingActivityHelper {
 			// save ActionBar themes that have transparent assets
 			decorChild.setBackgroundResource(background);
 			decor.removeView(decorChild);
-			mSlidingMenu.setViewAbove(decorChild);
+			mSlidingMenu.setContent(decorChild);
 			decor.addView(mSlidingMenu);
 		} else {
 			// take the above view out of
@@ -64,7 +64,7 @@ public class SlidingActivityHelper {
 			if (mViewAbove.getBackground() == null) {
 				mViewAbove.setBackgroundResource(background);
 			}
-			mSlidingMenu.setViewAbove(mViewAbove);
+			mSlidingMenu.setContent(mViewAbove);
 			parent.addView(mSlidingMenu, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
 		}
 	}
@@ -97,7 +97,7 @@ public class SlidingActivityHelper {
 
 	public void setBehindContentView(View v, LayoutParams params) {
 		mViewBehind = v;
-		mSlidingMenu.setViewBehind(mViewBehind);
+		mSlidingMenu.setMenu(mViewBehind);
 	}
 
 	public SlidingMenu getSlidingMenu() {
