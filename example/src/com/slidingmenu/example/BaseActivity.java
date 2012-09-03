@@ -3,7 +3,6 @@ package com.slidingmenu.example;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.graphics.Canvas;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,7 +14,6 @@ import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 
 import com.slidingmenu.lib.SlidingMenu;
-import com.slidingmenu.lib.SlidingMenu.CanvasTransformer;
 import com.slidingmenu.lib.app.SlidingFragmentActivity;
 
 public class BaseActivity extends SlidingFragmentActivity {
@@ -27,10 +25,10 @@ public class BaseActivity extends SlidingFragmentActivity {
 		super.onCreate(savedInstanceState);
 
 		// set the Behind View
-		setBehindContentView(R.layout.frame);
+		setBehindContentView(R.layout.menu_frame);
 		FragmentTransaction t = this.getSupportFragmentManager().beginTransaction();
 		mFrag = new SampleListFragment();
-		t.replace(R.id.frame, mFrag);
+		t.replace(R.id.menu_frame, mFrag);
 		t.commit();
 
 		// customize the SlidingMenu

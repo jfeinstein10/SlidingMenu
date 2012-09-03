@@ -1,7 +1,6 @@
 package com.slidingmenu.example;
 
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 
 
 public class SlidingTitleBar extends BaseActivity {
@@ -11,12 +10,11 @@ public class SlidingTitleBar extends BaseActivity {
 		super.onCreate(savedInstanceState);
 
 		// set the Above View
-		setContentView(R.layout.pager);
-		ViewPager vp = (ViewPager) findViewById(R.id.pager);
-		PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), vp);
-		for (int i = 0; i < 3; i++) {
-			adapter.addTab(new SampleListFragment());
-		}
+		setContentView(R.layout.content_frame);
+		getSupportFragmentManager()
+		.beginTransaction()
+		.replace(R.id.content_frame, new SampleListFragment())
+		.commit();
 		
 		setSlidingActionBarEnabled(true);
 	}
