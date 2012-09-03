@@ -548,7 +548,6 @@ public class CustomViewAbove extends ViewGroup {
 		int contentLeft = getChildLeft(1);
 		float percentOpen = getPercentOpen();
 		int offset = (int) (mScrollX * (1 - mScrollScale));
-		Log.v(TAG, "offset:" + offset + "contentLeft:" + contentLeft);
 		mMenu.layout(0, 0, width, height);
 		mContent.layout(contentLeft, 0, contentLeft + width, height);
 	}
