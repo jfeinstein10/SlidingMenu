@@ -33,25 +33,21 @@ public class ExampleListActivity extends PreferenceActivity {
 	@Override
 	public boolean onPreferenceTreeClick(PreferenceScreen screen, Preference pref) {
 		Class cls = null;
-		switch (pref.getTitleRes()) {
-		case R.string.properties:
-			cls = PropertiesActivity.class;
-			break;
-		case R.string.title_bar_slide:
+		String title = pref.getTitle().toString();
+		if (title.equals(getString(R.string.properties))) {
+			cls = PropertiesActivity.class;	
+		} else if (title.equals(getString(R.string.title_bar_slide))) {
 			cls = SlidingTitleBar.class;
-			break;
-		case R.string.title_bar_content:
+		} else if (title.equals(getString(R.string.title_bar_content))) {
 			cls = SlidingContent.class;
-			break;
-		case R.string.anim_zoom:
+		} else if (title.equals(getString(R.string.anim_zoom))) {
 			cls = CustomZoomAnimation.class;
-			break;
-		case R.string.anim_slide:
+		} else if (title.equals(getString(R.string.anim_fold))) {
+			cls = CustomFoldAnimation.class;
+		} else if (title.equals(getString(R.string.anim_slide))) {
 			cls = CustomSlideAnimation.class;
-			break;
-		case R.string.anim_rot:
+		} else if (title.equals(getString(R.string.anim_rot))) {
 			cls = CustomRotateAnimation.class;
-			break;
 		}
 		Intent intent = new Intent(this, cls);
 		startActivity(intent);

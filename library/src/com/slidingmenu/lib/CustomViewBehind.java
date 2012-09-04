@@ -19,12 +19,6 @@ public class CustomViewBehind extends CustomViewAbove {
 	private CanvasTransformer mTransformer;
 	private boolean mChildrenEnabled;
 
-	private class CustomTransform extends Transformation {
-		public CustomTransform(Matrix m) {
-			mMatrix = m;
-		}
-	}
-
 	public CustomViewBehind(Context context) {
 		this(context, null);
 	}
@@ -94,7 +88,7 @@ public class CustomViewBehind extends CustomViewAbove {
 	@Override
 	protected void dispatchDraw(Canvas canvas) {
 		if (mTransformer != null) {
-			canvas.save(Canvas.MATRIX_SAVE_FLAG);
+			canvas.save();
 			mTransformer.transformCanvas(canvas, mViewAbove.getPercentOpen());
 			super.dispatchDraw(canvas);
 			canvas.restore();
