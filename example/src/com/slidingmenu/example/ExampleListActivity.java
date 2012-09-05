@@ -32,7 +32,7 @@ public class ExampleListActivity extends PreferenceActivity {
 
 	@Override
 	public boolean onPreferenceTreeClick(PreferenceScreen screen, Preference pref) {
-		Class cls = null;
+		Class<?> cls = null;
 		String title = pref.getTitle().toString();
 		if (title.equals(getString(R.string.properties))) {
 			cls = PropertiesActivity.class;	
