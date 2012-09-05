@@ -24,6 +24,8 @@
         </activity>
         <activity android:name=".PropertiesActivity" />
         <activity android:name=".CustomAnimation" />
+        <activity android:name=".CustomScaleAnimation" />
+        <activity android:name=".CustomFoldAnimation" />
         <activity android:name=".CustomZoomAnimation" />
         <activity android:name=".CustomRotateAnimation" />
         <activity android:name=".CustomSlideAnimation" />

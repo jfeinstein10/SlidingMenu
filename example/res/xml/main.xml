@@ -2,16 +2,18 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <PreferenceCategory android:title="@string/properties" >
-        <Preference android:title="@string/properties"/>
+        <Preference android:title="@string/properties" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/title_bar" >
-        <Preference android:title="@string/title_bar_slide"/>
-        <Preference android:title="@string/title_bar_content"/>
+        <Preference android:title="@string/title_bar_slide" />
+        <Preference android:title="@string/title_bar_content" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/animations" >
-        <Preference android:title="@string/anim_zoom"/>
-        <Preference android:title="@string/anim_slide"/><Preference android:title="@string/anim_rot"/>
-        
+        <Preference android:title="@string/anim_zoom" />
+        <Preference android:title="@string/anim_scale" />
+        <Preference android:title="@string/anim_fold" />
+        <Preference android:title="@string/anim_slide" />
+        <Preference android:title="@string/anim_rot" />
     </PreferenceCategory>
 
 </PreferenceScreen>

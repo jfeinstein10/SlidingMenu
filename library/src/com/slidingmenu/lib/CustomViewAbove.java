@@ -729,10 +729,7 @@ public class CustomViewAbove extends ViewGroup {
 			final float xDiff = Math.abs(dx);
 			final float y = MotionEventCompat.getY(ev, pointerIndex);
 			final float yDiff = Math.abs(y - mLastMotionY);
-			if (DEBUG) Log.v(TAG, "Moved x to " + x + "," + y + " diff=" + xDiff + "," + yDiff);
-
 			if (canScroll(this, false, (int) dx, (int) x, (int) y)) {
-				// Nested view has scrollable area under this point. Let it be handled there.
 				mInitialMotionX = mLastMotionX = x;
 				mLastMotionY = y;
 				return false;
@@ -743,22 +740,13 @@ public class CustomViewAbove extends ViewGroup {
 				setScrollingCacheEnabled(true);
 			} else {
 				if (yDiff > mTouchSlop) {
-					// The finger has moved enough in the vertical
-					// direction to be counted as a drag...  abort
-					// any attempt to drag horizontally, to work correctly
-					// with children that have scrolling containers.
-					if (DEBUG) Log.v(TAG, "Starting unable to drag!");
 					mIsUnableToDrag = true;
 				}
 			}
 			break;
 		}
 
-		case MotionEvent.ACTION_DOWN: {
-			/*
-			 * Remember location of down touch.
-			 * ACTION_DOWN always refers to pointer index 0.
-			 */
+		case MotionEvent.ACTION_DOWN:
 			mLastMotionX = mInitialMotionX = ev.getX();
 			mLastMotionY = ev.getY();
 			mActivePointerId = MotionEventCompat.getPointerId(ev, 0);
@@ -775,13 +763,7 @@ public class CustomViewAbove extends ViewGroup {
 				mIsBeingDragged = false;
 				mIsUnableToDrag = false;
 			}
-
-			if (DEBUG) Log.v(TAG, "Down at " + mLastMotionX + "," + mLastMotionY
-					+ " mIsBeingDragged=" + mIsBeingDragged
-					+ "mIsUnableToDrag=" + mIsUnableToDrag);
 			break;
-		}
-
 		case MotionEventCompat.ACTION_POINTER_UP:
 			onSecondaryPointerUp(ev);
 			break;

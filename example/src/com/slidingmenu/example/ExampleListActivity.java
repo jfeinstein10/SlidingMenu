@@ -42,6 +42,8 @@ public class ExampleListActivity extends PreferenceActivity {
 			cls = SlidingContent.class;
 		} else if (title.equals(getString(R.string.anim_zoom))) {
 			cls = CustomZoomAnimation.class;
+		} else if (title.equals(getString(R.string.anim_scale))) {
+			cls = CustomScaleAnimation.class;
 		} else if (title.equals(getString(R.string.anim_fold))) {
 			cls = CustomFoldAnimation.class;
 		} else if (title.equals(getString(R.string.anim_slide))) {
