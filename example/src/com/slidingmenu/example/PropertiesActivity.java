@@ -19,16 +19,14 @@ public class PropertiesActivity extends BaseActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		setSlidingActionBarEnabled(true);
+		
 		setContentView(R.layout.properties);
-	}
-	
-	@Override
-	public void onResume() {
-		super.onResume();
 		
 		// touch mode stuff
 		RadioGroup touchAbove = (RadioGroup) findViewById(R.id.touch_above);
+		touchAbove.check(R.id.touch_above_margin);
 		touchAbove.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -42,9 +40,9 @@ public class PropertiesActivity extends BaseActivity {
 				}
 			}
 		});
-		touchAbove.check(R.id.touch_above_full);
 		
 		RadioGroup touchBehind = (RadioGroup) findViewById(R.id.touch_behind);
+		touchBehind.check(R.id.touch_behind_margin);
 		touchBehind.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -58,12 +56,12 @@ public class PropertiesActivity extends BaseActivity {
 				}
 			}			
 		});
-		touchBehind.check(R.id.touch_behind_full);
 
 		
 		// scroll scale stuff
 		SeekBar scrollScale = (SeekBar) findViewById(R.id.scroll_scale);
 		scrollScale.setMax(1000);
+		scrollScale.setProgress(333);
 		scrollScale.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress,
@@ -80,6 +78,7 @@ public class PropertiesActivity extends BaseActivity {
 		// behind width stuff
 		SeekBar behindWidth = (SeekBar) findViewById(R.id.behind_width);
 		behindWidth.setMax(1000);
+		behindWidth.setProgress(750);
 		behindWidth.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress,
@@ -96,15 +95,16 @@ public class PropertiesActivity extends BaseActivity {
 		
 		// fading stuff
 		CheckBox fadeEnabled = (CheckBox) findViewById(R.id.fade_enabled);
+		fadeEnabled.setChecked(true);
 		fadeEnabled.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				getSlidingMenu().setFadeEnabled(isChecked);
 			}			
 		});
-		fadeEnabled.setChecked(false);
 		SeekBar fadeDeg = (SeekBar) findViewById(R.id.fade_degree);
 		fadeDeg.setMax(1000);
+		fadeDeg.setProgress(666);
 		fadeDeg.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress,
@@ -116,7 +116,6 @@ public class PropertiesActivity extends BaseActivity {
 				getSlidingMenu().setFadeDegree((float) seekBar.getProgress()/seekBar.getMax());
 			}			
 		});
-		
 	}
 
 }
