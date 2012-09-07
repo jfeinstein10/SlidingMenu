@@ -65,7 +65,7 @@ public class CustomViewAbove extends ViewGroup {
 	private boolean mScrolling;
 
 	private boolean mIsBeingDragged;
-	private boolean mIsUnableToDrag;
+	//	private boolean mIsUnableToDrag;
 	private int mTouchSlop;
 	private float mInitialMotionX;
 	/**
@@ -673,18 +673,18 @@ public class CustomViewAbove extends ViewGroup {
 		}
 	}
 
+	private boolean mIsUnableToDrag;
+
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent ev) {
 
-		if (!mEnabled || !thisTouchAllowed(ev)) {
+		if (!mEnabled) {
 			return false;
 		}
 
 		final int action = ev.getAction() & MotionEventCompat.ACTION_MASK;
 
-		// Always take care of the touch gesture being complete.
 		if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP) {
-			// Release the drag.
 			mIsBeingDragged = false;
 			mIsUnableToDrag = false;
 			mActivePointerId = INVALID_POINTER;
@@ -695,46 +695,26 @@ public class CustomViewAbove extends ViewGroup {
 			return false;
 		}
 
-		// Nothing more to do here if we have decided whether or not we
-		// are dragging.
-		if (action != MotionEvent.ACTION_DOWN) {
-			if (mIsBeingDragged) {
+		if (action != MotionEvent.ACTION_DOWN)
+			if (mIsBeingDragged)
 				return true;
-			}
-			if (mIsUnableToDrag) {
+			else if (mIsUnableToDrag)
 				return false;
-			}
-		}
 
 		switch (action) {
-		case MotionEvent.ACTION_MOVE: {
-			/*
-			 * mIsBeingDragged == false, otherwise the shortcut would have caught it. Check
-			 * whether the user has moved far enough from his original down touch.
-			 */
-
-			/*
-			 * Locally do absolute value. mLastMotionY is set to the y value
-			 * of the down event.
-			 */
+		case MotionEvent.ACTION_MOVE:
 			final int activePointerId = mActivePointerId;
-			if (activePointerId == INVALID_POINTER) {
-				// If we don't have a valid id, the touch down wasn't on content.
+			if (activePointerId == INVALID_POINTER)
 				break;
-			}
-
+			
 			final int pointerIndex = MotionEventCompat.findPointerIndex(ev, activePointerId);
 			final float x = MotionEventCompat.getX(ev, pointerIndex);
 			final float dx = x - mLastMotionX;
 			final float xDiff = Math.abs(dx);
 			final float y = MotionEventCompat.getY(ev, pointerIndex);
 			final float yDiff = Math.abs(y - mLastMotionY);
-			if (canScroll(this, false, (int) dx, (int) x, (int) y)) {
-				mInitialMotionX = mLastMotionX = x;
-				mLastMotionY = y;
-				return false;
-			}
 			if (xDiff > mTouchSlop && xDiff > yDiff) {
+				Log.v(TAG, "Starting drag! from onInterceptTouch");
 				mIsBeingDragged = true;
 				mLastMotionX = x;
 				setScrollingCacheEnabled(true);
@@ -744,24 +724,20 @@ public class CustomViewAbove extends ViewGroup {
 				}
 			}
 			break;
-		}
 
 		case MotionEvent.ACTION_DOWN:
-			mLastMotionX = mInitialMotionX = ev.getX();
-			mLastMotionY = ev.getY();
 			mActivePointerId = MotionEventCompat.getPointerId(ev, 0);
+			mLastMotionX = mInitialMotionX = MotionEventCompat.getX(ev, mActivePointerId);
+			mLastMotionY = MotionEventCompat.getY(ev, mActivePointerId);
 
-			if (isMenuOpen() ||
-					(mTouchMode != SlidingMenu.TOUCHMODE_FULLSCREEN && thisTouchAllowed(ev))) {
-				// we want to intercept this touch even though we are not dragging
-				// so that we can close the menu on a touch
+			if (thisTouchAllowed(ev)) {
 				mIsBeingDragged = false;
 				mIsUnableToDrag = false;
+			} 
+			if (isMenuOpen() && mInitialMotionX > getBehindWidth()) {
+				Log.v(TAG, "Touch on content when menu open. Intercepting right away");
+				mIsBeingDragged = false;
 				return true;
-			} else {
-				completeScroll();
-				mIsBeingDragged = false;
-				mIsUnableToDrag = false;
 			}
 			break;
 		case MotionEventCompat.ACTION_POINTER_UP:
@@ -770,18 +746,12 @@ public class CustomViewAbove extends ViewGroup {
 		}
 
 		if (!mIsBeingDragged) {
-			// Track the velocity as long as we aren't dragging.
-			// Once we start a real drag we will track in onTouchEvent.
 			if (mVelocityTracker == null) {
 				mVelocityTracker = VelocityTracker.obtain();
 			}
 			mVelocityTracker.addMovement(ev);
 		}
 
-		/*
-		 * The only time we want to intercept motion events is if we are in the
-		 * drag mode.
-		 */
 		return mIsBeingDragged;
 	}
 
@@ -792,7 +762,7 @@ public class CustomViewAbove extends ViewGroup {
 			return false;
 		}
 
-		if (!mLastTouchAllowed && !thisTouchAllowed(ev)) {
+		if (!mIsBeingDragged && !mLastTouchAllowed && !thisTouchAllowed(ev)) {
 			return false;
 		}
 
@@ -832,7 +802,7 @@ public class CustomViewAbove extends ViewGroup {
 				final float yDiff = Math.abs(y - mLastMotionY);
 				if (DEBUG) Log.v(TAG, "Moved x to " + x + "," + y + " diff=" + xDiff + "," + yDiff);
 				if (xDiff > mTouchSlop && xDiff > yDiff) {
-					if (DEBUG) Log.v(TAG, "Starting drag!");
+					Log.v(TAG, "Starting drag! from onTouch");
 					mIsBeingDragged = true;
 					mLastMotionX = x;
 					setScrollingCacheEnabled(true);
@@ -1060,7 +1030,7 @@ public class CustomViewAbove extends ViewGroup {
 
 	private void endDrag() {
 		mIsBeingDragged = false;
-		mIsUnableToDrag = false;
+		//		mIsUnableToDrag = false;
 
 		if (mVelocityTracker != null) {
 			mVelocityTracker.recycle();
