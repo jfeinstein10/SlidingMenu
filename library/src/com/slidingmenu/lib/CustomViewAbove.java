@@ -706,7 +706,7 @@ public class CustomViewAbove extends ViewGroup {
 			final int activePointerId = mActivePointerId;
 			if (activePointerId == INVALID_POINTER)
 				break;
-			
+
 			final int pointerIndex = MotionEventCompat.findPointerIndex(ev, activePointerId);
 			final float x = MotionEventCompat.getX(ev, pointerIndex);
 			final float dx = x - mLastMotionX;
@@ -718,10 +718,8 @@ public class CustomViewAbove extends ViewGroup {
 				mIsBeingDragged = true;
 				mLastMotionX = x;
 				setScrollingCacheEnabled(true);
-			} else {
-				if (yDiff > mTouchSlop) {
-					mIsUnableToDrag = true;
-				}
+			} else if (yDiff > mTouchSlop) {
+				mIsUnableToDrag = true;
 			}
 			break;
 
@@ -733,11 +731,10 @@ public class CustomViewAbove extends ViewGroup {
 			if (thisTouchAllowed(ev)) {
 				mIsBeingDragged = false;
 				mIsUnableToDrag = false;
-			} 
-			if (isMenuOpen() && mInitialMotionX > getBehindWidth()) {
-				if (DEBUG) Log.v(TAG, "Touch on content when menu open. Intercepting right away");
-				mIsBeingDragged = false;
-				return true;
+				if (isMenuOpen() && mInitialMotionX > getBehindWidth())
+					return true;
+			} else {
+				mIsUnableToDrag = true;
 			}
 			break;
 		case MotionEventCompat.ACTION_POINTER_UP:
