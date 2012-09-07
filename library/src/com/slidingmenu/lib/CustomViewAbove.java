@@ -714,7 +714,7 @@ public class CustomViewAbove extends ViewGroup {
 			final float y = MotionEventCompat.getY(ev, pointerIndex);
 			final float yDiff = Math.abs(y - mLastMotionY);
 			if (xDiff > mTouchSlop && xDiff > yDiff) {
-				Log.v(TAG, "Starting drag! from onInterceptTouch");
+				if (DEBUG) Log.v(TAG, "Starting drag! from onInterceptTouch");
 				mIsBeingDragged = true;
 				mLastMotionX = x;
 				setScrollingCacheEnabled(true);
@@ -735,7 +735,7 @@ public class CustomViewAbove extends ViewGroup {
 				mIsUnableToDrag = false;
 			} 
 			if (isMenuOpen() && mInitialMotionX > getBehindWidth()) {
-				Log.v(TAG, "Touch on content when menu open. Intercepting right away");
+				if (DEBUG) Log.v(TAG, "Touch on content when menu open. Intercepting right away");
 				mIsBeingDragged = false;
 				return true;
 			}
@@ -802,7 +802,7 @@ public class CustomViewAbove extends ViewGroup {
 				final float yDiff = Math.abs(y - mLastMotionY);
 				if (DEBUG) Log.v(TAG, "Moved x to " + x + "," + y + " diff=" + xDiff + "," + yDiff);
 				if (xDiff > mTouchSlop && xDiff > yDiff) {
-					Log.v(TAG, "Starting drag! from onTouch");
+					if (DEBUG) Log.v(TAG, "Starting drag! from onTouch");
 					mIsBeingDragged = true;
 					mLastMotionX = x;
 					setScrollingCacheEnabled(true);
