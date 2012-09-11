@@ -1,6 +1,7 @@
 package com.slidingmenu.lib.app;
 
 import android.app.Activity;
+import android.content.res.Resources.Theme;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.KeyEvent;

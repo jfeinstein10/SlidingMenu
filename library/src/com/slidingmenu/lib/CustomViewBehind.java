@@ -74,6 +74,13 @@ public class CustomViewBehind extends CustomViewAbove {
 	public void setChildrenEnabled(boolean enabled) {
 		mChildrenEnabled = enabled;
 	}
+	
+	@Override
+	public void scrollTo(int x, int y) {
+		super.scrollTo(x, y);
+		if (mTransformer != null)
+			invalidate();
+	}
 
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent e) {
