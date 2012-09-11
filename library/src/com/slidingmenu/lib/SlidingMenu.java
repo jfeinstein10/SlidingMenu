@@ -479,7 +479,8 @@ public class SlidingMenu extends RelativeLayout {
 			method.invoke(this, b);
 		} catch (Exception e) {
 			int topMargin = 0;
-			if (b) {
+			boolean isTablet = getResources().getBoolean(R.bool.isTablet);
+			if (b && !isTablet) {
 				topMargin = getStatusBarHeight();
 			}
 			RelativeLayout.LayoutParams params = ((RelativeLayout.LayoutParams)mViewBehind.getLayoutParams());
