@@ -4,7 +4,6 @@ import java.lang.reflect.Method;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,7 +15,6 @@ import android.os.Parcelable;
 import android.support.v4.os.ParcelableCompat;
 import android.support.v4.os.ParcelableCompatCreatorCallbacks;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,17 +56,10 @@ public class SlidingMenu extends RelativeLayout {
 		} else {
 			// take the above view out of
 			ViewGroup content = (ViewGroup) activity.findViewById(Window.ID_ANDROID_CONTENT);
+			View above = content.getChildAt(0);
 			content.removeAllViews();
+			sm.setContent(above);
 			content.addView(sm, LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
-			//			if (parent != null) {
-			//				parent.removeView(mViewAbove);
-			//			}
-			//			// save people from having transparent backgrounds
-			//			if (mViewAbove.getBackground() == null) {
-			//				mViewAbove.setBackgroundResource(background);
-			//			}
-			//			mSlidingMenu.setViewAbove(mViewAbove);
-			//			parent.addView(mSlidingMenu, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
 		}
 	}
 
@@ -385,7 +376,7 @@ public class SlidingMenu extends RelativeLayout {
 		mViewAbove.setOnClosedListener(listener);
 	}
 
-	public static class SavedState extends BaseSavedState {
+	private static class SavedState extends BaseSavedState {
 		boolean mBehindShowing;
 
 		public SavedState(Parcelable superState) {
@@ -417,16 +408,16 @@ public class SlidingMenu extends RelativeLayout {
 		}
 	}
 
-
-	public Parcelable onSaveInstanceState() {
+	@Override
+	protected Parcelable onSaveInstanceState() {
 		Parcelable superState = super.onSaveInstanceState();
 		SavedState ss = new SavedState(superState);
 		ss.mBehindShowing = isBehindShowing();
 		return ss;
 	}
 
-
-	public void onRestoreInstanceState(Parcelable state) {
+	@Override
+	protected void onRestoreInstanceState(Parcelable state) {
 		if (!(state instanceof SavedState)) {
 			super.onRestoreInstanceState(state);
 			return;
@@ -441,7 +432,7 @@ public class SlidingMenu extends RelativeLayout {
 			showAbove();
 		}
 	}
-	
+
 	@Override
 	protected boolean fitSystemWindows(Rect insets) {
 		RelativeLayout.LayoutParams params = ((RelativeLayout.LayoutParams)mViewBehind.getLayoutParams());
