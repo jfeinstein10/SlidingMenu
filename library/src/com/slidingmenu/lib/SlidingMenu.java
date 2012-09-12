@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Point;
+import android.graphics.Rect;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.v4.os.ParcelableCompat;
@@ -22,7 +23,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.RelativeLayout;
 
 import com.slidingmenu.lib.CustomViewAbove.OnPageChangeListener;
@@ -47,7 +47,6 @@ public class SlidingMenu extends RelativeLayout {
 			// get the window background
 			TypedArray a = activity.getTheme().obtainStyledAttributes(new int[] {android.R.attr.windowBackground});
 			int background = a.getResourceId(0, 0);
-			sm.setFitsSysWindows(true);
 			// move everything into the SlidingMenu
 			ViewGroup decor = (ViewGroup) activity.getWindow().getDecorView();
 			ViewGroup decorChild = (ViewGroup) decor.getChildAt(0);
@@ -442,77 +441,15 @@ public class SlidingMenu extends RelativeLayout {
 			showAbove();
 		}
 	}
-
-	private static final int LOW_DPI_STATUS_BAR_HEIGHT = 19;
-	private static final int MEDIUM_DPI_STATUS_BAR_HEIGHT = 25;
-	private static final int HIGH_DPI_STATUS_BAR_HEIGHT = 38;
-	private static final int XHIGH_DPI_STATUS_BAR_HEIGHT = 50;
-
-	/**
-	 * Find the height of the current system status bar.
-	 * If this cannot be determined rely on a default.
-	 */
-	private static final int mHeightId = Resources.getSystem()
-			.getIdentifier("status_bar_height", "dimen", "android");
-	private static final int mBarHeight;
-
-	// Try to retrieve the system's status bar height
-	// by querying the system's resources.
-	static {
-
-		int mHeight = -1;
-
-		if (mHeightId != 0) {
-			try {
-				mHeight = Resources.getSystem().getDimensionPixelSize(mHeightId);
-			} catch(Resources.NotFoundException e) { }
-		}
-
-		mBarHeight = mHeight;
-	};
-
-	public void setFitsSysWindows(boolean b) {
-		try {
-			Class<?> cls = Display.class;
-			Class<?>[] parameterTypes = { boolean.class };
-			Method method = cls.getMethod("setFitsSystemWindows", parameterTypes);
-			method.invoke(this, b);
-		} catch (Exception e) {
-			int topMargin = 0;
-			boolean isTablet = getResources().getBoolean(R.bool.isTablet);
-			if (b && !isTablet) {
-				topMargin = getStatusBarHeight();
-			}
-			RelativeLayout.LayoutParams params = ((RelativeLayout.LayoutParams)mViewBehind.getLayoutParams());
-			int bottom = params.bottomMargin;
-			int left = params.leftMargin;
-			int right = params.rightMargin;
-			params.setMargins(left, topMargin, right, bottom);
-		}
-	}
-
-	private int getStatusBarHeight() {
-		if (mBarHeight >= 0) return mBarHeight;
-		DisplayMetrics displayMetrics = new DisplayMetrics();
-		((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getMetrics(displayMetrics);
-		int statusBarHeight = 0;
-		switch (displayMetrics.densityDpi) {
-		case DisplayMetrics.DENSITY_XHIGH:
-			statusBarHeight = XHIGH_DPI_STATUS_BAR_HEIGHT;
-			break;
-		case DisplayMetrics.DENSITY_HIGH:
-			statusBarHeight = HIGH_DPI_STATUS_BAR_HEIGHT;
-			break;
-		case DisplayMetrics.DENSITY_MEDIUM:
-			statusBarHeight = MEDIUM_DPI_STATUS_BAR_HEIGHT;
-			break;
-		case DisplayMetrics.DENSITY_LOW:
-			statusBarHeight = LOW_DPI_STATUS_BAR_HEIGHT;
-			break;
-		default:
-			statusBarHeight = MEDIUM_DPI_STATUS_BAR_HEIGHT;
-		}
-		return statusBarHeight;
+	
+	@Override
+	protected boolean fitSystemWindows(Rect insets) {
+		RelativeLayout.LayoutParams params = ((RelativeLayout.LayoutParams)mViewBehind.getLayoutParams());
+		int bottom = params.bottomMargin;
+		int left = params.leftMargin;
+		int right = params.rightMargin;
+		params.setMargins(left, insets.top, right, bottom);
+		return super.fitSystemWindows(insets);
 	}
 
 }
