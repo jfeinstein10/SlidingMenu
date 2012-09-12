@@ -470,7 +470,12 @@ public class SlidingMenu extends RelativeLayout {
     @Override
     protected boolean fitSystemWindows(Rect insets) {
         if (mSlidingTitleEnabled) {
-            this.setPadding(getPaddingLeft(), getPaddingTop() +insets.top,getPaddingRight(),getPaddingBottom());
+            int leftPadding = this.getPaddingLeft() + insets.left;
+            int rightPadding = this.getPaddingRight() + insets.right;
+            int topPadding = this.getPaddingTop() + insets.top;
+            int bottomPadding = this.getPaddingBottom() + insets.bottom;
+
+            this.setPadding(leftPadding, topPadding, rightPadding, bottomPadding);
         }
         return super.fitSystemWindows(insets);
     }
