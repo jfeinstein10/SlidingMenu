@@ -5,7 +5,6 @@ import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
-
 import com.slidingmenu.lib.SlidingMenu;
 
 public class SlidingFragmentActivity extends FragmentActivity implements SlidingActivityBase {

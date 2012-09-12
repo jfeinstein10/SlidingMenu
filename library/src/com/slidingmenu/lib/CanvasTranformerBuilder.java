@@ -2,7 +2,6 @@ package com.slidingmenu.lib;
 
 import android.graphics.Canvas;
 import android.view.animation.Interpolator;
-
 import com.slidingmenu.lib.SlidingMenu.CanvasTransformer;
 
 public class CanvasTranformerBuilder {

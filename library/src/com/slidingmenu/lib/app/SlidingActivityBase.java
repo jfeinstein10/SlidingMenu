@@ -2,7 +2,6 @@ package com.slidingmenu.lib.app;
 
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
-
 import com.slidingmenu.lib.SlidingMenu;
 
 public interface SlidingActivityBase {

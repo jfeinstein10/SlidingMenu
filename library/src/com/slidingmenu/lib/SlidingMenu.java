@@ -1,7 +1,5 @@
 package com.slidingmenu.lib;
 
-import java.lang.reflect.Method;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
@@ -13,15 +11,11 @@ import android.support.v4.os.ParcelableCompat;
 import android.support.v4.os.ParcelableCompatCreatorCallbacks;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.view.Display;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.*;
 import android.widget.RelativeLayout;
-
 import com.slidingmenu.lib.CustomViewAbove.OnPageChangeListener;
+
+import java.lang.reflect.Method;
 
 public class SlidingMenu extends RelativeLayout {
 

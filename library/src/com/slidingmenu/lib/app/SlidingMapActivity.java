@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
-
 import com.google.android.maps.MapActivity;
 import com.slidingmenu.lib.SlidingMenu;
 

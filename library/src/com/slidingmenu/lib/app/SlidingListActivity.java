@@ -6,7 +6,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ListView;
-
 import com.slidingmenu.lib.SlidingMenu;
 
 public class SlidingListActivity extends ListActivity implements SlidingActivityBase {
