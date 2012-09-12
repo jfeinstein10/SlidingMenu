@@ -6,10 +6,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Point;
+import android.graphics.*;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.v4.os.ParcelableCompat;
@@ -22,7 +19,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.RelativeLayout;
 
 import com.slidingmenu.lib.CustomViewAbove.OnPageChangeListener;
@@ -36,6 +32,8 @@ public class SlidingMenu extends RelativeLayout {
 	private CustomViewBehind mViewBehind;
 	private OnOpenListener mOpenListener;
 	private OnCloseListener mCloseListener;
+
+    private boolean mSlidingTitleEnabled;
 
 	public static void attachSlidingMenu(Activity activity, SlidingMenu sm, boolean slidingTitle) {
 
@@ -472,26 +470,18 @@ public class SlidingMenu extends RelativeLayout {
 	};
 
 	public void setFitsSysWindows(boolean b) {
-		try {
-			Class<?> cls = Display.class;
-			Class<?>[] parameterTypes = { boolean.class };
-			Method method = cls.getMethod("setFitsSystemWindows", parameterTypes);
-			method.invoke(this, b);
-		} catch (Exception e) {
-			int topMargin = 0;
-			boolean isTablet = getResources().getBoolean(R.bool.isTablet);
-			if (b && !isTablet) {
-				topMargin = getStatusBarHeight();
-			}
-			RelativeLayout.LayoutParams params = ((RelativeLayout.LayoutParams)mViewBehind.getLayoutParams());
-			int bottom = params.bottomMargin;
-			int left = params.leftMargin;
-			int right = params.rightMargin;
-			params.setMargins(left, topMargin, right, bottom);
-		}
+        mSlidingTitleEnabled = b;
 	}
 
-	private int getStatusBarHeight() {
+    @Override
+    protected boolean fitSystemWindows(Rect insets) {
+        if (mSlidingTitleEnabled) {
+            this.setPadding(getPaddingLeft(), getPaddingTop() +insets.top,getPaddingRight(),getPaddingBottom());
+        }
+        return super.fitSystemWindows(insets);
+    }
+
+    private int getStatusBarHeight() {
 		if (mBarHeight >= 0) return mBarHeight;
 		DisplayMetrics displayMetrics = new DisplayMetrics();
 		((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getMetrics(displayMetrics);
