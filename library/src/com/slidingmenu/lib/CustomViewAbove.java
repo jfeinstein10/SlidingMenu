@@ -1,10 +1,7 @@
 package com.slidingmenu.lib;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
+import android.graphics.*;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.view.KeyEventCompat;
@@ -936,6 +933,26 @@ public class CustomViewAbove extends ViewGroup {
 		if (mSelectorEnabled)
 			onDrawMenuSelector(canvas, getPercentOpen());
 	}
+
+    /**
+     * Pads our content window so that it fits within the system windows.
+     * @param insets The insets by which we need to offset our view.
+     * @return True since we handled the padding change.
+     */
+    @Override
+    protected boolean fitSystemWindows(Rect insets) {
+
+        if (mContent != null) {
+            int leftPadding = mContent.getPaddingLeft() + insets.left;
+            int rightPadding = mContent.getPaddingRight() + insets.right;
+            int topPadding = mContent.getPaddingTop() + insets.top;
+            int bottomPadding = mContent.getPaddingBottom() + insets.bottom;
+            mContent.setPadding(leftPadding, topPadding, rightPadding, bottomPadding);
+            return true;
+        }
+
+        return super.fitSystemWindows(insets);
+    }
 
 	@Override
 	protected void onDraw(Canvas canvas) {
