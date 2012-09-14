@@ -35,6 +35,8 @@ public class SlidingMenu extends RelativeLayout {
 	private OnOpenListener mOpenListener;
 	private OnCloseListener mCloseListener;
 
+    private boolean mSlidingEnabled;
+
 	public static void attachSlidingMenu(Activity activity, SlidingMenu sm, boolean slidingTitle) {
 
 		if (sm.getParent() != null)
@@ -435,11 +437,13 @@ public class SlidingMenu extends RelativeLayout {
 
 	@Override
 	protected boolean fitSystemWindows(Rect insets) {
-		RelativeLayout.LayoutParams params = ((RelativeLayout.LayoutParams)mViewBehind.getLayoutParams());
-		int bottom = params.bottomMargin;
-		int left = params.leftMargin;
-		int right = params.rightMargin;
-		params.setMargins(left, insets.top, right, bottom);
+
+        int leftPadding = getPaddingLeft() + insets.left;
+        int rightPadding = getPaddingRight() + insets.right;
+        int topPadding = getPaddingTop() + insets.top;
+        int bottomPadding = getPaddingBottom() + insets.bottom;
+        this.setPadding(leftPadding, topPadding, rightPadding, bottomPadding);
+
 		return super.fitSystemWindows(insets);
 	}
 
