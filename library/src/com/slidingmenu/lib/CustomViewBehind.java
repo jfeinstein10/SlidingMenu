@@ -8,23 +8,26 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Transformation;
+import android.widget.RelativeLayout;
 
 import com.slidingmenu.lib.SlidingMenu.CanvasTransformer;
 
 public class CustomViewBehind extends CustomViewAbove {
 
 	private static final String TAG = "CustomViewBehind";
+	public static final int LEFT = 0;
+	public static final int RIGHT = 1;
 
 	private CustomViewAbove mViewAbove;
+	private int mMode;
 	private CanvasTransformer mTransformer;
 	private boolean mChildrenEnabled;
 
-	public CustomViewBehind(Context context) {
-		this(context, null);
-	}
-
-	public CustomViewBehind(Context context, AttributeSet attrs) {
-		super(context, attrs, false);
+	public CustomViewBehind(Context context, int mode) {
+		super(context);
+		if (mode != LEFT && mode != RIGHT)
+			throw new IllegalStateException("mode must be LEFT or RIGHT");
+		mMode = mode;
 	}
 
 	public void setCustomViewAbove(CustomViewAbove customViewAbove) {
@@ -45,10 +48,27 @@ public class CustomViewBehind extends CustomViewAbove {
 	public int getChildLeft(int i) {
 		return 0;
 	}
+	
+	@Override
+	protected void onLayout(boolean changed, int l, int t, int r, int b) {
+		final int width = r - l;
+		final int height = b - t;
+		
+		int left;
+		switch (mMode) {
+		case LEFT:
+			left = 0;
+			break;
+		default:
+			left = ((RelativeLayout.LayoutParams)getLayoutParams()).leftMargin;
+			break;
+		}
+		mContent.layout(0, 0, 0 + width, height);
+	}
 
 	@Override
 	public int getCustomWidth() {
-		int i = isMenuOpen()? 0 : 1;
+		int i = isLeftOpen()? 0 : 1;
 		return getChildWidth(i);
 	}
 
@@ -64,11 +84,6 @@ public class CustomViewBehind extends CustomViewAbove {
 	public int getBehindWidth() {
 		ViewGroup.LayoutParams params = getLayoutParams();
 		return params.width;
-	}
-
-	@Override
-	public void setContent(View v) {
-		super.setMenu(v);
 	}
 
 	public void setChildrenEnabled(boolean enabled) {
@@ -96,7 +111,16 @@ public class CustomViewBehind extends CustomViewAbove {
 	protected void dispatchDraw(Canvas canvas) {
 		if (mTransformer != null) {
 			canvas.save();
-			mTransformer.transformCanvas(canvas, mViewAbove.getPercentOpen());
+			float percent = 0.0f;
+			switch (mMode) {
+			case LEFT:
+				percent = mViewAbove.getPercentOpenLeft();
+				break;
+			case RIGHT:
+				percent = mViewAbove.getPercentOpenRight();
+				break;
+			}
+			mTransformer.transformCanvas(canvas, percent);
 			super.dispatchDraw(canvas);
 			canvas.restore();
 		} else

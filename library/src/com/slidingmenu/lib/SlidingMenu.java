@@ -15,6 +15,7 @@ import android.os.Parcelable;
 import android.support.v4.os.ParcelableCompat;
 import android.support.v4.os.ParcelableCompatCreatorCallbacks;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,15 +28,22 @@ import com.slidingmenu.lib.CustomViewAbove.OnPageChangeListener;
 
 public class SlidingMenu extends RelativeLayout {
 
+	public static final String TAG = "SlidingMenu";
+	
 	public static final int TOUCHMODE_MARGIN = 0;
 	public static final int TOUCHMODE_FULLSCREEN = 1;
 
+	public static final int SIDES_LEFT = 0;
+	public static final int SIDES_RIGHT = 1;
+	public static final int SIDES_LEFT_RIGHT = 2;
+
 	private CustomViewAbove mViewAbove;
-	private CustomViewBehind mViewBehind;
+	private CustomViewBehind mViewBehindLeft;
+	private CustomViewBehind mViewBehindRight;
 	private OnOpenListener mOpenListener;
 	private OnCloseListener mCloseListener;
 
-    private boolean mSlidingEnabled;
+	private boolean mSlidingEnabled;
 
 	public static void attachSlidingMenu(Activity activity, SlidingMenu sm, boolean slidingTitle) {
 
@@ -95,16 +103,10 @@ public class SlidingMenu extends RelativeLayout {
 
 	public SlidingMenu(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
-
-		LayoutParams behindParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-		mViewBehind = new CustomViewBehind(context);
-		addView(mViewBehind, behindParams);
+		// above view
 		LayoutParams aboveParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		mViewAbove = new CustomViewAbove(context);
 		addView(mViewAbove, aboveParams);
-		// register the CustomViewBehind2 with the CustomViewAbove
-		mViewAbove.setCustomViewBehind(mViewBehind);
-		mViewBehind.setCustomViewAbove(mViewAbove);
 		mViewAbove.setOnPageChangeListener(new OnPageChangeListener() {
 			public static final int POSITION_OPEN = 0;
 			public static final int POSITION_CLOSE = 1;
@@ -123,13 +125,32 @@ public class SlidingMenu extends RelativeLayout {
 
 		// now style everything!
 		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.SlidingMenu);
+		int slidingSides = ta.getInt(R.styleable.SlidingMenu_slidingSides, SIDES_LEFT);
+		switch (slidingSides) {
+		case SIDES_LEFT:
+			initializeLeft();
+			break;
+		case SIDES_RIGHT:
+			initializeRight();
+			break;
+		case SIDES_LEFT_RIGHT:
+			initializeLeft();
+			initializeRight();
+			break;
+		}
 		// set the above and behind views if defined in xml
 		int viewAbove = ta.getResourceId(R.styleable.SlidingMenu_viewAbove, -1);
-		if (viewAbove != -1)
+		if (viewAbove != -1) {
 			setContent(viewAbove);
-		int viewBehind = ta.getResourceId(R.styleable.SlidingMenu_viewBehind, -1);
-		if (viewBehind != -1)
-			setMenu(viewBehind);
+		}
+		int viewBehindLeft = ta.getResourceId(R.styleable.SlidingMenu_viewBehindLeft, -1);
+		if (viewBehindLeft != -1) {
+			setViewBehindLeft(viewBehindLeft);
+		}
+		int viewBehindRight = ta.getResourceId(R.styleable.SlidingMenu_viewBehindRight, -1);
+		if (viewBehindRight != -1) {
+			setViewBehindRight(viewBehindRight);
+		}
 		int touchModeAbove = ta.getInt(R.styleable.SlidingMenu_aboveTouchMode, TOUCHMODE_MARGIN);
 		setTouchModeAbove(touchModeAbove);
 		int touchModeBehind = ta.getInt(R.styleable.SlidingMenu_behindTouchMode, TOUCHMODE_MARGIN);
@@ -164,6 +185,26 @@ public class SlidingMenu extends RelativeLayout {
 			setSelectorDrawable(selectorRes);
 	}
 
+	private void initializeLeft() {
+		if (mViewBehindLeft == null) {
+			LayoutParams behindParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+			mViewBehindLeft = new CustomViewBehind(getContext(), CustomViewBehind.LEFT);
+			addView(mViewBehindLeft, 0, behindParams);
+			mViewAbove.setViewBehindLeft(mViewBehindLeft);
+			mViewBehindLeft.setCustomViewAbove(mViewAbove);
+		}
+	}
+
+	private void initializeRight() {
+		if (mViewBehindRight == null) {
+			LayoutParams behindParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+			mViewBehindRight = new CustomViewBehind(getContext(), CustomViewBehind.RIGHT);
+			addView(mViewBehindRight, 0, behindParams);
+			mViewAbove.setViewBehindRight(mViewBehindRight);
+			mViewBehindRight.setCustomViewAbove(mViewAbove);
+		}
+	}
+
 	public void setContent(int res) {
 		setContent(LayoutInflater.from(getContext()).inflate(res, null));
 	}
@@ -174,13 +215,24 @@ public class SlidingMenu extends RelativeLayout {
 		showAbove();
 	}
 
-	public void setMenu(int res) {
-		setMenu(LayoutInflater.from(getContext()).inflate(res, null));
+	public void setViewBehindRight(int res) {
+		setViewBehindRight(LayoutInflater.from(getContext()).inflate(res, null));
 	}
 
-	public void setMenu(View v) {
-		mViewBehind.setMenu(v);
-		mViewBehind.invalidate();
+	public void setViewBehindRight(View v) {
+		initializeRight();
+		mViewBehindRight.setContent(v);
+		mViewBehindRight.invalidate();
+	}
+
+	public void setViewBehindLeft(int res) {
+		setViewBehindLeft(LayoutInflater.from(getContext()).inflate(res, null));
+	}
+
+	public void setViewBehindLeft(View v) {
+		initializeLeft();
+		mViewBehindLeft.setContent(v);
+		mViewBehindLeft.invalidate();
 	}
 
 	public void setSlidingEnabled(boolean b) {
@@ -199,13 +251,13 @@ public class SlidingMenu extends RelativeLayout {
 	public void setStatic(boolean b) {
 		if (b) {
 			setSlidingEnabled(false);
-			mViewAbove.setCustomViewBehind(null);
+			mViewAbove.setViewBehindLeft(null);
 			mViewAbove.setCurrentItem(1);
-			mViewBehind.setCurrentItem(0);	
+			mViewBehindLeft.setCurrentItem(0);	
 		} else {
 			mViewAbove.setCurrentItem(1);
-			mViewBehind.setCurrentItem(1);
-			mViewAbove.setCustomViewBehind(mViewBehind);
+			mViewBehindLeft.setCurrentItem(1);
+			mViewAbove.setViewBehindLeft(mViewBehindLeft);
 			setSlidingEnabled(true);
 		}
 	}
@@ -229,7 +281,7 @@ public class SlidingMenu extends RelativeLayout {
 	 * @return Whether or not the behind view is showing
 	 */
 	public boolean isBehindShowing() {
-		return mViewAbove.getCurrentItem() == 0;
+		return mViewAbove.getCurrentItem() == 0 || mViewAbove.getCurrentItem() == 2;
 	}
 
 	/**
@@ -237,7 +289,7 @@ public class SlidingMenu extends RelativeLayout {
 	 * @return The margin on the right of the screen that the behind view scrolls to
 	 */
 	public int getBehindOffset() {
-		return ((RelativeLayout.LayoutParams)mViewBehind.getLayoutParams()).rightMargin;
+		return ((RelativeLayout.LayoutParams)mViewBehindLeft.getLayoutParams()).rightMargin;
 	}
 
 	/**
@@ -245,11 +297,25 @@ public class SlidingMenu extends RelativeLayout {
 	 * @param i The margin on the right of the screen that the behind view scrolls to
 	 */
 	public void setBehindOffset(int i) {
-		RelativeLayout.LayoutParams params = ((RelativeLayout.LayoutParams)mViewBehind.getLayoutParams());
-		int bottom = params.bottomMargin;
-		int top = params.topMargin;
-		int left = params.leftMargin;
-		params.setMargins(left, top, i, bottom);
+		// behind left
+		if (mViewBehindLeft != null) {
+			RelativeLayout.LayoutParams params = ((RelativeLayout.LayoutParams)mViewBehindLeft.getLayoutParams());
+			int bottom = params.bottomMargin;
+			int top = params.topMargin;
+			int left = params.leftMargin;
+			params.setMargins(left, top, i, bottom);
+		}
+		// behind right
+		if (mViewBehindRight != null) {
+			RelativeLayout.LayoutParams params = ((RelativeLayout.LayoutParams)mViewBehindRight.getLayoutParams());
+			int bottom = params.bottomMargin;
+			int top = params.topMargin;
+			int right = params.rightMargin;
+			Log.v(TAG, "left margin" + i);
+			params.setMargins(i, top, right, bottom);
+		}
+		requestLayout();
+		showAbove();
 	}
 
 	@SuppressWarnings("deprecation")
@@ -297,7 +363,7 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	public void setBehindCanvasTransformer(CanvasTransformer t) {
-		mViewBehind.setCanvasTransformer(t);
+		mViewBehindLeft.setCanvasTransformer(t);
 	}
 
 	public int getTouchModeAbove() {
@@ -313,7 +379,8 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	public int getTouchModeBehind() {
-		return mViewBehind.getTouchMode();
+		return mViewAbove.getTouchModeBehind();
+		//		return mViewBehindLeft.getTouchMode();
 	}
 
 	public void setTouchModeBehind(int i) {
@@ -321,7 +388,8 @@ public class SlidingMenu extends RelativeLayout {
 			throw new IllegalStateException("TouchMode must be set to either" +
 					"TOUCHMODE_FULLSCREEN or TOUCHMODE_MARGIN.");
 		}
-		mViewBehind.setTouchMode(i);
+		mViewAbove.setTouchModeBehind(i);
+		//		mViewBehindLeft.setTouchMode(i);
 	}
 
 	public void setShadowDrawable(int resId) {
@@ -438,11 +506,11 @@ public class SlidingMenu extends RelativeLayout {
 	@Override
 	protected boolean fitSystemWindows(Rect insets) {
 
-        int leftPadding = getPaddingLeft() + insets.left;
-        int rightPadding = getPaddingRight() + insets.right;
-        int topPadding = getPaddingTop() + insets.top;
-        int bottomPadding = getPaddingBottom() + insets.bottom;
-        this.setPadding(leftPadding, topPadding, rightPadding, bottomPadding);
+		int leftPadding = getPaddingLeft() + insets.left;
+		int rightPadding = getPaddingRight() + insets.right;
+		int topPadding = getPaddingTop() + insets.top;
+		int bottomPadding = getPaddingBottom() + insets.bottom;
+		this.setPadding(leftPadding, topPadding, rightPadding, bottomPadding);
 
 		return super.fitSystemWindows(insets);
 	}

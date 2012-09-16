@@ -24,6 +24,7 @@ public class SlidingActivityHelper {
 
 	private boolean mOnPostCreateCalled = false;
 	private boolean mEnableSlide = true;
+	private boolean mUseCustomUp = false;
 
 	public SlidingActivityHelper(Activity activity) {
 		mActivity = activity;
@@ -31,6 +32,7 @@ public class SlidingActivityHelper {
 
 	public void onCreate(Bundle savedInstanceState) {
 		mSlidingMenu = (SlidingMenu) LayoutInflater.from(mActivity).inflate(R.layout.slidingmenumain, null);
+//		mActivity.getTheme().applyStyle(R.style.CustomUp, true);
 	}
 
 	public void onPostCreate(Bundle savedInstanceState) {
@@ -40,7 +42,7 @@ public class SlidingActivityHelper {
 		}
 
 		mOnPostCreateCalled = true;
-
+		
 		// get the window background
 		TypedArray a = mActivity.getTheme().obtainStyledAttributes(new int[] {android.R.attr.windowBackground});
 		int background = a.getResourceId(0, 0);
@@ -75,6 +77,12 @@ public class SlidingActivityHelper {
 		mEnableSlide = b;
 	}
 
+	public void useCustomUpIndicator() {
+		if (mOnPostCreateCalled)
+			throw new IllegalStateException("useCustomUpIndicator must be called in onCreate.");
+		mUseCustomUp = true;
+	}
+
 	public View findViewById(int id) {
 		View v;
 		if (mSlidingMenu != null) {
@@ -97,7 +105,7 @@ public class SlidingActivityHelper {
 
 	public void setBehindContentView(View v, LayoutParams params) {
 		mViewBehind = v;
-		mSlidingMenu.setMenu(mViewBehind);
+		mSlidingMenu.setViewBehindLeft(mViewBehind);
 	}
 
 	public SlidingMenu getSlidingMenu() {
