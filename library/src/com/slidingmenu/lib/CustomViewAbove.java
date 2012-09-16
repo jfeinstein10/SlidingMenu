@@ -200,6 +200,16 @@ public class CustomViewAbove extends ViewGroup {
 						break;
 					}
 				}
+				if (mViewBehindRight != null) {
+					switch (position) {
+					case 1:
+						mViewBehindRight.setChildrenEnabled(true);
+						break;
+					case 2:
+						mViewBehindRight.setChildrenEnabled(false);
+						break;
+					}
+				}
 			}
 
 		});
@@ -1027,7 +1037,6 @@ public class CustomViewAbove extends ViewGroup {
 		}
 		if (mViewBehindRight != null && mEnabled) {
 			int x2 = (int) ((x - 2*getBehindWidth()) * mScrollScale);
-			Log.v(TAG, "scroll x" + x2);
 			mViewBehindRight.scrollTo(x2, y);
 		}
 

@@ -48,7 +48,7 @@ public class SlidingMenu extends RelativeLayout {
 	public static void attachSlidingMenu(Activity activity, SlidingMenu sm, boolean slidingTitle) {
 
 		if (sm.getParent() != null)
-			throw new IllegalStateException("SlidingMenu cannot be attached to another view when" +
+			throw new IllegalArgumentException("SlidingMenu cannot be attached to another view when" +
 					" calling the static method attachSlidingMenu");
 
 		if (slidingTitle) {
@@ -372,7 +372,7 @@ public class SlidingMenu extends RelativeLayout {
 
 	public void setTouchModeAbove(int i) {
 		if (i != TOUCHMODE_FULLSCREEN && i != TOUCHMODE_MARGIN) {
-			throw new IllegalStateException("TouchMode must be set to either" +
+			throw new IllegalArgumentException("TouchMode must be set to either" +
 					"TOUCHMODE_FULLSCREEN or TOUCHMODE_MARGIN.");
 		}
 		mViewAbove.setTouchMode(i);
@@ -380,16 +380,14 @@ public class SlidingMenu extends RelativeLayout {
 
 	public int getTouchModeBehind() {
 		return mViewAbove.getTouchModeBehind();
-		//		return mViewBehindLeft.getTouchMode();
 	}
 
 	public void setTouchModeBehind(int i) {
 		if (i != TOUCHMODE_FULLSCREEN && i != TOUCHMODE_MARGIN) {
-			throw new IllegalStateException("TouchMode must be set to either" +
+			throw new IllegalArgumentException("TouchMode must be set to either " +
 					"TOUCHMODE_FULLSCREEN or TOUCHMODE_MARGIN.");
 		}
 		mViewAbove.setTouchModeBehind(i);
-		//		mViewBehindLeft.setTouchMode(i);
 	}
 
 	public void setShadowDrawable(int resId) {
