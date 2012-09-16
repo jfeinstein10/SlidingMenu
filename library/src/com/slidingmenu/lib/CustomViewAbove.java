@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.view.KeyEventCompat;
@@ -452,11 +453,36 @@ public class CustomViewAbove extends ViewGroup {
 	}
 
 	public int getChildWidth(int i) {
-		if (i <= 0) {
-			return getBehindWidth();
-		} else {
-			return getChildAt(i).getWidth();
+		if (mViewBehindLeft != null && mViewBehindRight != null) {
+			switch (i) {
+			case 0:
+				return getBehindWidth();
+			case 1:
+				return mContent.getWidth();
+			case 2:
+				return getBehindWidth();
+			}
+		} else if (mViewBehindLeft != null) {
+			switch (i) {
+			case 0:
+				return getBehindWidth();
+			case 1:
+				return mContent.getWidth();
+			}
+		} else if (mViewBehindRight != null) {
+			switch (i) {
+			case 0:
+				return mContent.getWidth();
+			case 1:
+				return getBehindWidth();
+			}
 		}
+		return 0;
+//		if (i <= 0) {
+//			return getBehindWidth();
+//		} else {
+//			return getChildAt(i).getWidth();
+//		}
 	}
 
 	public int getBehindWidth() {
@@ -736,7 +762,13 @@ public class CustomViewAbove extends ViewGroup {
 				int pixels = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 
 						mSlidingMenuThreshold, getResources().getDisplayMetrics());
 				int left = mContent.getLeft();
-				return x >= left && x <= pixels + left;
+				int right = mContent.getRight();
+				boolean bool = false;
+				if (mViewBehindLeft != null)
+					bool |= (x >= left && x <= pixels + left);
+				if (mViewBehindRight != null)
+					bool |= (x <= right && x >= right - pixels);
+				return bool;
 			default:
 				return false;
 			}
@@ -806,11 +838,8 @@ public class CustomViewAbove extends ViewGroup {
 			if (thisTouchAllowed(ev)) {
 				mIsBeingDragged = false;
 				mIsUnableToDrag = false;
-				if (isLeftOpen() && mInitialMotionX > getBehindWidth())
+				if ((isLeftOpen() || isRightOpen()) && mTouchModeBehind == SlidingMenu.TOUCHMODE_MARGIN)
 					return true;
-				if (isRightOpen() && (mInitialMotionX + mScrollX) < getContentRight()) {
-					return true;
-				}
 			} else {
 				mIsUnableToDrag = true;
 			}
@@ -911,7 +940,7 @@ public class CustomViewAbove extends ViewGroup {
 				velocityTracker.computeCurrentVelocity(1000, mMaximumVelocity);
 				int initialVelocity = (int) VelocityTrackerCompat.getXVelocity(
 						velocityTracker, mActivePointerId);
-				final int widthWithMargin = getChildWidth(mCurItem) + mShadowWidth;
+				final int widthWithMargin = getChildWidth(mCurItem);
 				final int scrollX = getScrollX();
 				final int currentPage = scrollX / widthWithMargin;
 				final float pageOffset = (float) (scrollX % widthWithMargin) / widthWithMargin;
@@ -1007,8 +1036,9 @@ public class CustomViewAbove extends ViewGroup {
 	}
 
 	private int determineTargetPage(int currentPage, float pageOffset, int velocity, int deltaX) {
+		float scale = getBehindWidth()/getWidth();
 		int targetPage;
-		if (Math.abs(deltaX) > mFlingDistance && Math.abs(velocity) > mMinimumVelocity) {
+		if (Math.abs(deltaX) > (float)mFlingDistance*scale && Math.abs(velocity) > mMinimumVelocity) {
 			targetPage = velocity > 0 ? currentPage : currentPage + 1;
 		} else {
 			targetPage = (int) (currentPage + pageOffset + 0.5f);
@@ -1029,7 +1059,7 @@ public class CustomViewAbove extends ViewGroup {
 	protected void dispatchDraw(Canvas canvas) {
 		super.dispatchDraw(canvas);
 		final int behindWidth = getBehindWidth();
-		// Draw the margin drawable if needed.
+		// Draw the margin drawable if needed
 		if (mShadowWidth > 0 && mShadowDrawable != null) {
 			final int left = behindWidth - mShadowWidth;
 			mShadowDrawable.setBounds(left, 0, left + mShadowWidth, getHeight());

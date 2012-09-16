@@ -53,16 +53,6 @@ public class CustomViewBehind extends CustomViewAbove {
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
 		final int width = r - l;
 		final int height = b - t;
-		
-		int left;
-		switch (mMode) {
-		case LEFT:
-			left = 0;
-			break;
-		default:
-			left = ((RelativeLayout.LayoutParams)getLayoutParams()).leftMargin;
-			break;
-		}
 		mContent.layout(0, 0, 0 + width, height);
 	}
 
