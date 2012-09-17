@@ -105,6 +105,9 @@ public class SlidingActivityHelper {
 	}
 
 	public void toggle() {
+
+        if (!mSlidingMenu.isSlidingEnabled()) return;
+
 		if (mSlidingMenu.isBehindShowing()) {
 			showAbove();
 		} else {
