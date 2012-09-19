@@ -11,10 +11,18 @@
     <application>
         <uses-library android:name="com.google.android.maps" />
 
-        <activity android:name=".SlidingMenuActivity" />
-        <activity android:name=".SlidingFragmentActivity" />
-        <activity android:name=".SlidingListActivity" />
-        <activity android:name=".SlidingPreferenceActivity" />
+        <activity
+            android:name=".SlidingMenuActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".SlidingFragmentActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".SlidingListActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".SlidingPreferenceActivity"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>

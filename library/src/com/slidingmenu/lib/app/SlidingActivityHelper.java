@@ -19,7 +19,8 @@ public class SlidingActivityHelper {
 
 	private SlidingMenu mSlidingMenu;
 	private View mViewAbove;
-	private View mViewBehind;
+	private View mViewBehindLeft;
+	private View mViewBehindRight;
 	private boolean mBroadcasting = false;
 
 	private boolean mOnPostCreateCalled = false;
@@ -36,10 +37,14 @@ public class SlidingActivityHelper {
 	}
 
 	public void onPostCreate(Bundle savedInstanceState) {
-		if (mViewBehind == null || mViewAbove == null) {
-			throw new IllegalStateException("Both setBehindContentView must be called " +
+		if ((mViewBehindLeft == null && mViewBehindRight == null) || mViewAbove == null) {
+			throw new IllegalStateException("Both setBehind[Left|Right]ContentView must be called " +
 					"in onCreate in addition to setContentView.");
 		}
+		if (mViewBehindLeft == null)
+			mSlidingMenu.setViewBehind(null, SlidingMenu.LEFT);
+		if (mViewBehindRight == null)
+			mSlidingMenu.setViewBehind(null, SlidingMenu.RIGHT);
 
 		mOnPostCreateCalled = true;
 		
@@ -103,20 +108,25 @@ public class SlidingActivityHelper {
 		mActivity.setContentView(v);
 	}
 
-	public void setBehindContentView(View v, LayoutParams params) {
-		mViewBehind = v;
-		mSlidingMenu.setViewBehindLeft(mViewBehind);
+	public void setBehindLeftContentView(View v) {
+		mViewBehindLeft = v;
+		mSlidingMenu.setViewBehind(mViewBehindLeft, SlidingMenu.LEFT);
+	}
+	
+	public void setBehindRightContentView(View v) {
+		mViewBehindRight = v;
+		mSlidingMenu.setViewBehind(mViewBehindRight, SlidingMenu.RIGHT);
 	}
 
 	public SlidingMenu getSlidingMenu() {
 		return mSlidingMenu;
 	}
 
-	public void toggle() {
+	public void toggle(int side) {
 		if (mSlidingMenu.isBehindShowing()) {
 			showAbove();
 		} else {
-			showBehind();
+			showBehind(side);
 		}
 	}
 
@@ -124,8 +134,8 @@ public class SlidingActivityHelper {
 		mSlidingMenu.showAbove();
 	}
 
-	public void showBehind() {
-		mSlidingMenu.showBehind();
+	public void showBehind(int side) {
+		mSlidingMenu.showBehind(side);
 	}
 
 	public boolean onKeyUp(int keyCode, KeyEvent event) {

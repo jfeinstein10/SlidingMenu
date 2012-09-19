@@ -49,32 +49,46 @@ public class SlidingActivity extends Activity implements SlidingActivityBase {
 		mHelper.registerAboveContentView(v, params);
 	}
 
-	public void setBehindContentView(int id) {
-		setBehindContentView(getLayoutInflater().inflate(id, null));
+	// behind left view
+	public void setBehindLeftContentView(int id) {
+		setBehindLeftContentView(getLayoutInflater().inflate(id, null));
 	}
 
-	public void setBehindContentView(View v) {
-		setBehindContentView(v, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+	public void setBehindLeftContentView(View v) {
+		setBehindLeftContentView(v, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 	}
 
-	public void setBehindContentView(View v, LayoutParams params) {
-		mHelper.setBehindContentView(v, params);
+	public void setBehindLeftContentView(View v, LayoutParams params) {
+		mHelper.setBehindLeftContentView(v);
+	}
+	
+	// behind right view
+	public void setBehindRightContentView(int id) {
+		setBehindRightContentView(getLayoutInflater().inflate(id, null));
+	}
+
+	public void setBehindRightContentView(View v) {
+		setBehindRightContentView(v, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+	}
+
+	public void setBehindRightContentView(View v, LayoutParams params) {
+		mHelper.setBehindRightContentView(v);
 	}
 
 	public SlidingMenu getSlidingMenu() {
 		return mHelper.getSlidingMenu();
 	}
 
-	public void toggle() {
-		mHelper.toggle();
+	public void toggle(int side) {
+		mHelper.toggle(side);
 	}
 
 	public void showAbove() {
 		mHelper.showAbove();
 	}
 
-	public void showBehind() {
-		mHelper.showBehind();
+	public void showBehind(int side) {
+		mHelper.showBehind(side);
 	}
 
 	public void setSlidingActionBarEnabled(boolean b) {

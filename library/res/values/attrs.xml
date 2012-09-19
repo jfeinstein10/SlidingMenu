@@ -23,11 +23,6 @@
         <attr name="behindOffset" format="dimension" />
         <attr name="behindWidth" format="dimension" />
         <attr name="behindScrollScale" format="float" />
-        <attr name="slidingSides">
-            <enum name="left" value="0" />
-            <enum name="right" value="1" />
-            <enum name="left_right" value="2" />
-        </attr>
         <attr name="aboveTouchMode">
             <enum name="margin" value="0" />
             <enum name="fullscreen" value="1" />

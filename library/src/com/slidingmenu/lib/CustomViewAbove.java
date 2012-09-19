@@ -442,11 +442,7 @@ public class CustomViewAbove extends ViewGroup {
 		if (mViewBehindRight == null)
 			return false;
 
-		if (mViewBehindLeft == null) {
-			return getCurrentItem() == 1;
-		} else {
-			return getCurrentItem() == 2;
-		}
+		return getCurrentItem() == 2;
 	}
 
 	public boolean isLeftOpen() {
@@ -458,7 +454,9 @@ public class CustomViewAbove extends ViewGroup {
 	}
 
 	public int getCustomWidth() {
-		int i = isLeftOpen()? 0 : 1;
+		int i = 1;
+		i = isLeftOpen()? 0 : i;
+		i = isRightOpen()? 2 : i;
 		return getChildWidth(i);
 	}
 
@@ -488,17 +486,18 @@ public class CustomViewAbove extends ViewGroup {
 			}
 		}
 		return 0;
-//		if (i <= 0) {
-//			return getBehindWidth();
-//		} else {
-//			return getChildAt(i).getWidth();
-//		}
+		//		if (i <= 0) {
+		//			return getBehindWidth();
+		//		} else {
+		//			return getChildAt(i).getWidth();
+		//		}
 	}
 
 	public int getBehindWidth() {
-		if (mViewBehindLeft != null) {
-			return mViewBehindLeft.getWidth();
-		} else if (mViewBehindRight != null) {
+		//		if (mViewBehindLeft != null) {
+		//			return mViewBehindLeft.getWidth();
+		//		} else 
+		if (mViewBehindRight != null) {
 			return mViewBehindRight.getWidth();
 		} else {
 			return 0;
@@ -587,7 +586,8 @@ public class CustomViewAbove extends ViewGroup {
 		if (mContent.getChildCount() > 0) {
 			mContent.removeAllViews();
 		}
-		mContent.addView(v);
+		if (v != null)
+			mContent.addView(v);
 	}
 
 	public void setViewBehindLeft(CustomViewBehind cvb) {
@@ -602,7 +602,7 @@ public class CustomViewAbove extends ViewGroup {
 		int count = 1;
 		count += (mViewBehindLeft != null) ? 1 : 0;
 		count += (mViewBehindRight != null) ? 1 : 0;
-		return count;
+		return 3;
 	}
 
 	@Override
@@ -996,16 +996,25 @@ public class CustomViewAbove extends ViewGroup {
 		return true;
 	}
 
-	private float mScrollScale;
+	private float mScrollScaleLeft;
+	private float mScrollScaleRight;
 
-	public float getScrollScale() {
-		return mScrollScale;
+	public float getScrollScale(int side) {
+		if (side == SlidingMenu.LEFT) {
+			return mScrollScaleLeft;
+		} else {
+			return mScrollScaleRight;
+		}
 	}
 
-	public void setScrollScale(float f) {
+	public void setScrollScale(float f, int side) {
 		if (f < 0 && f > 1)
 			throw new IllegalArgumentException("ScrollScale must be between 0 and 1");
-		mScrollScale = f;
+		if (side == SlidingMenu.LEFT) {
+			mScrollScaleLeft = f;
+		} else if (side == SlidingMenu.RIGHT) {
+			mScrollScaleRight = f;
+		}
 	}
 
 	@Override
@@ -1033,10 +1042,10 @@ public class CustomViewAbove extends ViewGroup {
 		}
 		// scroll the behind views
 		if (mViewBehindLeft != null && mEnabled) {
-			mViewBehindLeft.scrollTo((int)(x*mScrollScale), y);
+			mViewBehindLeft.scrollTo((int)(x*mScrollScaleLeft), y);
 		}
 		if (mViewBehindRight != null && mEnabled) {
-			int x2 = (int) ((x - 2*getBehindWidth()) * mScrollScale);
+			int x2 = (int) ((x - 2*getBehindWidth()) * mScrollScaleRight);
 			mViewBehindRight.scrollTo(x2, y);
 		}
 
@@ -1095,8 +1104,8 @@ public class CustomViewAbove extends ViewGroup {
 		if (mContent != null) {
 			int leftPadding = mContent.getPaddingLeft() + insets.left;
 			int rightPadding = mContent.getPaddingRight() + insets.right;
-			int topPadding = mContent.getPaddingTop() + insets.top;
-			int bottomPadding = mContent.getPaddingBottom() + insets.bottom;
+			int topPadding = insets.top;
+			int bottomPadding = insets.bottom;
 			mContent.setPadding(leftPadding, topPadding, rightPadding, bottomPadding);
 			return true;
 		}
