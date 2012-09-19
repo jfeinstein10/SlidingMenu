@@ -945,8 +945,8 @@ public class CustomViewAbove extends ViewGroup {
         if (mContent != null) {
             int leftPadding = mContent.getPaddingLeft() + insets.left;
             int rightPadding = mContent.getPaddingRight() + insets.right;
-            int topPadding = mContent.getPaddingTop() + insets.top;
-            int bottomPadding = mContent.getPaddingBottom() + insets.bottom;
+            int topPadding = insets.top;
+            int bottomPadding = insets.bottom;
             mContent.setPadding(leftPadding, topPadding, rightPadding, bottomPadding);
             return true;
         }
