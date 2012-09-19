@@ -1014,6 +1014,9 @@ public class CustomViewAbove extends ViewGroup {
 			mScrollScaleLeft = f;
 		} else if (side == SlidingMenu.RIGHT) {
 			mScrollScaleRight = f;
+		} else if (side == SlidingMenu.BOTH) {
+			mScrollScaleLeft = f;
+			mScrollScaleRight = f;
 		}
 	}
 
