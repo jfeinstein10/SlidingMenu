@@ -796,9 +796,6 @@ public class CustomViewAbove extends ViewGroup {
 
 		final int action = ev.getAction() & MotionEventCompat.ACTION_MASK;
 
-		if (action == MotionEvent.ACTION_DOWN)
-			Log.v(TAG, "Received ACTION_DOWN");
-
 		if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP) {
 			mIsBeingDragged = false;
 			mIsUnableToDrag = false;
@@ -842,7 +839,6 @@ public class CustomViewAbove extends ViewGroup {
 		case MotionEvent.ACTION_DOWN:
 			mActivePointerId = ev.getAction() & ((Build.VERSION.SDK_INT >= 8) ? MotionEvent.ACTION_POINTER_INDEX_MASK : 
 				MotionEvent.ACTION_POINTER_ID_MASK);
-			Log.v(TAG, "active pointer id : " + mActivePointerId);
 			mLastMotionX = mInitialMotionX = MotionEventCompat.getX(ev, mActivePointerId);
 			mLastMotionY = MotionEventCompat.getY(ev, mActivePointerId);
 			if (thisTouchAllowed(ev)) {
@@ -1064,7 +1060,7 @@ public class CustomViewAbove extends ViewGroup {
 		} else {
 			targetPage = (int) (currentPage + pageOffset + 0.5f);
 		}
-		Log.v(TAG, "targetPage : " + targetPage);
+		if (DEBUG) Log.v(TAG, "targetPage : " + targetPage);
 		return targetPage;
 	}
 
@@ -1096,26 +1092,6 @@ public class CustomViewAbove extends ViewGroup {
 			onDrawMenuSelector(canvas);
 	}
 
-	/**
-	 * Pads our content window so that it fits within the system windows.
-	 * @param insets The insets by which we need to offset our view.
-	 * @return True since we handled the padding change.
-	 */
-	@Override
-	protected boolean fitSystemWindows(Rect insets) {
-
-		if (mContent != null) {
-			int leftPadding = mContent.getPaddingLeft() + insets.left;
-			int rightPadding = mContent.getPaddingRight() + insets.right;
-			int topPadding = insets.top;
-			int bottomPadding = insets.bottom;
-			mContent.setPadding(leftPadding, topPadding, rightPadding, bottomPadding);
-			return true;
-		}
-
-		return super.fitSystemWindows(insets);
-	}
-
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
@@ -1131,7 +1107,6 @@ public class CustomViewAbove extends ViewGroup {
 	private boolean mSelectorEnabled = true;
 	private Bitmap mSelectorDrawable;
 	private View mSelectedView;
-
 
 	private void onDrawBehindFade(Canvas canvas) {
 		int alpha;

@@ -543,7 +543,8 @@ public class SlidingMenu extends RelativeLayout {
 		int bottomPadding = insets.bottom;
 		this.setPadding(leftPadding, topPadding, rightPadding, bottomPadding);
 
-		return super.fitSystemWindows(insets);
+		// return false to propagate the fit to our child views
+		return false;
 	}
 
 }

@@ -15,15 +15,15 @@ public class PropertiesActivity extends BaseActivity {
 	public PropertiesActivity() {
 		super(R.string.properties);
 	}
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		setSlidingActionBarEnabled(true);
-		
+
 		setContentView(R.layout.properties);
-		
+
 		// touch mode stuff
 		RadioGroup touchAbove = (RadioGroup) findViewById(R.id.touch_above);
 		touchAbove.check(R.id.touch_above_margin);
@@ -40,7 +40,7 @@ public class PropertiesActivity extends BaseActivity {
 				}
 			}
 		});
-		
+
 		RadioGroup touchBehind = (RadioGroup) findViewById(R.id.touch_behind);
 		touchBehind.check(R.id.touch_behind_margin);
 		touchBehind.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -57,7 +57,7 @@ public class PropertiesActivity extends BaseActivity {
 			}			
 		});
 
-		
+
 		// scroll scale stuff
 		SeekBar scrollScale = (SeekBar) findViewById(R.id.scroll_scale);
 		scrollScale.setMax(1000);
@@ -70,11 +70,11 @@ public class PropertiesActivity extends BaseActivity {
 			public void onStartTrackingTouch(SeekBar seekBar) { }
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
-				getSlidingMenu().setBehindScrollScale((float) seekBar.getProgress()/seekBar.getMax());
+				getSlidingMenu().setBehindScrollScale((float) seekBar.getProgress()/seekBar.getMax(), SlidingMenu.BOTH);
 			}
 		});
-		
-		
+
+
 		// behind width stuff
 		SeekBar behindWidth = (SeekBar) findViewById(R.id.behind_width);
 		behindWidth.setMax(1000);
@@ -88,11 +88,11 @@ public class PropertiesActivity extends BaseActivity {
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
 				float percent = (float) seekBar.getProgress()/seekBar.getMax();
-				getSlidingMenu().setBehindWidth((int) (percent * getSlidingMenu().getWidth()));
+				getSlidingMenu().setBehindWidth((int) (percent * getSlidingMenu().getWidth()), SlidingMenu.BOTH);
 			}
 		});
-		
-		
+
+
 		// fading stuff
 		CheckBox fadeEnabled = (CheckBox) findViewById(R.id.fade_enabled);
 		fadeEnabled.setChecked(true);

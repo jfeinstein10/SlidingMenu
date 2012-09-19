@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 
 import com.slidingmenu.lib.SlidingMenu;
 import com.slidingmenu.lib.app.SlidingFragmentActivity;
@@ -32,17 +33,18 @@ public class BaseActivity extends SlidingFragmentActivity {
 		setTitle(mTitleRes);
 
 		// set the Behind View
-		setBehindContentView(R.layout.menu_frame);
+		setBehindLeftContentView(R.layout.menu_frame);
 		FragmentTransaction t = this.getSupportFragmentManager().beginTransaction();
 		mFrag = new SampleListFragment();
 		t.replace(R.id.menu_frame, mFrag);
 		t.commit();
+		setBehindRightContentView(R.layout.test);
 
 		// customize the SlidingMenu
 		SlidingMenu sm = getSlidingMenu();
 		sm.setShadowWidthRes(R.dimen.shadow_width);
 		sm.setShadowDrawable(R.drawable.shadow);
-		sm.setBehindOffsetRes(R.dimen.actionbar_home_width);
+		sm.setBehindOffsetRes(R.dimen.actionbar_home_width, SlidingMenu.LEFT | SlidingMenu.RIGHT);
 
 		// customize the ActionBar
 		if (Build.VERSION.SDK_INT >= 11) {
@@ -54,7 +56,7 @@ public class BaseActivity extends SlidingFragmentActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			toggle();
+			toggle(SlidingMenu.LEFT);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

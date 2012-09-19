@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.animation.Interpolator;
 
+import com.slidingmenu.lib.SlidingMenu;
 import com.slidingmenu.lib.SlidingMenu.CanvasTransformer;
 
 public class CustomRotateAnimation extends CustomAnimation {
@@ -31,7 +32,7 @@ public class CustomRotateAnimation extends CustomAnimation {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		getSlidingMenu().setBehindScrollScale(1);
+		getSlidingMenu().setBehindScrollScale(1, SlidingMenu.BOTH);
 	}
 
 }
