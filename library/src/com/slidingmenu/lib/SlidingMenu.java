@@ -36,6 +36,9 @@ public class SlidingMenu extends RelativeLayout {
 	private OnCloseListener mCloseListener;
 
     private boolean mSlidingEnabled;
+    
+    private boolean mStartWithMenuOpen;
+    private int mDelayMillis;
 
 	public static void attachSlidingMenu(Activity activity, SlidingMenu sm, boolean slidingTitle) {
 
@@ -190,6 +193,25 @@ public class SlidingMenu extends RelativeLayout {
 	public boolean isSlidingEnabled() {
 		return mViewAbove.isSlidingEnabled();
 	}
+	
+	/**
+	 * Starts showing the behind view and then animating a toggle after a delay.
+	 * @param startWithMenuOpen Whether or not to start showing the behind view.
+	 * @param delayMillis Delay in millisecond after which the toggle is called. 
+	 * If startWithMenuOpen is false nothing happens,
+	 */
+	public void setStartWithMenuOpen(boolean startWithMenuOpen, int toggleAfterDelayMillis) {
+		mStartWithMenuOpen = startWithMenuOpen;
+		mDelayMillis = toggleAfterDelayMillis;
+	}
+	
+	public boolean isStartingWithMenuOpen() {
+		return mStartWithMenuOpen;
+	}
+	
+	public int getToggleAfterDelayMillis(){
+		return mDelayMillis;
+	}
 
 	/**
 	 * 
@@ -224,6 +246,20 @@ public class SlidingMenu extends RelativeLayout {
 		mViewAbove.setCurrentItem(1);
 	}
 
+	/**
+	 * Shows the behind view without animation
+	 */
+	public void showBehindNoAnimation() {
+		mViewAbove.setCurrentItem(0, false);
+	}
+
+	/**
+	 * Shows the above view without animation
+	 */
+	public void showAboveNoAnimation() {
+		mViewAbove.setCurrentItem(1, false);
+	}
+	
 	/**
 	 * 
 	 * @return Whether or not the behind view is showing

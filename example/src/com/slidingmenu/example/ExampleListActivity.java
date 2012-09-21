@@ -36,6 +36,8 @@ public class ExampleListActivity extends PreferenceActivity {
 		String title = pref.getTitle().toString();
 		if (title.equals(getString(R.string.properties))) {
 			cls = PropertiesActivity.class;	
+		} else if (title.equals(getString(R.string.start_with_menu_open))) {
+			cls = StartWithMenuOpen.class;
 		} else if (title.equals(getString(R.string.title_bar_slide))) {
 			cls = SlidingTitleBar.class;
 		} else if (title.equals(getString(R.string.title_bar_content))) {

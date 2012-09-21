@@ -28,6 +28,12 @@ public class SlidingListActivity extends ListActivity implements SlidingActivity
 		super.onPostCreate(savedInstanceState);
 		mHelper.onPostCreate(savedInstanceState);
 	}
+	
+	@Override
+	public void onStop() {
+		super.onStop();
+		mHelper.onStop();
+	}
 
 	@Override
 	public View findViewById(int id) {
@@ -85,6 +91,10 @@ public class SlidingListActivity extends ListActivity implements SlidingActivity
 		mHelper.setSlidingActionBarEnabled(b);
 	}
 
+	public void setStartWithMenuOpen(boolean startWithMenuOpen, int toggleAfterDelayMillis) {
+		mHelper.getSlidingMenu().setStartWithMenuOpen(startWithMenuOpen, toggleAfterDelayMillis);
+	}
+	
 	@Override
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
 		boolean b = mHelper.onKeyUp(keyCode, event);

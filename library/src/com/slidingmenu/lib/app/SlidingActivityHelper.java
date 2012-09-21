@@ -35,14 +35,13 @@ public class SlidingActivityHelper {
 
 	public void onPostCreate(Bundle savedInstanceState) {
 		if (mViewBehind == null || mViewAbove == null) {
-			throw new IllegalStateException("Both setBehindContentView must be called " +
-					"in onCreate in addition to setContentView.");
+			throw new IllegalStateException("Both setBehindContentView must be called " + "in onCreate in addition to setContentView.");
 		}
 
 		mOnPostCreateCalled = true;
 
 		// get the window background
-		TypedArray a = mActivity.getTheme().obtainStyledAttributes(new int[] {android.R.attr.windowBackground});
+		TypedArray a = mActivity.getTheme().obtainStyledAttributes(new int[] { android.R.attr.windowBackground });
 		int background = a.getResourceId(0, 0);
 
 		if (mEnableSlide) {
@@ -66,6 +65,25 @@ public class SlidingActivityHelper {
 			}
 			mSlidingMenu.setContent(mViewAbove);
 			parent.addView(mSlidingMenu, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+		}
+
+		// only if this is the first time that we are showing the activity
+		if (mSlidingMenu.isStartingWithMenuOpen() && savedInstanceState == null) {
+			mSlidingMenu.showBehindNoAnimation();
+			mSlidingMenu.postDelayed(new Runnable() {
+
+				public void run() {
+					toggle();
+
+				}
+			}, mSlidingMenu.getToggleAfterDelayMillis());
+		}
+
+	}
+	
+	public void onStop(){
+		if(mSlidingMenu.isStartingWithMenuOpen()) {
+			mSlidingMenu.showAboveNoAnimation();
 		}
 	}
 
