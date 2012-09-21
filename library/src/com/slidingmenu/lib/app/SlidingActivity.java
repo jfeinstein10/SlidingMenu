@@ -90,6 +90,10 @@ public class SlidingActivity extends Activity implements SlidingActivityBase {
 	public void setStartWithMenuOpen(boolean startWithMenuOpen, int toggleAfterDelayMillis) {
 		mHelper.getSlidingMenu().setStartWithMenuOpen(startWithMenuOpen, toggleAfterDelayMillis);
 	}
+	
+	public void setCloseMenuOnExit(boolean closeMenuOnExit){
+		mHelper.getSlidingMenu().setCloseMenuOnExit(closeMenuOnExit);
+	}
 
 	@Override
 	public boolean onKeyUp(int keyCode, KeyEvent event) {

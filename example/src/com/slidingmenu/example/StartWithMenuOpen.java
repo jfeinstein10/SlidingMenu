@@ -30,7 +30,8 @@ public class StartWithMenuOpen extends BaseActivity {
 		setSlidingActionBarEnabled(true);
 		if (getIntent().getBooleanExtra("startWithMenuOpen", false)) {
 			setStartWithMenuOpen(true, 1000);
-		}
+		}	
+		setCloseMenuOnExit(true);
 
 		int[] colors = { Color.GREEN, Color.BLUE, Color.YELLOW, Color.MAGENTA, Color.RED, Color.CYAN };
 		Random randomGenerator = new Random();

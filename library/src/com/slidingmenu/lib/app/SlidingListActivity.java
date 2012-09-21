@@ -95,6 +95,10 @@ public class SlidingListActivity extends ListActivity implements SlidingActivity
 		mHelper.getSlidingMenu().setStartWithMenuOpen(startWithMenuOpen, toggleAfterDelayMillis);
 	}
 	
+	public void setCloseMenuOnExit(boolean closeMenuOnExit){
+		mHelper.getSlidingMenu().setCloseMenuOnExit(closeMenuOnExit);
+	}
+	
 	@Override
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
 		boolean b = mHelper.onKeyUp(keyCode, event);

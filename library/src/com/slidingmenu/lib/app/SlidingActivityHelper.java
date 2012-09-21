@@ -82,7 +82,7 @@ public class SlidingActivityHelper {
 	}
 	
 	public void onStop(){
-		if(mSlidingMenu.isStartingWithMenuOpen()) {
+		if(mSlidingMenu.isClosingMenuOnExit()) {
 			mSlidingMenu.showAboveNoAnimation();
 		}
 	}

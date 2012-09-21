@@ -39,6 +39,7 @@ public class SlidingMenu extends RelativeLayout {
     
     private boolean mStartWithMenuOpen;
     private int mDelayMillis;
+    private boolean mCloseMenuOnExit;
 
 	public static void attachSlidingMenu(Activity activity, SlidingMenu sm, boolean slidingTitle) {
 
@@ -211,6 +212,17 @@ public class SlidingMenu extends RelativeLayout {
 	
 	public int getToggleAfterDelayMillis(){
 		return mDelayMillis;
+	}
+	
+	/**
+	 * @param closeMenuOnExit Whether or not to close the menu when the activity is stopped.
+	 */
+	public void setCloseMenuOnExit(boolean closeMenuOnExit) {
+		mCloseMenuOnExit = closeMenuOnExit;
+	}
+	
+	public boolean isClosingMenuOnExit() {
+		return mCloseMenuOnExit;
 	}
 
 	/**
