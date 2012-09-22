@@ -243,6 +243,14 @@ public class SlidingMenu extends RelativeLayout {
 			setSlidingEnabled(true);
 		}
 	}
+	
+	public void toggle() {
+		if (isBehindShowing()) {
+			showAbove();
+		} else {
+			showBehind();
+		}
+	}
 
 	/**
 	 * Shows the behind view

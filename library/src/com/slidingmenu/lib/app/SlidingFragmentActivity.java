@@ -71,30 +71,10 @@ public class SlidingFragmentActivity extends FragmentActivity implements Sliding
 		return mHelper.getSlidingMenu();
 	}
 
-	public void toggle() {
-		mHelper.toggle();
-	}
-
-	public void showAbove() {
-		mHelper.showAbove();
-	}
-
-	public void showBehind() {
-		mHelper.showBehind();
-	}
-
 	public void setSlidingActionBarEnabled(boolean b) {
 		mHelper.setSlidingActionBarEnabled(b);
 	}
 	
-	public void setStartWithMenuOpen(boolean startWithMenuOpen, int toggleAfterDelayMillis) {
-		mHelper.getSlidingMenu().setStartWithMenuOpen(startWithMenuOpen, toggleAfterDelayMillis);
-	}
-	
-	public void setCloseMenuOnExit(boolean closeMenuOnExit){
-		mHelper.getSlidingMenu().setCloseMenuOnExit(closeMenuOnExit);
-	}
-
 	@Override
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
 		boolean b = mHelper.onKeyUp(keyCode, event);

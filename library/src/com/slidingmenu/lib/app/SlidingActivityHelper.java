@@ -73,7 +73,7 @@ public class SlidingActivityHelper {
 			mSlidingMenu.postDelayed(new Runnable() {
 
 				public void run() {
-					toggle();
+					mSlidingMenu.showAbove();
 
 				}
 			}, mSlidingMenu.getToggleAfterDelayMillis());
@@ -122,25 +122,9 @@ public class SlidingActivityHelper {
 		return mSlidingMenu;
 	}
 
-	public void toggle() {
-		if (mSlidingMenu.isBehindShowing()) {
-			showAbove();
-		} else {
-			showBehind();
-		}
-	}
-
-	public void showAbove() {
-		mSlidingMenu.showAbove();
-	}
-
-	public void showBehind() {
-		mSlidingMenu.showBehind();
-	}
-
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK && mSlidingMenu.isBehindShowing()) {
-			showAbove();
+			mSlidingMenu.showAbove();
 			return true;
 		}
 		return false;

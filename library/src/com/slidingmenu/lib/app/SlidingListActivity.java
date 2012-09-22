@@ -75,28 +75,8 @@ public class SlidingListActivity extends ListActivity implements SlidingActivity
 		return mHelper.getSlidingMenu();
 	}
 
-	public void toggle() {
-		mHelper.toggle();
-	}
-
-	public void showAbove() {
-		mHelper.showAbove();
-	}
-
-	public void showBehind() {
-		mHelper.showBehind();
-	}
-
 	public void setSlidingActionBarEnabled(boolean b) {
 		mHelper.setSlidingActionBarEnabled(b);
-	}
-
-	public void setStartWithMenuOpen(boolean startWithMenuOpen, int toggleAfterDelayMillis) {
-		mHelper.getSlidingMenu().setStartWithMenuOpen(startWithMenuOpen, toggleAfterDelayMillis);
-	}
-	
-	public void setCloseMenuOnExit(boolean closeMenuOnExit){
-		mHelper.getSlidingMenu().setCloseMenuOnExit(closeMenuOnExit);
 	}
 	
 	@Override

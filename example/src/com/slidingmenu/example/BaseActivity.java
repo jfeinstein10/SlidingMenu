@@ -54,7 +54,7 @@ public class BaseActivity extends SlidingFragmentActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			toggle();
+			getSlidingMenu().toggle();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
