@@ -76,7 +76,7 @@ public class SlidingActivityHelper {
 					mSlidingMenu.showAbove();
 
 				}
-			}, mSlidingMenu.getToggleAfterDelayMillis());
+			}, mSlidingMenu.getCloseAfterDelayMillis());
 		}
 
 	}

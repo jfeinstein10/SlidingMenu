@@ -38,7 +38,7 @@ public class SlidingMenu extends RelativeLayout {
     private boolean mSlidingEnabled;
     
     private boolean mStartWithMenuOpen;
-    private int mDelayMillis;
+    private int mCloseAfterDelayMillis;
     private boolean mCloseMenuOnExit;
 
 	public static void attachSlidingMenu(Activity activity, SlidingMenu sm, boolean slidingTitle) {
@@ -201,17 +201,17 @@ public class SlidingMenu extends RelativeLayout {
 	 * @param delayMillis Delay in millisecond after which the toggle is called. 
 	 * If startWithMenuOpen is false nothing happens,
 	 */
-	public void setStartWithMenuOpen(boolean startWithMenuOpen, int toggleAfterDelayMillis) {
+	public void setStartWithMenuOpen(boolean startWithMenuOpen, int closeAfterDelayMillis) {
 		mStartWithMenuOpen = startWithMenuOpen;
-		mDelayMillis = toggleAfterDelayMillis;
+		mCloseAfterDelayMillis = closeAfterDelayMillis;
 	}
 	
 	public boolean isStartingWithMenuOpen() {
 		return mStartWithMenuOpen;
 	}
 	
-	public int getToggleAfterDelayMillis(){
-		return mDelayMillis;
+	public int getCloseAfterDelayMillis(){
+		return mCloseAfterDelayMillis;
 	}
 	
 	/**
