@@ -1025,7 +1025,8 @@ public class CustomViewAbove extends ViewGroup {
 			mViewBehindLeft.scrollTo((int)(x*mScrollScaleLeft), y);
 		}
 		if (mViewBehindRight != null && mEnabled) {
-			int x2 = (int) ((x - mContent.getRight()) * mScrollScaleRight);
+			int x2 = (int) ((x - mContent.getLeft() - mViewBehindRight.getWidth()) * mScrollScaleRight);
+			Log.v(TAG, "scrolling right to " + x2);
 			mViewBehindRight.scrollTo(x2, y);
 		}
 
