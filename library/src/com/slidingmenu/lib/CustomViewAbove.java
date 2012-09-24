@@ -937,7 +937,6 @@ public class CustomViewAbove extends ViewGroup {
 				float scrollX = oldScrollX + deltaX;
 				final float leftBound = getLeftScrollBound();
 				final float rightBound = getRightScrollBound();
-				Log.v(TAG, "leftBound: " + leftBound +", rightBound:" + rightBound);
 				if (scrollX < leftBound) {
 					scrollX = leftBound;
 				} else if (scrollX > rightBound) {
@@ -1086,7 +1085,7 @@ public class CustomViewAbove extends ViewGroup {
 		super.dispatchDraw(canvas);
 		final int behindWidth = getBehindWidth();
 		// Draw the margin drawable if needed
-		if (mShadowWidth > 0 && mShadowDrawableLeft != null) {
+		if (mShadowWidth > 0) {
 			if (mShadowDrawableLeft != null) {
 				final int left = behindWidth - mShadowWidth;
 				mShadowDrawableLeft.setBounds(left, 0, left + mShadowWidth, getHeight());
