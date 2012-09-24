@@ -161,7 +161,7 @@ public class SlidingMenu extends RelativeLayout {
 		setBehindScrollScale(scrollOffsetBehind, BOTH);
 		int shadowRes = ta.getResourceId(R.styleable.SlidingMenu_shadowDrawable, -1);
 		if (shadowRes != -1) {
-			setShadowDrawable(shadowRes);
+			setShadowDrawable(shadowRes, BOTH);
 		}
 		int shadowWidth = (int) ta.getDimension(R.styleable.SlidingMenu_shadowWidth, 0);
 		setShadowWidth(shadowWidth);
@@ -199,9 +199,11 @@ public class SlidingMenu extends RelativeLayout {
 	public void removeViewBehind(int side) {
 		if (isLeft(side)) {
 			mViewAbove.setViewBehindLeft(null);
+			removeView(mViewBehindLeft);
 			mViewBehindLeft = null;
 		} else if (isRight(side)) {
 			mViewAbove.setViewBehindRight(null);
+			removeView(mViewBehindRight);
 			mViewBehindRight = null;
 		}
 	}
@@ -422,8 +424,8 @@ public class SlidingMenu extends RelativeLayout {
 		mViewAbove.setTouchModeBehind(i);
 	}
 
-	public void setShadowDrawable(int resId) {
-		mViewAbove.setShadowDrawable(resId);
+	public void setShadowDrawable(int resId, int side) {
+		mViewAbove.setShadowDrawable(resId, side);
 	}
 
 	public void setShadowWidthRes(int resId) {

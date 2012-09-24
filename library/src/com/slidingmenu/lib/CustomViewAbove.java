@@ -61,7 +61,8 @@ public class CustomViewAbove extends ViewGroup {
 	private Scroller mScroller;
 
 	private int mShadowWidth;
-	private Drawable mShadowDrawable;
+	private Drawable mShadowDrawableLeft;
+	private Drawable mShadowDrawableRight;
 
 	private boolean mScrollingCacheEnabled;
 
@@ -266,11 +267,14 @@ public class CustomViewAbove extends ViewGroup {
 			setScrollingCacheEnabled(false);
 			return;
 		}
+		
+		int start = mViewBehindLeft == null ? 1 : 0;
+		int end = mViewBehindRight == null ? 1 : 2;
 		// TODO count accordingly
-		if (item < 0) {
-			item = 0;
-		} else if (item >= getViewCount()) {
-			item = getViewCount() - 1;
+		if (item < start) {
+			item = start;
+		} else if (item > end) {
+			item = end;
 		}
 
 		final boolean dispatchSelected = mCurItem != item;
@@ -355,10 +359,19 @@ public class CustomViewAbove extends ViewGroup {
 	 *
 	 * @param d Drawable to display between pages
 	 */
-	public void setShadowDrawable(Drawable d) {
-		mShadowDrawable = d;
+	public void setShadowDrawable(Drawable d, int side) {
+		if (side == SlidingMenu.LEFT) {
+			Log.v(TAG, "setting left");
+			mShadowDrawableLeft = d;
+		} else if (side == SlidingMenu.RIGHT) {
+			Log.v(TAG, "setting right");
+			mShadowDrawableRight = d;
+		} else if (side == SlidingMenu.BOTH) {
+			Log.v(TAG, "setting both");
+			mShadowDrawableLeft = d;
+			mShadowDrawableRight = d;
+		}
 		if (d != null) refreshDrawableState();
-		setWillNotDraw(d == null);
 		invalidate();
 	}
 
@@ -367,21 +380,21 @@ public class CustomViewAbove extends ViewGroup {
 	 *
 	 * @param resId Resource ID of a drawable to display between pages
 	 */
-	public void setShadowDrawable(int resId) {
-		setShadowDrawable(getContext().getResources().getDrawable(resId));
+	public void setShadowDrawable(int resId, int side) {
+		setShadowDrawable(getContext().getResources().getDrawable(resId), side);
 	}
 
 
 	@Override
 	protected boolean verifyDrawable(Drawable who) {
-		return super.verifyDrawable(who) || who == mShadowDrawable;
+		return super.verifyDrawable(who) || who == mShadowDrawableLeft || who == mShadowDrawableRight;
 	}
 
 
 	@Override
 	protected void drawableStateChanged() {
 		super.drawableStateChanged();
-		final Drawable d = mShadowDrawable;
+		final Drawable d = mShadowDrawableLeft;
 		if (d != null && d.isStateful()) {
 			d.setState(getDrawableState());
 		}
@@ -404,16 +417,16 @@ public class CustomViewAbove extends ViewGroup {
 		case 1:
 			return getBehindWidth();
 		case 2:
-			return 2*getBehindWidth();
+			return mContent.getLeft() + mViewBehindRight.getWidth();
 		}
 		throw new RuntimeException("This should never happen!");
 	}
 
 	public int getRightScrollBound() {
 		if (mViewBehindRight != null) {
-			return 2*getBehindWidth();
+			return mContent.getLeft() + mViewBehindRight.getWidth();
 		} else {
-			return getBehindWidth();
+			return mContent.getLeft();
 		}
 	}
 
@@ -421,7 +434,7 @@ public class CustomViewAbove extends ViewGroup {
 		if (mViewBehindLeft != null) {
 			return 0;
 		} else {
-			return getBehindWidth();
+			return mContent.getLeft();
 		}
 	}
 
@@ -432,10 +445,6 @@ public class CustomViewAbove extends ViewGroup {
 
 	public int getChildRight(int i) {
 		return getChildLeft(i) + getChildWidth(i);
-	}
-
-	public int getContentRight() {
-		return mContent.getRight();
 	}
 
 	public boolean isRightOpen() {
@@ -494,10 +503,9 @@ public class CustomViewAbove extends ViewGroup {
 	}
 
 	public int getBehindWidth() {
-		//		if (mViewBehindLeft != null) {
-		//			return mViewBehindLeft.getWidth();
-		//		} else 
-		if (mViewBehindRight != null) {
+		if (mViewBehindLeft != null) {
+			return mViewBehindLeft.getWidth();
+		} else if (mViewBehindRight != null) {
 			return mViewBehindRight.getWidth();
 		} else {
 			return 0;
@@ -602,7 +610,7 @@ public class CustomViewAbove extends ViewGroup {
 		int count = 1;
 		count += (mViewBehindLeft != null) ? 1 : 0;
 		count += (mViewBehindRight != null) ? 1 : 0;
-		return 3;
+		return count;
 	}
 
 	@Override
@@ -760,7 +768,7 @@ public class CustomViewAbove extends ViewGroup {
 			case SlidingMenu.TOUCHMODE_FULLSCREEN:
 				return true;
 			case SlidingMenu.TOUCHMODE_MARGIN:
-				return x <= getContentRight();
+				return x <= mContent.getRight();
 			default:
 				return false;
 			}
@@ -929,6 +937,7 @@ public class CustomViewAbove extends ViewGroup {
 				float scrollX = oldScrollX + deltaX;
 				final float leftBound = getLeftScrollBound();
 				final float rightBound = getRightScrollBound();
+				Log.v(TAG, "leftBound: " + leftBound +", rightBound:" + rightBound);
 				if (scrollX < leftBound) {
 					scrollX = leftBound;
 				} else if (scrollX > rightBound) {
@@ -1044,11 +1053,11 @@ public class CustomViewAbove extends ViewGroup {
 			mViewBehindLeft.scrollTo((int)(x*mScrollScaleLeft), y);
 		}
 		if (mViewBehindRight != null && mEnabled) {
-			int x2 = (int) ((x - 2*getBehindWidth()) * mScrollScaleRight);
+			int x2 = (int) ((x - mContent.getRight()) * mScrollScaleRight);
 			mViewBehindRight.scrollTo(x2, y);
 		}
 
-		if (mShadowDrawable != null || mSelectorDrawable != null)
+		if (mShadowDrawableLeft != null || mSelectorDrawable != null)
 			invalidate();
 	}
 
@@ -1065,11 +1074,11 @@ public class CustomViewAbove extends ViewGroup {
 	}
 
 	protected float getPercentOpenLeft() {
-		return (getBehindWidth() - mScrollX) / getBehindWidth();		
+		return (getBehindWidth() - mScrollX) / mViewBehindLeft.getWidth();		
 	}
 
 	protected float getPercentOpenRight() {
-		return (getWidth() - (getContentRight() - mScrollX)) / getBehindWidth();
+		return (getWidth() - (mContent.getRight() - mScrollX)) / mViewBehindRight.getWidth();
 	}
 
 	@Override
@@ -1077,12 +1086,17 @@ public class CustomViewAbove extends ViewGroup {
 		super.dispatchDraw(canvas);
 		final int behindWidth = getBehindWidth();
 		// Draw the margin drawable if needed
-		if (mShadowWidth > 0 && mShadowDrawable != null) {
-			final int left = behindWidth - mShadowWidth;
-			mShadowDrawable.setBounds(left, 0, left + mShadowWidth, getHeight());
-			mShadowDrawable.draw(canvas);
-			mShadowDrawable.setBounds(getContentRight(), 0, getContentRight() + mShadowWidth, getHeight());
-			mShadowDrawable.draw(canvas);
+		if (mShadowWidth > 0 && mShadowDrawableLeft != null) {
+			if (mShadowDrawableLeft != null) {
+				final int left = behindWidth - mShadowWidth;
+				mShadowDrawableLeft.setBounds(left, 0, left + mShadowWidth, getHeight());
+				mShadowDrawableLeft.draw(canvas);
+			}
+			if (mShadowDrawableRight != null) {
+				mShadowDrawableRight.setBounds(mContent.getRight(), 0, mContent.getRight() + mShadowWidth, getHeight());
+				Log.v(TAG, "content right " + mContent.getRight());
+				mShadowDrawableRight.draw(canvas);
+			}
 		}
 
 		if (mFadeEnabled)
@@ -1090,11 +1104,6 @@ public class CustomViewAbove extends ViewGroup {
 
 		if (mSelectorEnabled)
 			onDrawMenuSelector(canvas);
-	}
-
-	@Override
-	protected void onDraw(Canvas canvas) {
-		super.onDraw(canvas);
 	}
 
 	// variables for drawing
@@ -1121,7 +1130,7 @@ public class CustomViewAbove extends ViewGroup {
 			alpha = (int) (mFadeDegree * 255 * Math.abs(1-getPercentOpenRight()));
 			if (alpha > 0) {
 				mBehindFadePaint.setColor(Color.argb(alpha, 0, 0, 0));
-				canvas.drawRect(getContentRight(), 0, getContentRight() + getBehindWidth(),
+				canvas.drawRect(mContent.getRight(), 0, mContent.getRight() + mViewBehindRight.getWidth(),
 						getHeight(), mBehindFadePaint);
 			}
 		}
