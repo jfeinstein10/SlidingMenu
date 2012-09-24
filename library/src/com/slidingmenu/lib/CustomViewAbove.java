@@ -267,7 +267,7 @@ public class CustomViewAbove extends ViewGroup {
 			setScrollingCacheEnabled(false);
 			return;
 		}
-		
+
 		int start = mViewBehindLeft == null ? 1 : 0;
 		int end = mViewBehindRight == null ? 1 : 2;
 		// TODO count accordingly
@@ -280,6 +280,7 @@ public class CustomViewAbove extends ViewGroup {
 		final boolean dispatchSelected = mCurItem != item;
 		mCurItem = item;
 		final int destX = this.getDestScrollX(mCurItem);
+
 		if (dispatchSelected && mOnPageChangeListener != null) {
 			mOnPageChangeListener.onPageSelected(item);
 		}
@@ -361,13 +362,10 @@ public class CustomViewAbove extends ViewGroup {
 	 */
 	public void setShadowDrawable(Drawable d, int side) {
 		if (side == SlidingMenu.LEFT) {
-			Log.v(TAG, "setting left");
 			mShadowDrawableLeft = d;
 		} else if (side == SlidingMenu.RIGHT) {
-			Log.v(TAG, "setting right");
 			mShadowDrawableRight = d;
 		} else if (side == SlidingMenu.BOTH) {
-			Log.v(TAG, "setting both");
 			mShadowDrawableLeft = d;
 			mShadowDrawableRight = d;
 		}
@@ -415,7 +413,7 @@ public class CustomViewAbove extends ViewGroup {
 		case 0:
 			return 0;
 		case 1:
-			return getBehindWidth();
+			return mContent.getLeft();
 		case 2:
 			return mContent.getLeft() + mViewBehindRight.getWidth();
 		}
@@ -470,36 +468,17 @@ public class CustomViewAbove extends ViewGroup {
 	}
 
 	public int getChildWidth(int i) {
-		if (mViewBehindLeft != null && mViewBehindRight != null) {
+		try {
 			switch (i) {
 			case 0:
-				return getBehindWidth();
+				return mViewBehindLeft.getWidth();
 			case 1:
 				return mContent.getWidth();
 			case 2:
-				return getBehindWidth();
+				return mViewBehindRight.getWidth();
 			}
-		} else if (mViewBehindLeft != null) {
-			switch (i) {
-			case 0:
-				return getBehindWidth();
-			case 1:
-				return mContent.getWidth();
-			}
-		} else if (mViewBehindRight != null) {
-			switch (i) {
-			case 0:
-				return mContent.getWidth();
-			case 1:
-				return getBehindWidth();
-			}
-		}
+		} catch (NullPointerException e) { }
 		return 0;
-		//		if (i <= 0) {
-		//			return getBehindWidth();
-		//		} else {
-		//			return getChildAt(i).getWidth();
-		//		}
 	}
 
 	public int getBehindWidth() {
@@ -606,13 +585,6 @@ public class CustomViewAbove extends ViewGroup {
 		mViewBehindRight = cvb;
 	}
 
-	private int getViewCount() {
-		int count = 1;
-		count += (mViewBehindLeft != null) ? 1 : 0;
-		count += (mViewBehindRight != null) ? 1 : 0;
-		return count;
-	}
-
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 
@@ -651,6 +623,7 @@ public class CustomViewAbove extends ViewGroup {
 		mMenuLeft.layout(0, 0, width, height);
 		mContent.layout(contentLeft, 0, contentLeft + width, height);
 		mMenuRight.layout(contentLeft + width, 0, contentLeft + 2*width, height);
+		this.setCurrentItemInternal(mCurItem, false, true);
 	}
 
 
@@ -1093,7 +1066,6 @@ public class CustomViewAbove extends ViewGroup {
 			}
 			if (mShadowDrawableRight != null) {
 				mShadowDrawableRight.setBounds(mContent.getRight(), 0, mContent.getRight() + mShadowWidth, getHeight());
-				Log.v(TAG, "content right " + mContent.getRight());
 				mShadowDrawableRight.draw(canvas);
 			}
 		}
