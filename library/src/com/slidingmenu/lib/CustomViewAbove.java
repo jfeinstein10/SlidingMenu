@@ -935,7 +935,7 @@ public class CustomViewAbove extends ViewGroup {
 						MotionEventCompat.findPointerIndex(ev, mActivePointerId);
 				final float x = MotionEventCompat.getX(ev, activePointerIndex);
 				final int totalDelta = (int) (x - mInitialMotionX);
-				int nextPage = determineTargetPage(currentPage, pageOffset, initialVelocity,
+				int nextPage = determineTargetPage(mCurItem, pageOffset, initialVelocity,
 						totalDelta);
 				setCurrentItemInternal(nextPage, true, true, initialVelocity);
 
@@ -1034,12 +1034,15 @@ public class CustomViewAbove extends ViewGroup {
 	}
 
 	private int determineTargetPage(int currentPage, float pageOffset, int velocity, int deltaX) {
-		float scale = getBehindWidth()/getWidth();
 		int targetPage;
-		if (Math.abs(deltaX) > (float)mFlingDistance*scale && Math.abs(velocity) > mMinimumVelocity) {
-			targetPage = velocity > 0 ? currentPage : currentPage + 1;
+		if (Math.abs(deltaX) > (float)mFlingDistance && Math.abs(velocity) > mMinimumVelocity) {
+			Log.v(TAG, "in here!");
+			targetPage = velocity > 0 ? currentPage - 1 : currentPage + 1;
 		} else {
-			targetPage = (int) (currentPage + pageOffset + 0.5f);
+			targetPage = (int) ((deltaX > 0) ? 
+					(currentPage + pageOffset - 0.5f) : (currentPage - pageOffset + 0.5f));
+			if ((deltaX > 0 && targetPage > currentPage) || (deltaX < 0 && targetPage < currentPage))
+				targetPage = currentPage;
 		}
 		if (DEBUG) Log.v(TAG, "targetPage : " + targetPage);
 		return targetPage;

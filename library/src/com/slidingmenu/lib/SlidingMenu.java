@@ -121,8 +121,7 @@ public class SlidingMenu extends RelativeLayout {
 				}
 			}
 		});
-		initializeLeft();
-		initializeRight();
+		int mode = 0;
 
 		// now style everything!
 		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.SlidingMenu);
@@ -133,35 +132,32 @@ public class SlidingMenu extends RelativeLayout {
 		}
 		int viewBehindLeft = ta.getResourceId(R.styleable.SlidingMenu_viewBehindLeft, -1);
 		if (viewBehindLeft != -1) {
+			mode |= LEFT;
 			setViewBehind(viewBehindLeft, LEFT);
 		}
 		int viewBehindRight = ta.getResourceId(R.styleable.SlidingMenu_viewBehindRight, -1);
 		if (viewBehindRight != -1) {
+			mode |= RIGHT;
 			setViewBehind(viewBehindRight, RIGHT);
 		}
 		int touchModeAbove = ta.getInt(R.styleable.SlidingMenu_aboveTouchMode, TOUCHMODE_MARGIN);
 		setTouchModeAbove(touchModeAbove);
 		int touchModeBehind = ta.getInt(R.styleable.SlidingMenu_behindTouchMode, TOUCHMODE_MARGIN);
 		setTouchModeBehind(touchModeBehind);
-
 		int offsetBehind = (int) ta.getDimension(R.styleable.SlidingMenu_behindOffset, -1);
 		int widthBehind = (int) ta.getDimension(R.styleable.SlidingMenu_behindWidth, -1);
-		if (offsetBehind != -1 && widthBehind != -1)
+		if (offsetBehind != -1 && widthBehind != -1) {
 			throw new IllegalStateException("Cannot set both behindOffset and behindWidth for a SlidingMenu");
-		else if (offsetBehind != -1) {
-			setBehindOffset(offsetBehind, BOTH);
-		}
-		else if (widthBehind != -1) {
-			setBehindWidth(widthBehind, BOTH);
-		}
-		else {
-			setBehindOffset(0, BOTH);
+		} else if (offsetBehind != -1) {
+			setBehindOffset(offsetBehind, mode);
+		} else if (widthBehind != -1) {
+			setBehindWidth(widthBehind, mode);
 		}
 		float scrollOffsetBehind = ta.getFloat(R.styleable.SlidingMenu_behindScrollScale, 0.33f);
-		setBehindScrollScale(scrollOffsetBehind, BOTH);
+		setBehindScrollScale(scrollOffsetBehind, mode);
 		int shadowRes = ta.getResourceId(R.styleable.SlidingMenu_shadowDrawable, -1);
 		if (shadowRes != -1) {
-			setShadowDrawable(shadowRes, BOTH);
+			setShadowDrawable(shadowRes, mode);
 		}
 		int shadowWidth = (int) ta.getDimension(R.styleable.SlidingMenu_shadowWidth, 0);
 		setShadowWidth(shadowWidth);
@@ -225,6 +221,7 @@ public class SlidingMenu extends RelativeLayout {
 	public void setViewBehind(View v, int side) {
 		checkSide(side);
 		if (side == LEFT) {
+			initializeLeft();
 			if (v == null) {
 				removeViewBehind(LEFT);
 			} else {
@@ -233,6 +230,7 @@ public class SlidingMenu extends RelativeLayout {
 				mViewBehindLeft.invalidate();
 			}
 		} else {
+			initializeRight();
 			if (v == null) {
 				removeViewBehind(RIGHT);
 			} else {
@@ -386,7 +384,6 @@ public class SlidingMenu extends RelativeLayout {
 	 * 1 pixel that the above view scrolls and 0.0f scrolls 0 pixels)
 	 */
 	public void setBehindScrollScale(float f, int side) {
-		checkSide(side);
 		mViewAbove.setScrollScale(f, side);
 	}
 
