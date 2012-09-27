@@ -77,7 +77,7 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	public interface OnOpenedListener {
-		public void onOpened();
+		public void onOpened(int side);
 	}
 
 	public interface OnCloseListener {
