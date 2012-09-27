@@ -530,8 +530,12 @@ public class CustomViewAbove extends ViewGroup {
 			completeScroll();
 			if (isLeftOpen()) {
 				if (mOpenedListener != null)
-					mOpenedListener.onOpened();
+					mOpenedListener.onOpened(SlidingMenu.LEFT);
+			} else if (isRightOpen()) {
+				if (mOpenedListener != null)
+					mOpenedListener.onOpened(SlidingMenu.RIGHT);
 			} else {
+				
 				if (mClosedListener != null)
 					mClosedListener.onClosed();
 			}
@@ -697,7 +701,10 @@ public class CustomViewAbove extends ViewGroup {
 			}
 			if (isLeftOpen()) {
 				if (mOpenedListener != null)
-					mOpenedListener.onOpened();
+					mOpenedListener.onOpened(SlidingMenu.LEFT);
+			} else if (isRightOpen()) {
+				if (mOpenedListener != null)
+					mOpenedListener.onOpened(SlidingMenu.RIGHT);
 			} else {
 				if (mClosedListener != null)
 					mClosedListener.onClosed();
