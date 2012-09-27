@@ -30,8 +30,8 @@ public class SlidingMenu extends RelativeLayout {
 
 	public static final String TAG = "SlidingMenu";
 
-	public static final int TOUCHMODE_MARGIN = 3;
-	public static final int TOUCHMODE_FULLSCREEN = 4;
+	public static final int TOUCHMODE_MARGIN = 0;
+	public static final int TOUCHMODE_FULLSCREEN = 1;
 
 	public static final int LEFT = 0x0100;
 	public static final int RIGHT = 0x1000;
@@ -44,6 +44,7 @@ public class SlidingMenu extends RelativeLayout {
 	private OnCloseListener mCloseListener;
 
 	private boolean mSlidingEnabled;
+    private int mMode;
 
 	public static void attachSlidingMenu(Activity activity, SlidingMenu sm, boolean slidingTitle) {
 		if (sm.getParent() != null)
@@ -107,21 +108,21 @@ public class SlidingMenu extends RelativeLayout {
 		mViewAbove = new CustomViewAbove(context);
 		addView(mViewAbove, aboveParams);
 		mViewAbove.setOnPageChangeListener(new OnPageChangeListener() {
-			public static final int POSITION_OPEN = 0;
+			public static final int POSITION_LEFT_OPEN = 0;
 			public static final int POSITION_CLOSE = 1;
+            public static final int POSITION_RIGHT_OPEN = 2;
 
 			public void onPageScrolled(int position, float positionOffset,
 					int positionOffsetPixels) { }
 
 			public void onPageSelected(int position) {
-				if (position == POSITION_OPEN && mOpenListener != null) {
+				if (position == POSITION_LEFT_OPEN || position == POSITION_RIGHT_OPEN && mOpenListener != null) {
 					mOpenListener.onOpen();
 				} else if (position == POSITION_CLOSE && mCloseListener != null) {
 					mCloseListener.onClose();
 				}
 			}
 		});
-		int mode = 0;
 
 		// now style everything!
 		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.SlidingMenu);
@@ -132,12 +133,12 @@ public class SlidingMenu extends RelativeLayout {
 		}
 		int viewBehindLeft = ta.getResourceId(R.styleable.SlidingMenu_viewBehindLeft, -1);
 		if (viewBehindLeft != -1) {
-			mode |= LEFT;
+			mMode |= LEFT;
 			setViewBehind(viewBehindLeft, LEFT);
 		}
 		int viewBehindRight = ta.getResourceId(R.styleable.SlidingMenu_viewBehindRight, -1);
 		if (viewBehindRight != -1) {
-			mode |= RIGHT;
+			mMode |= RIGHT;
 			setViewBehind(viewBehindRight, RIGHT);
 		}
 		int touchModeAbove = ta.getInt(R.styleable.SlidingMenu_aboveTouchMode, TOUCHMODE_MARGIN);
@@ -149,15 +150,15 @@ public class SlidingMenu extends RelativeLayout {
 		if (offsetBehind != -1 && widthBehind != -1) {
 			throw new IllegalStateException("Cannot set both behindOffset and behindWidth for a SlidingMenu");
 		} else if (offsetBehind != -1) {
-			setBehindOffset(offsetBehind, mode);
+			setBehindOffset(offsetBehind, mMode);
 		} else if (widthBehind != -1) {
-			setBehindWidth(widthBehind, mode);
+			setBehindWidth(widthBehind, mMode);
 		}
 		float scrollOffsetBehind = ta.getFloat(R.styleable.SlidingMenu_behindScrollScale, 0.33f);
-		setBehindScrollScale(scrollOffsetBehind, mode);
+		setBehindScrollScale(scrollOffsetBehind, mMode);
 		int shadowRes = ta.getResourceId(R.styleable.SlidingMenu_shadowDrawable, -1);
 		if (shadowRes != -1) {
-			setShadowDrawable(shadowRes, mode);
+			setShadowDrawable(shadowRes, mMode);
 		}
 		int shadowWidth = (int) ta.getDimension(R.styleable.SlidingMenu_shadowWidth, 0);
 		setShadowWidth(shadowWidth);
@@ -282,7 +283,7 @@ public class SlidingMenu extends RelativeLayout {
 			throw new IllegalArgumentException("Can't show both left and right");
 
 		if (isLeft(side)) {
-			mViewAbove.setCurrentItem(0);	
+			mViewAbove.setCurrentItem(0);
 		} else if (isRight(side)) {
 			mViewAbove.setCurrentItem(2);
 		}
@@ -296,7 +297,7 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return Whether or not the behind view is showing
 	 */
 	public boolean isBehindShowing() {
@@ -304,7 +305,7 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return The margin on the right of the screen that the behind view scrolls to
 	 */
 	public int getBehindOffset(int side) {
@@ -317,7 +318,7 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param i The margin on the right of the screen that the behind view scrolls to
 	 */
 	public void setBehindOffset(int i, int side) {
@@ -329,7 +330,7 @@ public class SlidingMenu extends RelativeLayout {
 			int top = params.topMargin;
 			int left = params.leftMargin;
 			params.setMargins(left, top, i, bottom);
-		} 
+		}
 		if (isRight(side)) {
 			// behind right
 			RelativeLayout.LayoutParams params = ((RelativeLayout.LayoutParams)mViewBehindRight.getLayoutParams());
@@ -344,7 +345,7 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param res The dimension resource to be set as the behind offset
 	 */
 	public void setBehindOffsetRes(int res, int side) {
@@ -371,7 +372,7 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return The scale of the parallax scroll
 	 */
 	public float getBehindScrollScale(int side) {
@@ -379,7 +380,7 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param f The scale of the parallax scroll (i.e. 1.0f scrolls 1 pixel for every
 	 * 1 pixel that the above view scrolls and 0.0f scrolls 0 pixels)
 	 */
@@ -391,7 +392,7 @@ public class SlidingMenu extends RelativeLayout {
 		checkSideStrict(side);
 		if (isLeft(side)) {
 			mViewBehindLeft.setCanvasTransformer(t);
-		} 
+		}
 		if (isRight(side)) {
 			mViewBehindRight.setCanvasTransformer(t);
 		}
@@ -477,6 +478,7 @@ public class SlidingMenu extends RelativeLayout {
 
 	private static class SavedState extends BaseSavedState {
 		boolean mBehindShowing;
+        int mMode;
 
 		public SavedState(Parcelable superState) {
 			super(superState);
@@ -484,7 +486,8 @@ public class SlidingMenu extends RelativeLayout {
 
 		public void writeToParcel(Parcel out, int flags) {
 			super.writeToParcel(out, flags);
-			out.writeBooleanArray(new boolean[]{mBehindShowing});
+			out.writeValue(mBehindShowing);
+            out.writeInt(mMode);
 		}
 
 		public static final Parcelable.Creator<SavedState> CREATOR
@@ -501,9 +504,8 @@ public class SlidingMenu extends RelativeLayout {
 
 		SavedState(Parcel in) {
 			super(in);
-			boolean[] showing = new boolean[1];
-			in.readBooleanArray(showing);
-			mBehindShowing = showing[0];
+			mBehindShowing = (Boolean) in.readValue(null);
+            mMode = in.readInt();
 		}
 	}
 
@@ -512,6 +514,7 @@ public class SlidingMenu extends RelativeLayout {
 		Parcelable superState = super.onSaveInstanceState();
 		SavedState ss = new SavedState(superState);
 		ss.mBehindShowing = isBehindShowing();
+        ss.mMode = mMode;
 		return ss;
 	}
 
@@ -526,8 +529,7 @@ public class SlidingMenu extends RelativeLayout {
 		super.onRestoreInstanceState(ss.getSuperState());
 
 		if (ss.mBehindShowing) {
-			// TODO fix this
-			showBehind(LEFT);
+			showBehind(ss.mMode);
 		} else {
 			showAbove();
 		}

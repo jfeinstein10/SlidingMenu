@@ -204,10 +204,10 @@ public class CustomViewAbove extends ViewGroup {
 				if (mViewBehindRight != null) {
 					switch (position) {
 					case 1:
-						mViewBehindRight.setChildrenEnabled(true);
+						mViewBehindRight.setChildrenEnabled(false);
 						break;
 					case 2:
-						mViewBehindRight.setChildrenEnabled(false);
+						mViewBehindRight.setChildrenEnabled(true);
 						break;
 					}
 				}
