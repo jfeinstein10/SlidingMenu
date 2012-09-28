@@ -116,7 +116,7 @@ public class SlidingMenu extends RelativeLayout {
 					int positionOffsetPixels) { }
 
 			public void onPageSelected(int position) {
-				if (position == POSITION_LEFT_OPEN || position == POSITION_RIGHT_OPEN && mOpenListener != null) {
+				if ((position == POSITION_LEFT_OPEN || position == POSITION_RIGHT_OPEN) && mOpenListener != null) {
 					mOpenListener.onOpen();
 				} else if (position == POSITION_CLOSE && mCloseListener != null) {
 					mCloseListener.onClose();
