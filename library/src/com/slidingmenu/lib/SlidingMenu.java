@@ -36,6 +36,10 @@ public class SlidingMenu extends RelativeLayout {
 	private OnCloseListener mCloseListener;
 
     private boolean mSlidingEnabled;
+    
+    private boolean mStartWithMenuOpen;
+    private int mCloseAfterDelayMillis;
+    private boolean mCloseMenuOnExit;
 
 	public static void attachSlidingMenu(Activity activity, SlidingMenu sm, boolean slidingTitle) {
 
@@ -190,6 +194,36 @@ public class SlidingMenu extends RelativeLayout {
 	public boolean isSlidingEnabled() {
 		return mViewAbove.isSlidingEnabled();
 	}
+	
+	/**
+	 * Starts showing the behind view and then animating a toggle after a delay.
+	 * @param startWithMenuOpen Whether or not to start showing the behind view.
+	 * @param delayMillis Delay in millisecond after which the toggle is called. 
+	 * If startWithMenuOpen is false nothing happens,
+	 */
+	public void setStartWithMenuOpen(boolean startWithMenuOpen, int closeAfterDelayMillis) {
+		mStartWithMenuOpen = startWithMenuOpen;
+		mCloseAfterDelayMillis = closeAfterDelayMillis;
+	}
+	
+	public boolean isStartingWithMenuOpen() {
+		return mStartWithMenuOpen;
+	}
+	
+	public int getCloseAfterDelayMillis(){
+		return mCloseAfterDelayMillis;
+	}
+	
+	/**
+	 * @param closeMenuOnExit Whether or not to close the menu when the activity is stopped.
+	 */
+	public void setCloseMenuOnExit(boolean closeMenuOnExit) {
+		mCloseMenuOnExit = closeMenuOnExit;
+	}
+	
+	public boolean isClosingMenuOnExit() {
+		return mCloseMenuOnExit;
+	}
 
 	/**
 	 * 
@@ -209,6 +243,14 @@ public class SlidingMenu extends RelativeLayout {
 			setSlidingEnabled(true);
 		}
 	}
+	
+	public void toggle() {
+		if (isBehindShowing()) {
+			showAbove();
+		} else {
+			showBehind();
+		}
+	}
 
 	/**
 	 * Shows the behind view
@@ -224,6 +266,20 @@ public class SlidingMenu extends RelativeLayout {
 		mViewAbove.setCurrentItem(1);
 	}
 
+	/**
+	 * Shows the behind view without animation
+	 */
+	public void showBehindNoAnimation() {
+		mViewAbove.setCurrentItem(0, false);
+	}
+
+	/**
+	 * Shows the above view without animation
+	 */
+	public void showAboveNoAnimation() {
+		mViewAbove.setCurrentItem(1, false);
+	}
+	
 	/**
 	 * 
 	 * @return Whether or not the behind view is showing

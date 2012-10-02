@@ -4,6 +4,9 @@
     <PreferenceCategory android:title="@string/properties" >
         <Preference android:title="@string/properties" />
     </PreferenceCategory>
+        <PreferenceCategory android:title="@string/customizations" >
+        <Preference android:title="@string/start_with_menu_open" />
+    </PreferenceCategory>
     <PreferenceCategory android:title="@string/title_bar" >
         <Preference android:title="@string/title_bar_slide" />
         <Preference android:title="@string/title_bar_content" />

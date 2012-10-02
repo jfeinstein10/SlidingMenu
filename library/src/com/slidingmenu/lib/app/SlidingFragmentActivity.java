@@ -24,6 +24,12 @@ public class SlidingFragmentActivity extends FragmentActivity implements Sliding
 		super.onPostCreate(savedInstanceState);
 		mHelper.onPostCreate(savedInstanceState);
 	}
+	
+	@Override
+	public void onStop() {
+		super.onStop();
+		mHelper.onStop();
+	}
 
 	@Override
 	public View findViewById(int id) {
@@ -65,22 +71,10 @@ public class SlidingFragmentActivity extends FragmentActivity implements Sliding
 		return mHelper.getSlidingMenu();
 	}
 
-	public void toggle() {
-		mHelper.toggle();
-	}
-
-	public void showAbove() {
-		mHelper.showAbove();
-	}
-
-	public void showBehind() {
-		mHelper.showBehind();
-	}
-
 	public void setSlidingActionBarEnabled(boolean b) {
 		mHelper.setSlidingActionBarEnabled(b);
 	}
-
+	
 	@Override
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
 		boolean b = mHelper.onKeyUp(keyCode, event);

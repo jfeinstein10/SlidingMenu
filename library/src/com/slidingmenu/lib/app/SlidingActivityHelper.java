@@ -35,14 +35,13 @@ public class SlidingActivityHelper {
 
 	public void onPostCreate(Bundle savedInstanceState) {
 		if (mViewBehind == null || mViewAbove == null) {
-			throw new IllegalStateException("Both setBehindContentView must be called " +
-					"in onCreate in addition to setContentView.");
+			throw new IllegalStateException("Both setBehindContentView must be called " + "in onCreate in addition to setContentView.");
 		}
 
 		mOnPostCreateCalled = true;
 
 		// get the window background
-		TypedArray a = mActivity.getTheme().obtainStyledAttributes(new int[] {android.R.attr.windowBackground});
+		TypedArray a = mActivity.getTheme().obtainStyledAttributes(new int[] { android.R.attr.windowBackground });
 		int background = a.getResourceId(0, 0);
 
 		if (mEnableSlide) {
@@ -66,6 +65,25 @@ public class SlidingActivityHelper {
 			}
 			mSlidingMenu.setContent(mViewAbove);
 			parent.addView(mSlidingMenu, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+		}
+
+		// only if this is the first time that we are showing the activity
+		if (mSlidingMenu.isStartingWithMenuOpen() && savedInstanceState == null) {
+			mSlidingMenu.showBehindNoAnimation();
+			mSlidingMenu.postDelayed(new Runnable() {
+
+				public void run() {
+					mSlidingMenu.showAbove();
+
+				}
+			}, mSlidingMenu.getCloseAfterDelayMillis());
+		}
+
+	}
+	
+	public void onStop(){
+		if(mSlidingMenu.isClosingMenuOnExit()) {
+			mSlidingMenu.showAboveNoAnimation();
 		}
 	}
 
@@ -104,25 +122,9 @@ public class SlidingActivityHelper {
 		return mSlidingMenu;
 	}
 
-	public void toggle() {
-		if (mSlidingMenu.isBehindShowing()) {
-			showAbove();
-		} else {
-			showBehind();
-		}
-	}
-
-	public void showAbove() {
-		mSlidingMenu.showAbove();
-	}
-
-	public void showBehind() {
-		mSlidingMenu.showBehind();
-	}
-
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK && mSlidingMenu.isBehindShowing()) {
-			showAbove();
+			mSlidingMenu.showAbove();
 			return true;
 		}
 		return false;

@@ -25,6 +25,12 @@ public abstract class SlidingMapActivity extends MapActivity {
 		super.onPostCreate(savedInstanceState);
 		mHelper.onPostCreate(savedInstanceState);
 	}
+	
+	@Override
+	public void onStop() {
+		super.onStop();
+		mHelper.onStop();
+	}
 
 	@Override
 	public View findViewById(int id) {
@@ -64,18 +70,6 @@ public abstract class SlidingMapActivity extends MapActivity {
 
 	public SlidingMenu getSlidingMenu() {
 		return mHelper.getSlidingMenu();
-	}
-
-	public void toggle() {
-		mHelper.toggle();
-	}
-
-	public void showAbove() {
-		mHelper.showAbove();
-	}
-
-	public void showBehind() {
-		mHelper.showBehind();
 	}
 
 	public void setSlidingActionBarEnabled(boolean b) {
