@@ -26,6 +26,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
 
+import com.slidingmenu.lib.SlidingMenu.EdgeRenderer;
 import com.slidingmenu.lib.SlidingMenu.OnCloseListener;
 import com.slidingmenu.lib.SlidingMenu.OnClosedListener;
 import com.slidingmenu.lib.SlidingMenu.OnOpenListener;
@@ -56,6 +57,7 @@ public class CustomViewAbove extends ViewGroup {
 
 	private int mShadowWidth;
 	private Drawable mShadowDrawable;
+	private EdgeRenderer mEdgeRenderer;
 
 	private boolean mScrollingCacheEnabled;
 
@@ -342,9 +344,26 @@ public class CustomViewAbove extends ViewGroup {
 	}
 
 	/**
+	 * Set a renderer that will be used to draw custom graphics in the margin
+	 * between the pages.
+	 * 
+	 * @param renderer
+	 *            the <code>EdgeRenderer</code> to use. Nullable.
+	 */
+	public void setEdgeRenderer(EdgeRenderer renderer) {
+		mEdgeRenderer = renderer;
+		if (mEdgeRenderer != null) {
+			refreshDrawableState();
+			setWillNotDraw(mEdgeRenderer == null);
+			invalidate();
+		}
+	}
+
+	/**
 	 * Set a drawable that will be used to fill the margin between pages.
-	 *
-	 * @param resId Resource ID of a drawable to display between pages
+	 * 
+	 * @param resId
+	 *            Resource ID of a drawable to display between pages
 	 */
 	public void setShadowDrawable(int resId) {
 		setShadowDrawable(getContext().getResources().getDrawable(resId));
@@ -898,7 +917,8 @@ public class CustomViewAbove extends ViewGroup {
 		if (mCustomViewBehind != null && mEnabled) {
 			mCustomViewBehind.scrollTo((int)(x*mScrollScale), y);
 		}
-		if (mShadowDrawable != null || mSelectorDrawable != null)
+		if (mShadowDrawable != null || mSelectorDrawable != null
+				|| mEdgeRenderer != null)
 			invalidate();
 	}
 
@@ -921,12 +941,17 @@ public class CustomViewAbove extends ViewGroup {
 		super.dispatchDraw(canvas);
 		final int behindWidth = getBehindWidth();
 		// Draw the margin drawable if needed.
-		if (mShadowWidth > 0 && mShadowDrawable != null) {
+		if (mShadowWidth > 0) {
 			final int left = behindWidth - mShadowWidth;
-			mShadowDrawable.setBounds(left, 0, left + mShadowWidth, getHeight());
-			mShadowDrawable.draw(canvas);
+			Rect bounds = new Rect(left, 0, left + mShadowWidth, getHeight());
+			if (mShadowDrawable != null) {
+				mShadowDrawable.setBounds(bounds);
+				mShadowDrawable.draw(canvas);
+			}
+			if (mEdgeRenderer != null) {
+				mEdgeRenderer.renderEdge(canvas, bounds);
+			}
 		}
-
 		if (mFadeEnabled)
 			onDrawBehindFade(canvas, getPercentOpen());
 
