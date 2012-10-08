@@ -11,7 +11,7 @@ public interface SlidingActivityBase {
 
 	public SlidingMenu getSlidingMenu();
 		
-	public void toggle();
+	public void toggleMenu();
 	
 	public void showAbove();
 	

@@ -27,6 +27,37 @@ import com.slidingmenu.lib.CustomViewAbove.OnPageChangeListener;
 
 public class SlidingMenu extends RelativeLayout {
 
+	/**
+	 * Interface for advanced SlidingMenu users who need more control over the
+	 * appearance of the "shadow" drawing along the edge of the
+	 * <code>CustomAboveView</code>. In place of a single drawable stretched
+	 * along the edge, specifying an EdgeRenderer will allow the use of any kind
+	 * of graphics along the edge. This is useful for views that perhaps don't
+	 * span the entire height.
+	 * 
+	 * Note that you must still set a "shadow" width via the
+	 * <code>setShadowWidth()</code> method to have the renderer called.
+	 * 
+	 * It is possible to have both a shadow drawable _and_ a renderer at the
+	 * same time. The drawable will be drawn first, then the renderer called.
+	 * 
+	 * @author bjdupuis
+	 * 
+	 */
+	public interface EdgeRenderer {
+
+		/**
+		 * Called at drawing time to render the edge of the
+		 * <code>CustomAboveView</code>.
+		 * 
+		 * @param canvas
+		 *            the <code>Canvas</code> within which to draw.
+		 * @param edgeBounds
+		 *            the bounds within which it's okay to draw.
+		 */
+		public void renderEdge(Canvas canvas, Rect edgeBounds);
+	}
+
 	public static final int TOUCHMODE_MARGIN = 0;
 	public static final int TOUCHMODE_FULLSCREEN = 1;
 
@@ -324,8 +355,14 @@ public class SlidingMenu extends RelativeLayout {
 		mViewBehind.setTouchMode(i);
 	}
 
+	public void setEdgeRenderer(EdgeRenderer renderer) {
+		mViewAbove.setEdgeRenderer(renderer);
+		mViewAbove.setShadowDrawable(null);
+	}
+
 	public void setShadowDrawable(int resId) {
 		mViewAbove.setShadowDrawable(resId);
+		mViewAbove.setEdgeRenderer(null);
 	}
 
 	public void setShadowWidthRes(int resId) {
