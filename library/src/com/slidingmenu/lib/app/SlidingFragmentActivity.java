@@ -65,7 +65,7 @@ public class SlidingFragmentActivity extends FragmentActivity implements Sliding
 		return mHelper.getSlidingMenu();
 	}
 
-	public void toggle() {
+	public void toggleMenu() {
 		mHelper.toggle();
 	}
 

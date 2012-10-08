@@ -65,7 +65,7 @@ public class SlidingActivity extends Activity implements SlidingActivityBase {
 		return mHelper.getSlidingMenu();
 	}
 
-	public void toggle() {
+	public void toggleMenu() {
 		mHelper.toggle();
 	}
 

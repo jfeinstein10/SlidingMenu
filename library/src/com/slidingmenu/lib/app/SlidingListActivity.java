@@ -69,7 +69,7 @@ public class SlidingListActivity extends ListActivity implements SlidingActivity
 		return mHelper.getSlidingMenu();
 	}
 
-	public void toggle() {
+	public void toggleMenu() {
 		mHelper.toggle();
 	}
 
