@@ -12,8 +12,6 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.v4.os.ParcelableCompat;
-import android.support.v4.os.ParcelableCompatCreatorCallbacks;
 import android.util.AttributeSet;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -35,7 +33,7 @@ public class SlidingMenu extends RelativeLayout {
 	private OnOpenListener mOpenListener;
 	private OnCloseListener mCloseListener;
 
-    private boolean mSlidingEnabled;
+    //private boolean mSlidingEnabled;
 
 	public static void attachSlidingMenu(Activity activity, SlidingMenu sm, boolean slidingTitle) {
 
@@ -61,7 +59,7 @@ public class SlidingMenu extends RelativeLayout {
 			View above = content.getChildAt(0);
 			content.removeAllViews();
 			sm.setContent(above);
-			content.addView(sm, LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
+			content.addView(sm, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		}
 	}
 
@@ -252,6 +250,10 @@ public class SlidingMenu extends RelativeLayout {
 		params.setMargins(left, top, i, bottom);
 	}
 
+	/**
+	 * 
+	 * @param i The width the Sliding Menu will open to in pixels
+	 */
 	@SuppressWarnings("deprecation")
 	public void setBehindWidth(int i) {
 		int width;
@@ -268,6 +270,15 @@ public class SlidingMenu extends RelativeLayout {
 			width = display.getWidth();
 		}
 		setBehindOffset(width-i);
+	}
+	
+	/**
+	 * 
+	 * @param res A resource ID which points to the width the Sliding Menu will open to 
+	 */
+	public void setBehindWidthRes(int res) {
+		int i = (int) getContext().getResources().getDimension(res);
+		setBehindWidth(i);
 	}
 
 	/**
@@ -361,12 +372,12 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	public void setOnOpenListener(OnOpenListener listener) {
-		mViewAbove.setOnOpenListener(listener);
+		//mViewAbove.setOnOpenListener(listener);
 		mOpenListener = listener;
 	}
 
 	public void setOnCloseListener(OnCloseListener listener) {
-		mViewAbove.setOnCloseListener(listener);
+		//mViewAbove.setOnCloseListener(listener);
 		mCloseListener = listener;
 	}
 
@@ -390,6 +401,7 @@ public class SlidingMenu extends RelativeLayout {
 			out.writeBooleanArray(new boolean[]{mBehindShowing});
 		}
 
+		/*
 		public static final Parcelable.Creator<SavedState> CREATOR
 		= ParcelableCompat.newCreator(new ParcelableCompatCreatorCallbacks<SavedState>() {
 
@@ -408,6 +420,7 @@ public class SlidingMenu extends RelativeLayout {
 			in.readBooleanArray(showing);
 			mBehindShowing = showing[0];
 		}
+		*/
 	}
 
 	@Override

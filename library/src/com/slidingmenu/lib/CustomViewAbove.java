@@ -1,7 +1,11 @@
 package com.slidingmenu.lib;
 
 import android.content.Context;
-import android.graphics.*;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.view.KeyEventCompat;
@@ -26,9 +30,9 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
 
-import com.slidingmenu.lib.SlidingMenu.OnCloseListener;
+//import com.slidingmenu.lib.SlidingMenu.OnCloseListener;
 import com.slidingmenu.lib.SlidingMenu.OnClosedListener;
-import com.slidingmenu.lib.SlidingMenu.OnOpenListener;
+//import com.slidingmenu.lib.SlidingMenu.OnOpenListener;
 import com.slidingmenu.lib.SlidingMenu.OnOpenedListener;
 
 public class CustomViewAbove extends ViewGroup {
@@ -97,8 +101,8 @@ public class CustomViewAbove extends ViewGroup {
 	private OnPageChangeListener mOnPageChangeListener;
 	private OnPageChangeListener mInternalPageChangeListener;
 
-	private OnCloseListener mCloseListener;
-	private OnOpenListener mOpenListener;
+//	private OnCloseListener mCloseListener;
+//	private OnOpenListener mOpenListener;
 	private OnClosedListener mClosedListener;
 	private OnOpenedListener mOpenedListener;
 
@@ -278,7 +282,7 @@ public class CustomViewAbove extends ViewGroup {
 	public void setOnPageChangeListener(OnPageChangeListener listener) {
 		mOnPageChangeListener = listener;
 	}
-
+/*
 	public void setOnOpenListener(OnOpenListener l) {
 		mOpenListener = l;
 	}
@@ -286,7 +290,7 @@ public class CustomViewAbove extends ViewGroup {
 	public void setOnCloseListener(OnCloseListener l) {
 		mCloseListener = l;
 	}
-
+*/
 	public void setOnOpenedListener(OnOpenedListener l) {
 		mOpenedListener = l;
 	}
@@ -541,8 +545,8 @@ public class CustomViewAbove extends ViewGroup {
 		final int height = b - t;
 
 		int contentLeft = getChildLeft(1);
-		float percentOpen = getPercentOpen();
-		int offset = (int) (mScrollX * (1 - mScrollScale));
+//		float percentOpen = getPercentOpen();
+//		int offset = (int) (mScrollX * (1 - mScrollScale));
 		mMenu.layout(0, 0, width, height);
 		mContent.layout(contentLeft, 0, contentLeft + width, height);
 	}
@@ -726,7 +730,7 @@ public class CustomViewAbove extends ViewGroup {
 
 		case MotionEvent.ACTION_DOWN:
 			mActivePointerId = ev.getAction() & ((Build.VERSION.SDK_INT >= 8) ? MotionEvent.ACTION_POINTER_INDEX_MASK : 
-				MotionEvent.ACTION_POINTER_ID_MASK);
+				MotionEvent.ACTION_POINTER_INDEX_MASK);
 			Log.v(TAG, "active pointer id : " + mActivePointerId);
 			mLastMotionX = mInitialMotionX = MotionEventCompat.getX(ev, mActivePointerId);
 			mLastMotionY = MotionEventCompat.getY(ev, mActivePointerId);
