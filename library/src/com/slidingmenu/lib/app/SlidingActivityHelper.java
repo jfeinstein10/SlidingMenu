@@ -1,7 +1,6 @@
 package com.slidingmenu.lib.app;
 
 import android.app.Activity;
-import android.content.res.Resources.Theme;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -65,7 +64,7 @@ public class SlidingActivityHelper {
 				mViewAbove.setBackgroundResource(background);
 			}
 			mSlidingMenu.setContent(mViewAbove);
-			parent.addView(mSlidingMenu, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+			parent.addView(mSlidingMenu, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		}
 	}
 

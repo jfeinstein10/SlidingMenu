@@ -2,18 +2,16 @@ package com.slidingmenu.lib;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Transformation;
 
 import com.slidingmenu.lib.SlidingMenu.CanvasTransformer;
 
 public class CustomViewBehind extends CustomViewAbove {
 
-	private static final String TAG = "CustomViewBehind";
+	//private static final String TAG = "CustomViewBehind";
 
 	private CustomViewAbove mViewAbove;
 	private CanvasTransformer mTransformer;
