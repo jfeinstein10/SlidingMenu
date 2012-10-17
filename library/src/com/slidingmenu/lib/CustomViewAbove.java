@@ -5,8 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.view.KeyEventCompat;
@@ -97,7 +95,7 @@ public class CustomViewAbove extends ViewGroup {
 	private int mFlingDistance;
 
 	private boolean mLastTouchAllowed = false;
-	private final int mSlidingMenuThreshold = 10;
+	private final int mSlidingMenuThreshold = 16;
 	private CustomViewBehind mViewBehindLeft;
 	private CustomViewBehind mViewBehindRight;
 	private boolean mEnabled = true;
@@ -772,6 +770,22 @@ public class CustomViewAbove extends ViewGroup {
 			}
 		}
 	}
+	
+	private boolean thisSlideAllowed(float dx) {
+		boolean allowed = false;
+		if (isLeftOpen()) {
+			allowed = dx < 0;
+		} else if (isRightOpen()) {
+			allowed = dx > 0;
+		} else {
+			if (mViewBehindLeft != null)
+				allowed |= dx > 0;
+			if (mViewBehindRight != null)
+				allowed |= dx < 0;
+		}
+		Log.v(TAG, "this slide allowed " + allowed);
+		return allowed;
+	}
 
 	private boolean mIsUnableToDrag;
 
@@ -814,7 +828,7 @@ public class CustomViewAbove extends ViewGroup {
 			final float xDiff = Math.abs(dx);
 			final float y = MotionEventCompat.getY(ev, pointerIndex);
 			final float yDiff = Math.abs(y - mLastMotionY);
-			if (xDiff > mTouchSlop && xDiff > yDiff) {
+			if (xDiff > mTouchSlop && xDiff > yDiff && thisSlideAllowed(dx)) {
 				if (DEBUG) Log.v(TAG, "Starting drag! from onInterceptTouch");
 				mIsBeingDragged = true;
 				mLastMotionX = x;
@@ -825,8 +839,7 @@ public class CustomViewAbove extends ViewGroup {
 			break;
 
 		case MotionEvent.ACTION_DOWN:
-			mActivePointerId = ev.getAction() & ((Build.VERSION.SDK_INT >= 8) ? MotionEvent.ACTION_POINTER_INDEX_MASK : 
-				MotionEvent.ACTION_POINTER_ID_MASK);
+			mActivePointerId = ev.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK;
 			mLastMotionX = mInitialMotionX = MotionEventCompat.getX(ev, mActivePointerId);
 			mLastMotionY = MotionEventCompat.getY(ev, mActivePointerId);
 			if (thisTouchAllowed(ev)) {
@@ -936,7 +949,6 @@ public class CustomViewAbove extends ViewGroup {
 						velocityTracker, mActivePointerId);
 				final int widthWithMargin = getChildWidth(mCurItem);
 				final int scrollX = getScrollX();
-				final int currentPage = scrollX / widthWithMargin;
 				final float pageOffset = (float) (scrollX % widthWithMargin) / widthWithMargin;
 				final int activePointerIndex =
 						MotionEventCompat.findPointerIndex(ev, mActivePointerId);
@@ -1044,7 +1056,6 @@ public class CustomViewAbove extends ViewGroup {
 	private int determineTargetPage(int currentPage, float pageOffset, int velocity, int deltaX) {
 		int targetPage;
 		if (Math.abs(deltaX) > (float)mFlingDistance && Math.abs(velocity) > mMinimumVelocity) {
-			Log.v(TAG, "in here!");
 			targetPage = velocity > 0 ? currentPage - 1 : currentPage + 1;
 		} else {
 			targetPage = (int) ((deltaX > 0) ? 
@@ -1052,7 +1063,6 @@ public class CustomViewAbove extends ViewGroup {
 			if ((deltaX > 0 && targetPage > currentPage) || (deltaX < 0 && targetPage < currentPage))
 				targetPage = currentPage;
 		}
-		if (DEBUG) Log.v(TAG, "targetPage : " + targetPage);
 		return targetPage;
 	}
 
