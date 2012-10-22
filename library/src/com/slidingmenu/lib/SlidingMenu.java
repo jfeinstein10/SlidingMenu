@@ -13,6 +13,7 @@ import android.graphics.Rect;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -151,6 +152,10 @@ public class SlidingMenu extends RelativeLayout {
 		}
 		int shadowWidth = (int) ta.getDimension(R.styleable.SlidingMenu_shadowWidth, 0);
 		setShadowWidth(shadowWidth);
+		int defaultValue = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 
+				10, getResources().getDisplayMetrics());
+		int slidingMenuThreshold = (int) ta.getDimension(R.styleable.SlidingMenu_slidingThreshold, defaultValue);
+		setSlidingThreshold(slidingMenuThreshold);
 		boolean fadeEnabled = ta.getBoolean(R.styleable.SlidingMenu_behindFadeEnabled, true);
 		setFadeEnabled(fadeEnabled);
 		float fadeDeg = ta.getFloat(R.styleable.SlidingMenu_behindFadeDegree, 0.66f);
@@ -345,6 +350,10 @@ public class SlidingMenu extends RelativeLayout {
 
 	public void setShadowWidth(int pixels) {
 		mViewAbove.setShadowWidth(pixels);
+	}
+
+	public void setSlidingThreshold(int pixels) {
+		mViewAbove.setSlidingThreshold(pixels);
 	}
 
 	public void setFadeEnabled(boolean b) {
