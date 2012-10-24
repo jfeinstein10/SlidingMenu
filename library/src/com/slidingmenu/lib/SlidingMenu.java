@@ -98,6 +98,7 @@ public class SlidingMenu extends RelativeLayout {
 		mViewBehind = new CustomViewBehind(context);
 		addView(mViewBehind, behindParams);
 		LayoutParams aboveParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+		aboveParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 		mViewAbove = new CustomViewAbove(context);
 		addView(mViewAbove, aboveParams);
 		// register the CustomViewBehind2 with the CustomViewAbove
@@ -249,6 +250,17 @@ public class SlidingMenu extends RelativeLayout {
 		int left = params.leftMargin;
 		params.setMargins(left, top, i, bottom);
 	}
+	
+	
+	public void setAboveOffset(int i) {
+//		RelativeLayout.LayoutParams params = ((RelativeLayout.LayoutParams)mViewAbove.getLayoutParams());
+//		int bottom = params.bottomMargin;
+//		int top = params.topMargin;
+//		int right = params.rightMargin;
+//		params.setMargins(i, top, right, bottom);
+//		this.requestLayout();
+		mViewAbove.setAboveOffset(i);
+	}
 
 	/**
 	 * 
@@ -288,6 +300,11 @@ public class SlidingMenu extends RelativeLayout {
 	public void setBehindOffsetRes(int res) {
 		int i = (int) getContext().getResources().getDimension(res);
 		setBehindOffset(i);
+	}
+	
+	public void setAboveOffsetRes(int res) {
+		int i = (int) getContext().getResources().getDimension(res);
+		setAboveOffset(i);
 	}
 
 	/**
