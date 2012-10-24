@@ -54,8 +54,8 @@ If you decide to use SlidingMenu as a view, you can define it in your xml layout
     android:layout_height="fill_parent"
     sliding:viewAbove="@layout/YOUR_ABOVE_VIEW"
     sliding:viewBehind="@layout/YOUR_BEHIND_BEHIND"
-    sliding:touchModeAbove="margin|fullscreen"
-    sliding:touchModeBehind="margin|fullscreen"
+    sliding:aboveTouchMode="margin|fullscreen"
+    sliding:behindTouchMode="margin|fullscreen"
     sliding:behindOffset="@dimen/YOUR_OFFSET"
     sliding:behindWidth="@dimen/YOUR_WIDTH"
     sliding:behindScrollScale="@dimen/YOUR_SCALE"
@@ -69,9 +69,9 @@ If you decide to use SlidingMenu as a view, you can define it in your xml layout
 NOTE : you cannot use both behindOffset and behindWidth. You will get an exception if you try.
 * `viewAbove` - a reference to the layout that you want to use as the above view of the SlidingMenu
 * `viewBehind` - a reference to the layout that you want to use as the behind view of the SlidingMenu
-* `touchModeAbove` - an enum that designates what part of the screen is touchable when the above view is 
+* `aboveTouchMode` - an enum that designates what part of the screen is touchable when the above view is 
 showing. Margin means only the left margin. Fullscreen means the entire screen. Default is margin.
-* `touchModeBehind` - an enum that designates what part of the screen is touchable when the behind view
+* `behindTouchMode` - an enum that designates what part of the screen is touchable when the behind view
 is showing. Margin means only what is showing of the above view. Fullscreen means the entire screen.
 Default is margin.
 * `behindOffset` - a dimension representing the number of pixels that you want the above view to show when the
