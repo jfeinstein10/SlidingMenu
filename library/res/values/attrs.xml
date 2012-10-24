@@ -22,11 +22,11 @@
         <attr name="behindOffset" format="dimension" />
         <attr name="behindWidth" format="dimension" />
         <attr name="behindScrollScale" format="float" />
-        <attr name="aboveTouchMode">
+        <attr name="touchModeAbove">
             <enum name="margin" value="0" />
             <enum name="fullscreen" value="1" />
         </attr>
-        <attr name="behindTouchMode">
+        <attr name="touchModeBehind">
             <enum name="margin" value="0" />
             <enum name="fullscreen" value="1" />
         </attr>
