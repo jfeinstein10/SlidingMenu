@@ -710,6 +710,8 @@ public class CustomViewAbove extends ViewGroup {
 			switch (mTouchModeBehind) {
 			case SlidingMenu.TOUCHMODE_FULLSCREEN:
 				return true;
+			case SlidingMenu.TOUCHMODE_NONE:
+				return false;
 			case SlidingMenu.TOUCHMODE_MARGIN:
 				return x >= getContentLeft();
 			default:
@@ -719,6 +721,8 @@ public class CustomViewAbove extends ViewGroup {
 			switch (mTouchMode) {
 			case SlidingMenu.TOUCHMODE_FULLSCREEN:
 				return true;
+			case SlidingMenu.TOUCHMODE_NONE:
+				return false;
 			case SlidingMenu.TOUCHMODE_MARGIN:
 				int pixels = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 
 						mSlidingMenuThreshold, getResources().getDisplayMetrics());

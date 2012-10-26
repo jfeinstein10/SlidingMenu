@@ -27,6 +27,7 @@ public class SlidingMenu extends RelativeLayout {
 
 	public static final int TOUCHMODE_MARGIN = 0;
 	public static final int TOUCHMODE_FULLSCREEN = 1;
+	public static final int TOUCHMODE_NONE = 2;
 
 	private CustomViewAbove mViewAbove;
 	private CustomViewBehind mViewBehind;
@@ -333,9 +334,10 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	public void setTouchModeAbove(int i) {
-		if (i != TOUCHMODE_FULLSCREEN && i != TOUCHMODE_MARGIN) {
+		if (i != TOUCHMODE_FULLSCREEN && i != TOUCHMODE_MARGIN
+				&& i != TOUCHMODE_NONE) {
 			throw new IllegalStateException("TouchMode must be set to either" +
-					"TOUCHMODE_FULLSCREEN or TOUCHMODE_MARGIN.");
+					"TOUCHMODE_FULLSCREEN or TOUCHMODE_MARGIN or TOUCHMODE_NONE.");
 		}
 		mViewAbove.setTouchMode(i);
 	}
@@ -345,9 +347,10 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	public void setTouchModeBehind(int i) {
-		if (i != TOUCHMODE_FULLSCREEN && i != TOUCHMODE_MARGIN) {
+		if (i != TOUCHMODE_FULLSCREEN && i != TOUCHMODE_MARGIN
+				&& i != TOUCHMODE_NONE) {
 			throw new IllegalStateException("TouchMode must be set to either" +
-					"TOUCHMODE_FULLSCREEN or TOUCHMODE_MARGIN.");
+					"TOUCHMODE_FULLSCREEN or TOUCHMODE_MARGIN or TOUCHMODE_NONE.");
 		}
 		mViewBehind.setTouchMode(i);
 	}
