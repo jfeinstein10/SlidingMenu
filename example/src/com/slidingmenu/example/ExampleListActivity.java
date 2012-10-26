@@ -13,6 +13,13 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.slidingmenu.example.anim.CustomRotateAnimation;
+import com.slidingmenu.example.anim.CustomScaleAnimation;
+import com.slidingmenu.example.anim.CustomSlideAnimation;
+import com.slidingmenu.example.anim.CustomZoomAnimation;
+import com.slidingmenu.example.fragments.FragmentChangeActivity;
+import com.slidingmenu.example.fragments.ResponsiveUIActivity;
+
 public class ExampleListActivity extends PreferenceActivity {
 
 	private ActivityAdapter mAdapter;
@@ -36,6 +43,10 @@ public class ExampleListActivity extends PreferenceActivity {
 		String title = pref.getTitle().toString();
 		if (title.equals(getString(R.string.properties))) {
 			cls = PropertiesActivity.class;	
+		} else if (title.equals(getString(R.string.changing_fragments))) {
+			cls = FragmentChangeActivity.class;
+		} else if (title.equals(getString(R.string.responsive_ui))) {
+			cls = ResponsiveUIActivity.class;
 		} else if (title.equals(getString(R.string.title_bar_slide))) {
 			cls = SlidingTitleBar.class;
 		} else if (title.equals(getString(R.string.title_bar_content))) {
@@ -44,8 +55,6 @@ public class ExampleListActivity extends PreferenceActivity {
 			cls = CustomZoomAnimation.class;
 		} else if (title.equals(getString(R.string.anim_scale))) {
 			cls = CustomScaleAnimation.class;
-		} else if (title.equals(getString(R.string.anim_fold))) {
-			cls = CustomFoldAnimation.class;
 		} else if (title.equals(getString(R.string.anim_slide))) {
 			cls = CustomSlideAnimation.class;
 		} else if (title.equals(getString(R.string.anim_rot))) {

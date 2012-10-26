@@ -23,14 +23,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".PropertiesActivity" />
-        <activity android:name=".CustomAnimation" />
-        <activity android:name=".CustomScaleAnimation" />
-        <activity android:name=".CustomFoldAnimation" />
-        <activity android:name=".CustomZoomAnimation" />
-        <activity android:name=".CustomRotateAnimation" />
-        <activity android:name=".CustomSlideAnimation" />
+        <activity android:name=".anim.CustomScaleAnimation" />
+        <activity android:name=".anim.CustomZoomAnimation" />
+        <activity android:name=".anim.CustomRotateAnimation" />
+        <activity android:name=".anim.CustomSlideAnimation" />
         <activity android:name=".SlidingTitleBar" />
         <activity android:name=".SlidingContent" />
+        <activity android:name=".fragments.FragmentChangeActivity" />
+        <activity android:name=".fragments.ResponsiveUIActivity" />
     </application>
 
 </manifest>

@@ -42,7 +42,7 @@ public class BaseActivity extends SlidingFragmentActivity {
 		SlidingMenu sm = getSlidingMenu();
 		sm.setShadowWidthRes(R.dimen.shadow_width);
 		sm.setShadowDrawable(R.drawable.shadow);
-		sm.setBehindOffsetRes(R.dimen.actionbar_home_width);
+		sm.setBehindOffsetRes(R.dimen.slidingmenu_offset);
 
 		// customize the ActionBar
 		if (Build.VERSION.SDK_INT >= 11) {
@@ -68,6 +68,9 @@ public class BaseActivity extends SlidingFragmentActivity {
 			super(fm);
 			mPager = vp;
 			mPager.setAdapter(this);
+			for (int i = 0; i < 3; i++) {
+				addTab(new SampleListFragment());
+			}
 		}
 
 		public void addTab(Fragment frag) {

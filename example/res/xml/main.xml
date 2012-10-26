@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <PreferenceCategory android:title="@string/properties" >
+    <PreferenceCategory android:title="@string/general" >
         <Preference android:title="@string/properties" />
+        <Preference android:title="@string/changing_fragments" />
+        <Preference android:title="@string/responsive_ui" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/title_bar" >
         <Preference android:title="@string/title_bar_slide" />

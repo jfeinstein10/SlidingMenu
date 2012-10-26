@@ -2,7 +2,8 @@
 <resources>
 
     <string name="app_name">SlidingMenu Demo</string>
-    <string name="properties">Properties</string>
+    <string name="properties">SlidingMenu Properties</string>
+    <string name="general">General</string>
     
     <string name="title_bar">Title Bar Options</string>
     <string name="title_bar_slide">Sliding Title Bar</string>
@@ -14,5 +15,7 @@
     <string name="anim_fold">Fold</string>
     <string name="anim_slide">Slide Up</string>
     <string name="anim_rot">Rotate</string>
+    <string name="changing_fragments">Changing Fragment</string>
+    <string name="responsive_ui">Responsive UI</string>
 
 </resources>
