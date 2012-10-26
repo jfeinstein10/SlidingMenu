@@ -15,7 +15,7 @@
     <string name="anim_fold">Fold</string>
     <string name="anim_slide">Slide Up</string>
     <string name="anim_rot">Rotate</string>
-    <string name="changing_fragments">Changing Fragment</string>
+    <string name="changing_fragments">Changing Fragments</string>
     <string name="responsive_ui">Responsive UI</string>
 
 </resources>

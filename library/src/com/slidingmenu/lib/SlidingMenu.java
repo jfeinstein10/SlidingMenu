@@ -17,6 +17,7 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
@@ -250,6 +251,14 @@ public class SlidingMenu extends RelativeLayout {
 		int top = params.topMargin;
 		int left = params.leftMargin;
 		params.setMargins(left, top, i, bottom);
+		OnGlobalLayoutListener layoutListener = new OnGlobalLayoutListener() {
+			public void onGlobalLayout() {
+				showAbove();
+				mViewAbove.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+			}
+		};
+		mViewAbove.getViewTreeObserver().addOnGlobalLayoutListener(layoutListener);
+		mViewAbove.requestLayout();
 	}
 	
 	
