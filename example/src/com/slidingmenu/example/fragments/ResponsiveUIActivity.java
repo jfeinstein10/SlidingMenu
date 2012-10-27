@@ -2,12 +2,14 @@ package com.slidingmenu.example.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.slidingmenu.example.R;
 import com.slidingmenu.lib.SlidingMenu;
+import com.slidingmenu.lib.SlidingMenu.OnCloseListener;
 import com.slidingmenu.lib.app.SlidingFragmentActivity;
 
 /**
@@ -69,7 +71,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity {
 		sm.setShadowWidthRes(R.dimen.shadow_width);
 		sm.setShadowDrawable(R.drawable.shadow);
 		sm.setBehindScrollScale(0.25f);
-		
+		sm.setFadeDegree(0.25f);
 	}
 	
 	@Override
@@ -87,13 +89,18 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity {
 		getSupportFragmentManager().putFragment(outState, "mContent", mContent);
 	}
 	
-	public void switchContent(Fragment fragment) {
+	public void switchContent(final Fragment fragment) {
 		mContent = fragment;
 		getSupportFragmentManager()
 		.beginTransaction()
 		.replace(R.id.content_frame, fragment)
 		.commit();
-		getSlidingMenu().showAbove();
+		Handler h = new Handler();
+		h.postDelayed(new Runnable() {
+			public void run() {
+				getSlidingMenu().showAbove();
+			}
+		}, 333);
 	}	
 	
 	public void onBirdPressed(int pos) {
