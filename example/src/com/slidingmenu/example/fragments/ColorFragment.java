@@ -20,7 +20,7 @@ public class ColorFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		if (mColorRes == -1) {
+		if (mColorRes == -1 && savedInstanceState != null) {
 			mColorRes = savedInstanceState.getInt("mColorRes");
 		}
 		int color = getResources().getColor(mColorRes);

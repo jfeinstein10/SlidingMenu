@@ -375,8 +375,8 @@ public class CustomViewAbove extends ViewGroup {
 	 */
 	public void setShadowDrawable(Drawable d) {
 		mShadowDrawable = d;
-		if (d != null) refreshDrawableState();
-		setWillNotDraw(d == null);
+		refreshDrawableState();
+		setWillNotDraw(false);
 		invalidate();
 	}
 

@@ -12,8 +12,12 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
-  -->
+-->
 
 <resources>
+
     <dimen name="slidingmenu_offset">500dp</dimen>
+
+    <integer name="num_cols">1</integer>
+
 </resources>

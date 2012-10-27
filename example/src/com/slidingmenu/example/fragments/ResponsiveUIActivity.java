@@ -1,5 +1,6 @@
 package com.slidingmenu.example.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.MenuItem;
@@ -50,7 +51,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity {
 		if (savedInstanceState != null)
 			mContent = getSupportFragmentManager().getFragment(savedInstanceState, "mContent");
 		if (mContent == null)
-			mContent = new ColorFragment(R.color.red);	
+			mContent = new BirdGridFragment(0);	
 		getSupportFragmentManager()
 		.beginTransaction()
 		.replace(R.id.content_frame, mContent)
@@ -59,12 +60,14 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity {
 		// set the Behind View Fragment
 		getSupportFragmentManager()
 		.beginTransaction()
-		.replace(R.id.menu_frame, new ColorMenuFragment())
+		.replace(R.id.menu_frame, new BirdMenuFragment())
 		.commit();
 		
 		// customize the SlidingMenu
 		SlidingMenu sm = getSlidingMenu();
 		sm.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+		sm.setShadowWidthRes(R.dimen.shadow_width);
+		sm.setShadowDrawable(R.drawable.shadow);
 		sm.setBehindScrollScale(0.25f);
 		
 	}
@@ -92,5 +95,10 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity {
 		.commit();
 		getSlidingMenu().showAbove();
 	}	
+	
+	public void onBirdPressed(int pos) {
+		Intent intent = BirdActivity.newInstance(this, pos);
+		startActivity(intent);
+	}
 	
 }

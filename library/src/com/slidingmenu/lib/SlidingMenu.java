@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
@@ -366,6 +367,10 @@ public class SlidingMenu extends RelativeLayout {
 
 	public void setShadowDrawable(int resId) {
 		mViewAbove.setShadowDrawable(resId);
+	}
+	
+	public void setShadowDrawable(Drawable d) {
+		mViewAbove.setShadowDrawable(d);
 	}
 
 	public void setShadowWidthRes(int resId) {

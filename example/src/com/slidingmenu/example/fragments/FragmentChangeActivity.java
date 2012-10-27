@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 
 import com.slidingmenu.example.BaseActivity;
 import com.slidingmenu.example.R;
+import com.slidingmenu.lib.SlidingMenu;
 
 public class FragmentChangeActivity extends BaseActivity {
 	
@@ -21,19 +22,24 @@ public class FragmentChangeActivity extends BaseActivity {
 		if (savedInstanceState != null)
 			mContent = getSupportFragmentManager().getFragment(savedInstanceState, "mContent");
 		if (mContent == null)
-			mContent = new ColorFragment(R.color.red);			
+			mContent = new ColorFragment(R.color.red);	
+		
+		// set the Above View
 		setContentView(R.layout.content_frame);
 		getSupportFragmentManager()
 		.beginTransaction()
 		.replace(R.id.content_frame, mContent)
 		.commit();
+		
 		// set the Behind View
 		setBehindContentView(R.layout.menu_frame);
 		getSupportFragmentManager()
 		.beginTransaction()
 		.replace(R.id.menu_frame, new ColorMenuFragment())
 		.commit();
+		
 		// customize the SlidingMenu
+		getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 	}
 	
 	@Override

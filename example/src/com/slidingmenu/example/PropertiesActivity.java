@@ -1,6 +1,7 @@
 package com.slidingmenu.example;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioGroup;
@@ -15,15 +16,15 @@ public class PropertiesActivity extends BaseActivity {
 	public PropertiesActivity() {
 		super(R.string.properties);
 	}
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		setSlidingActionBarEnabled(true);
-		
+
 		setContentView(R.layout.properties);
-		
+
 		// touch mode stuff
 		RadioGroup touchAbove = (RadioGroup) findViewById(R.id.touch_above);
 		touchAbove.check(R.id.touch_above_margin);
@@ -37,10 +38,13 @@ public class PropertiesActivity extends BaseActivity {
 				case R.id.touch_above_margin:
 					getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
 					break;
+				case R.id.touch_above_none:
+					getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
+					break;
 				}
 			}
 		});
-		
+
 		RadioGroup touchBehind = (RadioGroup) findViewById(R.id.touch_behind);
 		touchBehind.check(R.id.touch_behind_margin);
 		touchBehind.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -57,7 +61,7 @@ public class PropertiesActivity extends BaseActivity {
 			}			
 		});
 
-		
+
 		// scroll scale stuff
 		SeekBar scrollScale = (SeekBar) findViewById(R.id.scroll_scale);
 		scrollScale.setMax(1000);
@@ -73,8 +77,8 @@ public class PropertiesActivity extends BaseActivity {
 				getSlidingMenu().setBehindScrollScale((float) seekBar.getProgress()/seekBar.getMax());
 			}
 		});
-		
-		
+
+
 		// behind width stuff
 		SeekBar behindWidth = (SeekBar) findViewById(R.id.behind_width);
 		behindWidth.setMax(1000);
@@ -92,8 +96,35 @@ public class PropertiesActivity extends BaseActivity {
 				getSlidingMenu().requestLayout();
 			}
 		});
-		
-		
+
+		// shadow stuff
+		CheckBox shadowEnabled = (CheckBox) findViewById(R.id.shadow_enabled);
+		shadowEnabled.setChecked(true);
+		shadowEnabled.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if (isChecked)
+					getSlidingMenu().setShadowDrawable(R.drawable.defaultshadow);
+				else
+					getSlidingMenu().setShadowDrawable(null);
+			}
+		});
+		SeekBar shadowWidth = (SeekBar) findViewById(R.id.shadow_width);
+		shadowWidth.setMax(1000);
+		shadowWidth.setProgress(75);
+		shadowWidth.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+			@Override
+			public void onProgressChanged(SeekBar arg0, int arg1, boolean arg2) { }
+			@Override
+			public void onStartTrackingTouch(SeekBar seekBar) { }
+			@Override
+			public void onStopTrackingTouch(SeekBar seekBar) {
+				float percent = (float) seekBar.getProgress()/ (float) seekBar.getMax();
+				int width = (int) (percent * (float) getSlidingMenu().getWidth());
+				getSlidingMenu().setShadowWidth(width);
+				getSlidingMenu().invalidate();
+			}
+		});
+
 		// fading stuff
 		CheckBox fadeEnabled = (CheckBox) findViewById(R.id.fade_enabled);
 		fadeEnabled.setChecked(true);
