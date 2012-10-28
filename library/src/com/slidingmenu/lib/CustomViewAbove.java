@@ -157,32 +157,32 @@ public class CustomViewAbove extends ViewGroup {
 		}
 
 	}
-	
+
 	private class Window extends FrameLayout {
 
 		public Window(Context context) {
 			super(context);
 		}
-		
+
 		public boolean onTouchEvent(MotionEvent event) {
 			return false;
 		}
-		
+
 		public boolean onInterceptTouchEvent(MotionEvent event) {
 			return false;
 		}
-		
+
 	}
-	
+
 	public class Content extends FrameLayout {
 		public Content(Context context) {
 			super(context);
 		}
-		
+
 		public boolean onTouchEvent(MotionEvent event) {
 			return super.onTouchEvent(event);
 		}
-		
+
 		public boolean onInterceptTouchEvent(MotionEvent event) {
 			if (event.getX() < getPaddingLeft()) {
 				Log.v(TAG, "ignoring touch");
@@ -734,6 +734,17 @@ public class CustomViewAbove extends ViewGroup {
 		}
 	}
 
+	private boolean thisSlideAllowed(float dx) {
+		boolean allowed = false;
+		if (isMenuOpen()) {
+			allowed = dx < 0;
+		} else if (mCustomViewBehind != null) {
+			allowed = dx > 0;
+		}
+		Log.v(TAG, "this slide allowed " + allowed);
+		return allowed;
+	}
+
 	private boolean mIsUnableToDrag;
 
 	@Override
@@ -778,7 +789,7 @@ public class CustomViewAbove extends ViewGroup {
 			final float xDiff = Math.abs(dx);
 			final float y = MotionEventCompat.getY(ev, pointerIndex);
 			final float yDiff = Math.abs(y - mLastMotionY);
-			if (xDiff > mTouchSlop && xDiff > yDiff) {
+			if (xDiff > mTouchSlop && xDiff > yDiff && thisSlideAllowed(dx)) {
 				if (DEBUG) Log.v(TAG, "Starting drag! from onInterceptTouch");
 				mIsBeingDragged = true;
 				mLastMotionX = x;
