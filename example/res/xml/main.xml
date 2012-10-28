@@ -5,6 +5,7 @@
         <Preference android:title="@string/properties" />
         <Preference android:title="@string/changing_fragments" />
         <Preference android:title="@string/responsive_ui" />
+        <Preference android:title="@string/viewpager" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/title_bar" >
         <Preference android:title="@string/title_bar_slide" />
@@ -14,7 +15,6 @@
         <Preference android:title="@string/anim_zoom" />
         <Preference android:title="@string/anim_scale" />
         <Preference android:title="@string/anim_slide" />
-        <Preference android:title="@string/anim_rot" />
     </PreferenceCategory>
 
 </PreferenceScreen>

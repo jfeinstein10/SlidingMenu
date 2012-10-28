@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
-import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +12,16 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.slidingmenu.example.anim.CustomRotateAnimation;
+import com.actionbarsherlock.app.SherlockPreferenceActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import com.slidingmenu.example.anim.CustomScaleAnimation;
 import com.slidingmenu.example.anim.CustomSlideAnimation;
 import com.slidingmenu.example.anim.CustomZoomAnimation;
 import com.slidingmenu.example.fragments.FragmentChangeActivity;
 import com.slidingmenu.example.fragments.ResponsiveUIActivity;
 
-public class ExampleListActivity extends PreferenceActivity {
+public class ExampleListActivity extends SherlockPreferenceActivity {
 
 	private ActivityAdapter mAdapter;
 
@@ -28,6 +29,7 @@ public class ExampleListActivity extends PreferenceActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setTitle(R.string.app_name);
+
 		this.addPreferencesFromResource(R.xml.main);
 		//		mAdapter = new ActivityAdapter(this);
 		//		mAdapter.addInfo("Sliding Title Bar", new Intent(this, SlidingTitleBar.class));
@@ -47,6 +49,8 @@ public class ExampleListActivity extends PreferenceActivity {
 			cls = FragmentChangeActivity.class;
 		} else if (title.equals(getString(R.string.responsive_ui))) {
 			cls = ResponsiveUIActivity.class;
+		} else if (title.equals(getString(R.string.viewpager))) {
+			cls = ViewPagerActivity.class;
 		} else if (title.equals(getString(R.string.title_bar_slide))) {
 			cls = SlidingTitleBar.class;
 		} else if (title.equals(getString(R.string.title_bar_content))) {
@@ -57,8 +61,6 @@ public class ExampleListActivity extends PreferenceActivity {
 			cls = CustomScaleAnimation.class;
 		} else if (title.equals(getString(R.string.anim_slide))) {
 			cls = CustomSlideAnimation.class;
-		} else if (title.equals(getString(R.string.anim_rot))) {
-			cls = CustomRotateAnimation.class;
 		}
 		Intent intent = new Intent(this, cls);
 		startActivity(intent);
@@ -69,6 +71,22 @@ public class ExampleListActivity extends PreferenceActivity {
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		ActivityInfo info = mAdapter.getItem(position);
 		startActivity(info.intent);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.github:
+			Util.goToGitHub(this);
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getSupportMenuInflater().inflate(R.menu.main, menu);
+		return true;
 	}
 
 	public class ActivityInfo {

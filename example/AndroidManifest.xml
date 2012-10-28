@@ -29,6 +29,7 @@
         <activity android:name=".anim.CustomSlideAnimation" />
         <activity android:name=".SlidingTitleBar" />
         <activity android:name=".SlidingContent" />
+        <activity android:name=".ViewPagerActivity" />
         <activity android:name=".fragments.FragmentChangeActivity" />
         <activity android:name=".fragments.ResponsiveUIActivity" />
         <activity android:name=".fragments.BirdActivity" />

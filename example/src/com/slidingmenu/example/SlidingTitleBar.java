@@ -15,21 +15,13 @@ public class SlidingTitleBar extends BaseActivity {
 		super.onCreate(savedInstanceState);
 
 		// set the Above View
-//		setContentView(R.layout.content_frame);
-//		getSupportFragmentManager()
-//		.beginTransaction()
-//		.replace(R.id.content_frame, new SampleListFragment())
-//		.commit();
+		setContentView(R.layout.content_frame);
+		getSupportFragmentManager()
+		.beginTransaction()
+		.replace(R.id.content_frame, new SampleListFragment())
+		.commit();
 		
-		ViewPager vp = new ViewPager(this);
-		vp.setId("VP".hashCode());
-		vp.setAdapter(new PagerAdapter(getSupportFragmentManager(), vp));
-		setContentView(vp);
-		
-		getSlidingMenu().setAboveOffsetRes(R.dimen.slidingmenu_offset);
-		getSlidingMenu().setBehindScrollScale(0.0f);
-		
-		setSlidingActionBarEnabled(false);
+		setSlidingActionBarEnabled(true);
 	}
 	
 }

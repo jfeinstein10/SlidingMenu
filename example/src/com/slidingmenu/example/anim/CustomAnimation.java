@@ -37,10 +37,4 @@ public abstract class CustomAnimation extends BaseActivity {
 		sm.setBehindCanvasTransformer(mTransformer);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		this.getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
 }
