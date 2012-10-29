@@ -11,7 +11,7 @@
     <application
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
+        android:theme="@style/ExampleTheme" >
         <activity
             android:name=".ExampleListActivity"
             android:configChanges="orientation|screenSize|screenLayout"

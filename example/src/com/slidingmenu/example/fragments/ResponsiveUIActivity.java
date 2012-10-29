@@ -99,7 +99,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity {
 			public void run() {
 				getSlidingMenu().showAbove();
 			}
-		}, 100);
+		}, 50);
 	}	
 	
 	public void onBirdPressed(int pos) {
