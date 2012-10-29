@@ -15,6 +15,7 @@
         <activity
             android:name=".ExampleListActivity"
             android:configChanges="orientation|screenSize|screenLayout"
+            android:theme="@style/Theme.Sherlock.Light.DarkActionBar"
             android:uiOptions="splitActionBarWhenNarrow" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,7 +33,9 @@
         <activity android:name=".ViewPagerActivity" />
         <activity android:name=".fragments.FragmentChangeActivity" />
         <activity android:name=".fragments.ResponsiveUIActivity" />
-        <activity android:name=".fragments.BirdActivity" />
+        <activity
+            android:name=".fragments.BirdActivity"
+            android:theme="@style/Theme.Sherlock.Light.DarkActionBar" />
     </application>
 
 </manifest>

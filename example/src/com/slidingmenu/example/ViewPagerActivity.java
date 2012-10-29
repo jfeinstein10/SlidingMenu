@@ -45,6 +45,9 @@ public class ViewPagerActivity extends BaseActivity {
 			}
 
 		});
+		
+		vp.setCurrentItem(0);
+		getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 	}
 
 	public class ColorPagerAdapter extends FragmentPagerAdapter {
