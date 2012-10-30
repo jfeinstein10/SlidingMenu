@@ -48,6 +48,7 @@ public class SlidingMenu extends RelativeLayout {
 			// get the window background
 			TypedArray a = activity.getTheme().obtainStyledAttributes(new int[] {android.R.attr.windowBackground});
 			int background = a.getResourceId(0, 0);
+			a.recycle();
 			// move everything into the SlidingMenu
 			ViewGroup decor = (ViewGroup) activity.getWindow().getDecorView();
 			ViewGroup decorChild = (ViewGroup) decor.getChildAt(0);
@@ -164,6 +165,7 @@ public class SlidingMenu extends RelativeLayout {
 		int selectorRes = ta.getResourceId(R.styleable.SlidingMenu_selectorDrawable, -1);
 		if (selectorRes != -1)
 			setSelectorDrawable(selectorRes);
+		ta.recycle();
 	}
 
 	public void setContent(int res) {

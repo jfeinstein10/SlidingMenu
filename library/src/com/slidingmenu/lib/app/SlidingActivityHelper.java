@@ -43,6 +43,7 @@ public class SlidingActivityHelper {
 		// get the window background
 		TypedArray a = mActivity.getTheme().obtainStyledAttributes(new int[] {android.R.attr.windowBackground});
 		int background = a.getResourceId(0, 0);
+		a.recycle();
 
 		if (mEnableSlide) {
 			// move everything into the SlidingMenu
