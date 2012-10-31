@@ -218,14 +218,31 @@ public class SlidingMenu extends RelativeLayout {
 	 * Shows the behind view
 	 */
 	public void showBehind() {
-		mViewAbove.setCurrentItem(0);
+		showBehind(true);
+	}
+	public void showBehind(boolean animate) {
+		mViewAbove.setCurrentItem(0, animate);
 	}
 
 	/**
 	 * Shows the above view
 	 */
 	public void showAbove() {
-		mViewAbove.setCurrentItem(1);
+		showAbove(true);
+	}
+	public void showAbove(boolean animate) {
+		mViewAbove.setCurrentItem(1, animate);
+	}
+	
+	public void toggle() {
+		toggle(true);
+	}
+	public void toggle(boolean animate) {
+		if (isBehindShowing()) {
+			showAbove(animate);
+		} else {
+			showBehind(animate);
+		}
 	}
 
 	/**

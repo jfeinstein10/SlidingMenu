@@ -32,6 +32,12 @@ public class SlidingActivity extends Activity implements SlidingActivityBase {
 			return v;
 		return mHelper.findViewById(id);
 	}
+	
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		mHelper.onSaveInstanceState(outState);
+	}
 
 	@Override
 	public void setContentView(int id) {

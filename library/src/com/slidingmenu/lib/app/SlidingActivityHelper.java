@@ -85,6 +85,10 @@ public class SlidingActivityHelper {
 		return null;
 	}
 
+	public void onSaveInstanceState(Bundle outState) {
+		outState.putBoolean("menuOpen", mSlidingMenu.isBehindShowing());
+	}
+
 	public void registerAboveContentView(View v, LayoutParams params) {
 		if (!mBroadcasting)
 			mViewAbove = v;
