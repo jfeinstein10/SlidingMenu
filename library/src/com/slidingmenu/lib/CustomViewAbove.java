@@ -784,6 +784,10 @@ public class CustomViewAbove extends ViewGroup {
 				break;
 
 			final int pointerIndex = MotionEventCompat.findPointerIndex(ev, activePointerId);
+			if (pointerIndex == -1) {
+				mActivePointerId = INVALID_POINTER;
+				break;
+			}
 			final float x = MotionEventCompat.getX(ev, pointerIndex);
 			final float dx = x - mLastMotionX;
 			final float xDiff = Math.abs(dx);
@@ -870,6 +874,10 @@ public class CustomViewAbove extends ViewGroup {
 		case MotionEvent.ACTION_MOVE:
 			if (!mIsBeingDragged) {
 				final int pointerIndex = MotionEventCompat.findPointerIndex(ev, mActivePointerId);
+				if (pointerIndex == -1) {
+					mActivePointerId = INVALID_POINTER;
+					break;
+				}
 				final float x = MotionEventCompat.getX(ev, pointerIndex);
 				final float xDiff = Math.abs(x - mLastMotionX);
 				final float y = MotionEventCompat.getY(ev, pointerIndex);
@@ -886,6 +894,10 @@ public class CustomViewAbove extends ViewGroup {
 				// Scroll to follow the motion event
 				final int activePointerIndex = MotionEventCompat.findPointerIndex(
 						ev, mActivePointerId);
+				if (activePointerIndex == -1) {
+					mActivePointerId = INVALID_POINTER;
+					break;
+				}
 				final float x = MotionEventCompat.getX(ev, activePointerIndex);
 				final float deltaX = mLastMotionX - x;
 				mLastMotionX = x;

@@ -27,7 +27,7 @@ public class PropertiesActivity extends BaseActivity {
 
 		// touch mode stuff
 		RadioGroup touchAbove = (RadioGroup) findViewById(R.id.touch_above);
-		touchAbove.check(R.id.touch_above_margin);
+		touchAbove.check(R.id.touch_above_full);
 		touchAbove.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
