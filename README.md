@@ -1,9 +1,9 @@
-SlidingMenu
+SlidingMenu ([Play Store Demo][7])
 ===========
 
-An Android library that allows developers to easily create slide-in menus like in the Spotify and 
-Facebook applications. Feel free to use it all you want in your Android apps provided that you cite 
-this project and include the license in your app.
+SlidingMenu is an Open Source Android library that allows developers to easily create applications 
+with sliding menus like those made popular in the Google+, YouTube, and Facebook apps. Feel free 
+to use it all you want in your Android apps provided that you cite this project and include the license in your app.
 
 SlidingMenu is currently used in some incredibly popular Android apps such as [Zappos][3], [Plume][4], 
 [VLC for Android][5], and [The Verge][6]. If you are using SlidingMenu in your app and would like to be listed here, 
@@ -127,3 +127,4 @@ License
 [4]: https://play.google.com/store/apps/details?id=com.levelup.touiteur&hl=en
 [5]: https://play.google.com/store/apps/details?id=org.videolan.vlc.betav7neon
 [6]: https://play.google.com/store/apps/details?id=com.verge.android
+[7]: http://bit.ly/TWejze
