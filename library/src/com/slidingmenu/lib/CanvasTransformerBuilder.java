@@ -5,7 +5,7 @@ import android.view.animation.Interpolator;
 
 import com.slidingmenu.lib.SlidingMenu.CanvasTransformer;
 
-public class CanvasTranformerBuilder {
+public class CanvasTransformerBuilder {
 
 	private CanvasTransformer mTrans;
 
