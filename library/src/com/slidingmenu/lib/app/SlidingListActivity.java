@@ -38,7 +38,7 @@ public class SlidingListActivity extends ListActivity implements SlidingActivity
 	}
 
 	@Override
-	public void onSaveInstanceState(Bundle outState) {
+	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		mHelper.onSaveInstanceState(outState);
 	}
