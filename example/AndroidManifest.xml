@@ -39,6 +39,10 @@
             android:name=".fragments.BirdActivity"
             android:theme="@style/Theme.Sherlock.Light.DarkActionBar" />
         <activity android:name="com.crittercism.NotificationActivity"/>
+
+
+        <!-- Issues Activities -->
+        <activity android:name=".bugs.HorizontalSlideIssue" />
     </application>
 
 </manifest>

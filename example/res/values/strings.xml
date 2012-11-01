@@ -52,4 +52,15 @@
 		language governing permissions and limitations under the License.</string>
     <string name="no_email">Sorry, I couldn\'t find any e-mail apps on your phone</string>
 
+
+
+    <!-- Issue Descriptions From Here Below -->
+    <string name="title_horizontal_slide_issue">Horizontal Slide Issue</string>
+    <string name="horizontal_slide_issue_description">
+        Notice that the sliding menu receives touches no matter what other views are in the hierarchy. It should see if any other views can handle those touches before it tries to handle them itself.
+
+        Views should return true if they've consumed onInterceptTouchEvent.
+
+    </string>
+
 </resources>
