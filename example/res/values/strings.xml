@@ -52,4 +52,8 @@
 		language governing permissions and limitations under the License.</string>
     <string name="no_email">Sorry, I couldn\'t find any e-mail apps on your phone</string>
 
+    <!-- Issues Descriptions from here below -->
+    <string name="title_issue_121">Horizontal Slide Issue</string>
+    <string name="issue_121_description">Notice that hte sliding menu receives touches no matter what other views are in the hierarchy. It should see if any other views need those touches.</string>
+
 </resources>

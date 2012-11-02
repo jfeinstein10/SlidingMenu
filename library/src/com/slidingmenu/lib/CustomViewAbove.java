@@ -39,7 +39,7 @@ import com.slidingmenu.lib.SlidingMenu.OnOpenedListener;
 public class CustomViewAbove extends ViewGroup {
 
 	private static final String TAG = "CustomViewAbove";
-	private static final boolean DEBUG = false;
+	private static final boolean DEBUG = true;
 
 	private static final boolean USE_CACHE = false;
 
@@ -756,8 +756,7 @@ public class CustomViewAbove extends ViewGroup {
 
 		final int action = ev.getAction() & MotionEventCompat.ACTION_MASK;
 
-		if (action == MotionEvent.ACTION_DOWN && DEBUG)
-			Log.v(TAG, "Received ACTION_DOWN");
+		if (DEBUG) Log.v(TAG, "Received: " + eventActionToString(action));
 
 		if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP) {
 			mIsBeingDragged = false;
@@ -1285,5 +1284,18 @@ public class CustomViewAbove extends ViewGroup {
 		}
 		return false;
 	}
+
+    protected static String eventActionToString(int eventAction) {
+        switch (eventAction) {
+            case MotionEvent.ACTION_CANCEL: return "Cancel";
+            case MotionEvent.ACTION_DOWN: return "Down";
+            case MotionEvent.ACTION_MOVE: return "Move";
+            case MotionEvent.ACTION_OUTSIDE: return "Outside";
+            case MotionEvent.ACTION_UP: return "Up";
+            case MotionEvent.ACTION_POINTER_DOWN: return "Pointer Down";
+            case MotionEvent.ACTION_POINTER_UP: return "Pointer Up";
+        }
+        return "";
+    }
 
 }
