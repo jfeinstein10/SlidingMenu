@@ -38,12 +38,6 @@ public class ExampleListActivity extends SherlockPreferenceActivity {
 		setTitle(R.string.app_name);
 		
 		this.addPreferencesFromResource(R.xml.main);
-		//		mAdapter = new ActivityAdapter(this);
-		//		mAdapter.addInfo("Sliding Title Bar", new Intent(this, SlidingTitleBar.class));
-		//		mAdapter.addInfo("Sliding Content", new Intent(this, SlidingContent.class));
-		//		mAdapter.addInfo("Custom Opening Animation (Zoom)", new Intent(this, CustomZoomAnimation.class));
-		//		mAdapter.addInfo("Custom Opening Animation (Rotate)", new Intent(this, CustomRotateAnimation.class));
-		setListAdapter(mAdapter);
 	}
 
 	@Override

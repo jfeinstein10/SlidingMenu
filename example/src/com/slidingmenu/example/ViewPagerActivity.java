@@ -1,5 +1,7 @@
 package com.slidingmenu.example;
 
+import java.util.ArrayList;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -51,28 +53,32 @@ public class ViewPagerActivity extends BaseActivity {
 	}
 
 	public class ColorPagerAdapter extends FragmentPagerAdapter {
+		
+		private ArrayList<Fragment> mFragments;
 
 		private final int[] COLORS = new int[] {
 			R.color.red,
 			R.color.green,
 			R.color.blue,
-			android.R.color.white,
-			android.R.color.black
+			R.color.white,
+			R.color.black
 		};
 		
 		public ColorPagerAdapter(FragmentManager fm) {
 			super(fm);
+			mFragments = new ArrayList<Fragment>();
+			for (int color : COLORS)
+				mFragments.add(new ColorFragment(color));
 		}
 
 		@Override
 		public int getCount() {
-			return COLORS.length;
+			return mFragments.size();
 		}
 
 		@Override
 		public Fragment getItem(int position) {
-			// TODO Auto-generated method stub
-			return new ColorFragment(COLORS[position % getCount()]);
+			return mFragments.get(position);
 		}
 
 	}

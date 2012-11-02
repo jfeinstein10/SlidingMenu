@@ -3,6 +3,7 @@ package com.slidingmenu.example.fragments;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -40,8 +41,7 @@ public class BirdActivity extends SherlockActivity {
 		
 		setTitle(birds[pos]);
 		getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
-		ColorDrawable color = new ColorDrawable();
-		color.setColor(getResources().getColor(android.R.color.black));
+		ColorDrawable color = new ColorDrawable(Color.BLACK);
 		color.setAlpha(128);
 		getSupportActionBar().setBackgroundDrawable(color);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
