@@ -16,5 +16,8 @@
         <Preference android:title="@string/anim_scale" />
         <Preference android:title="@string/anim_slide" />
     </PreferenceCategory>
+    <PreferenceCategory android:title="Issues">
+        <Preference android:title="@string/title_issue_121" />
+    </PreferenceCategory>
 
 </PreferenceScreen>
