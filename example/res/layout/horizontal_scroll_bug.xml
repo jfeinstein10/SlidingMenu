@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical">
+    <TextView
+        android:id="@+id/issue_description"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/horizontal_scroll_description"
+        android:layout_marginBottom="25dp" />
+
+
+    <HorizontalScrollView
+        android:id="@+id/issue_scroll_view"
+        android:background="#F2DA91"
+        android:layout_height="100dp"
+        android:layout_width="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/issue_image_container"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal" />
+
+    </HorizontalScrollView>
+
+
+
+</LinearLayout>

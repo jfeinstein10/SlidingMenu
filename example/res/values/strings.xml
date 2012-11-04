@@ -52,4 +52,10 @@
 		language governing permissions and limitations under the License.</string>
     <string name="no_email">Sorry, I couldn\'t find any e-mail apps on your phone</string>
 
+
+    <!-- Issues Strings -->
+    <string name="issues_pref_title">Issues</string>
+    <string name="horizontal_scroll_title">Horizontal Scroll Issue</string>
+    <string name="horizontal_scroll_description">Notice how Horizontal Scroll View isn\'t usable with the normal SlidingMenu implementation.</string>
+
 </resources>
