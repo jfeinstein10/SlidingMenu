@@ -35,6 +35,7 @@ import android.widget.Scroller;
 import com.slidingmenu.lib.SlidingMenu.OnClosedListener;
 //import com.slidingmenu.lib.SlidingMenu.OnOpenListener;
 import com.slidingmenu.lib.SlidingMenu.OnOpenedListener;
+import com.slidingmenu.lib.SlidingMenu.OnTouchedEventListener;
 
 public class CustomViewAbove extends ViewGroup {
 
@@ -106,6 +107,7 @@ public class CustomViewAbove extends ViewGroup {
 	//	private OnOpenListener mOpenListener;
 	private OnClosedListener mClosedListener;
 	private OnOpenedListener mOpenedListener;
+    private OnTouchedEventListener mTouchedEventListener;
 
 	//	private int mScrollState = SCROLL_STATE_IDLE;
 
@@ -332,6 +334,10 @@ public class CustomViewAbove extends ViewGroup {
 	public void setOnClosedListener(OnClosedListener l) {
 		mClosedListener = l;
 	}
+
+    public void setOnTouchedEventListener(OnTouchedEventListener l) {
+        mTouchedEventListener = l;
+    }
 
 	/**
 	 * Set a separate OnPageChangeListener for internal use by the support library.
@@ -753,6 +759,11 @@ public class CustomViewAbove extends ViewGroup {
 		if (!mEnabled) {
 			return false;
 		}
+
+        if (mTouchedEventListener != null && mTouchedEventListener.onTouchEventIntercepted(ev)) {
+            // Someone else wants to consume these events, so we return false here.
+            return false;
+        }
 
 		final int action = ev.getAction() & MotionEventCompat.ACTION_MASK;
 

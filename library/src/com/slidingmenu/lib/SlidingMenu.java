@@ -14,13 +14,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
-import android.view.Display;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
 import com.slidingmenu.lib.CustomViewAbove.OnPageChangeListener;
@@ -35,6 +30,7 @@ public class SlidingMenu extends RelativeLayout {
 	private CustomViewBehind mViewBehind;
 	private OnOpenListener mOpenListener;
 	private OnCloseListener mCloseListener;
+    private OnTouchedEventListener mTouchedEventListener;
 
     //private boolean mSlidingEnabled;
 
@@ -66,6 +62,15 @@ public class SlidingMenu extends RelativeLayout {
 			content.addView(sm, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		}
 	}
+
+    public interface OnTouchedEventListener {
+        /**
+         * Method that can be subscribed to so that you receive touch events before the above view.
+         * @param event The MotionEvent the above view received.
+         * @return True if you want to consume the event, false otherwise.
+         */
+        public boolean onTouchEventIntercepted(MotionEvent event);
+    }
 
 	public interface OnOpenListener {
 		public void onOpen();
@@ -441,6 +446,10 @@ public class SlidingMenu extends RelativeLayout {
 	public void setOnClosedListener(OnClosedListener listener) {
 		mViewAbove.setOnClosedListener(listener);
 	}
+
+    public void setOnTouchedEventListener(OnTouchedEventListener listener) {
+        mViewAbove.setOnTouchedEventListener(listener);
+    }
 
 	public static class SavedState extends BaseSavedState {
 		private final boolean mBehindShowing;
