@@ -82,6 +82,18 @@ public class SlidingMenu extends RelativeLayout {
 		}
 	}
 
+    /**
+     * An interface that one can subscribe to listen for when the SlidingMenu receives touches.
+     */
+    public interface OnTouchedEventListener {
+        /**
+         * SlidingMenu was touched.
+         * @param event The event we received.
+         * @return True if you want to consume the event, false if you want to let the SlidingMenu handle it.
+         */
+        public boolean onTouchEventIntercepted(MotionEvent event);
+    }
+
 	/**
 	 * The listener interface for receiving onOpen events.
 	 * The class that is interested in processing a onOpen
