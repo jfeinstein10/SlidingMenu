@@ -28,14 +28,12 @@ import android.view.ViewGroup;
 import android.view.animation.Interpolator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Scroller;
 
-//import com.slidingmenu.lib.SlidingMenu.OnCloseListener;
 import com.slidingmenu.lib.SlidingMenu.OnClosedListener;
-//import com.slidingmenu.lib.SlidingMenu.OnOpenListener;
 import com.slidingmenu.lib.SlidingMenu.OnOpenedListener;
-import com.slidingmenu.lib.SlidingMenu.OnTouchedEventListener;
+//import com.slidingmenu.lib.SlidingMenu.OnCloseListener;
+//import com.slidingmenu.lib.SlidingMenu.OnOpenListener;
 
 public class CustomViewAbove extends ViewGroup {
 
@@ -1122,7 +1120,7 @@ public class CustomViewAbove extends ViewGroup {
 		return y;
 	}
 
-	public void setSelectorDrawable(Bitmap b) {
+	public void setSelectorBitmap(Bitmap b) {
 		mSelectorDrawable = b;
 		refreshDrawableState();
 	}
