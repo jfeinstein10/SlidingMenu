@@ -37,9 +37,7 @@ public class SlidingPreferenceActivity extends PreferenceActivity implements Sli
 	@Override
 	public View findViewById(int id) {
 		View v = super.findViewById(id);
-		if (v != null)
-			return v;
-		return mHelper.findViewById(id);
+		return v != null ? v : mHelper.findViewById(id);
 	}
 
 	/* (non-Javadoc)
@@ -138,7 +136,6 @@ public class SlidingPreferenceActivity extends PreferenceActivity implements Sli
 	@Override
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
 		boolean b = mHelper.onKeyUp(keyCode, event);
-		if (b) return b;
-		return super.onKeyUp(keyCode, event);
+		return b ? b : super.onKeyUp(keyCode, event);
 	}
 }
