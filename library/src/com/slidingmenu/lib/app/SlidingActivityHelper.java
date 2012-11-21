@@ -86,6 +86,7 @@ public class SlidingActivityHelper {
 			mSlidingMenu.setContent(mViewAbove);
 			parent.addView(mSlidingMenu, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		}
+		this.showAbove();
 	}
 
 	/**

@@ -240,8 +240,6 @@ public class SlidingMenu extends RelativeLayout {
 			setMenu(viewBehind);
 		int touchModeAbove = ta.getInt(R.styleable.SlidingMenu_touchModeAbove, TOUCHMODE_MARGIN);
 		setTouchModeAbove(touchModeAbove);
-		int touchModeBehind = ta.getInt(R.styleable.SlidingMenu_touchModeBehind, TOUCHMODE_MARGIN);
-		setTouchModeBehind(touchModeBehind);
 
 		int offsetBehind = (int) ta.getDimension(R.styleable.SlidingMenu_behindOffset, -1);
 		int widthBehind = (int) ta.getDimension(R.styleable.SlidingMenu_behindWidth, -1);
@@ -310,7 +308,7 @@ public class SlidingMenu extends RelativeLayout {
 	 * @param view The desired content to display.
 	 */
 	public void setMenu(View v) {
-		mViewBehind.setMenu(v);
+		mViewBehind.setContent(v);
 		mViewBehind.invalidate();
 	}
 
@@ -342,10 +340,10 @@ public class SlidingMenu extends RelativeLayout {
 			setSlidingEnabled(false);
 			mViewAbove.setCustomViewBehind(null);
 			mViewAbove.setCurrentItem(1);
-			mViewBehind.setCurrentItem(0);	
+//			mViewBehind.setCurrentItem(0);	
 		} else {
 			mViewAbove.setCurrentItem(1);
-			mViewBehind.setCurrentItem(1);
+//			mViewBehind.setCurrentItem(1);
 			mViewAbove.setCustomViewBehind(mViewBehind);
 			setSlidingEnabled(true);
 		}
@@ -566,32 +564,6 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	/**
-	 * Returns whether the menu can be swiped to close
-	 *
-	 * @return the touch mode behind, either {@link #TOUCHMODE_MARGIN TOUCHMODE_MARGIN}, {@link #TOUCHMODE_FULLSCREEN TOUCHMODE_FULLSCREEN},
-	 * or {@link #TOUCHMODE_NONE TOUCHMODE_NONE}
-	 */
-	public int getTouchModeBehind() {
-		return mViewBehind.getTouchMode();
-	}
-
-	/**
-	 * Controls whether the SlidingMenu can be closed with a swipe gesture.
-	 * Options are {@link #TOUCHMODE_MARGIN TOUCHMODE_MARGIN}, {@link #TOUCHMODE_FULLSCREEN TOUCHMODE_FULLSCREEN},
-	 * or {@link #TOUCHMODE_NONE TOUCHMODE_NONE}
-	 *
-	 * @param i the new touch mode
-	 */
-	public void setTouchModeBehind(int i) {
-		if (i != TOUCHMODE_FULLSCREEN && i != TOUCHMODE_MARGIN
-				&& i != TOUCHMODE_NONE) {
-			throw new IllegalStateException("TouchMode must be set to either" +
-					"TOUCHMODE_FULLSCREEN or TOUCHMODE_MARGIN or TOUCHMODE_NONE.");
-		}
-		mViewBehind.setTouchMode(i);
-	}
-
-	/**
 	 * Sets the shadow drawable.
 	 *
 	 * @param resId the resource ID of the new shadow drawable
@@ -789,14 +761,12 @@ public class SlidingMenu extends RelativeLayout {
 	 */
 	@Override
 	protected boolean fitSystemWindows(Rect insets) {
-
         int leftPadding = getPaddingLeft() + insets.left;
         int rightPadding = getPaddingRight() + insets.right;
-        int topPadding = insets.top;
-        int bottomPadding = insets.bottom;
+        int topPadding = getPaddingTop() + insets.top;
+        int bottomPadding = getPaddingBottom() + insets.bottom;
         this.setPadding(leftPadding, topPadding, rightPadding, bottomPadding);
-
-		return super.fitSystemWindows(insets);
+        return true;
 	}
 
 }
