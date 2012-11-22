@@ -2,8 +2,8 @@ package com.slidingmenu.lib;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,12 +66,12 @@ public class CustomViewBehind extends ViewGroup {
 
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent e) {
-		return !mChildrenEnabled;
+		return false;
 	}
 
 	@Override
 	public boolean onTouchEvent(MotionEvent e) {
-		return false;
+		return mChildrenEnabled;
 	}
 
 	@Override
