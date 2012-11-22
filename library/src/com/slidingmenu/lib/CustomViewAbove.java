@@ -582,7 +582,7 @@ public class CustomViewAbove extends ViewGroup {
 	}
 
 	private void pageScrolled(int xpos) {
-		final int widthWithMargin = getChildWidth(mCurItem) + mShadowWidth;
+		final int widthWithMargin = getWidth();
 		final int position = xpos / widthWithMargin;
 		final int offsetPixels = xpos % widthWithMargin;
 		final float offset = (float) offsetPixels / widthWithMargin;
