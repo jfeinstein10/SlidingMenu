@@ -33,13 +33,13 @@ public class PropertiesActivity extends BaseActivity {
 		left.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) { 
 				getSlidingMenu().setMode(SlidingMenu.LEFT);
-				getSlidingMenu().setShadowDrawable(R.drawable.defaultshadow);
+				getSlidingMenu().setShadowDrawable(R.drawable.shadow);
 			}
 		});
 		right.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) { 
 				getSlidingMenu().setMode(SlidingMenu.RIGHT);
-				getSlidingMenu().setShadowDrawable(R.drawable.defaultshadowright);
+				getSlidingMenu().setShadowDrawable(R.drawable.shadowright);
 			}
 		});
 
@@ -106,7 +106,7 @@ public class PropertiesActivity extends BaseActivity {
 				if (isChecked)
 					getSlidingMenu().setShadowDrawable(
 							getSlidingMenu().getMode() == SlidingMenu.LEFT ? 
-									R.drawable.defaultshadow : R.drawable.defaultshadowright);
+									R.drawable.shadow : R.drawable.shadowright);
 				else
 					getSlidingMenu().setShadowDrawable(null);
 			}
