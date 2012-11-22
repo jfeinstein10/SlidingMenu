@@ -236,11 +236,8 @@ public class CustomViewAbove extends ViewGroup {
 
 		Log.v(TAG, "setCurrentItem:" + item);
 
-		if (item < 0 || item >= 2) {
-			item = 0;
-		} else {
-			item = 1;
-		}
+		item = (item < 1) ? 0 : ((item > 1) ? 2 : 1);
+		
 		final boolean dispatchSelected = mCurItem != item;
 		mCurItem = item;
 		final int destX = getDestScrollX(mCurItem);
@@ -873,16 +870,14 @@ public class CustomViewAbove extends ViewGroup {
 				velocityTracker.computeCurrentVelocity(1000, mMaximumVelocity);
 				int initialVelocity = (int) VelocityTrackerCompat.getXVelocity(
 						velocityTracker, mActivePointerId);
-				final int widthWithMargin = getChildWidth(mCurItem);
+				final int widthWithMargin = getWidth();
 				final int scrollX = getScrollX();
-				//				final int currentPage = scrollX / widthWithMargin;
 				final float pageOffset = (float) (scrollX % widthWithMargin) / widthWithMargin;
 				final int activePointerIndex = getPointerIndex(ev, mActivePointerId);
 				if (mActivePointerId != INVALID_POINTER) {
 					final float x = MotionEventCompat.getX(ev, activePointerIndex);
 					final int totalDelta = (int) (x - mInitialMotionX);
-					int nextPage = determineTargetPage(mCurItem, pageOffset, initialVelocity,
-							totalDelta);
+					int nextPage = determineTargetPage(pageOffset, initialVelocity, totalDelta);
 					setCurrentItemInternal(nextPage, true, true, initialVelocity);
 				} else {	
 					setCurrentItemInternal(mCurItem, true, true, initialVelocity);
@@ -949,12 +944,16 @@ public class CustomViewAbove extends ViewGroup {
 			invalidate();
 	}
 
-	private int determineTargetPage(int currentPage, float pageOffset, int velocity, int deltaX) {
-		int targetPage;
+	private int determineTargetPage(float pageOffset, int velocity, int deltaX) {
+		int targetPage = mCurItem;
 		if (Math.abs(deltaX) > mFlingDistance && Math.abs(velocity) > mMinimumVelocity) {
-			targetPage = velocity > 0 ? currentPage - 1: currentPage + 1;
+//			if (mMode == SlidingMenu.LEFT) {
+				targetPage += velocity > 0 ? -1: 1;
+//			} else if (mMode == SlidingMenu.RIGHT) {
+//				targetPage += velocity > 0 ? 0: 1;
+//			}
 		} else {
-			targetPage = (int) (currentPage + pageOffset + 0.5f);
+			targetPage = (int) (mCurItem + pageOffset + 0.5f);
 		}
 		Log.v(TAG, "targetPage:" + targetPage);
 		return targetPage;

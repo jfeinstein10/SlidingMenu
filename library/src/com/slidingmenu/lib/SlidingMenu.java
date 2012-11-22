@@ -378,7 +378,7 @@ public class SlidingMenu extends RelativeLayout {
 	 * @param animate true to animate the transition, false to ignore animation
 	 */
 	public void showBehind(boolean animate) {
-		mViewAbove.setCurrentItem(0, animate);
+		mViewAbove.setCurrentItem(2, animate);
 	}
 
 	/**
