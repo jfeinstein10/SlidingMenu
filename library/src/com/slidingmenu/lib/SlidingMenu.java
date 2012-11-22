@@ -241,7 +241,7 @@ public class SlidingMenu extends RelativeLayout {
 		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.SlidingMenu);
 		// set the above and behind views if defined in xml
 		int mode = ta.getInt(R.styleable.SlidingMenu_mode, LEFT);
-		setMode(RIGHT);
+		setMode(mode);
 		int viewAbove = ta.getResourceId(R.styleable.SlidingMenu_viewAbove, -1);
 		if (viewAbove != -1)
 			setContent(viewAbove);
