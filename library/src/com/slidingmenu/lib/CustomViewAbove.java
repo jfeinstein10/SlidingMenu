@@ -914,7 +914,8 @@ public class CustomViewAbove extends ViewGroup {
 				mCustomViewBehind.scrollTo((int)((x + getBehindWidth())*mScrollScale), y);
 			} else if (mMode == SlidingMenu.RIGHT) {
 				// TODO right!
-				mCustomViewBehind.scrollTo((int)(getBehindWidth() - getWidth()), y);
+				mCustomViewBehind.scrollTo((int)(getBehindWidth() - getWidth() + 
+						(x-getBehindWidth())*mScrollScale), y);
 			}
 		}
 		if (mShadowDrawable != null || mSelectorDrawable != null)
