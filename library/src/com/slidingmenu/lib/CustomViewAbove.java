@@ -236,9 +236,9 @@ public class CustomViewAbove extends ViewGroup {
 
 		Log.v(TAG, "setCurrentItem:" + item);
 
-		if (item < 0) {
+		if (item < 0 || item >= 2) {
 			item = 0;
-		} else if (item >= 2) {
+		} else {
 			item = 1;
 		}
 		final boolean dispatchSelected = mCurItem != item;
@@ -379,7 +379,7 @@ public class CustomViewAbove extends ViewGroup {
 		}
 		return 0;
 	}
-	
+
 	private int getLeftBound() {
 		if (mMode == SlidingMenu.LEFT) {
 			return mContent.getLeft() - getBehindWidth();
@@ -388,7 +388,7 @@ public class CustomViewAbove extends ViewGroup {
 		}
 		return 0;
 	}
-	
+
 	private int getRightBound() {
 		if (mMode == SlidingMenu.LEFT) {
 			return mContent.getLeft();
@@ -403,7 +403,7 @@ public class CustomViewAbove extends ViewGroup {
 	}
 
 	public boolean isMenuOpen() {
-		return getCurrentItem() == 0;
+		return mCurItem == 0 || mCurItem == 2;
 	}
 
 	public int getBehindWidth() {
@@ -638,7 +638,6 @@ public class CustomViewAbove extends ViewGroup {
 	}
 
 	protected int mTouchMode = SlidingMenu.TOUCHMODE_MARGIN;
-	private int mTouchModeBehind = SlidingMenu.TOUCHMODE_MARGIN;
 
 	public void setTouchMode(int i) {
 		mTouchMode = i;
@@ -648,30 +647,14 @@ public class CustomViewAbove extends ViewGroup {
 		return mTouchMode;
 	}
 
-	protected void setTouchModeBehind(int i) {
-		mTouchModeBehind = i;
-	}
-
-	protected int getTouchModeBehind() {
-		return mTouchModeBehind;
-	}
-
 	private boolean thisTouchAllowed(MotionEvent ev) {
 		int x = (int) (ev.getX() + mScrollX);
 		if (isMenuOpen()) {
-			switch (mTouchModeBehind) {
-			case SlidingMenu.TOUCHMODE_FULLSCREEN:
-				return true;
-			case SlidingMenu.TOUCHMODE_NONE:
-				return false;
-			case SlidingMenu.TOUCHMODE_MARGIN:
-				if (mMode == SlidingMenu.LEFT) {
-					return x >= getContentLeft();
-				} else if (mMode == SlidingMenu.RIGHT) {
-					return x <= mContent.getRight();
-				}
-			default:
-				return false;
+			if (mMode == SlidingMenu.LEFT) {
+				return x >= getContentLeft();
+			} else if (mMode == SlidingMenu.RIGHT) {
+				int right = mContent.getRight();
+				return x <= mContent.getRight();
 			}
 		} else {
 			switch (mTouchMode) {
@@ -689,10 +672,9 @@ public class CustomViewAbove extends ViewGroup {
 					int right = mContent.getRight();
 					return (x <= right && x >= right - pixels);
 				}
-			default:
-				return false;
 			}
 		}
+		return false;
 	}
 
 	private boolean thisSlideAllowed(float dx) {
@@ -784,7 +766,7 @@ public class CustomViewAbove extends ViewGroup {
 			if (thisTouchAllowed(ev)) {
 				mIsBeingDragged = false;
 				mIsUnableToDrag = false;
-				if (isMenuOpen() && mInitialMotionX > getBehindWidth())
+				if (isMenuOpen())
 					return true;
 			} else {
 				mIsUnableToDrag = true;
@@ -987,9 +969,7 @@ public class CustomViewAbove extends ViewGroup {
 		super.dispatchDraw(canvas);
 		// Draw the margin drawable if needed.
 		if (mShadowWidth > 0 && mShadowDrawable != null) {
-			final int left = getContentLeft() - mShadowWidth;
-			mShadowDrawable.setBounds(left, 0, left + mShadowWidth, getHeight());
-			mShadowDrawable.draw(canvas);
+			onDrawShadow(canvas);
 		}
 
 		if (mFadeEnabled)
@@ -1014,6 +994,19 @@ public class CustomViewAbove extends ViewGroup {
 	private boolean mSelectorEnabled = true;
 	private Bitmap mSelectorDrawable;
 	private View mSelectedView;
+
+	private void onDrawShadow(Canvas canvas) {
+		if (mShadowDrawable == null || mShadowWidth <= 0)
+			return;
+		int left = 0;
+		if (mMode == SlidingMenu.LEFT) {
+			left = getContentLeft() - mShadowWidth;
+		} else if (mMode == SlidingMenu.RIGHT) {
+			left = mContent.getRight();
+		}
+		mShadowDrawable.setBounds(left, 0, left + mShadowWidth, getHeight());
+		mShadowDrawable.draw(canvas);
+	}
 
 
 	private void onDrawBehindFade(Canvas canvas, float openPercent) {
