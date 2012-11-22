@@ -104,7 +104,9 @@ public class PropertiesActivity extends BaseActivity {
 		shadowEnabled.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if (isChecked)
-					getSlidingMenu().setShadowDrawable(R.drawable.defaultshadow);
+					getSlidingMenu().setShadowDrawable(
+							getSlidingMenu().getMode() == SlidingMenu.LEFT ? 
+									R.drawable.defaultshadow : R.drawable.defaultshadowright);
 				else
 					getSlidingMenu().setShadowDrawable(null);
 			}

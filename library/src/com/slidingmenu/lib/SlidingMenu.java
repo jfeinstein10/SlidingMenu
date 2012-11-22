@@ -346,11 +346,23 @@ public class SlidingMenu extends RelativeLayout {
 		return mViewAbove.isSlidingEnabled();
 	}
 	
+	/**
+	 * Sets which side the SlidingMenu should appear on.
+	 * @param mode must be either SlidingMenu.LEFT or SlidingMenu.RIGHT
+	 */
 	public void setMode(int mode) {
 		if (mode != LEFT && mode != RIGHT) {
 			throw new IllegalStateException("SlidingMenu mode must be LEFT or RIGHT");
 		}
 		mViewAbove.setMode(mode);
+	}
+	
+	/**
+	 * Returns the current side that the SlidingMenu is on.
+	 * @return the current mode, either SlidingMenu.LEFT or SlidingMenu.RIGHT
+	 */
+	public int getMode() {
+		return mViewAbove.getMode();
 	}
 
 	/**

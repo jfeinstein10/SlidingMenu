@@ -516,6 +516,10 @@ public class CustomViewAbove extends ViewGroup {
 		if (mMode == SlidingMenu.LEFT && mCurItem == 2)
 			mCurItem = 0;
 	}
+	
+	public int getMode() {
+		return mMode;
+	}
 
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
