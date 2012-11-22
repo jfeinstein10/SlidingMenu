@@ -17,6 +17,7 @@ public class CustomViewBehind extends ViewGroup {
 	private CustomViewAbove mViewAbove;
 
 	private View mContent;
+	private int mWidthOffset;
 	private CanvasTransformer mTransformer;
 	private boolean mChildrenEnabled;
 
@@ -35,10 +36,14 @@ public class CustomViewBehind extends ViewGroup {
 	public void setCanvasTransformer(CanvasTransformer t) {
 		mTransformer = t;
 	}
-
+	
+	public void setWidthOffset(int i) {
+		mWidthOffset = i;
+		requestLayout();
+	}
+	
 	public int getBehindWidth() {
-		ViewGroup.LayoutParams params = getLayoutParams();
-		return params.width;
+		return super.getWidth() - mWidthOffset;
 	}
 
 	public void setContent(View v) {
@@ -92,7 +97,7 @@ public class CustomViewBehind extends ViewGroup {
 		int width = getDefaultSize(0, widthMeasureSpec);
 		int height = getDefaultSize(0, heightMeasureSpec);
 		setMeasuredDimension(width, height);
-		final int contentWidth = getChildMeasureSpec(widthMeasureSpec, 0, getBehindWidth());
+		final int contentWidth = getChildMeasureSpec(widthMeasureSpec, 0, width-mWidthOffset);
 		final int contentHeight = getChildMeasureSpec(heightMeasureSpec, 0, height);
 		mContent.measure(contentWidth, contentHeight);
 	}

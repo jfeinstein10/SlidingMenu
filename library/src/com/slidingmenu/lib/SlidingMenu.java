@@ -41,6 +41,14 @@ public class SlidingMenu extends RelativeLayout {
 	 * gesture
 	 */
 	public static final int TOUCHMODE_NONE = 2;
+	
+	/** Constant value for use with setMode(). Puts the menu to the left of the content.
+	 */
+	public static final int LEFT = 0;
+	
+	/** Constant value for use with setMode(). Puts the menu to the right of the content.
+	 */
+	public static final int RIGHT = 1;
 
 	private CustomViewAbove mViewAbove;
 	
@@ -212,6 +220,7 @@ public class SlidingMenu extends RelativeLayout {
 		addView(mViewAbove, aboveParams);
 		// register the CustomViewBehind2 with the CustomViewAbove
 		mViewAbove.setCustomViewBehind(mViewBehind);
+		mViewAbove.setMode(LEFT);
 		mViewBehind.setCustomViewAbove(mViewAbove);
 		mViewAbove.setOnPageChangeListener(new OnPageChangeListener() {
 			public static final int POSITION_OPEN = 0;
@@ -329,6 +338,13 @@ public class SlidingMenu extends RelativeLayout {
 	public boolean isSlidingEnabled() {
 		return mViewAbove.isSlidingEnabled();
 	}
+	
+	public void setMode(int mode) {
+		if (mode != LEFT && mode != RIGHT) {
+			throw new IllegalStateException("SlidingMenu mode must be LEFT or RIGHT");
+		}
+		mViewAbove.setMode(mode);
+	}
 
 	/**
 	 * Sets whether or not the SlidingMenu is in static mode (i.e. nothing is moving and everything is showing)
@@ -425,19 +441,12 @@ public class SlidingMenu extends RelativeLayout {
 	 * @param i The margin, in pixels, on the right of the screen that the behind view scrolls to.
 	 */
 	public void setBehindOffset(int i) {
-		RelativeLayout.LayoutParams params = ((RelativeLayout.LayoutParams)mViewBehind.getLayoutParams());
-		int bottom = params.bottomMargin;
-		int top = params.topMargin;
-		int left = params.leftMargin;
-		params.setMargins(left, top, i, bottom);
-		OnGlobalLayoutListener layoutListener = new OnGlobalLayoutListener() {
-			public void onGlobalLayout() {
-				showAbove();
-				mViewAbove.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-			}
-		};
-		mViewAbove.getViewTreeObserver().addOnGlobalLayoutListener(layoutListener);
-		mViewAbove.requestLayout();
+//		RelativeLayout.LayoutParams params = ((RelativeLayout.LayoutParams)mViewBehind.getLayoutParams());
+//		int bottom = params.bottomMargin;
+//		int top = params.topMargin;
+//		int left = params.leftMargin;
+//		params.setMargins(left, top, i, bottom);
+		mViewBehind.setWidthOffset(i);
 	}
 
 	/**
@@ -761,11 +770,11 @@ public class SlidingMenu extends RelativeLayout {
 	 */
 	@Override
 	protected boolean fitSystemWindows(Rect insets) {
-        int leftPadding = getPaddingLeft() + insets.left;
-        int rightPadding = getPaddingRight() + insets.right;
-        int topPadding = getPaddingTop() + insets.top;
-        int bottomPadding = getPaddingBottom() + insets.bottom;
-        this.setPadding(leftPadding, topPadding, rightPadding, bottomPadding);
+        int leftPadding = insets.left;
+        int rightPadding = insets.right;
+        int topPadding = insets.top;
+        int bottomPadding = insets.bottom;
+        setPadding(leftPadding, topPadding, rightPadding, bottomPadding);
         return true;
 	}
 
