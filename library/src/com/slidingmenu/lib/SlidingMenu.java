@@ -220,7 +220,6 @@ public class SlidingMenu extends RelativeLayout {
 		addView(mViewAbove, aboveParams);
 		// register the CustomViewBehind2 with the CustomViewAbove
 		mViewAbove.setCustomViewBehind(mViewBehind);
-		mViewAbove.setMode(LEFT);
 		mViewBehind.setCustomViewAbove(mViewAbove);
 		mViewAbove.setOnPageChangeListener(new OnPageChangeListener() {
 			public static final int POSITION_OPEN = 0;
@@ -241,6 +240,8 @@ public class SlidingMenu extends RelativeLayout {
 		// now style everything!
 		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.SlidingMenu);
 		// set the above and behind views if defined in xml
+		int mode = ta.getInt(R.styleable.SlidingMenu_mode, LEFT);
+		setMode(mode);
 		int viewAbove = ta.getResourceId(R.styleable.SlidingMenu_viewAbove, -1);
 		if (viewAbove != -1)
 			setContent(viewAbove);
