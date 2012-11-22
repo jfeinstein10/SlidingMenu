@@ -237,6 +237,10 @@ public class CustomViewAbove extends ViewGroup {
 		Log.v(TAG, "setCurrentItem:" + item);
 
 		item = (item < 1) ? 0 : ((item > 1) ? 2 : 1);
+		if (mMode == SlidingMenu.LEFT && item > 1)
+			item = 0;
+		if (mMode == SlidingMenu.RIGHT && item < 1)
+			item = 2;
 		
 		final boolean dispatchSelected = mCurItem != item;
 		mCurItem = item;
@@ -506,6 +510,10 @@ public class CustomViewAbove extends ViewGroup {
 
 	public void setMode(int mode) {
 		mMode = mode;
+		if (mMode == SlidingMenu.RIGHT && mCurItem == 0)
+			mCurItem = 2;
+		if (mMode == SlidingMenu.LEFT && mCurItem == 2)
+			mCurItem = 0;
 	}
 
 	@Override
