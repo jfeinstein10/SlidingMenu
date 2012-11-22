@@ -18,9 +18,9 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import com.slidingmenu.lib.CustomViewAbove.OnPageChangeListener;
@@ -243,11 +243,17 @@ public class SlidingMenu extends RelativeLayout {
 		int mode = ta.getInt(R.styleable.SlidingMenu_mode, LEFT);
 		setMode(mode);
 		int viewAbove = ta.getResourceId(R.styleable.SlidingMenu_viewAbove, -1);
-		if (viewAbove != -1)
+		if (viewAbove != -1) {
 			setContent(viewAbove);
+		} else {
+			setContent(new FrameLayout(context));
+		}
 		int viewBehind = ta.getResourceId(R.styleable.SlidingMenu_viewBehind, -1);
-		if (viewBehind != -1)
-			setMenu(viewBehind);
+		if (viewBehind != -1) {
+			setMenu(viewBehind); 
+		} else {
+			setMenu(new FrameLayout(context));
+		}
 		int touchModeAbove = ta.getInt(R.styleable.SlidingMenu_touchModeAbove, TOUCHMODE_MARGIN);
 		setTouchModeAbove(touchModeAbove);
 

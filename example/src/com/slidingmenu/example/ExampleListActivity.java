@@ -30,13 +30,12 @@ import com.slidingmenu.example.fragments.ResponsiveUIActivity;
 
 public class ExampleListActivity extends SherlockPreferenceActivity {
 
-	private ActivityAdapter mAdapter;
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setTitle(R.string.app_name);
 		
+//		Crittercism.init(getApplicationContext(), "508ab27601ed857a20000003");
 		this.addPreferencesFromResource(R.xml.main);
 	}
 
@@ -66,12 +65,6 @@ public class ExampleListActivity extends SherlockPreferenceActivity {
 		Intent intent = new Intent(this, cls);
 		startActivity(intent);
 		return true;
-	}
-
-	@Override
-	public void onListItemClick(ListView l, View v, int position, long id) {
-		ActivityInfo info = mAdapter.getItem(position);
-		startActivity(info.intent);
 	}
 
 	@Override
@@ -112,37 +105,5 @@ public class ExampleListActivity extends SherlockPreferenceActivity {
 		getSupportMenuInflater().inflate(R.menu.example_list, menu);
 		return true;
 	}
-
-	public class ActivityInfo {
-		public String name;
-		public Intent intent;
-		public ActivityInfo(String name, Intent intent) {
-			this.name = name;
-			this.intent = intent;
-		}
-	}
-
-	public class ActivityAdapter extends ArrayAdapter<ActivityInfo> {
-
-		public ActivityAdapter(Context context) {
-			super(context, R.layout.row, R.id.row_title);
-		}
-
-		public void addInfo(String name, Intent intent) {
-			this.add(new ActivityInfo(name, intent));
-		}
-
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			if (convertView == null) {
-				convertView = getLayoutInflater().inflate(R.layout.row, null);
-			}
-			ImageView icon = (ImageView) convertView.findViewById(R.id.row_icon);
-			icon.setVisibility(View.GONE);
-			TextView title = (TextView) convertView.findViewById(R.id.row_title);
-			title.setText(getItem(position).name);
-			return convertView;
-		}
-
-	}
+	
 }

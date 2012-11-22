@@ -1,7 +1,9 @@
 package com.slidingmenu.example;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioGroup;
@@ -24,6 +26,22 @@ public class PropertiesActivity extends BaseActivity {
 		setSlidingActionBarEnabled(true);
 
 		setContentView(R.layout.properties);
+		
+		// left and right modes
+		Button left = (Button) findViewById(R.id.left);
+		Button right = (Button) findViewById(R.id.right);
+		left.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) { 
+				getSlidingMenu().setMode(SlidingMenu.LEFT);
+				getSlidingMenu().setShadowDrawable(R.drawable.defaultshadow);
+			}
+		});
+		right.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) { 
+				getSlidingMenu().setMode(SlidingMenu.RIGHT);
+				getSlidingMenu().setShadowDrawable(R.drawable.defaultshadowright);
+			}
+		});
 
 		// touch mode stuff
 		RadioGroup touchAbove = (RadioGroup) findViewById(R.id.touch_above);
@@ -44,23 +62,6 @@ public class PropertiesActivity extends BaseActivity {
 				}
 			}
 		});
-
-		RadioGroup touchBehind = (RadioGroup) findViewById(R.id.touch_behind);
-		touchBehind.check(R.id.touch_behind_margin);
-		touchBehind.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(RadioGroup group, int checkedId) {
-				switch (checkedId) {
-				case R.id.touch_behind_full:
-					getSlidingMenu().setTouchModeBehind(SlidingMenu.TOUCHMODE_FULLSCREEN);
-					break;
-				case R.id.touch_behind_margin:
-					getSlidingMenu().setTouchModeBehind(SlidingMenu.TOUCHMODE_MARGIN);
-					break;
-				}
-			}			
-		});
-
 
 		// scroll scale stuff
 		SeekBar scrollScale = (SeekBar) findViewById(R.id.scroll_scale);

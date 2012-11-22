@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.view.KeyEventCompat;
@@ -27,7 +26,6 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.animation.Interpolator;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.Scroller;
 
 import com.slidingmenu.lib.SlidingMenu.OnClosedListener;
@@ -44,6 +42,7 @@ public class CustomViewAbove extends ViewGroup {
 
 	private static final int MAX_SETTLE_DURATION = 600; // ms
 	private static final int MIN_DISTANCE_FOR_FLING = 25; // dips
+	private static final int MARGIN_THRESHOLD = 20; // dips
 
 	private static final Interpolator sInterpolator = new Interpolator() {
 		public float getInterpolation(float t) {
@@ -91,8 +90,8 @@ public class CustomViewAbove extends ViewGroup {
 	private int mMinimumVelocity;
 	protected int mMaximumVelocity;
 	private int mFlingDistance;
-
-	private final int mSlidingMenuThreshold = 20;
+	private int mMarginThreshold;
+	
 	private CustomViewBehind mCustomViewBehind;
 	private int mMode;
 	private boolean mEnabled = true;
@@ -195,6 +194,8 @@ public class CustomViewAbove extends ViewGroup {
 
 		final float density = context.getResources().getDisplayMetrics().density;
 		mFlingDistance = (int) (MIN_DISTANCE_FOR_FLING * density);
+		mMarginThreshold = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 
+				MARGIN_THRESHOLD, getResources().getDisplayMetrics());
 
 	}
 
@@ -660,14 +661,12 @@ public class CustomViewAbove extends ViewGroup {
 			case SlidingMenu.TOUCHMODE_NONE:
 				return false;
 			case SlidingMenu.TOUCHMODE_MARGIN:
-				int pixels = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 
-						mSlidingMenuThreshold, getResources().getDisplayMetrics());
 				if (mMode == SlidingMenu.LEFT) {
 					int left = getContentLeft();
-					return (x >= left && x <= pixels + left);
+					return (x >= left && x <= mMarginThreshold + left);
 				} else if (mMode == SlidingMenu.RIGHT) {
 					int right = mContent.getRight();
-					return (x <= right && x >= right - pixels);
+					return (x <= right && x >= right - mMarginThreshold);
 				}
 			}
 		}
