@@ -52,6 +52,10 @@ public class CustomViewBehind extends ViewGroup {
 		mContent = v;
 		addView(mContent);
 	}
+	
+	public View getContent() {
+		return mContent;
+	}
 
 	public void setChildrenEnabled(boolean enabled) {
 		mChildrenEnabled = enabled;

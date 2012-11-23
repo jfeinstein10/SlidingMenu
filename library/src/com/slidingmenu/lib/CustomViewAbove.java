@@ -235,8 +235,6 @@ public class CustomViewAbove extends ViewGroup {
 			return;
 		}
 
-		Log.v(TAG, "setCurrentItem:" + item);
-
 		item = (item < 1) ? 0 : ((item > 1) ? 2 : 1);
 		if (mMode == SlidingMenu.LEFT && item > 1)
 			item = 0;
@@ -504,6 +502,10 @@ public class CustomViewAbove extends ViewGroup {
 		mContent = v;
 		addView(mContent);
 	}
+	
+	public View getContent() {
+		return mContent;
+	}
 
 	public void setCustomViewBehind(CustomViewBehind cvb) {
 		mCustomViewBehind = cvb;
@@ -756,7 +758,6 @@ public class CustomViewAbove extends ViewGroup {
 				if (isMenuOpen())
 					return true;
 			} else {
-				Log.v(TAG, "unable to drag!");
 				mIsUnableToDrag = true;
 			}
 			break;
@@ -936,7 +937,6 @@ public class CustomViewAbove extends ViewGroup {
 		} else {
 			targetPage = (int) (mCurItem + pageOffset + 0.5f);
 		}
-		Log.v(TAG, "targetPage:" + targetPage);
 		return targetPage;
 	}
 

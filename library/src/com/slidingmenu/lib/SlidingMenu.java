@@ -307,6 +307,14 @@ public class SlidingMenu extends RelativeLayout {
 		mViewAbove.invalidate();
 		showAbove();
 	}
+	
+	/**
+	 * Retrieves the current content.
+	 * @return the current content
+	 */
+	public View getContent() {
+		return mViewAbove.getContent();
+	}
 
 	/**
 	 * Set the behind view (menu) content from a layout resource. The resource will be inflated, adding all top-level views
@@ -326,6 +334,14 @@ public class SlidingMenu extends RelativeLayout {
 	public void setMenu(View v) {
 		mViewBehind.setContent(v);
 		mViewBehind.invalidate();
+	}
+	
+	/**
+	 * Retrieves the current menu.
+	 * @return the current menu
+	 */
+	public View getMenu() {
+		return mViewBehind.getContent();
 	}
 
 	/**

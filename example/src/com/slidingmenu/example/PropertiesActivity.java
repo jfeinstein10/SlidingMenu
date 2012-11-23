@@ -28,19 +28,22 @@ public class PropertiesActivity extends BaseActivity {
 		setContentView(R.layout.properties);
 		
 		// left and right modes
-		Button left = (Button) findViewById(R.id.left);
-		Button right = (Button) findViewById(R.id.right);
-		left.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) { 
-				getSlidingMenu().setMode(SlidingMenu.LEFT);
-				getSlidingMenu().setShadowDrawable(R.drawable.shadow);
-			}
-		});
-		right.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) { 
-				getSlidingMenu().setMode(SlidingMenu.RIGHT);
-				getSlidingMenu().setShadowDrawable(R.drawable.shadowright);
-			}
+		RadioGroup mode = (RadioGroup) findViewById(R.id.mode);
+		mode.check(R.id.left);
+		mode.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				switch (checkedId) {
+				case R.id.left:
+					getSlidingMenu().setMode(SlidingMenu.LEFT);
+					getSlidingMenu().setShadowDrawable(R.drawable.shadow);
+					break;
+				case R.id.right:
+					getSlidingMenu().setMode(SlidingMenu.RIGHT);
+					getSlidingMenu().setShadowDrawable(R.drawable.shadowright);
+					break;
+				}
+			}			
 		});
 
 		// touch mode stuff

@@ -16,19 +16,32 @@
             android:paddingBottom="@dimen/list_padding"
             android:paddingTop="@dimen/list_padding" >
 
-            <Button
-                android:id="@+id/left"
+            <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:text="@string/left" />
+                android:text="Mode"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <Button
-                android:id="@+id/right"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/right" />
+            <RadioGroup
+                android:id="@+id/mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/left" />
+
+                <RadioButton
+                    android:id="@+id/right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/right" />
+            </RadioGroup>
         </LinearLayout>
 
         <LinearLayout
