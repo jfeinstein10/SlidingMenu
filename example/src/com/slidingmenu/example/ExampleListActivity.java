@@ -47,6 +47,8 @@ public class ExampleListActivity extends SherlockPreferenceActivity {
 			cls = PropertiesActivity.class;	
 		} else if (title.equals(getString(R.string.changing_fragments))) {
 			cls = FragmentChangeActivity.class;
+		} else if (title.equals(getString(R.string.left_and_right))) {
+			cls = LeftAndRightActivity.class;
 		} else if (title.equals(getString(R.string.responsive_ui))) {
 			cls = ResponsiveUIActivity.class;
 		} else if (title.equals(getString(R.string.viewpager))) {

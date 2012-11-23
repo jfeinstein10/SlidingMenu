@@ -17,6 +17,7 @@
     <string name="responsive_ui">Responsive UI</string>
     <string name="left">Left</string>
     <string name="right">Right</string>
+    <string name="left_and_right">Left and Right</string>
     <string name="github">GitHub</string>
     <string name="github_label">SlidingMenu on GitHub</string>
     <string name="what_is_this">What is this?</string>
