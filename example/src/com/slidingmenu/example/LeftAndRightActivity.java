@@ -37,14 +37,12 @@ public class LeftAndRightActivity extends BaseActivity {
 			@Override
 			public void onOpened() {
 				getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
-				getSlidingMenu().getMenu().setVisibility(View.GONE);
 			}
 		});
 		mRight.setOnClosedListener(new OnClosedListener() {
 			@Override
 			public void onClosed() {
 				getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
-				getSlidingMenu().getMenu().setVisibility(View.VISIBLE);
 			}			
 		});
 		

@@ -914,14 +914,17 @@ public class CustomViewAbove extends ViewGroup {
 		super.scrollTo(x, y);
 		mScrollX = x;
 		if (mCustomViewBehind != null && mEnabled) {
+			int vis = View.VISIBLE;
 			if (mMode == SlidingMenu.LEFT) {
+				if (x >= getContentLeft()) vis = View.GONE;
 				mCustomViewBehind.scrollTo((int)((x + getBehindWidth())*mScrollScale), y);
 			} else if (mMode == SlidingMenu.RIGHT) {
-				// TODO right!
+				if (x <= getContentLeft()) vis = View.GONE;
 				mCustomViewBehind.scrollTo((int)(getBehindWidth() - getWidth() + 
 						(x-getBehindWidth())*mScrollScale), y);
 			}
-		}
+			mCustomViewBehind.setVisibility(vis);
+		}	
 		if (mShadowDrawable != null || mSelectorDrawable != null)
 			invalidate();
 	}
@@ -935,7 +938,7 @@ public class CustomViewAbove extends ViewGroup {
 			//				targetPage += velocity > 0 ? 0: 1;
 			//			}
 		} else {
-			targetPage = (int) (mCurItem + pageOffset + 0.5f);
+			targetPage = (int) Math.round(mCurItem + pageOffset);
 		}
 		return targetPage;
 	}
