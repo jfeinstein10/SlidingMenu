@@ -63,42 +63,6 @@ public class SlidingMenu extends RelativeLayout {
 	private OnCloseListener mCloseListener;
 
 	/**
-     * Attach a given SlidingMenu to a given Activity
-     *
-     * @param activity the Activity to attach to
-     * @param sm the SlidingMenu to be attached
-     * @param slidingTitle whether the title is slid with the above view
-     */
-    public static void attachSlidingMenu(Activity activity, SlidingMenu sm, boolean slidingTitle) {
-
-		if (sm.getParent() != null)
-			throw new IllegalStateException("SlidingMenu cannot be attached to another view when" +
-					" calling the static method attachSlidingMenu");
-
-		if (slidingTitle) {
-			// get the window background
-			TypedArray a = activity.getTheme().obtainStyledAttributes(new int[] {android.R.attr.windowBackground});
-			int background = a.getResourceId(0, 0);
-			a.recycle();
-			// move everything into the SlidingMenu
-			ViewGroup decor = (ViewGroup) activity.getWindow().getDecorView();
-			ViewGroup decorChild = (ViewGroup) decor.getChildAt(0);
-			decor.removeAllViews();
-			// save ActionBar themes that have transparent assets
-			decorChild.setBackgroundResource(background);
-			sm.setContent(decorChild);
-			decor.addView(sm);
-		} else {
-			// take the above view out of
-			ViewGroup content = (ViewGroup) activity.findViewById(Window.ID_ANDROID_CONTENT);
-			View above = content.getChildAt(0);
-			content.removeAllViews();
-			sm.setContent(above);
-			content.addView(sm, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-		}
-	}
-
-	/**
 	 * The listener interface for receiving onOpen events.
 	 * The class that is interested in processing a onOpen
 	 * event implements this interface, and the object created
