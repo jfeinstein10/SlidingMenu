@@ -54,7 +54,7 @@ public class FragmentChangeActivity extends BaseActivity {
 		.beginTransaction()
 		.replace(R.id.content_frame, fragment)
 		.commit();
-		getSlidingMenu().showAbove();
+		getSlidingMenu().showContent();
 	}
 
 }

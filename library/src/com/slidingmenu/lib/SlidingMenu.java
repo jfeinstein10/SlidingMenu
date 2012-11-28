@@ -309,7 +309,7 @@ public class SlidingMenu extends RelativeLayout {
 	public void setContent(View view) {
 		mViewAbove.setContent(view);
 		mViewAbove.invalidate();
-		showAbove();
+		showContent();
 	}
 	
 	/**
@@ -433,26 +433,44 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	/**
-	 * Opens the menu and shows the behind view.
+	 * Opens the menu and shows the menu view.
 	 */
-	public void showBehind() {
-		showBehind(true);
+	public void showMenu() {
+		showMenu(true);
 	}
 	
 	/**
-	 * Opens the menu and shows the behind view.
+	 * Opens the menu and shows the menu view.
 	 *
 	 * @param animate true to animate the transition, false to ignore animation
 	 */
-	public void showBehind(boolean animate) {
+	public void showMenu(boolean animate) {
 		mViewAbove.setCurrentItem(0, animate);
+	}
+	
+	/**
+	 * Opens the menu and shows the secondary menu view. Will default to the regular menu
+	 * if there is only one.
+	 */
+	public void showSecondaryMenu() {
+		showSecondaryMenu(true);
+	}
+	
+	/**
+	 * Opens the menu and shows the secondary (right) menu view. Will default to the regular menu
+	 * if there is only one.
+	 *
+	 * @param animate true to animate the transition, false to ignore animation
+	 */
+	public void showSecondaryMenu(boolean animate) {
+		mViewAbove.setCurrentItem(2, animate);
 	}
 
 	/**
 	 * Closes the menu and shows the above view.
 	 */
-	public void showAbove() {
-		showAbove(true);
+	public void showContent() {
+		showContent(true);
 	}
 	
 	/**
@@ -460,7 +478,7 @@ public class SlidingMenu extends RelativeLayout {
 	 *
 	 * @param animate true to animate the transition, false to ignore animation
 	 */
-	public void showAbove(boolean animate) {
+	public void showContent(boolean animate) {
 		mViewAbove.setCurrentItem(1, animate);
 	}
 	
@@ -477,10 +495,10 @@ public class SlidingMenu extends RelativeLayout {
 	 * @param animate true to animate the transition, false to ignore animation
 	 */
 	public void toggle(boolean animate) {
-		if (isBehindShowing()) {
-			showAbove(animate);
+		if (isMenuShowing()) {
+			showContent(animate);
 		} else {
-			showBehind(animate);
+			showMenu(animate);
 		}
 	}
 
@@ -489,7 +507,7 @@ public class SlidingMenu extends RelativeLayout {
 	 *
 	 * @return Whether or not the behind view is showing
 	 */
-	public boolean isBehindShowing() {
+	public boolean isMenuShowing() {
 		return mViewAbove.getCurrentItem() == 0 || mViewAbove.getCurrentItem() == 2;
 	}
 
@@ -810,7 +828,7 @@ public class SlidingMenu extends RelativeLayout {
 	@Override
 	protected Parcelable onSaveInstanceState() {
 		Parcelable superState = super.onSaveInstanceState();
-		SavedState ss = new SavedState(superState, isBehindShowing());
+		SavedState ss = new SavedState(superState, isMenuShowing());
 		return ss;
 	}
 
@@ -828,9 +846,9 @@ public class SlidingMenu extends RelativeLayout {
 		super.onRestoreInstanceState(ss.getSuperState());
 
 		if (ss.mBehindShowing) {
-			showBehind();
+			showMenu();
 		} else {
-			showAbove();
+			showContent();
 		}
 	}
 

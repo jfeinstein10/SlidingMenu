@@ -86,7 +86,7 @@ public class SlidingActivityHelper {
 			mSlidingMenu.setContent(mViewAbove);
 			parent.addView(mSlidingMenu, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		}
-		this.showAbove();
+		this.showContent();
 	}
 
 	/**
@@ -126,7 +126,7 @@ public class SlidingActivityHelper {
 	 * @param outState Bundle in which to place your saved state.
 	 */
 	public void onSaveInstanceState(Bundle outState) {
-		outState.putBoolean("menuOpen", mSlidingMenu.isBehindShowing());
+		outState.putBoolean("menuOpen", mSlidingMenu.isMenuShowing());
 	}
 
 	/**
@@ -179,25 +179,29 @@ public class SlidingActivityHelper {
 	 * Toggle the SlidingMenu. If it is open, it will be closed, and vice versa.
 	 */
 	public void toggle() {
-		if (mSlidingMenu.isBehindShowing()) {
-			showAbove();
-		} else {
-			showBehind();
-		}
+		mSlidingMenu.toggle();
 	}
 
 	/**
-	 * Close the SlidingMenu and show the above view.
+	 * Close the SlidingMenu and show the content view.
 	 */
-	public void showAbove() {
-		mSlidingMenu.showAbove();
+	public void showContent() {
+		mSlidingMenu.showContent();
 	}
 
 	/**
-	 * Open the SlidingMenu and show the behind view.
+	 * Open the SlidingMenu and show the menu view.
 	 */
-	public void showBehind() {
-		mSlidingMenu.showBehind();
+	public void showMenu() {
+		mSlidingMenu.showMenu();
+	}
+	
+	/**
+	 * Open the SlidingMenu and show the secondary menu view. Will default to the regular menu
+	 * if there is only one.
+	 */
+	public void showSecondaryMenu() {
+		mSlidingMenu.showSecondaryMenu();
 	}
 
 	/**
@@ -208,8 +212,8 @@ public class SlidingActivityHelper {
 	 * @return true, if successful
 	 */
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_BACK && mSlidingMenu.isBehindShowing()) {
-			showAbove();
+		if (keyCode == KeyEvent.KEYCODE_BACK && mSlidingMenu.isMenuShowing()) {
+			showContent();
 			return true;
 		}
 		return false;
