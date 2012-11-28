@@ -221,8 +221,7 @@ public class CustomViewAbove extends ViewGroup {
 	}
 
 	void setCurrentItemInternal(int item, boolean smoothScroll, boolean always, int velocity) {
-		//		if (!always && mCurItem == item && mMenu != null && mContent != null) {
-		if (!always && mCurItem == item && mContent != null) {
+		if (!always && mCurItem == item) {
 			setScrollingCacheEnabled(false);
 			return;
 		}
