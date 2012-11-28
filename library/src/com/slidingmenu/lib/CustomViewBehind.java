@@ -53,7 +53,7 @@ public class CustomViewBehind extends ViewGroup {
 	}
 
 	public int getBehindWidth() {
-		return super.getWidth() - mWidthOffset;
+		return mContent.getWidth();
 	}
 
 	public void setContent(View v) {
@@ -89,8 +89,8 @@ public class CustomViewBehind extends ViewGroup {
 	@Override
 	public void scrollTo(int x, int y) {
 		super.scrollTo(x, y);
-//		if (mTransformer != null)
-//			invalidate();
+		if (mTransformer != null)
+			invalidate();
 	}
 
 	@Override
