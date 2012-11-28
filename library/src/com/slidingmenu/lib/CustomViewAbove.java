@@ -739,9 +739,11 @@ public class CustomViewAbove extends ViewGroup {
 				velocityTracker.computeCurrentVelocity(1000, mMaximumVelocity);
 				int initialVelocity = (int) VelocityTrackerCompat.getXVelocity(
 						velocityTracker, mActivePointerId);
-				final int widthWithMargin = getWidth();
 				final int scrollX = getScrollX();
-				final float pageOffset = (float) (scrollX % widthWithMargin) / widthWithMargin;
+//				final int widthWithMargin = getWidth();
+//				final float pageOffset = (float) (scrollX % widthWithMargin) / widthWithMargin;
+				// TODO test this. should get better flinging behavior
+				final float pageOffset = (float) (scrollX - getDestScrollX(mCurItem)) / getBehindWidth();
 				final int activePointerIndex = getPointerIndex(ev, mActivePointerId);
 				if (mActivePointerId != INVALID_POINTER) {
 					final float x = MotionEventCompat.getX(ev, activePointerIndex);
@@ -787,10 +789,10 @@ public class CustomViewAbove extends ViewGroup {
 	public void scrollTo(int x, int y) {
 		super.scrollTo(x, y);
 		mScrollX = x;
-//		if (mEnabled)
+		if (mEnabled)
 			mCustomViewBehind.scrollBehindTo(mContent, x, y);
-		if (mSelectorDrawable != null)
-			invalidate();
+//		if (mSelectorDrawable != null)
+//			invalidate();
 	}
 
 	private int determineTargetPage(float pageOffset, int velocity, int deltaX) {

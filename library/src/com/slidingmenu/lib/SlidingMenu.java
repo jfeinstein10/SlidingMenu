@@ -308,7 +308,7 @@ public class SlidingMenu extends RelativeLayout {
 	 */
 	public void setContent(View view) {
 		mViewAbove.setContent(view);
-		mViewAbove.invalidate();
+//		mViewAbove.invalidate();
 		showContent();
 	}
 	
@@ -337,7 +337,7 @@ public class SlidingMenu extends RelativeLayout {
 	 */
 	public void setMenu(View v) {
 		mViewBehind.setContent(v);
-		mViewBehind.invalidate();
+//		mViewBehind.invalidate();
 	}
 	
 	/**
@@ -364,7 +364,7 @@ public class SlidingMenu extends RelativeLayout {
 	 */
 	public void setSecondaryMenu(View v) {
 		mViewBehind.setSecondaryContent(v);
-		mViewBehind.invalidate();
+//		mViewBehind.invalidate();
 	}
 	
 	/**
@@ -551,12 +551,6 @@ public class SlidingMenu extends RelativeLayout {
 	 * @param i the new above offset, in pixels
 	 */
 	public void setAboveOffset(int i) {
-//		RelativeLayout.LayoutParams params = ((RelativeLayout.LayoutParams)mViewAbove.getLayoutParams());
-//		int bottom = params.bottomMargin;
-//		int top = params.topMargin;
-//		int right = params.rightMargin;
-//		params.setMargins(i, top, right, bottom);
-//		this.requestLayout();
 		mViewAbove.setAboveOffset(i);
 	}
 		
