@@ -30,6 +30,7 @@ public class LeftAndRightActivity extends BaseActivity {
 		.commit();
 		
 		getSlidingMenu().setSecondaryMenu(R.layout.menu_frame_two);
+		getSlidingMenu().setSecondaryShadowDrawable(R.drawable.shadowright);
 		getSupportFragmentManager()
 		.beginTransaction()
 		.replace(R.id.menu_frame_two, new SampleListFragment())

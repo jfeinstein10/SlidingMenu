@@ -140,6 +140,7 @@ public class CustomViewBehind extends ViewGroup {
 	private final Paint mFadePaint = new Paint();
 	private float mScrollScale;
 	private Drawable mShadowDrawable;
+	private Drawable mSecondaryShadowDrawable;
 	private int mShadowWidth;
 	private float mFadeDegree;
 
@@ -159,12 +160,13 @@ public class CustomViewBehind extends ViewGroup {
 		return mScrollScale;
 	}
 
-	public void setShadowDrawable(int resId) {
-		setShadowDrawable(getContext().getResources().getDrawable(resId));
-	}
-
 	public void setShadowDrawable(Drawable shadow) {
 		mShadowDrawable = shadow;
+		invalidate();
+	}
+	
+	public void setSecondaryShadowDrawable(Drawable shadow) {
+		mSecondaryShadowDrawable = shadow;
 		invalidate();
 	}
 
@@ -299,10 +301,17 @@ public class CustomViewBehind extends ViewGroup {
 	public void drawShadow(View content, Canvas canvas) {
 		if (mShadowDrawable == null || mShadowWidth <= 0) return;
 		int left = 0;
-		if (mMode == SlidingMenu.LEFT || mMode == SlidingMenu.LEFT_RIGHT) {
+		if (mMode == SlidingMenu.LEFT) {
 			left = content.getLeft() - mShadowWidth;
 		} else if (mMode == SlidingMenu.RIGHT) {
 			left = content.getRight();
+		} else if (mMode == SlidingMenu.LEFT_RIGHT) {
+			if (mSecondaryShadowDrawable != null) {
+				left = content.getRight();
+				mSecondaryShadowDrawable.setBounds(left, 0, left + mShadowWidth, getHeight());
+				mSecondaryShadowDrawable.draw(canvas);
+			}
+			left = content.getLeft() - mShadowWidth;
 		}
 		mShadowDrawable.setBounds(left, 0, left + mShadowWidth, getHeight());
 		mShadowDrawable.draw(canvas);
