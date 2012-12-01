@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
@@ -198,7 +197,6 @@ public class CustomViewBehind extends ViewGroup {
 
 	public void scrollBehindTo(View content, int x, int y) {
 		int vis = View.VISIBLE;
-		Log.v(TAG, "scrollBehindTo " + x);
 		if (mMode == SlidingMenu.LEFT) {
 			if (x >= content.getLeft()) vis = View.GONE;
 			scrollTo((int)((x + getBehindWidth())*mScrollScale), y);
@@ -209,6 +207,7 @@ public class CustomViewBehind extends ViewGroup {
 		} else if (mMode == SlidingMenu.LEFT_RIGHT) {
 			mContent.setVisibility(x >= content.getLeft() ? View.GONE : View.VISIBLE);
 			mSecondaryContent.setVisibility(x <= content.getLeft() ? View.GONE : View.VISIBLE);
+			vis = x == 0 ? View.GONE : View.VISIBLE;
 			if (x <= content.getLeft()) {
 				scrollTo((int)((x + getBehindWidth())*mScrollScale), y);				
 			} else {
