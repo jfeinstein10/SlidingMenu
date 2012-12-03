@@ -20,7 +20,7 @@ public class SampleListFragment extends ListFragment {
 		super.onActivityCreated(savedInstanceState);
 		SampleAdapter adapter = new SampleAdapter(getActivity());
 		for (int i = 0; i < 20; i++) {
-			adapter.add(new SampleItem("Sample List", android.R.drawable.btn_star));
+			adapter.add(new SampleItem("Sample List", android.R.drawable.ic_menu_search));
 		}
 		setListAdapter(adapter);
 	}

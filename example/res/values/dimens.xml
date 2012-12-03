@@ -12,10 +12,14 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
-  -->
+-->
 
 <resources>
-    <dimen name="actionbar_home_width">60dp</dimen>
+
+    <dimen name="slidingmenu_offset">60dp</dimen>
     <dimen name="list_padding">10dp</dimen>
     <dimen name="shadow_width">15dp</dimen>
+
+    <integer name="num_cols">1</integer>
+
 </resources>

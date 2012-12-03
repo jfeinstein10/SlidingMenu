@@ -8,6 +8,8 @@
 bin/
 bin
 gen/
+release/
+release
 gen
 .metadata/
 .metadata

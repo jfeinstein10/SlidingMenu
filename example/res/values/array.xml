@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="color_names">
+        <item>Red</item>
+        <item>Green</item>
+        <item>Blue</item>
+        <item>White</item>
+        <item>Black</item>
+    </string-array>
+    
+    <string-array name="birds">
+        <item>Eagle</item>
+        <item>Flamingo</item>
+        <item>Heron</item>
+        <item>Ostrich</item>
+        <item>Peacock</item>
+        <item>Penguin</item>
+        <item>Toucan</item>
+        <item>Turkey</item>
+        <item>Vulture</item>
+    </string-array>
+
+    <string-array name="birds_img">
+        <item>@drawable/eagle</item>
+        <item>@drawable/flamingo</item>
+        <item>@drawable/heron</item>
+        <item>@drawable/ostrich</item>
+        <item>@drawable/peacock</item>
+        <item>@drawable/penguin</item>
+        <item>@drawable/toucan</item>
+        <item>@drawable/turkey</item>
+        <item>@drawable/vulture</item>
+    </string-array>
+
+</resources>

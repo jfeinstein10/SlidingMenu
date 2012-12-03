@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/github" android:icon="@drawable/ic_action_github" android:showAsAction="always" android:title="@string/github_label" android:titleCondensed="@string/github" android:visible="true"></item>
+    <item android:id="@+id/about" android:title="@string/about" android:showAsAction="never" android:orderInCategory="1"></item>
+    <item android:id="@+id/licenses" android:title="@string/licenses" android:showAsAction="never" android:orderInCategory="2"></item>
+    <item android:id="@+id/contact" android:title="@string/contact" android:orderInCategory="3" android:showAsAction="never"></item>
+    
+
+</menu>

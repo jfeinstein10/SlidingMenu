@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ExampleTheme" parent="Theme.Sherlock.Light.DarkActionBar">
+        <item name="homeAsUpIndicator">@drawable/new_indicator</item>
+        <item name="android:homeAsUpIndicator">@drawable/new_indicator</item>
+    </style>
+
+</resources>
