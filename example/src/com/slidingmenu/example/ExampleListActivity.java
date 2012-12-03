@@ -35,7 +35,6 @@ public class ExampleListActivity extends SherlockPreferenceActivity {
 		super.onCreate(savedInstanceState);
 		setTitle(R.string.app_name);
 		
-//		Crittercism.init(getApplicationContext(), "508ab27601ed857a20000003");
 		this.addPreferencesFromResource(R.xml.main);
 	}
 
