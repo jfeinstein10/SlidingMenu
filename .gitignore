@@ -14,3 +14,7 @@ gen
 .metadata/
 .metadata
 *.project
+
+# maven output
+example/target/
+library/target/
