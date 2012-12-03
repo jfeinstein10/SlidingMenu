@@ -144,7 +144,7 @@ public class CustomViewBehind extends ViewGroup {
 	private float mFadeDegree;
 
 	public void setMode(int mode) {
-		if (mode == SlidingMenu.LEFT || mode == SlidingMenu.RIGHT)
+		if ((mode == SlidingMenu.LEFT || mode == SlidingMenu.RIGHT) && mContent != null)
 			mContent.setVisibility(View.VISIBLE);
 		mMode = mode;
 	}
