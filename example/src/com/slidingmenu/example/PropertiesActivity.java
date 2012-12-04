@@ -33,15 +33,25 @@ public class PropertiesActivity extends BaseActivity {
 		mode.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				SlidingMenu sm = getSlidingMenu();
 				switch (checkedId) {
 				case R.id.left:
-					getSlidingMenu().setMode(SlidingMenu.LEFT);
-					getSlidingMenu().setShadowDrawable(R.drawable.shadow);
+					sm.setMode(SlidingMenu.LEFT);
+					sm.setShadowDrawable(R.drawable.shadow);
 					break;
 				case R.id.right:
-					getSlidingMenu().setMode(SlidingMenu.RIGHT);
-					getSlidingMenu().setShadowDrawable(R.drawable.shadowright);
+					sm.setMode(SlidingMenu.RIGHT);
+					sm.setShadowDrawable(R.drawable.shadowright);
 					break;
+				case R.id.left_right:
+					sm.setMode(SlidingMenu.LEFT_RIGHT);
+					sm.setSecondaryMenu(R.layout.menu_frame_two);
+					getSupportFragmentManager()
+					.beginTransaction()
+					.replace(R.id.menu_frame_two, new SampleListFragment())
+					.commit();					
+					sm.setSecondaryShadowDrawable(R.drawable.shadowright);
+					sm.setShadowDrawable(R.drawable.shadow);
 				}
 			}			
 		});
