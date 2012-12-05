@@ -637,7 +637,7 @@ public class CustomViewAbove extends ViewGroup {
 			mLastMotionX = mInitialMotionX = MotionEventCompat.getX(ev, mActivePointerId);
 			mLastMotionY = MotionEventCompat.getY(ev, mActivePointerId);
 			if (thisTouchAllowed(ev)) {
-				mIsBeingDragged = false;
+				mIsBeingDragged = SlidingMenu.TOUCHMODE_FULLSCREEN!=mTouchMode;
 				mIsUnableToDrag = false;
 				if (isMenuOpen())
 					return true;
