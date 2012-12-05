@@ -38,7 +38,12 @@ How to Integrate this Library into Your Projects
 ------------------------------------------------
 In order to integrate SlidingMenu into your own projects you can do one of two things.
 
-__1.__      You can embed the SlidingMenu at the Activity level by making your Activity extend `SlidingActivity`.
+__1.__      You can wrap your Activities in a SlidingMenu by constructing it programmatically (`new SlidingMenu(Context context)`)
+and then calling `SlidingMenu.attachToActivity(Activity activity, SlidingMenu.SLIDING_WINDOW | SlidingMenu.SLIDING_CONTENT)`.
+`SLIDING_WINDOW` will include the Title/ActionBar in the content section of the SlidingMenu, while `SLIDING_CONTENT`
+does not. You can check it out in the example app AttachExample Activity.
+
+__2.__      You can embed the SlidingMenu at the Activity level by making your Activity extend `SlidingActivity`.
 * In your Activity's onCreate method, you will have to call `setContentView`, as usual, and also 
 `setBehindContentView`, which has the same syntax as setContentView. `setBehindContentView` will place 
 the view in the "behind" portion of the SlidingMenu. You will have access to the `getSlidingMenu` method so you can
@@ -46,12 +51,38 @@ customize the SlidingMenu to your liking.
 * If you want to use another library such as ActionBarSherlock, you can just change the SlidingActivities to extend
 the SherlockActivities instead of the regular Activities.
 
-__2.__      You can use the SlidingMenu view directly in your xml layouts or programmatically in you Java code.
+__3.__      You can use the SlidingMenu view directly in your xml layouts or programmatically in you Java code.
 * This way, you can treat SlidingMenu as you would any other view type and put it in crazy awesome places like in the
 rows of a ListView.
 * So. Many. Possibilities.
 
-Usage
+Simple Example
+-----
+```java
+public class SlidingExample extends Activity {
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setTitle(R.string.attach);
+		// set the content view
+		setContentView(R.layout.content);
+		// configure the SlidingMenu
+		SlidingMenu menu = new SlidingMenu(this);
+        menu.setMode(SlidingMenu.LEFT);
+		menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+		menu.setShadowWidthRes(R.dimen.shadow_width);
+		menu.setShadowDrawable(R.drawable.shadow);
+		menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+		menu.setFadeDegree(0.35f);
+		menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
+		menu.setMenu(R.layout.menu);
+	}
+    
+}
+```
+
+XML Usage
 -----
 If you decide to use SlidingMenu as a view, you can define it in your xml layouts like this:
 ```xml
