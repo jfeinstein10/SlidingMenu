@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.slidingmenu.example"
-    android:versionCode="2"
-    android:versionName="1.1" >
+    android:versionCode="3"
+    android:versionName="1.2" >
 
     <uses-sdk
         android:minSdkVersion="7"
@@ -27,6 +27,7 @@
         </activity>
         <activity android:name=".PropertiesActivity" />
         <activity android:name=".LeftAndRightActivity" />
+        <activity android:name=".AttachExample" />
         <activity android:name=".anim.CustomScaleAnimation" />
         <activity android:name=".anim.CustomZoomAnimation" />
         <activity android:name=".anim.CustomRotateAnimation" />

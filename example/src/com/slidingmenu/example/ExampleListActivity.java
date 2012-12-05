@@ -44,6 +44,8 @@ public class ExampleListActivity extends SherlockPreferenceActivity {
 		String title = pref.getTitle().toString();
 		if (title.equals(getString(R.string.properties))) {
 			cls = PropertiesActivity.class;	
+		} else if (title.equals(getString(R.string.attach))) {
+			cls = AttachExample.class;
 		} else if (title.equals(getString(R.string.changing_fragments))) {
 			cls = FragmentChangeActivity.class;
 		} else if (title.equals(getString(R.string.left_and_right))) {
