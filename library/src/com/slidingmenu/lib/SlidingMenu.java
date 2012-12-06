@@ -162,6 +162,17 @@ public class SlidingMenu extends RelativeLayout {
 	public SlidingMenu(Context context) {
 		this(context, null);
 	}
+	
+	/**
+	 * Instantiates a new SlidingMenu and attach to Activity.
+	 *
+	 * @param activity the activity to attach slidingmenu
+	 * @param slideStyle the slidingmenu style
+	 */
+	public SlidingMenu(Activity activity, int slideStyle) {
+		this(activity, null);
+		this.attachToActivity(activity, slideStyle);
+	}
 
 	/**
 	 * Instantiates a new SlidingMenu.
