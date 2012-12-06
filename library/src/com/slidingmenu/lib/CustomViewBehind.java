@@ -343,5 +343,4 @@ public class CustomViewBehind extends ViewGroup {
 		}
 		canvas.drawRect(left, 0, right, getHeight(), mFadePaint);
 	}
-
 }
