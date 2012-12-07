@@ -997,13 +997,7 @@ public class CustomViewAbove extends ViewGroup {
 				direction);
 		if (nextFocused != null && nextFocused != currentFocused) {
 			if (direction == View.FOCUS_LEFT) {
-				// If there is nothing to the left, or this is causing us to
-				// jump to the right, then what we really want to do is page left.
-				if (currentFocused != null && nextFocused.getLeft() >= currentFocused.getLeft()) {
-					handled = pageLeft();
-				} else {
 					handled = nextFocused.requestFocus();
-				}
 			} else if (direction == View.FOCUS_RIGHT) {
 				// If there is nothing to the right, or this is causing us to
 				// jump to the left, then what we really want to do is page right.
