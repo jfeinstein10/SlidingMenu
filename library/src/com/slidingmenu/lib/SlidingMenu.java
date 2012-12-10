@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.MotionEvent;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
@@ -65,6 +66,55 @@ public class SlidingMenu extends RelativeLayout {
 	private OnOpenListener mOpenListener;
 
 	private OnCloseListener mCloseListener;
+    private OnTouchedEventListener mTouchedEventListener;
+
+	/**
+     * Attach a given SlidingMenu to a given Activity
+     *
+     * @param activity the Activity to attach to
+     * @param sm the SlidingMenu to be attached
+     * @param slidingTitle whether the title is slid with the above view
+     */
+    public static void attachSlidingMenu(Activity activity, SlidingMenu sm, boolean slidingTitle) {
+
+		if (sm.getParent() != null)
+			throw new IllegalStateException("SlidingMenu cannot be attached to another view when" +
+					" calling the static method attachSlidingMenu");
+
+		if (slidingTitle) {
+			// get the window background
+			TypedArray a = activity.getTheme().obtainStyledAttributes(new int[] {android.R.attr.windowBackground});
+			int background = a.getResourceId(0, 0);
+			a.recycle();
+			// move everything into the SlidingMenu
+			ViewGroup decor = (ViewGroup) activity.getWindow().getDecorView();
+			ViewGroup decorChild = (ViewGroup) decor.getChildAt(0);
+			decor.removeAllViews();
+			// save ActionBar themes that have transparent assets
+			decorChild.setBackgroundResource(background);
+			sm.setContent(decorChild);
+			decor.addView(sm);
+		} else {
+			// take the above view out of
+			ViewGroup content = (ViewGroup) activity.findViewById(Window.ID_ANDROID_CONTENT);
+			View above = content.getChildAt(0);
+			content.removeAllViews();
+			sm.setContent(above);
+			content.addView(sm, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+		}
+	}
+
+    /**
+     * An interface that one can subscribe to listen for when the SlidingMenu receives touches.
+     */
+    public interface OnTouchedEventListener {
+        /**
+         * SlidingMenu was touched.
+         * @param event The event we received.
+         * @return True if you want to consume the event, false if you want to let the SlidingMenu handle it.
+         */
+        public boolean onTouchEventIntercepted(MotionEvent event);
+    }
 
 	/**
 	 * The listener interface for receiving onOpen events.
@@ -812,6 +862,10 @@ public class SlidingMenu extends RelativeLayout {
 	public void setOnClosedListener(OnClosedListener listener) {
 		mViewAbove.setOnClosedListener(listener);
 	}
+
+    public void setOnTouchedEventListener(OnTouchedEventListener listener) {
+        mViewAbove.setOnTouchedEventListener(listener);
+    }
 
 	public static class SavedState extends BaseSavedState {
 

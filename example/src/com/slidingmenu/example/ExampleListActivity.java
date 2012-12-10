@@ -25,6 +25,7 @@ import com.crittercism.app.Crittercism;
 import com.slidingmenu.example.anim.CustomScaleAnimation;
 import com.slidingmenu.example.anim.CustomSlideAnimation;
 import com.slidingmenu.example.anim.CustomZoomAnimation;
+import com.slidingmenu.example.bugs.HorizontalScrollActivity;
 import com.slidingmenu.example.fragments.FragmentChangeActivity;
 import com.slidingmenu.example.fragments.ResponsiveUIActivity;
 
@@ -64,7 +65,10 @@ public class ExampleListActivity extends SherlockPreferenceActivity {
 			cls = CustomScaleAnimation.class;
 		} else if (title.equals(getString(R.string.anim_slide))) {
 			cls = CustomSlideAnimation.class;
-		}
+		} else if (title.equals(getString(R.string.horizontal_scroll_title))) {
+            cls = HorizontalScrollActivity.class;
+        }
+
 		Intent intent = new Intent(this, cls);
 		startActivity(intent);
 		return true;
