@@ -5,6 +5,7 @@
     <string name="properties">SlidingMenu Properties</string>
     <string name="general">General</string>
     <string name="viewpager">ViewPager</string>
+    <string name="attach">Attach</string>
     <string name="title_bar">Title Bar Options</string>
     <string name="title_bar_slide">Sliding Title Bar</string>
     <string name="title_bar_content">Sliding Content Only</string>
@@ -15,6 +16,9 @@
     <string name="anim_slide">Slide Up</string>
     <string name="changing_fragments">Changing Fragments</string>
     <string name="responsive_ui">Responsive UI</string>
+    <string name="left">Left</string>
+    <string name="right">Right</string>
+    <string name="left_and_right">Left and Right</string>
     <string name="github">GitHub</string>
     <string name="github_label">SlidingMenu on GitHub</string>
     <string name="what_is_this">What is this?</string>

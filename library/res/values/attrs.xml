@@ -17,16 +17,16 @@
 <resources>
 
     <declare-styleable name="SlidingMenu">
+        <attr name="mode">
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />
+        </attr>
         <attr name="viewAbove" format="reference" />
         <attr name="viewBehind" format="reference" />
         <attr name="behindOffset" format="dimension" />
         <attr name="behindWidth" format="dimension" />
         <attr name="behindScrollScale" format="float" />
         <attr name="touchModeAbove">
-            <enum name="margin" value="0" />
-            <enum name="fullscreen" value="1" />
-        </attr>
-        <attr name="touchModeBehind">
             <enum name="margin" value="0" />
             <enum name="fullscreen" value="1" />
         </attr>

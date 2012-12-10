@@ -47,14 +47,20 @@ public interface SlidingActivityBase {
 	public void toggle();
 	
 	/**
-	 * Close the SlidingMenu and show the above view.
+	 * Close the SlidingMenu and show the content view.
 	 */
-	public void showAbove();
+	public void showContent();
 	
 	/**
-	 * Open the SlidingMenu and show the behind view.
+	 * Open the SlidingMenu and show the menu view.
 	 */
-	public void showBehind();
+	public void showMenu();
+
+	/**
+	 * Open the SlidingMenu and show the secondary (right) menu view. Will default to the regular menu
+	 * if there is only one.
+	 */
+	public void showSecondaryMenu();
 	
 	/**
 	 * Controls whether the ActionBar slides along with the above view when the menu is opened,

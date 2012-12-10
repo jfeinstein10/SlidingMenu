@@ -105,7 +105,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity {
 		Handler h = new Handler();
 		h.postDelayed(new Runnable() {
 			public void run() {
-				getSlidingMenu().showAbove();
+				getSlidingMenu().showContent();
 			}
 		}, 50);
 	}	
