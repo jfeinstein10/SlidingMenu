@@ -18,9 +18,7 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
@@ -773,6 +771,31 @@ public class SlidingMenu extends RelativeLayout {
 	 */
 	public void setSelectorBitmap(Bitmap b) {
 		mViewAbove.setSelectorBitmap(b);
+	}
+
+	/**
+	 * Add a View ignored by the Touch Down event when mode is Fullscreen
+	 *
+	 * @param v a view to be ignored
+	 */
+	public void addIgnoredView(View v) {
+		mViewAbove.addIgnoredView(v);
+	}
+
+	/**
+	 * Remove a View ignored by the Touch Down event when mode is Fullscreen
+	 *
+	 * @param v a view not wanted to be ignored anymore
+	 */
+	public void removeIgnoredView(View v) {
+		mViewAbove.removeIgnoredView(v);
+	}
+
+	/**
+	 * Clear the list of Views ignored by the Touch Down event when mode is Fullscreen
+	 */
+	public void clearIgnoredViews() {
+		mViewAbove.clearIgnoredViews();
 	}
 
 	/**
