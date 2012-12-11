@@ -1,11 +1,11 @@
 package com.slidingmenu.lib;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.view.KeyEventCompat;
 import android.support.v4.view.MotionEventCompat;
@@ -15,7 +15,6 @@ import android.support.v4.view.ViewConfigurationCompat;
 import android.util.AttributeSet;
 import android.util.FloatMath;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.FocusFinder;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -25,7 +24,6 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.animation.Interpolator;
-import android.widget.FrameLayout;
 import android.widget.Scroller;
 
 import com.slidingmenu.lib.SlidingMenu.OnClosedListener;
@@ -98,6 +96,8 @@ public class CustomViewAbove extends ViewGroup {
 	//	private OnOpenListener mOpenListener;
 	private OnClosedListener mClosedListener;
 	private OnOpenedListener mOpenedListener;
+
+	private List<View> mIgnoredViews = new ArrayList<View>();
 
 	//	private int mScrollState = SCROLL_STATE_IDLE;
 
@@ -283,6 +283,18 @@ public class CustomViewAbove extends ViewGroup {
 		return oldListener;
 	}
 
+	public void addIgnoredView(View v) {
+		mIgnoredViews.add(v);
+	}
+
+	public void removeIgnoredView(View v) {
+		mIgnoredViews.remove(v);
+	}
+
+	public void clearIgnoredViews() {
+		mIgnoredViews.clear();
+	}
+
 	// We want the duration of the page snap animation to be influenced by the distance that
 	// the screen has to travel, however, we don't want this duration to be effected in a
 	// purely linear fashion. Instead, we use this method to moderate the effect that the distance
@@ -318,6 +330,18 @@ public class CustomViewAbove extends ViewGroup {
 
 	public boolean isMenuOpen() {
 		return mCurItem == 0 || mCurItem == 2;
+	}
+
+	private boolean isInIgnoredView(MotionEvent ev) {
+		for (View v : mIgnoredViews) {
+			if (v.getLeft() < ev.getX() &&
+					ev.getX() < v.getRight() &&
+					v.getTop() < ev.getY() &&
+					ev.getY() < v.getBottom()) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public int getBehindWidth() {
@@ -560,7 +584,7 @@ public class CustomViewAbove extends ViewGroup {
 		} else {
 			switch (mTouchMode) {
 			case SlidingMenu.TOUCHMODE_FULLSCREEN:
-				return true;
+				return !isInIgnoredView(ev);
 			case SlidingMenu.TOUCHMODE_NONE:
 				return false;
 			case SlidingMenu.TOUCHMODE_MARGIN:
