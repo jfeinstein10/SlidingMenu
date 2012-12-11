@@ -284,7 +284,9 @@ public class CustomViewAbove extends ViewGroup {
 	}
 
 	public void addIgnoredView(View v) {
-		mIgnoredViews.add(v);
+		if (!mIgnoredViews.contains(v)) {
+			mIgnoredViews.add(v);
+		}
 	}
 
 	public void removeIgnoredView(View v) {
