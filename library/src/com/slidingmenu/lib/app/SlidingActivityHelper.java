@@ -26,7 +26,7 @@ public class SlidingActivityHelper {
 
 	private boolean mOnPostCreateCalled = false;
 	
-	private boolean mEnableSlide = true;
+	private boolean mEnableSlide = false;
 
 	/**
 	 * Instantiates a new SlidingActivityHelper.
@@ -94,7 +94,7 @@ public class SlidingActivityHelper {
 	 * or if it stays in place.
 	 *
 	 * @param slidingActionBarEnabled True if you want the ActionBar to slide along with the SlidingMenu,
-	 * false if you want the ActionBar to stay in place
+	 * false if you want the ActionBar to stay in place. According to the Android Design guidelines, this should be false.
 	 */
 	public void setSlidingActionBarEnabled(boolean slidingActionBarEnabled) {
 		if (mOnPostCreateCalled)
