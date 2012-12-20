@@ -30,6 +30,7 @@
 		<dependency>
 			<groupId>com.actionbarsherlock</groupId>
 			<artifactId>actionbarsherlock</artifactId>
+			<type>apklib</type>
 		</dependency>
 	</dependencies>
 
