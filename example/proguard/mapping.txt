@@ -1614,638 +1614,503 @@ com.actionbarsherlock.ActionBarSherlock$OnPrepareOptionsMenuListener -> com.acti
 com.actionbarsherlock.ActionBarSherlock$OnPreparePanelListener -> com.actionbarsherlock.ActionBarSherlock$OnPreparePanelListener:
     boolean onPreparePanel(int,android.view.View,com.actionbarsherlock.view.Menu) -> onPreparePanel
 com.actionbarsherlock.R -> com.actionbarsherlock.R:
-com.actionbarsherlock.R$array -> com.actionbarsherlock.R$array:
-    int birds -> birds
-    int birds_img -> birds_img
-    int color_names -> color_names
 com.actionbarsherlock.R$attr -> com.actionbarsherlock.R$attr:
-    int absForceOverflow -> absForceOverflow
-    int actionBarDivider -> actionBarDivider
-    int actionBarItemBackground -> actionBarItemBackground
-    int actionBarSize -> actionBarSize
-    int actionBarSplitStyle -> actionBarSplitStyle
-    int actionBarStyle -> actionBarStyle
-    int actionBarTabBarStyle -> actionBarTabBarStyle
-    int actionBarTabStyle -> actionBarTabStyle
-    int actionBarTabTextStyle -> actionBarTabTextStyle
-    int actionBarWidgetTheme -> actionBarWidgetTheme
-    int actionButtonStyle -> actionButtonStyle
-    int actionDropDownStyle -> actionDropDownStyle
-    int actionMenuTextAppearance -> actionMenuTextAppearance
-    int actionMenuTextColor -> actionMenuTextColor
-    int actionModeBackground -> actionModeBackground
-    int actionModeCloseButtonStyle -> actionModeCloseButtonStyle
-    int actionModeCloseDrawable -> actionModeCloseDrawable
-    int actionModePopupWindowStyle -> actionModePopupWindowStyle
-    int actionModeShareDrawable -> actionModeShareDrawable
-    int actionModeSplitBackground -> actionModeSplitBackground
-    int actionModeStyle -> actionModeStyle
-    int actionOverflowButtonStyle -> actionOverflowButtonStyle
-    int actionSpinnerItemStyle -> actionSpinnerItemStyle
-    int activatedBackgroundIndicator -> activatedBackgroundIndicator
-    int activityChooserViewStyle -> activityChooserViewStyle
-    int background -> background
-    int backgroundSplit -> backgroundSplit
-    int backgroundStacked -> backgroundStacked
-    int behindFadeDegree -> behindFadeDegree
-    int behindFadeEnabled -> behindFadeEnabled
-    int behindOffset -> behindOffset
-    int behindScrollScale -> behindScrollScale
-    int behindWidth -> behindWidth
-    int buttonStyleSmall -> buttonStyleSmall
-    int customNavigationLayout -> customNavigationLayout
-    int displayOptions -> displayOptions
-    int divider -> divider
-    int dividerVertical -> dividerVertical
-    int dropDownListViewStyle -> dropDownListViewStyle
-    int dropdownListPreferredItemHeight -> dropdownListPreferredItemHeight
-    int expandActivityOverflowButtonDrawable -> expandActivityOverflowButtonDrawable
-    int headerBackground -> headerBackground
-    int height -> height
-    int homeAsUpIndicator -> homeAsUpIndicator
-    int homeLayout -> homeLayout
-    int horizontalDivider -> horizontalDivider
-    int icon -> icon
-    int indeterminateProgressStyle -> indeterminateProgressStyle
-    int initialActivityCount -> initialActivityCount
-    int itemBackground -> itemBackground
-    int itemIconDisabledAlpha -> itemIconDisabledAlpha
-    int itemPadding -> itemPadding
-    int itemTextAppearance -> itemTextAppearance
-    int listPopupWindowStyle -> listPopupWindowStyle
-    int listPreferredItemHeightSmall -> listPreferredItemHeightSmall
-    int listPreferredItemPaddingLeft -> listPreferredItemPaddingLeft
-    int listPreferredItemPaddingRight -> listPreferredItemPaddingRight
-    int logo -> logo
-    int navigationMode -> navigationMode
-    int popupMenuStyle -> popupMenuStyle
-    int preserveIconSpacing -> preserveIconSpacing
-    int progressBarPadding -> progressBarPadding
-    int progressBarStyle -> progressBarStyle
-    int selectorDrawable -> selectorDrawable
-    int selectorEnabled -> selectorEnabled
-    int shadowDrawable -> shadowDrawable
-    int shadowWidth -> shadowWidth
-    int spinnerDropDownItemStyle -> spinnerDropDownItemStyle
-    int spinnerItemStyle -> spinnerItemStyle
-    int subtitle -> subtitle
-    int subtitleTextStyle -> subtitleTextStyle
-    int textAppearanceLargePopupMenu -> textAppearanceLargePopupMenu
-    int textAppearanceListItemSmall -> textAppearanceListItemSmall
     int textAppearanceSmall -> textAppearanceSmall
-    int textAppearanceSmallPopupMenu -> textAppearanceSmallPopupMenu
-    int textColorPrimary -> textColorPrimary
-    int textColorPrimaryDisableOnly -> textColorPrimaryDisableOnly
-    int textColorPrimaryInverse -> textColorPrimaryInverse
-    int title -> title
-    int titleTextStyle -> titleTextStyle
-    int touchModeAbove -> touchModeAbove
-    int touchModeBehind -> touchModeBehind
-    int verticalDivider -> verticalDivider
-    int viewAbove -> viewAbove
-    int viewBehind -> viewBehind
-    int windowActionBar -> windowActionBar
-    int windowActionBarOverlay -> windowActionBarOverlay
-    int windowActionModeOverlay -> windowActionModeOverlay
-    int windowAnimationStyle -> windowAnimationStyle
-    int windowContentOverlay -> windowContentOverlay
+    int actionOverflowButtonStyle -> actionOverflowButtonStyle
     int windowMinWidthMajor -> windowMinWidthMajor
+    int initialActivityCount -> initialActivityCount
+    int actionModeStyle -> actionModeStyle
+    int listPreferredItemPaddingRight -> listPreferredItemPaddingRight
+    int actionBarTabTextStyle -> actionBarTabTextStyle
+    int dropDownListViewStyle -> dropDownListViewStyle
     int windowMinWidthMinor -> windowMinWidthMinor
+    int actionModeBackground -> actionModeBackground
+    int activityChooserViewStyle -> activityChooserViewStyle
+    int itemIconDisabledAlpha -> itemIconDisabledAlpha
+    int textAppearanceSmallPopupMenu -> textAppearanceSmallPopupMenu
+    int height -> height
+    int actionButtonStyle -> actionButtonStyle
+    int windowAnimationStyle -> windowAnimationStyle
+    int headerBackground -> headerBackground
+    int dividerVertical -> dividerVertical
+    int actionModeCloseDrawable -> actionModeCloseDrawable
+    int actionBarTabStyle -> actionBarTabStyle
+    int windowContentOverlay -> windowContentOverlay
+    int actionBarStyle -> actionBarStyle
+    int actionBarDivider -> actionBarDivider
+    int actionBarWidgetTheme -> actionBarWidgetTheme
+    int spinnerDropDownItemStyle -> spinnerDropDownItemStyle
+    int windowActionModeOverlay -> windowActionModeOverlay
+    int divider -> divider
+    int navigationMode -> navigationMode
+    int listPopupWindowStyle -> listPopupWindowStyle
+    int actionBarItemBackground -> actionBarItemBackground
+    int expandActivityOverflowButtonDrawable -> expandActivityOverflowButtonDrawable
+    int homeLayout -> homeLayout
+    int indeterminateProgressStyle -> indeterminateProgressStyle
+    int progressBarPadding -> progressBarPadding
+    int activatedBackgroundIndicator -> activatedBackgroundIndicator
+    int actionModeShareDrawable -> actionModeShareDrawable
     int windowNoTitle -> windowNoTitle
+    int textColorPrimaryInverse -> textColorPrimaryInverse
+    int textAppearanceLargePopupMenu -> textAppearanceLargePopupMenu
+    int actionMenuTextAppearance -> actionMenuTextAppearance
+    int horizontalDivider -> horizontalDivider
+    int verticalDivider -> verticalDivider
+    int listPreferredItemHeightSmall -> listPreferredItemHeightSmall
+    int actionModePopupWindowStyle -> actionModePopupWindowStyle
+    int homeAsUpIndicator -> homeAsUpIndicator
+    int textColorPrimary -> textColorPrimary
+    int itemBackground -> itemBackground
+    int actionModeCloseButtonStyle -> actionModeCloseButtonStyle
+    int actionBarSplitStyle -> actionBarSplitStyle
+    int popupMenuStyle -> popupMenuStyle
+    int backgroundSplit -> backgroundSplit
+    int actionBarTabBarStyle -> actionBarTabBarStyle
+    int title -> title
+    int preserveIconSpacing -> preserveIconSpacing
+    int actionBarSize -> actionBarSize
+    int textAppearanceListItemSmall -> textAppearanceListItemSmall
+    int actionSpinnerItemStyle -> actionSpinnerItemStyle
+    int buttonStyleSmall -> buttonStyleSmall
+    int dropdownListPreferredItemHeight -> dropdownListPreferredItemHeight
+    int displayOptions -> displayOptions
+    int itemPadding -> itemPadding
+    int titleTextStyle -> titleTextStyle
+    int logo -> logo
+    int icon -> icon
+    int textColorPrimaryDisableOnly -> textColorPrimaryDisableOnly
+    int actionModeSplitBackground -> actionModeSplitBackground
+    int backgroundStacked -> backgroundStacked
+    int customNavigationLayout -> customNavigationLayout
+    int listPreferredItemPaddingLeft -> listPreferredItemPaddingLeft
+    int windowActionBarOverlay -> windowActionBarOverlay
+    int itemTextAppearance -> itemTextAppearance
+    int windowActionBar -> windowActionBar
     int windowSplitActionBar -> windowSplitActionBar
+    int subtitleTextStyle -> subtitleTextStyle
+    int absForceOverflow -> absForceOverflow
+    int progressBarStyle -> progressBarStyle
+    int spinnerItemStyle -> spinnerItemStyle
+    int background -> background
+    int subtitle -> subtitle
+    int actionMenuTextColor -> actionMenuTextColor
+    int actionDropDownStyle -> actionDropDownStyle
 com.actionbarsherlock.R$bool -> com.actionbarsherlock.R$bool:
-    int abs__action_bar_embed_tabs -> abs__action_bar_embed_tabs
-    int abs__action_bar_expanded_action_views_exclusive -> abs__action_bar_expanded_action_views_exclusive
-    int abs__config_actionMenuItemAllCaps -> abs__config_actionMenuItemAllCaps
     int abs__config_allowActionMenuItemTextWithIcon -> abs__config_allowActionMenuItemTextWithIcon
+    int abs__action_bar_expanded_action_views_exclusive -> abs__action_bar_expanded_action_views_exclusive
     int abs__config_showMenuShortcutsWhenKeyboardPresent -> abs__config_showMenuShortcutsWhenKeyboardPresent
+    int abs__action_bar_embed_tabs -> abs__action_bar_embed_tabs
     int abs__split_action_bar_is_narrow -> abs__split_action_bar_is_narrow
+    int abs__config_actionMenuItemAllCaps -> abs__config_actionMenuItemAllCaps
 com.actionbarsherlock.R$color -> com.actionbarsherlock.R$color:
-    int abs__background_holo_dark -> abs__background_holo_dark
-    int abs__background_holo_light -> abs__background_holo_light
-    int abs__bright_foreground_disabled_holo_dark -> abs__bright_foreground_disabled_holo_dark
-    int abs__bright_foreground_disabled_holo_light -> abs__bright_foreground_disabled_holo_light
-    int abs__bright_foreground_holo_dark -> abs__bright_foreground_holo_dark
-    int abs__bright_foreground_holo_light -> abs__bright_foreground_holo_light
-    int abs__bright_foreground_inverse_holo_dark -> abs__bright_foreground_inverse_holo_dark
     int abs__bright_foreground_inverse_holo_light -> abs__bright_foreground_inverse_holo_light
     int abs__holo_blue_light -> abs__holo_blue_light
+    int abs__bright_foreground_holo_light -> abs__bright_foreground_holo_light
+    int abs__bright_foreground_holo_dark -> abs__bright_foreground_holo_dark
+    int abs__bright_foreground_disabled_holo_light -> abs__bright_foreground_disabled_holo_light
     int abs__primary_text_disable_only_holo_dark -> abs__primary_text_disable_only_holo_dark
+    int abs__bright_foreground_inverse_holo_dark -> abs__bright_foreground_inverse_holo_dark
+    int abs__background_holo_dark -> abs__background_holo_dark
     int abs__primary_text_disable_only_holo_light -> abs__primary_text_disable_only_holo_light
+    int abs__background_holo_light -> abs__background_holo_light
+    int abs__bright_foreground_disabled_holo_dark -> abs__bright_foreground_disabled_holo_dark
     int abs__primary_text_holo_dark -> abs__primary_text_holo_dark
     int abs__primary_text_holo_light -> abs__primary_text_holo_light
-    int blue -> blue
-    int green -> green
-    int holo_blue_bright -> holo_blue_bright
-    int red -> red
 com.actionbarsherlock.R$dimen -> com.actionbarsherlock.R$dimen:
-    int abs__action_bar_default_height -> abs__action_bar_default_height
-    int abs__action_bar_icon_vertical_padding -> abs__action_bar_icon_vertical_padding
-    int abs__action_bar_subtitle_bottom_margin -> abs__action_bar_subtitle_bottom_margin
+    int abs__config_prefDialogWidth -> abs__config_prefDialogWidth
     int abs__action_bar_subtitle_text_size -> abs__action_bar_subtitle_text_size
+    int abs__dialog_min_width_minor -> abs__dialog_min_width_minor
+    int abs__dialog_min_width_major -> abs__dialog_min_width_major
+    int abs__action_bar_icon_vertical_padding -> abs__action_bar_icon_vertical_padding
     int abs__action_bar_subtitle_top_margin -> abs__action_bar_subtitle_top_margin
-    int abs__action_bar_title_text_size -> abs__action_bar_title_text_size
     int abs__action_button_min_width -> abs__action_button_min_width
     int abs__alert_dialog_title_height -> abs__alert_dialog_title_height
-    int abs__config_prefDialogWidth -> abs__config_prefDialogWidth
-    int abs__dialog_min_width_major -> abs__dialog_min_width_major
-    int abs__dialog_min_width_minor -> abs__dialog_min_width_minor
+    int abs__action_bar_subtitle_bottom_margin -> abs__action_bar_subtitle_bottom_margin
     int action_button_min_width -> action_button_min_width
-    int list_padding -> list_padding
-    int menu_header_line -> menu_header_line
-    int menu_header_padding_top -> menu_header_padding_top
-    int menu_icon_side -> menu_icon_side
-    int menu_item_padding -> menu_item_padding
-    int shadow_width -> shadow_width
-    int slidingmenu_offset -> slidingmenu_offset
+    int abs__action_bar_title_text_size -> abs__action_bar_title_text_size
+    int abs__action_bar_default_height -> abs__action_bar_default_height
 com.actionbarsherlock.R$drawable -> com.actionbarsherlock.R$drawable:
+    int abs__list_selector_holo_dark -> abs__list_selector_holo_dark
+    int abs__ic_cab_done_holo_dark -> abs__ic_cab_done_holo_dark
+    int abs__ab_share_pack_holo_dark -> abs__ab_share_pack_holo_dark
+    int abs__progress_medium_holo -> abs__progress_medium_holo
+    int abs__btn_cab_done_pressed_holo_light -> abs__btn_cab_done_pressed_holo_light
+    int abs__ab_bottom_transparent_dark_holo -> abs__ab_bottom_transparent_dark_holo
+    int abs__progress_secondary_holo_light -> abs__progress_secondary_holo_light
+    int abs__spinner_48_outer_holo -> abs__spinner_48_outer_holo
+    int abs__ab_stacked_solid_dark_holo -> abs__ab_stacked_solid_dark_holo
+    int abs__ab_solid_shadow_holo -> abs__ab_solid_shadow_holo
     int abs__ab_bottom_solid_dark_holo -> abs__ab_bottom_solid_dark_holo
+    int abs__tab_selected_pressed_holo -> abs__tab_selected_pressed_holo
+    int abs__spinner_ab_focused_holo_dark -> abs__spinner_ab_focused_holo_dark
+    int abs__ab_transparent_light_holo -> abs__ab_transparent_light_holo
+    int abs__list_selector_disabled_holo_light -> abs__list_selector_disabled_holo_light
+    int abs__ab_solid_dark_holo -> abs__ab_solid_dark_holo
+    int abs__progress_secondary_holo_dark -> abs__progress_secondary_holo_dark
+    int abs__ab_stacked_transparent_light_holo -> abs__ab_stacked_transparent_light_holo
+    int abs__spinner_ab_holo_light -> abs__spinner_ab_holo_light
+    int abs__btn_cab_done_focused_holo_light -> abs__btn_cab_done_focused_holo_light
+    int abs__ab_share_pack_holo_light -> abs__ab_share_pack_holo_light
+    int abs__list_selector_background_transition_holo_light -> abs__list_selector_background_transition_holo_light
+    int abs__ab_solid_light_holo -> abs__ab_solid_light_holo
+    int abs__list_focused_holo -> abs__list_focused_holo
+    int abs__spinner_ab_pressed_holo_light -> abs__spinner_ab_pressed_holo_light
+    int abs__progress_primary_holo_dark -> abs__progress_primary_holo_dark
+    int abs__list_selector_holo_light -> abs__list_selector_holo_light
+    int abs__spinner_ab_pressed_holo_dark -> abs__spinner_ab_pressed_holo_dark
+    int abs__spinner_ab_default_holo_light -> abs__spinner_ab_default_holo_light
     int abs__ab_bottom_solid_inverse_holo -> abs__ab_bottom_solid_inverse_holo
     int abs__ab_bottom_solid_light_holo -> abs__ab_bottom_solid_light_holo
-    int abs__ab_bottom_transparent_dark_holo -> abs__ab_bottom_transparent_dark_holo
-    int abs__ab_bottom_transparent_light_holo -> abs__ab_bottom_transparent_light_holo
-    int abs__ab_share_pack_holo_dark -> abs__ab_share_pack_holo_dark
-    int abs__ab_share_pack_holo_light -> abs__ab_share_pack_holo_light
-    int abs__ab_solid_dark_holo -> abs__ab_solid_dark_holo
-    int abs__ab_solid_light_holo -> abs__ab_solid_light_holo
-    int abs__ab_solid_shadow_holo -> abs__ab_solid_shadow_holo
-    int abs__ab_stacked_solid_dark_holo -> abs__ab_stacked_solid_dark_holo
-    int abs__ab_stacked_solid_light_holo -> abs__ab_stacked_solid_light_holo
-    int abs__ab_stacked_transparent_dark_holo -> abs__ab_stacked_transparent_dark_holo
-    int abs__ab_stacked_transparent_light_holo -> abs__ab_stacked_transparent_light_holo
-    int abs__ab_transparent_dark_holo -> abs__ab_transparent_dark_holo
-    int abs__ab_transparent_light_holo -> abs__ab_transparent_light_holo
-    int abs__activated_background_holo_dark -> abs__activated_background_holo_dark
-    int abs__activated_background_holo_light -> abs__activated_background_holo_light
-    int abs__btn_cab_done_default_holo_dark -> abs__btn_cab_done_default_holo_dark
-    int abs__btn_cab_done_default_holo_light -> abs__btn_cab_done_default_holo_light
-    int abs__btn_cab_done_focused_holo_dark -> abs__btn_cab_done_focused_holo_dark
-    int abs__btn_cab_done_focused_holo_light -> abs__btn_cab_done_focused_holo_light
-    int abs__btn_cab_done_holo_dark -> abs__btn_cab_done_holo_dark
-    int abs__btn_cab_done_holo_light -> abs__btn_cab_done_holo_light
-    int abs__btn_cab_done_pressed_holo_dark -> abs__btn_cab_done_pressed_holo_dark
-    int abs__btn_cab_done_pressed_holo_light -> abs__btn_cab_done_pressed_holo_light
-    int abs__cab_background_bottom_holo_dark -> abs__cab_background_bottom_holo_dark
-    int abs__cab_background_bottom_holo_light -> abs__cab_background_bottom_holo_light
-    int abs__cab_background_top_holo_dark -> abs__cab_background_top_holo_dark
-    int abs__cab_background_top_holo_light -> abs__cab_background_top_holo_light
-    int abs__dialog_full_holo_dark -> abs__dialog_full_holo_dark
-    int abs__dialog_full_holo_light -> abs__dialog_full_holo_light
-    int abs__ic_ab_back_holo_dark -> abs__ic_ab_back_holo_dark
-    int abs__ic_ab_back_holo_light -> abs__ic_ab_back_holo_light
-    int abs__ic_cab_done_holo_dark -> abs__ic_cab_done_holo_dark
-    int abs__ic_cab_done_holo_light -> abs__ic_cab_done_holo_light
-    int abs__ic_menu_moreoverflow_holo_dark -> abs__ic_menu_moreoverflow_holo_dark
-    int abs__ic_menu_moreoverflow_holo_light -> abs__ic_menu_moreoverflow_holo_light
     int abs__ic_menu_moreoverflow_normal_holo_dark -> abs__ic_menu_moreoverflow_normal_holo_dark
-    int abs__ic_menu_moreoverflow_normal_holo_light -> abs__ic_menu_moreoverflow_normal_holo_light
-    int abs__ic_menu_share_holo_dark -> abs__ic_menu_share_holo_dark
-    int abs__ic_menu_share_holo_light -> abs__ic_menu_share_holo_light
-    int abs__item_background_holo_dark -> abs__item_background_holo_dark
-    int abs__item_background_holo_light -> abs__item_background_holo_light
-    int abs__list_activated_holo -> abs__list_activated_holo
-    int abs__list_divider_holo_dark -> abs__list_divider_holo_dark
-    int abs__list_divider_holo_light -> abs__list_divider_holo_light
-    int abs__list_focused_holo -> abs__list_focused_holo
-    int abs__list_longpressed_holo -> abs__list_longpressed_holo
-    int abs__list_pressed_holo_dark -> abs__list_pressed_holo_dark
-    int abs__list_pressed_holo_light -> abs__list_pressed_holo_light
-    int abs__list_selector_background_transition_holo_dark -> abs__list_selector_background_transition_holo_dark
-    int abs__list_selector_background_transition_holo_light -> abs__list_selector_background_transition_holo_light
-    int abs__list_selector_disabled_holo_dark -> abs__list_selector_disabled_holo_dark
-    int abs__list_selector_disabled_holo_light -> abs__list_selector_disabled_holo_light
-    int abs__list_selector_holo_dark -> abs__list_selector_holo_dark
-    int abs__list_selector_holo_light -> abs__list_selector_holo_light
-    int abs__menu_dropdown_panel_holo_dark -> abs__menu_dropdown_panel_holo_dark
-    int abs__menu_dropdown_panel_holo_light -> abs__menu_dropdown_panel_holo_light
-    int abs__progress_bg_holo_dark -> abs__progress_bg_holo_dark
-    int abs__progress_bg_holo_light -> abs__progress_bg_holo_light
-    int abs__progress_horizontal_holo_dark -> abs__progress_horizontal_holo_dark
-    int abs__progress_horizontal_holo_light -> abs__progress_horizontal_holo_light
-    int abs__progress_medium_holo -> abs__progress_medium_holo
-    int abs__progress_primary_holo_dark -> abs__progress_primary_holo_dark
     int abs__progress_primary_holo_light -> abs__progress_primary_holo_light
-    int abs__progress_secondary_holo_dark -> abs__progress_secondary_holo_dark
-    int abs__progress_secondary_holo_light -> abs__progress_secondary_holo_light
-    int abs__spinner_48_inner_holo -> abs__spinner_48_inner_holo
-    int abs__spinner_48_outer_holo -> abs__spinner_48_outer_holo
-    int abs__spinner_ab_default_holo_dark -> abs__spinner_ab_default_holo_dark
-    int abs__spinner_ab_default_holo_light -> abs__spinner_ab_default_holo_light
-    int abs__spinner_ab_disabled_holo_dark -> abs__spinner_ab_disabled_holo_dark
+    int abs__btn_cab_done_default_holo_dark -> abs__btn_cab_done_default_holo_dark
+    int abs__btn_cab_done_focused_holo_dark -> abs__btn_cab_done_focused_holo_dark
+    int abs__list_divider_holo_dark -> abs__list_divider_holo_dark
+    int abs__list_pressed_holo_light -> abs__list_pressed_holo_light
+    int abs__btn_cab_done_holo_light -> abs__btn_cab_done_holo_light
+    int abs__activated_background_holo_dark -> abs__activated_background_holo_dark
+    int abs__ic_ab_back_holo_light -> abs__ic_ab_back_holo_light
+    int abs__list_selector_background_transition_holo_dark -> abs__list_selector_background_transition_holo_dark
     int abs__spinner_ab_disabled_holo_light -> abs__spinner_ab_disabled_holo_light
-    int abs__spinner_ab_focused_holo_dark -> abs__spinner_ab_focused_holo_dark
-    int abs__spinner_ab_focused_holo_light -> abs__spinner_ab_focused_holo_light
-    int abs__spinner_ab_holo_dark -> abs__spinner_ab_holo_dark
-    int abs__spinner_ab_holo_light -> abs__spinner_ab_holo_light
-    int abs__spinner_ab_pressed_holo_dark -> abs__spinner_ab_pressed_holo_dark
-    int abs__spinner_ab_pressed_holo_light -> abs__spinner_ab_pressed_holo_light
-    int abs__tab_indicator_ab_holo -> abs__tab_indicator_ab_holo
-    int abs__tab_selected_focused_holo -> abs__tab_selected_focused_holo
-    int abs__tab_selected_holo -> abs__tab_selected_holo
-    int abs__tab_selected_pressed_holo -> abs__tab_selected_pressed_holo
+    int abs__ab_stacked_transparent_dark_holo -> abs__ab_stacked_transparent_dark_holo
+    int abs__progress_bg_holo_light -> abs__progress_bg_holo_light
+    int abs__dialog_full_holo_dark -> abs__dialog_full_holo_dark
+    int abs__ic_cab_done_holo_light -> abs__ic_cab_done_holo_light
+    int abs__spinner_ab_default_holo_dark -> abs__spinner_ab_default_holo_dark
+    int abs__ic_menu_share_holo_light -> abs__ic_menu_share_holo_light
     int abs__tab_unselected_pressed_holo -> abs__tab_unselected_pressed_holo
-    int defaultshadow -> defaultshadow
-    int eagle -> eagle
-    int flamingo -> flamingo
-    int heron -> heron
-    int ic_action_github -> ic_action_github
-    int ic_launcher -> ic_launcher
-    int indicator -> indicator
-    int new_indicator -> new_indicator
-    int octocat -> octocat
-    int octocat_scaled -> octocat_scaled
-    int ostrich -> ostrich
-    int peacock -> peacock
-    int penguin -> penguin
-    int shadow -> shadow
-    int toucan -> toucan
-    int turkey -> turkey
-    int vulture -> vulture
+    int abs__ic_menu_moreoverflow_normal_holo_light -> abs__ic_menu_moreoverflow_normal_holo_light
+    int abs__progress_horizontal_holo_dark -> abs__progress_horizontal_holo_dark
+    int abs__menu_dropdown_panel_holo_dark -> abs__menu_dropdown_panel_holo_dark
+    int abs__progress_bg_holo_dark -> abs__progress_bg_holo_dark
+    int abs__activated_background_holo_light -> abs__activated_background_holo_light
+    int abs__btn_cab_done_holo_dark -> abs__btn_cab_done_holo_dark
+    int abs__cab_background_bottom_holo_light -> abs__cab_background_bottom_holo_light
+    int abs__btn_cab_done_default_holo_light -> abs__btn_cab_done_default_holo_light
+    int abs__spinner_48_inner_holo -> abs__spinner_48_inner_holo
+    int abs__tab_selected_holo -> abs__tab_selected_holo
+    int abs__progress_horizontal_holo_light -> abs__progress_horizontal_holo_light
+    int abs__btn_cab_done_pressed_holo_dark -> abs__btn_cab_done_pressed_holo_dark
+    int abs__ab_transparent_dark_holo -> abs__ab_transparent_dark_holo
+    int abs__cab_background_bottom_holo_dark -> abs__cab_background_bottom_holo_dark
+    int abs__ic_ab_back_holo_dark -> abs__ic_ab_back_holo_dark
+    int abs__menu_dropdown_panel_holo_light -> abs__menu_dropdown_panel_holo_light
+    int abs__ic_menu_share_holo_dark -> abs__ic_menu_share_holo_dark
+    int abs__ab_stacked_solid_light_holo -> abs__ab_stacked_solid_light_holo
+    int abs__list_activated_holo -> abs__list_activated_holo
+    int abs__dialog_full_holo_light -> abs__dialog_full_holo_light
+    int abs__spinner_ab_focused_holo_light -> abs__spinner_ab_focused_holo_light
+    int abs__cab_background_top_holo_light -> abs__cab_background_top_holo_light
+    int abs__spinner_ab_disabled_holo_dark -> abs__spinner_ab_disabled_holo_dark
+    int abs__list_selector_disabled_holo_dark -> abs__list_selector_disabled_holo_dark
+    int abs__cab_background_top_holo_dark -> abs__cab_background_top_holo_dark
+    int abs__ab_bottom_transparent_light_holo -> abs__ab_bottom_transparent_light_holo
+    int abs__ic_menu_moreoverflow_holo_light -> abs__ic_menu_moreoverflow_holo_light
+    int abs__item_background_holo_dark -> abs__item_background_holo_dark
+    int abs__list_divider_holo_light -> abs__list_divider_holo_light
+    int abs__list_pressed_holo_dark -> abs__list_pressed_holo_dark
+    int abs__spinner_ab_holo_dark -> abs__spinner_ab_holo_dark
+    int abs__item_background_holo_light -> abs__item_background_holo_light
+    int abs__tab_selected_focused_holo -> abs__tab_selected_focused_holo
+    int abs__tab_indicator_ab_holo -> abs__tab_indicator_ab_holo
+    int abs__ic_menu_moreoverflow_holo_dark -> abs__ic_menu_moreoverflow_holo_dark
+    int abs__list_longpressed_holo -> abs__list_longpressed_holo
 com.actionbarsherlock.R$id -> com.actionbarsherlock.R$id:
-    int about -> about
-    int abs__action_bar -> abs__action_bar
-    int abs__action_bar_container -> abs__action_bar_container
-    int abs__action_bar_subtitle -> abs__action_bar_subtitle
-    int abs__action_bar_title -> abs__action_bar_title
-    int abs__action_context_bar -> abs__action_context_bar
-    int abs__action_menu_divider -> abs__action_menu_divider
-    int abs__action_menu_presenter -> abs__action_menu_presenter
-    int abs__action_mode_bar -> abs__action_mode_bar
-    int abs__action_mode_bar_stub -> abs__action_mode_bar_stub
-    int abs__action_mode_close_button -> abs__action_mode_close_button
-    int abs__activity_chooser_view_content -> abs__activity_chooser_view_content
-    int abs__checkbox -> abs__checkbox
-    int abs__content -> abs__content
-    int abs__default_activity_button -> abs__default_activity_button
-    int abs__expand_activities_button -> abs__expand_activities_button
-    int abs__home -> abs__home
-    int abs__icon -> abs__icon
     int abs__image -> abs__image
+    int showCustom -> showCustom
+    int abs__action_mode_bar_stub -> abs__action_mode_bar_stub
+    int abs__content -> abs__content
+    int abs__action_bar_container -> abs__action_bar_container
+    int normal -> normal
+    int abs__action_menu_divider -> abs__action_menu_divider
+    int abs__icon -> abs__icon
+    int homeAsUp -> homeAsUp
+    int abs__action_bar -> abs__action_bar
+    int abs__default_activity_button -> abs__default_activity_button
+    int abs__action_mode_bar -> abs__action_mode_bar
     int abs__imageButton -> abs__imageButton
-    int abs__list_item -> abs__list_item
+    int abs__action_mode_close_button -> abs__action_mode_close_button
+    int abs__action_bar_subtitle -> abs__action_bar_subtitle
+    int abs__activity_chooser_view_content -> abs__activity_chooser_view_content
+    int wrap_content -> wrap_content
+    int listMode -> listMode
+    int disableHome -> disableHome
+    int showTitle -> showTitle
+    int abs__title -> abs__title
+    int abs__up -> abs__up
     int abs__progress_circular -> abs__progress_circular
+    int abs__split_action_bar -> abs__split_action_bar
+    int useLogo -> useLogo
+    int abs__action_context_bar -> abs__action_context_bar
+    int tabMode -> tabMode
+    int abs__list_item -> abs__list_item
     int abs__progress_horizontal -> abs__progress_horizontal
+    int abs__action_bar_title -> abs__action_bar_title
     int abs__radio -> abs__radio
     int abs__shortcut -> abs__shortcut
-    int abs__split_action_bar -> abs__split_action_bar
-    int abs__textButton -> abs__textButton
-    int abs__title -> abs__title
-    int abs__titleDivider -> abs__titleDivider
-    int abs__up -> abs__up
-    int behind_width -> behind_width
-    int contact -> contact
-    int content_frame -> content_frame
-    int disableHome -> disableHome
-    int fade_degree -> fade_degree
-    int fade_enabled -> fade_enabled
-    int fullscreen -> fullscreen
-    int github -> github
-    int github_button -> github_button
-    int grid_item_img -> grid_item_img
-    int homeAsUp -> homeAsUp
-    int licenses -> licenses
-    int listMode -> listMode
-    int margin -> margin
-    int menu_frame -> menu_frame
-    int normal -> normal
-    int pager -> pager
-    int row_icon -> row_icon
-    int row_title -> row_title
-    int scroll_scale -> scroll_scale
-    int selected_view -> selected_view
-    int shadow_enabled -> shadow_enabled
-    int shadow_width -> shadow_width
-    int showCustom -> showCustom
     int showHome -> showHome
-    int showTitle -> showTitle
-    int slidingmenulayout -> slidingmenulayout
-    int slidingmenumain -> slidingmenumain
-    int slidingmenurowicon -> slidingmenurowicon
-    int slidingmenurowtitle -> slidingmenurowtitle
-    int tabMode -> tabMode
-    int touch_above -> touch_above
-    int touch_above_full -> touch_above_full
-    int touch_above_margin -> touch_above_margin
-    int touch_above_none -> touch_above_none
-    int touch_behind -> touch_behind
-    int touch_behind_full -> touch_behind_full
-    int touch_behind_margin -> touch_behind_margin
-    int useLogo -> useLogo
-    int wrap_content -> wrap_content
+    int abs__action_menu_presenter -> abs__action_menu_presenter
+    int abs__textButton -> abs__textButton
+    int abs__home -> abs__home
+    int abs__titleDivider -> abs__titleDivider
+    int abs__checkbox -> abs__checkbox
+    int abs__expand_activities_button -> abs__expand_activities_button
 com.actionbarsherlock.R$integer -> com.actionbarsherlock.R$integer:
     int abs__max_action_buttons -> abs__max_action_buttons
-    int num_cols -> num_cols
 com.actionbarsherlock.R$layout -> com.actionbarsherlock.R$layout:
-    int abs__action_bar_home -> abs__action_bar_home
-    int abs__action_bar_tab -> abs__action_bar_tab
-    int abs__action_bar_tab_bar_view -> abs__action_bar_tab_bar_view
-    int abs__action_bar_title_item -> abs__action_bar_title_item
-    int abs__action_menu_item_layout -> abs__action_menu_item_layout
-    int abs__action_menu_layout -> abs__action_menu_layout
-    int abs__action_mode_bar -> abs__action_mode_bar
+    int abs__list_menu_item_radio -> abs__list_menu_item_radio
     int abs__action_mode_close_item -> abs__action_mode_close_item
-    int abs__activity_chooser_view -> abs__activity_chooser_view
     int abs__activity_chooser_view_list_item -> abs__activity_chooser_view_list_item
     int abs__dialog_title_holo -> abs__dialog_title_holo
+    int abs__screen_simple_overlay_action_mode -> abs__screen_simple_overlay_action_mode
+    int abs__screen_action_bar -> abs__screen_action_bar
+    int abs__action_menu_layout -> abs__action_menu_layout
+    int sherlock_spinner_dropdown_item -> sherlock_spinner_dropdown_item
+    int abs__screen_action_bar_overlay -> abs__screen_action_bar_overlay
+    int abs__action_bar_title_item -> abs__action_bar_title_item
     int abs__list_menu_item_checkbox -> abs__list_menu_item_checkbox
     int abs__list_menu_item_icon -> abs__list_menu_item_icon
+    int abs__action_mode_bar -> abs__action_mode_bar
     int abs__list_menu_item_layout -> abs__list_menu_item_layout
-    int abs__list_menu_item_radio -> abs__list_menu_item_radio
-    int abs__popup_menu_item_layout -> abs__popup_menu_item_layout
-    int abs__screen_action_bar -> abs__screen_action_bar
-    int abs__screen_action_bar_overlay -> abs__screen_action_bar_overlay
-    int abs__screen_simple -> abs__screen_simple
-    int abs__screen_simple_overlay_action_mode -> abs__screen_simple_overlay_action_mode
-    int content_frame -> content_frame
-    int github_button -> github_button
-    int grid_item -> grid_item
-    int list -> list
-    int list_grid -> list_grid
-    int menu_frame -> menu_frame
-    int pager -> pager
-    int properties -> properties
-    int responsive_content_frame -> responsive_content_frame
-    int row -> row
-    int shadow -> shadow
-    int sherlock_spinner_dropdown_item -> sherlock_spinner_dropdown_item
     int sherlock_spinner_item -> sherlock_spinner_item
-    int slidingmenumain -> slidingmenumain
-    int slidingmenumainlist -> slidingmenumainlist
-    int slidingmenurow -> slidingmenurow
-com.actionbarsherlock.R$menu -> com.actionbarsherlock.R$menu:
-    int example_list -> example_list
-    int main -> main
+    int abs__screen_simple -> abs__screen_simple
+    int abs__activity_chooser_view -> abs__activity_chooser_view
+    int abs__popup_menu_item_layout -> abs__popup_menu_item_layout
+    int abs__action_bar_home -> abs__action_bar_home
+    int abs__action_bar_tab_bar_view -> abs__action_bar_tab_bar_view
+    int abs__action_menu_item_layout -> abs__action_menu_item_layout
+    int abs__action_bar_tab -> abs__action_bar_tab
 com.actionbarsherlock.R$string -> com.actionbarsherlock.R$string:
-    int about -> about
-    int about_msg -> about_msg
-    int abs__action_bar_home_description -> abs__action_bar_home_description
     int abs__action_bar_up_description -> abs__action_bar_up_description
+    int abs__activitychooserview_choose_application -> abs__activitychooserview_choose_application
+    int abs__share_action_provider_share_with -> abs__share_action_provider_share_with
     int abs__action_menu_overflow_description -> abs__action_menu_overflow_description
     int abs__action_mode_done -> abs__action_mode_done
     int abs__activity_chooser_view_dialog_title_default -> abs__activity_chooser_view_dialog_title_default
-    int abs__activity_chooser_view_see_all -> abs__activity_chooser_view_see_all
-    int abs__activitychooserview_choose_application -> abs__activitychooserview_choose_application
-    int abs__share_action_provider_share_with -> abs__share_action_provider_share_with
-    int abs__shareactionprovider_share_with -> abs__shareactionprovider_share_with
     int abs__shareactionprovider_share_with_application -> abs__shareactionprovider_share_with_application
-    int anim_fold -> anim_fold
-    int anim_scale -> anim_scale
-    int anim_slide -> anim_slide
-    int anim_zoom -> anim_zoom
-    int animations -> animations
-    int apache_license -> apache_license
-    int app_name -> app_name
-    int changing_fragments -> changing_fragments
-    int contact -> contact
-    int general -> general
-    int github -> github
-    int github_label -> github_label
-    int licenses -> licenses
-    int no_email -> no_email
-    int properties -> properties
-    int responsive_explanation -> responsive_explanation
-    int responsive_ui -> responsive_ui
-    int title_bar -> title_bar
-    int title_bar_content -> title_bar_content
-    int title_bar_slide -> title_bar_slide
-    int viewpager -> viewpager
-    int what_is_this -> what_is_this
+    int abs__shareactionprovider_share_with -> abs__shareactionprovider_share_with
+    int abs__action_bar_home_description -> abs__action_bar_home_description
+    int abs__activity_chooser_view_see_all -> abs__activity_chooser_view_see_all
 com.actionbarsherlock.R$style -> com.actionbarsherlock.R$style:
-    int DialogWindowTitle_Sherlock -> DialogWindowTitle_Sherlock
-    int DialogWindowTitle_Sherlock_Light -> DialogWindowTitle_Sherlock_Light
-    int ExampleTheme -> ExampleTheme
-    int Sherlock___TextAppearance_Small -> Sherlock___TextAppearance_Small
-    int Sherlock___Theme -> Sherlock___Theme
-    int Sherlock___Theme_DarkActionBar -> Sherlock___Theme_DarkActionBar
-    int Sherlock___Theme_Dialog -> Sherlock___Theme_Dialog
-    int Sherlock___Theme_Light -> Sherlock___Theme_Light
-    int Sherlock___Widget_ActionBar -> Sherlock___Widget_ActionBar
-    int Sherlock___Widget_ActionMode -> Sherlock___Widget_ActionMode
-    int Sherlock___Widget_ActivityChooserView -> Sherlock___Widget_ActivityChooserView
-    int Sherlock___Widget_Holo_DropDownItem -> Sherlock___Widget_Holo_DropDownItem
-    int Sherlock___Widget_Holo_ListView -> Sherlock___Widget_Holo_ListView
-    int Sherlock___Widget_Holo_Spinner -> Sherlock___Widget_Holo_Spinner
-    int TextAppearance_Sherlock_DialogWindowTitle -> TextAppearance_Sherlock_DialogWindowTitle
-    int TextAppearance_Sherlock_Light_DialogWindowTitle -> TextAppearance_Sherlock_Light_DialogWindowTitle
-    int TextAppearance_Sherlock_Light_Small -> TextAppearance_Sherlock_Light_Small
-    int TextAppearance_Sherlock_Light_Widget_PopupMenu_Large -> TextAppearance_Sherlock_Light_Widget_PopupMenu_Large
-    int TextAppearance_Sherlock_Light_Widget_PopupMenu_Small -> TextAppearance_Sherlock_Light_Widget_PopupMenu_Small
-    int TextAppearance_Sherlock_Small -> TextAppearance_Sherlock_Small
-    int TextAppearance_Sherlock_Widget_ActionBar_Menu -> TextAppearance_Sherlock_Widget_ActionBar_Menu
-    int TextAppearance_Sherlock_Widget_ActionBar_Subtitle -> TextAppearance_Sherlock_Widget_ActionBar_Subtitle
-    int TextAppearance_Sherlock_Widget_ActionBar_Subtitle_Inverse -> TextAppearance_Sherlock_Widget_ActionBar_Subtitle_Inverse
-    int TextAppearance_Sherlock_Widget_ActionBar_Title -> TextAppearance_Sherlock_Widget_ActionBar_Title
-    int TextAppearance_Sherlock_Widget_ActionBar_Title_Inverse -> TextAppearance_Sherlock_Widget_ActionBar_Title_Inverse
-    int TextAppearance_Sherlock_Widget_ActionMode_Subtitle -> TextAppearance_Sherlock_Widget_ActionMode_Subtitle
-    int TextAppearance_Sherlock_Widget_ActionMode_Subtitle_Inverse -> TextAppearance_Sherlock_Widget_ActionMode_Subtitle_Inverse
-    int TextAppearance_Sherlock_Widget_ActionMode_Title -> TextAppearance_Sherlock_Widget_ActionMode_Title
-    int TextAppearance_Sherlock_Widget_ActionMode_Title_Inverse -> TextAppearance_Sherlock_Widget_ActionMode_Title_Inverse
-    int TextAppearance_Sherlock_Widget_DropDownItem -> TextAppearance_Sherlock_Widget_DropDownItem
-    int TextAppearance_Sherlock_Widget_PopupMenu -> TextAppearance_Sherlock_Widget_PopupMenu
-    int TextAppearance_Sherlock_Widget_PopupMenu_Large -> TextAppearance_Sherlock_Widget_PopupMenu_Large
-    int TextAppearance_Sherlock_Widget_PopupMenu_Small -> TextAppearance_Sherlock_Widget_PopupMenu_Small
-    int TextAppearance_Sherlock_Widget_TextView_SpinnerItem -> TextAppearance_Sherlock_Widget_TextView_SpinnerItem
-    int Theme_Sherlock -> Theme_Sherlock
-    int Theme_Sherlock_Dialog -> Theme_Sherlock_Dialog
-    int Theme_Sherlock_ForceOverflow -> Theme_Sherlock_ForceOverflow
-    int Theme_Sherlock_Light -> Theme_Sherlock_Light
-    int Theme_Sherlock_Light_DarkActionBar -> Theme_Sherlock_Light_DarkActionBar
-    int Theme_Sherlock_Light_DarkActionBar_ForceOverflow -> Theme_Sherlock_Light_DarkActionBar_ForceOverflow
-    int Theme_Sherlock_Light_Dialog -> Theme_Sherlock_Light_Dialog
-    int Theme_Sherlock_Light_ForceOverflow -> Theme_Sherlock_Light_ForceOverflow
-    int Theme_Sherlock_Light_NoActionBar -> Theme_Sherlock_Light_NoActionBar
-    int Theme_Sherlock_NoActionBar -> Theme_Sherlock_NoActionBar
-    int Widget -> Widget
-    int Widget_Sherlock_ActionBar -> Widget_Sherlock_ActionBar
-    int Widget_Sherlock_ActionBar_Solid -> Widget_Sherlock_ActionBar_Solid
-    int Widget_Sherlock_ActionBar_TabBar -> Widget_Sherlock_ActionBar_TabBar
-    int Widget_Sherlock_ActionBar_TabText -> Widget_Sherlock_ActionBar_TabText
-    int Widget_Sherlock_ActionBar_TabView -> Widget_Sherlock_ActionBar_TabView
-    int Widget_Sherlock_ActionButton -> Widget_Sherlock_ActionButton
-    int Widget_Sherlock_ActionButton_CloseMode -> Widget_Sherlock_ActionButton_CloseMode
-    int Widget_Sherlock_ActionButton_Overflow -> Widget_Sherlock_ActionButton_Overflow
-    int Widget_Sherlock_ActionMode -> Widget_Sherlock_ActionMode
-    int Widget_Sherlock_ActivityChooserView -> Widget_Sherlock_ActivityChooserView
-    int Widget_Sherlock_Button_Small -> Widget_Sherlock_Button_Small
-    int Widget_Sherlock_DropDownItem_Spinner -> Widget_Sherlock_DropDownItem_Spinner
-    int Widget_Sherlock_Light_ActionBar -> Widget_Sherlock_Light_ActionBar
-    int Widget_Sherlock_Light_ActionBar_Solid -> Widget_Sherlock_Light_ActionBar_Solid
-    int Widget_Sherlock_Light_ActionBar_Solid_Inverse -> Widget_Sherlock_Light_ActionBar_Solid_Inverse
-    int Widget_Sherlock_Light_ActionBar_TabBar -> Widget_Sherlock_Light_ActionBar_TabBar
-    int Widget_Sherlock_Light_ActionBar_TabBar_Inverse -> Widget_Sherlock_Light_ActionBar_TabBar_Inverse
-    int Widget_Sherlock_Light_ActionBar_TabText -> Widget_Sherlock_Light_ActionBar_TabText
-    int Widget_Sherlock_Light_ActionBar_TabText_Inverse -> Widget_Sherlock_Light_ActionBar_TabText_Inverse
-    int Widget_Sherlock_Light_ActionBar_TabView -> Widget_Sherlock_Light_ActionBar_TabView
-    int Widget_Sherlock_Light_ActionBar_TabView_Inverse -> Widget_Sherlock_Light_ActionBar_TabView_Inverse
-    int Widget_Sherlock_Light_ActionButton -> Widget_Sherlock_Light_ActionButton
-    int Widget_Sherlock_Light_ActionButton_CloseMode -> Widget_Sherlock_Light_ActionButton_CloseMode
-    int Widget_Sherlock_Light_ActionButton_Overflow -> Widget_Sherlock_Light_ActionButton_Overflow
-    int Widget_Sherlock_Light_ActionMode -> Widget_Sherlock_Light_ActionMode
-    int Widget_Sherlock_Light_ActionMode_Inverse -> Widget_Sherlock_Light_ActionMode_Inverse
     int Widget_Sherlock_Light_ActivityChooserView -> Widget_Sherlock_Light_ActivityChooserView
-    int Widget_Sherlock_Light_Button_Small -> Widget_Sherlock_Light_Button_Small
+    int Widget_Sherlock_Light_ProgressBar_Horizontal -> Widget_Sherlock_Light_ProgressBar_Horizontal
+    int TextAppearance_Sherlock_Light_Small -> TextAppearance_Sherlock_Light_Small
+    int DialogWindowTitle_Sherlock_Light -> DialogWindowTitle_Sherlock_Light
+    int Widget_Sherlock_ActivityChooserView -> Widget_Sherlock_ActivityChooserView
+    int TextAppearance_Sherlock_Widget_ActionBar_Subtitle_Inverse -> TextAppearance_Sherlock_Widget_ActionBar_Subtitle_Inverse
+    int Sherlock___Widget_Holo_ListView -> Sherlock___Widget_Holo_ListView
+    int Widget_Sherlock_Light_ActionBar -> Widget_Sherlock_Light_ActionBar
+    int Theme_Sherlock_Light_ForceOverflow -> Theme_Sherlock_Light_ForceOverflow
+    int DialogWindowTitle_Sherlock -> DialogWindowTitle_Sherlock
+    int Theme_Sherlock -> Theme_Sherlock
+    int TextAppearance_Sherlock_Widget_ActionMode_Subtitle_Inverse -> TextAppearance_Sherlock_Widget_ActionMode_Subtitle_Inverse
+    int TextAppearance_Sherlock_Widget_PopupMenu_Small -> TextAppearance_Sherlock_Widget_PopupMenu_Small
+    int Theme_Sherlock_ForceOverflow -> Theme_Sherlock_ForceOverflow
+    int Widget_Sherlock_Button_Small -> Widget_Sherlock_Button_Small
+    int TextAppearance_Sherlock_Light_DialogWindowTitle -> TextAppearance_Sherlock_Light_DialogWindowTitle
+    int Widget_Sherlock_Light_ActionBar_Solid -> Widget_Sherlock_Light_ActionBar_Solid
+    int TextAppearance_Sherlock_Widget_PopupMenu -> TextAppearance_Sherlock_Widget_PopupMenu
+    int Theme_Sherlock_Light_DarkActionBar_ForceOverflow -> Theme_Sherlock_Light_DarkActionBar_ForceOverflow
+    int Widget_Sherlock_ActionBar -> Widget_Sherlock_ActionBar
     int Widget_Sherlock_Light_DropDownItem_Spinner -> Widget_Sherlock_Light_DropDownItem_Spinner
     int Widget_Sherlock_Light_ListPopupWindow -> Widget_Sherlock_Light_ListPopupWindow
-    int Widget_Sherlock_Light_ListView_DropDown -> Widget_Sherlock_Light_ListView_DropDown
-    int Widget_Sherlock_Light_PopupMenu -> Widget_Sherlock_Light_PopupMenu
-    int Widget_Sherlock_Light_PopupWindow_ActionMode -> Widget_Sherlock_Light_PopupWindow_ActionMode
-    int Widget_Sherlock_Light_ProgressBar -> Widget_Sherlock_Light_ProgressBar
-    int Widget_Sherlock_Light_ProgressBar_Horizontal -> Widget_Sherlock_Light_ProgressBar_Horizontal
-    int Widget_Sherlock_Light_Spinner_DropDown_ActionBar -> Widget_Sherlock_Light_Spinner_DropDown_ActionBar
-    int Widget_Sherlock_ListPopupWindow -> Widget_Sherlock_ListPopupWindow
-    int Widget_Sherlock_ListView_DropDown -> Widget_Sherlock_ListView_DropDown
-    int Widget_Sherlock_PopupMenu -> Widget_Sherlock_PopupMenu
-    int Widget_Sherlock_PopupWindow_ActionMode -> Widget_Sherlock_PopupWindow_ActionMode
-    int Widget_Sherlock_ProgressBar -> Widget_Sherlock_ProgressBar
-    int Widget_Sherlock_ProgressBar_Horizontal -> Widget_Sherlock_ProgressBar_Horizontal
-    int Widget_Sherlock_Spinner_DropDown_ActionBar -> Widget_Sherlock_Spinner_DropDown_ActionBar
+    int Widget_Sherlock_Light_ActionMode -> Widget_Sherlock_Light_ActionMode
+    int Widget_Sherlock_Light_ActionBar_TabBar -> Widget_Sherlock_Light_ActionBar_TabBar
+    int Theme_Sherlock_Light_NoActionBar -> Theme_Sherlock_Light_NoActionBar
+    int Widget_Sherlock_Light_ActionMode_Inverse -> Widget_Sherlock_Light_ActionMode_Inverse
+    int Sherlock___Theme_Dialog -> Sherlock___Theme_Dialog
+    int Sherlock___Theme_DarkActionBar -> Sherlock___Theme_DarkActionBar
+    int Theme_Sherlock_Light_DarkActionBar -> Theme_Sherlock_Light_DarkActionBar
+    int Sherlock___Widget_Holo_Spinner -> Sherlock___Widget_Holo_Spinner
+    int TextAppearance_Sherlock_Widget_ActionBar_Menu -> TextAppearance_Sherlock_Widget_ActionBar_Menu
+    int Sherlock___Theme_Light -> Sherlock___Theme_Light
     int Widget_Sherlock_TextView_SpinnerItem -> Widget_Sherlock_TextView_SpinnerItem
+    int Widget_Sherlock_Light_ListView_DropDown -> Widget_Sherlock_Light_ListView_DropDown
+    int Widget_Sherlock_Light_Button_Small -> Widget_Sherlock_Light_Button_Small
+    int TextAppearance_Sherlock_Small -> TextAppearance_Sherlock_Small
+    int Theme_Sherlock_Light -> Theme_Sherlock_Light
+    int Widget_Sherlock_ActionBar_TabBar -> Widget_Sherlock_ActionBar_TabBar
+    int TextAppearance_Sherlock_Light_Widget_PopupMenu_Large -> TextAppearance_Sherlock_Light_Widget_PopupMenu_Large
+    int Sherlock___Theme -> Sherlock___Theme
+    int Widget_Sherlock_Light_ActionBar_TabBar_Inverse -> Widget_Sherlock_Light_ActionBar_TabBar_Inverse
+    int Widget_Sherlock_ActionButton -> Widget_Sherlock_ActionButton
+    int Theme_Sherlock_Light_Dialog -> Theme_Sherlock_Light_Dialog
+    int Widget_Sherlock_ProgressBar_Horizontal -> Widget_Sherlock_ProgressBar_Horizontal
+    int Widget_Sherlock_ActionButton_CloseMode -> Widget_Sherlock_ActionButton_CloseMode
+    int TextAppearance_Sherlock_Widget_DropDownItem -> TextAppearance_Sherlock_Widget_DropDownItem
+    int Theme_Sherlock_Dialog -> Theme_Sherlock_Dialog
+    int Widget_Sherlock_PopupWindow_ActionMode -> Widget_Sherlock_PopupWindow_ActionMode
+    int Widget_Sherlock_Light_ActionBar_Solid_Inverse -> Widget_Sherlock_Light_ActionBar_Solid_Inverse
+    int Widget_Sherlock_Light_Spinner_DropDown_ActionBar -> Widget_Sherlock_Light_Spinner_DropDown_ActionBar
+    int Sherlock___Widget_ActivityChooserView -> Sherlock___Widget_ActivityChooserView
+    int Sherlock___Widget_Holo_DropDownItem -> Sherlock___Widget_Holo_DropDownItem
+    int Widget -> Widget
+    int TextAppearance_Sherlock_Widget_ActionBar_Title_Inverse -> TextAppearance_Sherlock_Widget_ActionBar_Title_Inverse
+    int Sherlock___Widget_ActionMode -> Sherlock___Widget_ActionMode
+    int Widget_Sherlock_ActionMode -> Widget_Sherlock_ActionMode
+    int Widget_Sherlock_Light_ActionButton_Overflow -> Widget_Sherlock_Light_ActionButton_Overflow
+    int Theme_Sherlock_NoActionBar -> Theme_Sherlock_NoActionBar
+    int Widget_Sherlock_Light_PopupMenu -> Widget_Sherlock_Light_PopupMenu
+    int Widget_Sherlock_PopupMenu -> Widget_Sherlock_PopupMenu
+    int Sherlock___TextAppearance_Small -> Sherlock___TextAppearance_Small
+    int Widget_Sherlock_Light_PopupWindow_ActionMode -> Widget_Sherlock_Light_PopupWindow_ActionMode
+    int Widget_Sherlock_Light_ActionBar_TabView -> Widget_Sherlock_Light_ActionBar_TabView
+    int Widget_Sherlock_ListPopupWindow -> Widget_Sherlock_ListPopupWindow
+    int TextAppearance_Sherlock_DialogWindowTitle -> TextAppearance_Sherlock_DialogWindowTitle
+    int TextAppearance_Sherlock_Widget_ActionMode_Title_Inverse -> TextAppearance_Sherlock_Widget_ActionMode_Title_Inverse
+    int Widget_Sherlock_Light_ActionButton_CloseMode -> Widget_Sherlock_Light_ActionButton_CloseMode
+    int Widget_Sherlock_Light_ActionBar_TabText_Inverse -> Widget_Sherlock_Light_ActionBar_TabText_Inverse
+    int TextAppearance_Sherlock_Widget_ActionMode_Title -> TextAppearance_Sherlock_Widget_ActionMode_Title
+    int Widget_Sherlock_Spinner_DropDown_ActionBar -> Widget_Sherlock_Spinner_DropDown_ActionBar
+    int TextAppearance_Sherlock_Widget_TextView_SpinnerItem -> TextAppearance_Sherlock_Widget_TextView_SpinnerItem
+    int Sherlock___Widget_ActionBar -> Sherlock___Widget_ActionBar
+    int Widget_Sherlock_ProgressBar -> Widget_Sherlock_ProgressBar
+    int Widget_Sherlock_Light_ActionBar_TabView_Inverse -> Widget_Sherlock_Light_ActionBar_TabView_Inverse
+    int TextAppearance_Sherlock_Widget_ActionBar_Title -> TextAppearance_Sherlock_Widget_ActionBar_Title
+    int TextAppearance_Sherlock_Light_Widget_PopupMenu_Small -> TextAppearance_Sherlock_Light_Widget_PopupMenu_Small
+    int Widget_Sherlock_ActionBar_TabText -> Widget_Sherlock_ActionBar_TabText
+    int Widget_Sherlock_Light_ProgressBar -> Widget_Sherlock_Light_ProgressBar
+    int Widget_Sherlock_ActionBar_TabView -> Widget_Sherlock_ActionBar_TabView
+    int Widget_Sherlock_ActionBar_Solid -> Widget_Sherlock_ActionBar_Solid
+    int Widget_Sherlock_ListView_DropDown -> Widget_Sherlock_ListView_DropDown
+    int Widget_Sherlock_ActionButton_Overflow -> Widget_Sherlock_ActionButton_Overflow
+    int Widget_Sherlock_Light_ActionBar_TabText -> Widget_Sherlock_Light_ActionBar_TabText
+    int TextAppearance_Sherlock_Widget_ActionMode_Subtitle -> TextAppearance_Sherlock_Widget_ActionMode_Subtitle
+    int TextAppearance_Sherlock_Widget_ActionBar_Subtitle -> TextAppearance_Sherlock_Widget_ActionBar_Subtitle
+    int Widget_Sherlock_DropDownItem_Spinner -> Widget_Sherlock_DropDownItem_Spinner
+    int Widget_Sherlock_Light_ActionButton -> Widget_Sherlock_Light_ActionButton
+    int TextAppearance_Sherlock_Widget_PopupMenu_Large -> TextAppearance_Sherlock_Widget_PopupMenu_Large
 com.actionbarsherlock.R$styleable -> com.actionbarsherlock.R$styleable:
-    int[] SherlockActionBar -> SherlockActionBar
-    int SherlockActionBar_background -> SherlockActionBar_background
-    int SherlockActionBar_backgroundSplit -> SherlockActionBar_backgroundSplit
-    int SherlockActionBar_backgroundStacked -> SherlockActionBar_backgroundStacked
-    int SherlockActionBar_customNavigationLayout -> SherlockActionBar_customNavigationLayout
+    int SherlockTheme_textColorPrimaryInverse -> SherlockTheme_textColorPrimaryInverse
     int SherlockActionBar_displayOptions -> SherlockActionBar_displayOptions
-    int SherlockActionBar_divider -> SherlockActionBar_divider
-    int SherlockActionBar_height -> SherlockActionBar_height
-    int SherlockActionBar_homeLayout -> SherlockActionBar_homeLayout
-    int SherlockActionBar_icon -> SherlockActionBar_icon
-    int SherlockActionBar_indeterminateProgressStyle -> SherlockActionBar_indeterminateProgressStyle
-    int SherlockActionBar_itemPadding -> SherlockActionBar_itemPadding
-    int SherlockActionBar_logo -> SherlockActionBar_logo
-    int SherlockActionBar_navigationMode -> SherlockActionBar_navigationMode
-    int SherlockActionBar_progressBarPadding -> SherlockActionBar_progressBarPadding
-    int SherlockActionBar_progressBarStyle -> SherlockActionBar_progressBarStyle
-    int SherlockActionBar_subtitle -> SherlockActionBar_subtitle
-    int SherlockActionBar_subtitleTextStyle -> SherlockActionBar_subtitleTextStyle
-    int SherlockActionBar_title -> SherlockActionBar_title
-    int SherlockActionBar_titleTextStyle -> SherlockActionBar_titleTextStyle
-    int[] SherlockActionMenuItemView -> SherlockActionMenuItemView
-    int SherlockActionMenuItemView_android_minWidth -> SherlockActionMenuItemView_android_minWidth
-    int[] SherlockActionMode -> SherlockActionMode
-    int SherlockActionMode_background -> SherlockActionMode_background
-    int SherlockActionMode_backgroundSplit -> SherlockActionMode_backgroundSplit
-    int SherlockActionMode_height -> SherlockActionMode_height
-    int SherlockActionMode_subtitleTextStyle -> SherlockActionMode_subtitleTextStyle
-    int SherlockActionMode_titleTextStyle -> SherlockActionMode_titleTextStyle
-    int[] SherlockActivityChooserView -> SherlockActivityChooserView
-    int SherlockActivityChooserView_android_background -> SherlockActivityChooserView_android_background
-    int SherlockActivityChooserView_expandActivityOverflowButtonDrawable -> SherlockActivityChooserView_expandActivityOverflowButtonDrawable
-    int SherlockActivityChooserView_initialActivityCount -> SherlockActivityChooserView_initialActivityCount
-    int[] SherlockMenuGroup -> SherlockMenuGroup
-    int SherlockMenuGroup_android_checkableBehavior -> SherlockMenuGroup_android_checkableBehavior
-    int SherlockMenuGroup_android_enabled -> SherlockMenuGroup_android_enabled
-    int SherlockMenuGroup_android_id -> SherlockMenuGroup_android_id
-    int SherlockMenuGroup_android_menuCategory -> SherlockMenuGroup_android_menuCategory
-    int SherlockMenuGroup_android_orderInCategory -> SherlockMenuGroup_android_orderInCategory
-    int SherlockMenuGroup_android_visible -> SherlockMenuGroup_android_visible
-    int[] SherlockMenuItem -> SherlockMenuItem
-    int SherlockMenuItem_android_actionLayout -> SherlockMenuItem_android_actionLayout
-    int SherlockMenuItem_android_actionProviderClass -> SherlockMenuItem_android_actionProviderClass
-    int SherlockMenuItem_android_actionViewClass -> SherlockMenuItem_android_actionViewClass
-    int SherlockMenuItem_android_alphabeticShortcut -> SherlockMenuItem_android_alphabeticShortcut
-    int SherlockMenuItem_android_checkable -> SherlockMenuItem_android_checkable
-    int SherlockMenuItem_android_checked -> SherlockMenuItem_android_checked
-    int SherlockMenuItem_android_enabled -> SherlockMenuItem_android_enabled
-    int SherlockMenuItem_android_icon -> SherlockMenuItem_android_icon
-    int SherlockMenuItem_android_id -> SherlockMenuItem_android_id
-    int SherlockMenuItem_android_menuCategory -> SherlockMenuItem_android_menuCategory
-    int SherlockMenuItem_android_numericShortcut -> SherlockMenuItem_android_numericShortcut
-    int SherlockMenuItem_android_onClick -> SherlockMenuItem_android_onClick
-    int SherlockMenuItem_android_orderInCategory -> SherlockMenuItem_android_orderInCategory
-    int SherlockMenuItem_android_showAsAction -> SherlockMenuItem_android_showAsAction
-    int SherlockMenuItem_android_title -> SherlockMenuItem_android_title
-    int SherlockMenuItem_android_titleCondensed -> SherlockMenuItem_android_titleCondensed
-    int SherlockMenuItem_android_visible -> SherlockMenuItem_android_visible
-    int[] SherlockMenuView -> SherlockMenuView
-    int SherlockMenuView_headerBackground -> SherlockMenuView_headerBackground
-    int SherlockMenuView_horizontalDivider -> SherlockMenuView_horizontalDivider
-    int SherlockMenuView_itemBackground -> SherlockMenuView_itemBackground
-    int SherlockMenuView_itemIconDisabledAlpha -> SherlockMenuView_itemIconDisabledAlpha
-    int SherlockMenuView_itemTextAppearance -> SherlockMenuView_itemTextAppearance
-    int SherlockMenuView_preserveIconSpacing -> SherlockMenuView_preserveIconSpacing
-    int SherlockMenuView_verticalDivider -> SherlockMenuView_verticalDivider
-    int SherlockMenuView_windowAnimationStyle -> SherlockMenuView_windowAnimationStyle
-    int[] SherlockSpinner -> SherlockSpinner
-    int SherlockSpinner_android_dropDownHorizontalOffset -> SherlockSpinner_android_dropDownHorizontalOffset
-    int SherlockSpinner_android_dropDownSelector -> SherlockSpinner_android_dropDownSelector
-    int SherlockSpinner_android_dropDownVerticalOffset -> SherlockSpinner_android_dropDownVerticalOffset
-    int SherlockSpinner_android_dropDownWidth -> SherlockSpinner_android_dropDownWidth
-    int SherlockSpinner_android_gravity -> SherlockSpinner_android_gravity
-    int SherlockSpinner_android_popupBackground -> SherlockSpinner_android_popupBackground
-    int SherlockSpinner_android_popupPromptView -> SherlockSpinner_android_popupPromptView
-    int SherlockSpinner_android_prompt -> SherlockSpinner_android_prompt
-    int[] SherlockTheme -> SherlockTheme
-    int SherlockTheme_absForceOverflow -> SherlockTheme_absForceOverflow
-    int SherlockTheme_actionBarDivider -> SherlockTheme_actionBarDivider
-    int SherlockTheme_actionBarItemBackground -> SherlockTheme_actionBarItemBackground
-    int SherlockTheme_actionBarSize -> SherlockTheme_actionBarSize
-    int SherlockTheme_actionBarSplitStyle -> SherlockTheme_actionBarSplitStyle
-    int SherlockTheme_actionBarStyle -> SherlockTheme_actionBarStyle
-    int SherlockTheme_actionBarTabBarStyle -> SherlockTheme_actionBarTabBarStyle
-    int SherlockTheme_actionBarTabStyle -> SherlockTheme_actionBarTabStyle
-    int SherlockTheme_actionBarTabTextStyle -> SherlockTheme_actionBarTabTextStyle
-    int SherlockTheme_actionBarWidgetTheme -> SherlockTheme_actionBarWidgetTheme
-    int SherlockTheme_actionButtonStyle -> SherlockTheme_actionButtonStyle
-    int SherlockTheme_actionDropDownStyle -> SherlockTheme_actionDropDownStyle
     int SherlockTheme_actionMenuTextAppearance -> SherlockTheme_actionMenuTextAppearance
-    int SherlockTheme_actionMenuTextColor -> SherlockTheme_actionMenuTextColor
-    int SherlockTheme_actionModeBackground -> SherlockTheme_actionModeBackground
-    int SherlockTheme_actionModeCloseButtonStyle -> SherlockTheme_actionModeCloseButtonStyle
-    int SherlockTheme_actionModeCloseDrawable -> SherlockTheme_actionModeCloseDrawable
-    int SherlockTheme_actionModePopupWindowStyle -> SherlockTheme_actionModePopupWindowStyle
+    int SherlockTheme_listPreferredItemPaddingLeft -> SherlockTheme_listPreferredItemPaddingLeft
+    int SherlockMenuView_itemBackground -> SherlockMenuView_itemBackground
+    int SherlockTheme_actionBarDivider -> SherlockTheme_actionBarDivider
+    int SherlockTheme_homeAsUpIndicator -> SherlockTheme_homeAsUpIndicator
+    int SherlockMenuItem_android_id -> SherlockMenuItem_android_id
+    int[] SherlockTheme -> SherlockTheme
+    int[] SherlockMenuGroup -> SherlockMenuGroup
+    int SherlockTheme_actionBarSplitStyle -> SherlockTheme_actionBarSplitStyle
     int SherlockTheme_actionModeShareDrawable -> SherlockTheme_actionModeShareDrawable
+    int SherlockTheme_activatedBackgroundIndicator -> SherlockTheme_activatedBackgroundIndicator
+    int SherlockActionBar_subtitle -> SherlockActionBar_subtitle
+    int SherlockActionMode_backgroundSplit -> SherlockActionMode_backgroundSplit
+    int[] SherlockActionBar -> SherlockActionBar
+    int SherlockTheme_buttonStyleSmall -> SherlockTheme_buttonStyleSmall
+    int SherlockMenuItem_android_icon -> SherlockMenuItem_android_icon
+    int SherlockMenuItem_android_title -> SherlockMenuItem_android_title
+    int SherlockTheme_dropdownListPreferredItemHeight -> SherlockTheme_dropdownListPreferredItemHeight
+    int SherlockActivityChooserView_initialActivityCount -> SherlockActivityChooserView_initialActivityCount
+    int SherlockActionBar_itemPadding -> SherlockActionBar_itemPadding
+    int SherlockTheme_actionBarWidgetTheme -> SherlockTheme_actionBarWidgetTheme
+    int SherlockSpinner_android_dropDownHorizontalOffset -> SherlockSpinner_android_dropDownHorizontalOffset
+    int SherlockMenuGroup_android_orderInCategory -> SherlockMenuGroup_android_orderInCategory
+    int SherlockTheme_actionOverflowButtonStyle -> SherlockTheme_actionOverflowButtonStyle
+    int SherlockTheme_spinnerDropDownItemStyle -> SherlockTheme_spinnerDropDownItemStyle
+    int SherlockTheme_android_windowIsFloating -> SherlockTheme_android_windowIsFloating
+    int SherlockActionMode_background -> SherlockActionMode_background
+    int SherlockTheme_actionMenuTextColor -> SherlockTheme_actionMenuTextColor
+    int SherlockActionBar_progressBarPadding -> SherlockActionBar_progressBarPadding
+    int SherlockMenuItem_android_titleCondensed -> SherlockMenuItem_android_titleCondensed
+    int SherlockActionMode_height -> SherlockActionMode_height
+    int SherlockActionMenuItemView_android_minWidth -> SherlockActionMenuItemView_android_minWidth
+    int SherlockTheme_actionBarTabStyle -> SherlockTheme_actionBarTabStyle
+    int SherlockTheme_actionSpinnerItemStyle -> SherlockTheme_actionSpinnerItemStyle
+    int SherlockActivityChooserView_expandActivityOverflowButtonDrawable -> SherlockActivityChooserView_expandActivityOverflowButtonDrawable
+    int SherlockActionBar_backgroundSplit -> SherlockActionBar_backgroundSplit
+    int SherlockMenuView_headerBackground -> SherlockMenuView_headerBackground
+    int SherlockActionBar_subtitleTextStyle -> SherlockActionBar_subtitleTextStyle
+    int SherlockActionBar_icon -> SherlockActionBar_icon
+    int SherlockTheme_dropDownListViewStyle -> SherlockTheme_dropDownListViewStyle
+    int SherlockMenuItem_android_alphabeticShortcut -> SherlockMenuItem_android_alphabeticShortcut
+    int[] SherlockActionMenuItemView -> SherlockActionMenuItemView
+    int SherlockSpinner_android_dropDownWidth -> SherlockSpinner_android_dropDownWidth
+    int SherlockActionBar_indeterminateProgressStyle -> SherlockActionBar_indeterminateProgressStyle
+    int SherlockTheme_textAppearanceLargePopupMenu -> SherlockTheme_textAppearanceLargePopupMenu
+    int SherlockTheme_windowMinWidthMajor -> SherlockTheme_windowMinWidthMajor
+    int SherlockMenuItem_android_checked -> SherlockMenuItem_android_checked
+    int SherlockActionBar_progressBarStyle -> SherlockActionBar_progressBarStyle
+    int SherlockMenuView_horizontalDivider -> SherlockMenuView_horizontalDivider
+    int[] SherlockActivityChooserView -> SherlockActivityChooserView
+    int[] SherlockMenuItem -> SherlockMenuItem
+    int SherlockTheme_actionBarStyle -> SherlockTheme_actionBarStyle
+    int SherlockTheme_windowSplitActionBar -> SherlockTheme_windowSplitActionBar
+    int SherlockMenuGroup_android_enabled -> SherlockMenuGroup_android_enabled
+    int SherlockSpinner_android_gravity -> SherlockSpinner_android_gravity
+    int SherlockActionBar_customNavigationLayout -> SherlockActionBar_customNavigationLayout
+    int SherlockSpinner_android_prompt -> SherlockSpinner_android_prompt
+    int SherlockTheme_actionBarTabBarStyle -> SherlockTheme_actionBarTabBarStyle
+    int SherlockActionBar_title -> SherlockActionBar_title
+    int SherlockMenuItem_android_menuCategory -> SherlockMenuItem_android_menuCategory
+    int SherlockActionBar_height -> SherlockActionBar_height
+    int SherlockActionBar_navigationMode -> SherlockActionBar_navigationMode
+    int SherlockTheme_actionBarTabTextStyle -> SherlockTheme_actionBarTabTextStyle
+    int SherlockTheme_windowMinWidthMinor -> SherlockTheme_windowMinWidthMinor
+    int SherlockMenuItem_android_actionViewClass -> SherlockMenuItem_android_actionViewClass
+    int SherlockMenuView_itemTextAppearance -> SherlockMenuView_itemTextAppearance
+    int SherlockTheme_actionModeBackground -> SherlockTheme_actionModeBackground
+    int SherlockMenuItem_android_checkable -> SherlockMenuItem_android_checkable
+    int SherlockTheme_actionModeCloseDrawable -> SherlockTheme_actionModeCloseDrawable
+    int SherlockTheme_windowNoTitle -> SherlockTheme_windowNoTitle
+    int SherlockTheme_textAppearanceSmall -> SherlockTheme_textAppearanceSmall
+    int SherlockSpinner_android_dropDownVerticalOffset -> SherlockSpinner_android_dropDownVerticalOffset
+    int SherlockMenuView_verticalDivider -> SherlockMenuView_verticalDivider
+    int SherlockMenuGroup_android_visible -> SherlockMenuGroup_android_visible
+    int SherlockActionMode_subtitleTextStyle -> SherlockActionMode_subtitleTextStyle
+    int SherlockMenuView_itemIconDisabledAlpha -> SherlockMenuView_itemIconDisabledAlpha
+    int SherlockTheme_actionBarItemBackground -> SherlockTheme_actionBarItemBackground
+    int SherlockTheme_textColorPrimary -> SherlockTheme_textColorPrimary
+    int SherlockTheme_listPreferredItemHeightSmall -> SherlockTheme_listPreferredItemHeightSmall
+    int SherlockTheme_windowContentOverlay -> SherlockTheme_windowContentOverlay
+    int SherlockTheme_listPopupWindowStyle -> SherlockTheme_listPopupWindowStyle
+    int SherlockMenuGroup_android_menuCategory -> SherlockMenuGroup_android_menuCategory
+    int SherlockActionBar_logo -> SherlockActionBar_logo
+    int SherlockMenuItem_android_actionProviderClass -> SherlockMenuItem_android_actionProviderClass
+    int SherlockTheme_actionBarSize -> SherlockTheme_actionBarSize
+    int SherlockActionBar_backgroundStacked -> SherlockActionBar_backgroundStacked
+    int SherlockTheme_actionModeCloseButtonStyle -> SherlockTheme_actionModeCloseButtonStyle
+    int SherlockActivityChooserView_android_background -> SherlockActivityChooserView_android_background
+    int SherlockTheme_absForceOverflow -> SherlockTheme_absForceOverflow
+    int SherlockTheme_dividerVertical -> SherlockTheme_dividerVertical
+    int SherlockTheme_actionModePopupWindowStyle -> SherlockTheme_actionModePopupWindowStyle
+    int SherlockTheme_textAppearanceSmallPopupMenu -> SherlockTheme_textAppearanceSmallPopupMenu
+    int SherlockSpinner_android_popupBackground -> SherlockSpinner_android_popupBackground
+    int[] SherlockActionMode -> SherlockActionMode
+    int SherlockTheme_popupMenuStyle -> SherlockTheme_popupMenuStyle
+    int[] SherlockMenuView -> SherlockMenuView
+    int SherlockSpinner_android_popupPromptView -> SherlockSpinner_android_popupPromptView
+    int SherlockActionBar_background -> SherlockActionBar_background
+    int SherlockSpinner_android_dropDownSelector -> SherlockSpinner_android_dropDownSelector
     int SherlockTheme_actionModeSplitBackground -> SherlockTheme_actionModeSplitBackground
     int SherlockTheme_actionModeStyle -> SherlockTheme_actionModeStyle
-    int SherlockTheme_actionOverflowButtonStyle -> SherlockTheme_actionOverflowButtonStyle
-    int SherlockTheme_actionSpinnerItemStyle -> SherlockTheme_actionSpinnerItemStyle
-    int SherlockTheme_activatedBackgroundIndicator -> SherlockTheme_activatedBackgroundIndicator
-    int SherlockTheme_activityChooserViewStyle -> SherlockTheme_activityChooserViewStyle
-    int SherlockTheme_android_windowIsFloating -> SherlockTheme_android_windowIsFloating
-    int SherlockTheme_buttonStyleSmall -> SherlockTheme_buttonStyleSmall
-    int SherlockTheme_dividerVertical -> SherlockTheme_dividerVertical
-    int SherlockTheme_dropDownListViewStyle -> SherlockTheme_dropDownListViewStyle
-    int SherlockTheme_dropdownListPreferredItemHeight -> SherlockTheme_dropdownListPreferredItemHeight
-    int SherlockTheme_homeAsUpIndicator -> SherlockTheme_homeAsUpIndicator
-    int SherlockTheme_listPopupWindowStyle -> SherlockTheme_listPopupWindowStyle
-    int SherlockTheme_listPreferredItemHeightSmall -> SherlockTheme_listPreferredItemHeightSmall
-    int SherlockTheme_listPreferredItemPaddingLeft -> SherlockTheme_listPreferredItemPaddingLeft
+    int SherlockMenuView_windowAnimationStyle -> SherlockMenuView_windowAnimationStyle
     int SherlockTheme_listPreferredItemPaddingRight -> SherlockTheme_listPreferredItemPaddingRight
-    int SherlockTheme_popupMenuStyle -> SherlockTheme_popupMenuStyle
-    int SherlockTheme_spinnerDropDownItemStyle -> SherlockTheme_spinnerDropDownItemStyle
-    int SherlockTheme_spinnerItemStyle -> SherlockTheme_spinnerItemStyle
-    int SherlockTheme_textAppearanceLargePopupMenu -> SherlockTheme_textAppearanceLargePopupMenu
-    int SherlockTheme_textAppearanceListItemSmall -> SherlockTheme_textAppearanceListItemSmall
-    int SherlockTheme_textAppearanceSmall -> SherlockTheme_textAppearanceSmall
-    int SherlockTheme_textAppearanceSmallPopupMenu -> SherlockTheme_textAppearanceSmallPopupMenu
-    int SherlockTheme_textColorPrimary -> SherlockTheme_textColorPrimary
+    int SherlockMenuItem_android_numericShortcut -> SherlockMenuItem_android_numericShortcut
+    int SherlockMenuItem_android_showAsAction -> SherlockMenuItem_android_showAsAction
+    int SherlockTheme_actionButtonStyle -> SherlockTheme_actionButtonStyle
+    int SherlockMenuGroup_android_checkableBehavior -> SherlockMenuGroup_android_checkableBehavior
+    int SherlockMenuGroup_android_id -> SherlockMenuGroup_android_id
+    int SherlockTheme_actionDropDownStyle -> SherlockTheme_actionDropDownStyle
+    int SherlockActionMode_titleTextStyle -> SherlockActionMode_titleTextStyle
     int SherlockTheme_textColorPrimaryDisableOnly -> SherlockTheme_textColorPrimaryDisableOnly
-    int SherlockTheme_textColorPrimaryInverse -> SherlockTheme_textColorPrimaryInverse
-    int SherlockTheme_windowActionBar -> SherlockTheme_windowActionBar
-    int SherlockTheme_windowActionBarOverlay -> SherlockTheme_windowActionBarOverlay
+    int SherlockTheme_textAppearanceListItemSmall -> SherlockTheme_textAppearanceListItemSmall
     int SherlockTheme_windowActionModeOverlay -> SherlockTheme_windowActionModeOverlay
-    int SherlockTheme_windowContentOverlay -> SherlockTheme_windowContentOverlay
-    int SherlockTheme_windowMinWidthMajor -> SherlockTheme_windowMinWidthMajor
-    int SherlockTheme_windowMinWidthMinor -> SherlockTheme_windowMinWidthMinor
-    int SherlockTheme_windowNoTitle -> SherlockTheme_windowNoTitle
-    int SherlockTheme_windowSplitActionBar -> SherlockTheme_windowSplitActionBar
-    int[] SlidingMenu -> SlidingMenu
-    int SlidingMenu_behindFadeDegree -> SlidingMenu_behindFadeDegree
-    int SlidingMenu_behindFadeEnabled -> SlidingMenu_behindFadeEnabled
-    int SlidingMenu_behindOffset -> SlidingMenu_behindOffset
-    int SlidingMenu_behindScrollScale -> SlidingMenu_behindScrollScale
-    int SlidingMenu_behindWidth -> SlidingMenu_behindWidth
-    int SlidingMenu_selectorDrawable -> SlidingMenu_selectorDrawable
-    int SlidingMenu_selectorEnabled -> SlidingMenu_selectorEnabled
-    int SlidingMenu_shadowDrawable -> SlidingMenu_shadowDrawable
-    int SlidingMenu_shadowWidth -> SlidingMenu_shadowWidth
-    int SlidingMenu_touchModeAbove -> SlidingMenu_touchModeAbove
-    int SlidingMenu_touchModeBehind -> SlidingMenu_touchModeBehind
-    int SlidingMenu_viewAbove -> SlidingMenu_viewAbove
-    int SlidingMenu_viewBehind -> SlidingMenu_viewBehind
-com.actionbarsherlock.R$xml -> com.actionbarsherlock.R$xml:
-    int main -> main
+    int SherlockActionBar_homeLayout -> SherlockActionBar_homeLayout
+    int SherlockActionBar_divider -> SherlockActionBar_divider
+    int SherlockTheme_spinnerItemStyle -> SherlockTheme_spinnerItemStyle
+    int SherlockMenuItem_android_visible -> SherlockMenuItem_android_visible
+    int SherlockMenuItem_android_orderInCategory -> SherlockMenuItem_android_orderInCategory
+    int SherlockActionBar_titleTextStyle -> SherlockActionBar_titleTextStyle
+    int SherlockMenuView_preserveIconSpacing -> SherlockMenuView_preserveIconSpacing
+    int SherlockTheme_windowActionBar -> SherlockTheme_windowActionBar
+    int SherlockTheme_activityChooserViewStyle -> SherlockTheme_activityChooserViewStyle
+    int SherlockMenuItem_android_enabled -> SherlockMenuItem_android_enabled
+    int SherlockMenuItem_android_onClick -> SherlockMenuItem_android_onClick
+    int SherlockMenuItem_android_actionLayout -> SherlockMenuItem_android_actionLayout
+    int[] SherlockSpinner -> SherlockSpinner
+    int SherlockTheme_windowActionBarOverlay -> SherlockTheme_windowActionBarOverlay
 com.actionbarsherlock.app.ActionBar -> com.actionbarsherlock.app.ActionBar:
     int NAVIGATION_MODE_STANDARD -> NAVIGATION_MODE_STANDARD
     int NAVIGATION_MODE_LIST -> NAVIGATION_MODE_LIST
@@ -2537,46 +2402,6 @@ com.actionbarsherlock.app.SherlockListFragment -> com.actionbarsherlock.app.Sher
     void onPrepareOptionsMenu(com.actionbarsherlock.view.Menu) -> onPrepareOptionsMenu
     boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
     boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem) -> onOptionsItemSelected
-com.actionbarsherlock.app.SherlockMapActivity -> com.actionbarsherlock.app.SherlockMapActivity:
-    com.actionbarsherlock.ActionBarSherlock mSherlock -> mSherlock
-    com.actionbarsherlock.ActionBarSherlock getSherlock() -> getSherlock
-    com.actionbarsherlock.app.ActionBar getSupportActionBar() -> getSupportActionBar
-    com.actionbarsherlock.view.ActionMode startActionMode(com.actionbarsherlock.view.ActionMode$Callback) -> startActionMode
-    void onActionModeStarted(com.actionbarsherlock.view.ActionMode) -> onActionModeStarted
-    void onActionModeFinished(com.actionbarsherlock.view.ActionMode) -> onActionModeFinished
-    void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
-    void onPostResume() -> onPostResume
-    void onPause() -> onPause
-    void onStop() -> onStop
-    void onPostCreate(android.os.Bundle) -> onPostCreate
-    void onTitleChanged(java.lang.CharSequence,int) -> onTitleChanged
-    boolean onMenuOpened(int,android.view.Menu) -> onMenuOpened
-    void onPanelClosed(int,android.view.Menu) -> onPanelClosed
-    boolean dispatchKeyEvent(android.view.KeyEvent) -> dispatchKeyEvent
-    com.actionbarsherlock.view.MenuInflater getSupportMenuInflater() -> getSupportMenuInflater
-    void invalidateOptionsMenu() -> invalidateOptionsMenu
-    void supportInvalidateOptionsMenu() -> supportInvalidateOptionsMenu
-    boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
-    boolean onPrepareOptionsMenu(android.view.Menu) -> onPrepareOptionsMenu
-    boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
-    void openOptionsMenu() -> openOptionsMenu
-    void closeOptionsMenu() -> closeOptionsMenu
-    boolean onCreatePanelMenu(int,com.actionbarsherlock.view.Menu) -> onCreatePanelMenu
-    boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu) -> onCreateOptionsMenu
-    boolean onPreparePanel(int,android.view.View,com.actionbarsherlock.view.Menu) -> onPreparePanel
-    boolean onPrepareOptionsMenu(com.actionbarsherlock.view.Menu) -> onPrepareOptionsMenu
-    boolean onMenuItemSelected(int,com.actionbarsherlock.view.MenuItem) -> onMenuItemSelected
-    boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem) -> onOptionsItemSelected
-    void addContentView(android.view.View,android.view.ViewGroup$LayoutParams) -> addContentView
-    void setContentView(int) -> setContentView
-    void setContentView(android.view.View,android.view.ViewGroup$LayoutParams) -> setContentView
-    void setContentView(android.view.View) -> setContentView
-    void requestWindowFeature(long) -> requestWindowFeature
-    void setSupportProgress(int) -> setSupportProgress
-    void setSupportProgressBarIndeterminate(boolean) -> setSupportProgressBarIndeterminate
-    void setSupportProgressBarIndeterminateVisibility(boolean) -> setSupportProgressBarIndeterminateVisibility
-    void setSupportProgressBarVisibility(boolean) -> setSupportProgressBarVisibility
-    void setSupportSecondaryProgress(int) -> setSupportSecondaryProgress
 com.actionbarsherlock.app.SherlockPreferenceActivity -> com.actionbarsherlock.app.SherlockPreferenceActivity:
     com.actionbarsherlock.ActionBarSherlock mSherlock -> mSherlock
     com.actionbarsherlock.ActionBarSherlock getSherlock() -> getSherlock
@@ -5651,59 +5476,53 @@ com.slidingmenu.example.BaseActivity -> com.slidingmenu.example.BaseActivity:
     boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem) -> onOptionsItemSelected
     boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu) -> onCreateOptionsMenu
 com.slidingmenu.example.ExampleListActivity -> com.slidingmenu.example.ExampleListActivity:
-    com.slidingmenu.example.ExampleListActivity$ActivityAdapter mAdapter -> a
     void onCreate(android.os.Bundle) -> onCreate
     boolean onPreferenceTreeClick(android.preference.PreferenceScreen,android.preference.Preference) -> onPreferenceTreeClick
-    void onListItemClick(android.widget.ListView,android.view.View,int,long) -> onListItemClick
     boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem) -> onOptionsItemSelected
     boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu) -> onCreateOptionsMenu
-com.slidingmenu.example.ExampleListActivity$ActivityAdapter -> com.slidingmenu.example.a:
-    com.slidingmenu.example.ExampleListActivity this$0 -> a
-    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-com.slidingmenu.example.ExampleListActivity$ActivityInfo -> com.slidingmenu.example.b:
-    java.lang.String name -> a
-    android.content.Intent intent -> b
+com.slidingmenu.example.LeftAndRightActivity -> com.slidingmenu.example.LeftAndRightActivity:
+    void onCreate(android.os.Bundle) -> onCreate
 com.slidingmenu.example.PropertiesActivity -> com.slidingmenu.example.PropertiesActivity:
     void onCreate(android.os.Bundle) -> onCreate
-com.slidingmenu.example.PropertiesActivity$1 -> com.slidingmenu.example.c:
+com.slidingmenu.example.PropertiesActivity$1 -> com.slidingmenu.example.a:
     com.slidingmenu.example.PropertiesActivity this$0 -> a
     void onCheckedChanged(android.widget.RadioGroup,int) -> onCheckedChanged
-com.slidingmenu.example.PropertiesActivity$2 -> com.slidingmenu.example.d:
+com.slidingmenu.example.PropertiesActivity$2 -> com.slidingmenu.example.b:
     com.slidingmenu.example.PropertiesActivity this$0 -> a
     void onCheckedChanged(android.widget.RadioGroup,int) -> onCheckedChanged
-com.slidingmenu.example.PropertiesActivity$3 -> com.slidingmenu.example.e:
+com.slidingmenu.example.PropertiesActivity$3 -> com.slidingmenu.example.c:
     com.slidingmenu.example.PropertiesActivity this$0 -> a
     void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
     void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
     void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
-com.slidingmenu.example.PropertiesActivity$4 -> com.slidingmenu.example.f:
+com.slidingmenu.example.PropertiesActivity$4 -> com.slidingmenu.example.d:
     com.slidingmenu.example.PropertiesActivity this$0 -> a
     void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
     void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
     void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
-com.slidingmenu.example.PropertiesActivity$5 -> com.slidingmenu.example.g:
+com.slidingmenu.example.PropertiesActivity$5 -> com.slidingmenu.example.e:
     com.slidingmenu.example.PropertiesActivity this$0 -> a
     void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
-com.slidingmenu.example.PropertiesActivity$6 -> com.slidingmenu.example.h:
+com.slidingmenu.example.PropertiesActivity$6 -> com.slidingmenu.example.f:
     com.slidingmenu.example.PropertiesActivity this$0 -> a
     void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
     void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
     void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
-com.slidingmenu.example.PropertiesActivity$7 -> com.slidingmenu.example.i:
+com.slidingmenu.example.PropertiesActivity$7 -> com.slidingmenu.example.g:
     com.slidingmenu.example.PropertiesActivity this$0 -> a
     void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
-com.slidingmenu.example.PropertiesActivity$8 -> com.slidingmenu.example.j:
+com.slidingmenu.example.PropertiesActivity$8 -> com.slidingmenu.example.h:
     com.slidingmenu.example.PropertiesActivity this$0 -> a
     void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
     void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
     void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
-com.slidingmenu.example.SampleListFragment -> com.slidingmenu.example.k:
+com.slidingmenu.example.SampleListFragment -> com.slidingmenu.example.SampleListFragment:
     android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
     void onActivityCreated(android.os.Bundle) -> onActivityCreated
-com.slidingmenu.example.SampleListFragment$SampleAdapter -> com.slidingmenu.example.l:
+com.slidingmenu.example.SampleListFragment$SampleAdapter -> com.slidingmenu.example.i:
     com.slidingmenu.example.SampleListFragment this$0 -> a
     android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-com.slidingmenu.example.SampleListFragment$SampleItem -> com.slidingmenu.example.m:
+com.slidingmenu.example.SampleListFragment$SampleItem -> com.slidingmenu.example.j:
     java.lang.String tag -> a
     int iconRes -> b
     com.slidingmenu.example.SampleListFragment this$0 -> c
@@ -5711,17 +5530,18 @@ com.slidingmenu.example.SlidingContent -> com.slidingmenu.example.SlidingContent
     void onCreate(android.os.Bundle) -> onCreate
 com.slidingmenu.example.SlidingTitleBar -> com.slidingmenu.example.SlidingTitleBar:
     void onCreate(android.os.Bundle) -> onCreate
-com.slidingmenu.example.Util -> com.slidingmenu.example.n:
+com.slidingmenu.example.Util -> com.slidingmenu.example.k:
     void goToGitHub(android.content.Context) -> a
 com.slidingmenu.example.ViewPagerActivity -> com.slidingmenu.example.ViewPagerActivity:
     void onCreate(android.os.Bundle) -> onCreate
-com.slidingmenu.example.ViewPagerActivity$1 -> com.slidingmenu.example.o:
+com.slidingmenu.example.ViewPagerActivity$1 -> com.slidingmenu.example.l:
     com.slidingmenu.example.ViewPagerActivity this$0 -> a
     void onPageScrollStateChanged(int) -> b
     void onPageScrolled$486775f1(int,float) -> a
     void onPageSelected(int) -> a
-com.slidingmenu.example.ViewPagerActivity$ColorPagerAdapter -> com.slidingmenu.example.p:
-    int[] COLORS -> b
+com.slidingmenu.example.ViewPagerActivity$ColorPagerAdapter -> com.slidingmenu.example.m:
+    java.util.ArrayList mFragments -> b
+    int[] COLORS -> c
     com.slidingmenu.example.ViewPagerActivity this$0 -> a
     int getCount() -> getCount
     android.support.v4.app.Fragment getItem(int) -> getItem
@@ -5801,141 +5621,138 @@ com.slidingmenu.example.fragments.ResponsiveUIActivity$1 -> com.slidingmenu.exam
     void run() -> run
 com.slidingmenu.lib.CustomViewAbove -> com.slidingmenu.lib.CustomViewAbove:
     android.view.animation.Interpolator sInterpolator -> e
-    com.slidingmenu.lib.CustomViewAbove$Window mMenu -> f
-    com.slidingmenu.lib.CustomViewAbove$Content mContent -> g
-    int mCurItem -> h
-    android.widget.Scroller mScroller -> i
-    int mShadowWidth -> j
-    android.graphics.drawable.Drawable mShadowDrawable -> k
-    boolean mScrollingCacheEnabled -> l
-    boolean mScrolling -> m
-    boolean mIsBeingDragged -> n
-    int mTouchSlop -> o
-    float mInitialMotionX -> p
-    float mLastMotionX -> q
-    float mLastMotionY -> r
+    android.view.View mContent -> f
+    int mCurItem -> g
+    android.widget.Scroller mScroller -> h
+    boolean mScrollingCacheEnabled -> i
+    boolean mScrolling -> j
+    boolean mIsBeingDragged -> k
+    boolean mIsUnableToDrag -> l
+    int mTouchSlop -> m
+    float mInitialMotionX -> n
+    float mLastMotionX -> o
+    float mLastMotionY -> p
     int mActivePointerId -> a
     android.view.VelocityTracker mVelocityTracker -> b
-    int mMinimumVelocity -> s
+    int mMinimumVelocity -> q
     int mMaximumVelocity -> c
-    int mFlingDistance -> t
-    boolean mLastTouchAllowed -> u
-    int mSlidingMenuThreshold -> v
-    com.slidingmenu.lib.CustomViewBehind mCustomViewBehind -> w
-    boolean mEnabled -> x
-    com.slidingmenu.lib.CustomViewAbove$OnPageChangeListener mOnPageChangeListener -> y
-    com.slidingmenu.lib.CustomViewAbove$OnPageChangeListener mInternalPageChangeListener -> z
-    com.slidingmenu.lib.SlidingMenu$OnClosedListener mClosedListener -> A
-    com.slidingmenu.lib.SlidingMenu$OnOpenedListener mOpenedListener -> B
+    int mFlingDistance -> r
+    com.slidingmenu.lib.CustomViewBehind mCustomViewBehind -> s
+    boolean mEnabled -> t
+    com.slidingmenu.lib.CustomViewAbove$OnPageChangeListener mOnPageChangeListener -> u
+    com.slidingmenu.lib.CustomViewAbove$OnPageChangeListener mInternalPageChangeListener -> v
+    com.slidingmenu.lib.SlidingMenu$OnClosedListener mClosedListener -> w
+    com.slidingmenu.lib.SlidingMenu$OnOpenedListener mOpenedListener -> x
     int mTouchMode -> d
-    int mTouchModeBehind -> C
-    boolean mIsUnableToDrag -> D
-    float mScrollScale -> E
-    float mScrollX -> F
-    boolean mFadeEnabled -> G
-    float mFadeDegree -> H
-    android.graphics.Paint mBehindFadePaint -> I
-    boolean mSelectorEnabled -> J
-    android.graphics.Bitmap mSelectorDrawable -> K
-    android.view.View mSelectedView -> L
+    float mScrollX -> y
+    boolean mSelectorEnabled -> z
+    android.graphics.Bitmap mSelectorDrawable -> A
     void setCurrentItem$2563266(int) -> a
     int getCurrentItem() -> a
-    void setCurrentItemInternal$3a56b46b(int,boolean,int) -> a
+    void setCurrentItemInternal$4870cd2e(int,boolean) -> a
+    void setCurrentItemInternal(int,boolean,boolean,int) -> a
     void setOnPageChangeListener(com.slidingmenu.lib.CustomViewAbove$OnPageChangeListener) -> a
-    void setShadowWidth(int) -> b
-    void setShadowDrawable(android.graphics.drawable.Drawable) -> a
-    void setShadowDrawable(int) -> c
-    boolean verifyDrawable(android.graphics.drawable.Drawable) -> verifyDrawable
-    void drawableStateChanged() -> drawableStateChanged
-    int getDestScrollX(int) -> h
-    int getContentLeft() -> g
-    int getChildLeft(int) -> d
-    boolean isMenuOpen() -> b
-    int getCustomWidth() -> c
-    int getChildWidth(int) -> e
-    int getBehindWidth() -> d
+    int getDestScrollX(int) -> c
+    boolean isMenuOpen() -> d
+    int getBehindWidth() -> e
     void setSlidingEnabled(boolean) -> a
-    void setMenu(android.view.View) -> a
-    void setContent(android.view.View) -> b
+    void setContent(android.view.View) -> a
     void setCustomViewBehind(com.slidingmenu.lib.CustomViewBehind) -> a
     void onMeasure(int,int) -> onMeasure
     void onSizeChanged(int,int,int,int) -> onSizeChanged
     void onLayout(boolean,int,int,int,int) -> onLayout
     void computeScroll() -> computeScroll
-    void pageScrolled$13462e() -> h
-    void completeScroll() -> i
-    void setTouchMode(int) -> f
-    void setTouchModeBehind(int) -> g
+    void pageScrolled$13462e() -> f
+    void completeScroll() -> g
+    void setTouchMode(int) -> b
     boolean thisTouchAllowed(android.view.MotionEvent) -> a
+    boolean thisSlideAllowed(float) -> a
+    int getPointerIndex(android.view.MotionEvent,int) -> a
     boolean onInterceptTouchEvent(android.view.MotionEvent) -> onInterceptTouchEvent
     boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
-    void setScrollScale(float) -> a
     void scrollTo(int,int) -> scrollTo
-    float getPercentOpen() -> e
+    float getPercentOpen() -> b
     void dispatchDraw(android.graphics.Canvas) -> dispatchDraw
-    boolean fitSystemWindows(android.graphics.Rect) -> fitSystemWindows
-    void onDraw(android.graphics.Canvas) -> onDraw
-    void setBehindFadeEnabled(boolean) -> b
-    void setBehindFadeDegree(float) -> b
-    void setSelectorEnabled$1385ff() -> f
-    void setSelectorDrawable(android.graphics.Bitmap) -> a
+    void setSelectorEnabled$1385ff() -> c
+    void setSelectorBitmap(android.graphics.Bitmap) -> a
     void onSecondaryPointerUp(android.view.MotionEvent) -> b
-    void endDrag() -> j
-    void setScrollingCacheEnabled(boolean) -> c
+    void endDrag() -> h
+    void setScrollingCacheEnabled(boolean) -> b
     boolean dispatchKeyEvent(android.view.KeyEvent) -> dispatchKeyEvent
-    boolean arrowScroll(int) -> i
-    boolean pageLeft() -> k
+    boolean arrowScroll(int) -> d
+    boolean pageLeft() -> i
     com.slidingmenu.lib.CustomViewBehind access$0(com.slidingmenu.lib.CustomViewAbove) -> a
 com.slidingmenu.lib.CustomViewAbove$1 -> com.slidingmenu.lib.a:
     float getInterpolation(float) -> getInterpolation
 com.slidingmenu.lib.CustomViewAbove$2 -> com.slidingmenu.lib.b:
     com.slidingmenu.lib.CustomViewAbove this$0 -> a
     void onPageSelected(int) -> a
-com.slidingmenu.lib.CustomViewAbove$Content -> com.slidingmenu.lib.c:
-    com.slidingmenu.lib.CustomViewAbove this$0 -> a
-    boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
-    boolean onInterceptTouchEvent(android.view.MotionEvent) -> onInterceptTouchEvent
-com.slidingmenu.lib.CustomViewAbove$OnPageChangeListener -> com.slidingmenu.lib.d:
+com.slidingmenu.lib.CustomViewAbove$OnPageChangeListener -> com.slidingmenu.lib.c:
     void onPageSelected(int) -> a
-com.slidingmenu.lib.CustomViewAbove$SimpleOnPageChangeListener -> com.slidingmenu.lib.e:
+com.slidingmenu.lib.CustomViewAbove$SimpleOnPageChangeListener -> com.slidingmenu.lib.d:
     void onPageSelected(int) -> a
-com.slidingmenu.lib.CustomViewAbove$Window -> com.slidingmenu.lib.f:
-    com.slidingmenu.lib.CustomViewAbove this$0 -> a
-    boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
-    boolean onInterceptTouchEvent(android.view.MotionEvent) -> onInterceptTouchEvent
 com.slidingmenu.lib.CustomViewBehind -> com.slidingmenu.lib.CustomViewBehind:
-    com.slidingmenu.lib.CustomViewAbove mViewAbove -> e
+    com.slidingmenu.lib.CustomViewAbove mViewAbove -> a
+    android.view.View mContent -> b
+    android.view.View mSecondaryContent -> c
+    int mMarginThreshold -> d
+    int mWidthOffset -> e
     com.slidingmenu.lib.SlidingMenu$CanvasTransformer mTransformer -> f
     boolean mChildrenEnabled -> g
-    void setCustomViewAbove(com.slidingmenu.lib.CustomViewAbove) -> b
-    void setTouchMode(int) -> f
+    int mMode -> h
+    boolean mFadeEnabled -> i
+    android.graphics.Paint mFadePaint -> j
+    float mScrollScale -> k
+    android.graphics.drawable.Drawable mShadowDrawable -> l
+    android.graphics.drawable.Drawable mSecondaryShadowDrawable -> m
+    int mShadowWidth -> n
+    float mFadeDegree -> o
+    void setCustomViewAbove(com.slidingmenu.lib.CustomViewAbove) -> a
     void setCanvasTransformer(com.slidingmenu.lib.SlidingMenu$CanvasTransformer) -> a
-    int getChildLeft(int) -> d
-    int getCustomWidth() -> c
-    int getChildWidth(int) -> e
-    int getBehindWidth() -> d
-    void setContent(android.view.View) -> b
-    void setChildrenEnabled(boolean) -> c
+    void setWidthOffset(int) -> a
+    int getBehindWidth() -> a
+    void setContent(android.view.View) -> a
+    void setSecondaryContent(android.view.View) -> b
+    void setChildrenEnabled(boolean) -> a
     void scrollTo(int,int) -> scrollTo
     boolean onInterceptTouchEvent(android.view.MotionEvent) -> onInterceptTouchEvent
     boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
     void dispatchDraw(android.graphics.Canvas) -> dispatchDraw
-com.slidingmenu.lib.R -> com.slidingmenu.lib.g:
-com.slidingmenu.lib.R$id -> com.slidingmenu.lib.h:
-    int selected_view -> a
-com.slidingmenu.lib.R$layout -> com.slidingmenu.lib.i:
+    void onLayout(boolean,int,int,int,int) -> onLayout
+    void onMeasure(int,int) -> onMeasure
+    void setMode(int) -> b
+    int getMode() -> b
+    void setScrollScale(float) -> a
+    void setShadowDrawable(android.graphics.drawable.Drawable) -> a
+    void setSecondaryShadowDrawable(android.graphics.drawable.Drawable) -> b
+    void setShadowWidth(int) -> c
+    void setFadeEnabled(boolean) -> b
+    void setFadeDegree(float) -> b
+    int getMenuPage(int) -> d
+    void scrollBehindTo(android.view.View,int,int) -> a
+    int getMenuLeft(android.view.View,int) -> a
+    int getAbsLeftBound(android.view.View) -> c
+    int getAbsRightBound(android.view.View) -> d
+    boolean marginTouchAllowed(android.view.View,int) -> b
+    boolean menuOpenTouchAllowed(android.view.View,int,int) -> b
+    boolean menuClosedSlideAllowed(float) -> c
+    boolean menuOpenSlideAllowed(float) -> d
+    void drawShadow(android.view.View,android.graphics.Canvas) -> a
+    void drawFade(android.view.View,android.graphics.Canvas,float) -> a
+com.slidingmenu.lib.R -> com.slidingmenu.lib.e:
+com.slidingmenu.lib.R$layout -> com.slidingmenu.lib.f:
     int slidingmenumain -> a
-com.slidingmenu.lib.R$styleable -> com.slidingmenu.lib.j:
-    int[] SherlockActionBar -> a
-    int[] SherlockActionMenuItemView -> b
-    int[] SherlockActionMode -> c
-    int[] SherlockActivityChooserView -> d
-    int[] SherlockMenuGroup -> e
+com.slidingmenu.lib.R$styleable -> com.slidingmenu.lib.g:
+    int[] SherlockTheme -> a
+    int[] SherlockMenuGroup -> b
+    int[] SherlockActionBar -> c
+    int[] SherlockActionMenuItemView -> d
+    int[] SherlockActivityChooserView -> e
     int[] SherlockMenuItem -> f
-    int[] SherlockMenuView -> g
-    int[] SherlockSpinner -> h
-    int[] SherlockTheme -> i
-    int[] SlidingMenu -> j
+    int[] SherlockActionMode -> g
+    int[] SherlockMenuView -> h
+    int[] SlidingMenu -> i
+    int[] SherlockSpinner -> j
 com.slidingmenu.lib.SlidingMenu -> com.slidingmenu.lib.SlidingMenu:
     com.slidingmenu.lib.CustomViewAbove mViewAbove -> a
     com.slidingmenu.lib.CustomViewBehind mViewBehind -> b
@@ -5943,20 +5760,25 @@ com.slidingmenu.lib.SlidingMenu -> com.slidingmenu.lib.SlidingMenu:
     com.slidingmenu.lib.SlidingMenu$OnCloseListener mCloseListener -> d
     void setContent(android.view.View) -> a
     void setMenu(android.view.View) -> b
+    void setSecondaryMenu$13462e() -> a
     void setSlidingEnabled(boolean) -> a
-    void showBehind() -> a
-    void showAbove() -> b
-    boolean isBehindShowing() -> c
+    void setMode(int) -> a
+    int getMode() -> b
+    void showMenu$1385ff() -> i
+    void showContent() -> c
+    void showContent$1385ff() -> j
+    void toggle() -> d
+    boolean isMenuShowing() -> e
     void setBehindOffset(int) -> f
-    void setBehindWidth(int) -> a
-    void setBehindOffsetRes$13462e() -> d
+    void setBehindOffsetRes$13462e() -> f
+    void setBehindWidth(int) -> b
     void setBehindScrollScale(float) -> a
     void setBehindCanvasTransformer(com.slidingmenu.lib.SlidingMenu$CanvasTransformer) -> a
-    void setTouchModeAbove(int) -> b
-    void setTouchModeBehind(int) -> c
+    void setTouchModeAbove(int) -> c
     void setShadowDrawable(int) -> d
-    void setShadowDrawable$130e17e7() -> e
-    void setShadowWidthRes$13462e() -> f
+    void setShadowDrawable(android.graphics.drawable.Drawable) -> a
+    void setSecondaryShadowDrawable$13462e() -> g
+    void setShadowWidthRes$13462e() -> h
     void setShadowWidth(int) -> e
     void setFadeEnabled(boolean) -> b
     void setFadeDegree(float) -> b
@@ -5965,25 +5787,21 @@ com.slidingmenu.lib.SlidingMenu -> com.slidingmenu.lib.SlidingMenu:
     boolean fitSystemWindows(android.graphics.Rect) -> fitSystemWindows
     com.slidingmenu.lib.SlidingMenu$OnOpenListener access$0(com.slidingmenu.lib.SlidingMenu) -> a
     com.slidingmenu.lib.SlidingMenu$OnCloseListener access$1(com.slidingmenu.lib.SlidingMenu) -> b
-    com.slidingmenu.lib.CustomViewAbove access$2(com.slidingmenu.lib.SlidingMenu) -> c
-com.slidingmenu.lib.SlidingMenu$1 -> com.slidingmenu.lib.k:
+com.slidingmenu.lib.SlidingMenu$1 -> com.slidingmenu.lib.h:
     com.slidingmenu.lib.SlidingMenu this$0 -> a
     void onPageSelected(int) -> a
-com.slidingmenu.lib.SlidingMenu$2 -> com.slidingmenu.lib.l:
-    com.slidingmenu.lib.SlidingMenu this$0 -> a
-    void onGlobalLayout() -> onGlobalLayout
-com.slidingmenu.lib.SlidingMenu$CanvasTransformer -> com.slidingmenu.lib.m:
+com.slidingmenu.lib.SlidingMenu$CanvasTransformer -> com.slidingmenu.lib.i:
     void transformCanvas(android.graphics.Canvas,float) -> a
-com.slidingmenu.lib.SlidingMenu$OnCloseListener -> com.slidingmenu.lib.n:
-com.slidingmenu.lib.SlidingMenu$OnClosedListener -> com.slidingmenu.lib.o:
-com.slidingmenu.lib.SlidingMenu$OnOpenListener -> com.slidingmenu.lib.p:
-com.slidingmenu.lib.SlidingMenu$OnOpenedListener -> com.slidingmenu.lib.q:
+com.slidingmenu.lib.SlidingMenu$OnCloseListener -> com.slidingmenu.lib.j:
+com.slidingmenu.lib.SlidingMenu$OnClosedListener -> com.slidingmenu.lib.k:
+com.slidingmenu.lib.SlidingMenu$OnOpenListener -> com.slidingmenu.lib.l:
+com.slidingmenu.lib.SlidingMenu$OnOpenedListener -> com.slidingmenu.lib.m:
 com.slidingmenu.lib.SlidingMenu$SavedState -> com.slidingmenu.lib.SlidingMenu$SavedState:
     boolean mBehindShowing -> a
     android.os.Parcelable$Creator CREATOR -> CREATOR
     void writeToParcel(android.os.Parcel,int) -> writeToParcel
     boolean access$1(com.slidingmenu.lib.SlidingMenu$SavedState) -> a
-com.slidingmenu.lib.SlidingMenu$SavedState$1 -> com.slidingmenu.lib.r:
+com.slidingmenu.lib.SlidingMenu$SavedState$1 -> com.slidingmenu.lib.n:
     java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
     java.lang.Object[] newArray(int) -> newArray
 com.slidingmenu.lib.app.SlidingActivity -> com.slidingmenu.lib.app.SlidingActivity:
@@ -6041,7 +5859,7 @@ com.slidingmenu.lib.app.SlidingListActivity -> com.slidingmenu.lib.app.SlidingLi
     void setContentView(android.view.View,android.view.ViewGroup$LayoutParams) -> setContentView
     void setBehindContentView(android.view.View) -> setBehindContentView
     boolean onKeyUp(int,android.view.KeyEvent) -> onKeyUp
-com.slidingmenu.lib.app.SlidingMapActivity -> com.slidingmenu.lib.app.SlidingMapActivity:
+com.slidingmenu.lib.app.SlidingPreferenceActivity -> com.slidingmenu.lib.app.SlidingPreferenceActivity:
     com.slidingmenu.lib.app.SlidingActivityHelper mHelper -> a
     void onCreate(android.os.Bundle) -> onCreate
     void onPostCreate(android.os.Bundle) -> onPostCreate
@@ -6052,7 +5870,6 @@ com.slidingmenu.lib.app.SlidingMapActivity -> com.slidingmenu.lib.app.SlidingMap
     void setContentView(android.view.View,android.view.ViewGroup$LayoutParams) -> setContentView
     void setBehindContentView(android.view.View) -> setBehindContentView
     boolean onKeyUp(int,android.view.KeyEvent) -> onKeyUp
-com.slidingmenu.lib.app.SlidingPreferenceActivity -> com.slidingmenu.lib.app.SlidingPreferenceActivity:
 crittercism.android.a -> a.a.a:
     java.lang.String a -> a
     java.lang.String b -> b
