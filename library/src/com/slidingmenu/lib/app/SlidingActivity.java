@@ -1,5 +1,6 @@
 package com.slidingmenu.lib.app;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -8,6 +9,7 @@ import android.view.ViewGroup.LayoutParams;
 
 import com.slidingmenu.lib.SlidingMenu;
 
+@SuppressLint("Registered")
 public class SlidingActivity extends Activity implements SlidingActivityBase {
 
 	private SlidingActivityHelper mHelper;

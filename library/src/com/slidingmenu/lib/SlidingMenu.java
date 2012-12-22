@@ -5,8 +5,6 @@ import java.lang.reflect.Method;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.Rect;
@@ -260,11 +258,6 @@ public class SlidingMenu extends RelativeLayout {
 		setFadeEnabled(fadeEnabled);
 		float fadeDeg = ta.getFloat(R.styleable.SlidingMenu_behindFadeDegree, 0.66f);
 		setFadeDegree(fadeDeg);
-		boolean selectorEnabled = ta.getBoolean(R.styleable.SlidingMenu_selectorEnabled, false);
-		setSelectorEnabled(selectorEnabled);
-		int selectorRes = ta.getResourceId(R.styleable.SlidingMenu_selectorDrawable, -1);
-		if (selectorRes != -1)
-			setSelectorDrawable(selectorRes);
 		ta.recycle();
 	}
 
@@ -738,64 +731,12 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	/**
-	 * Enables or disables whether the selector is drawn
-	 *
-	 * @param b true to draw the selector, false to not draw the selector
-	 */
-	public void setSelectorEnabled(boolean b) {
-		mViewAbove.setSelectorEnabled(true);
-	}
-
-	/**
 	 * Sets the selected view. The selector will be drawn here
 	 *
 	 * @param v the new selected view
 	 */
 	public void setSelectedView(View v) {
 		mViewAbove.setSelectedView(v);
-	}
-
-	/**
-	 * Sets the selector drawable.
-	 *
-	 * @param res a resource ID for the selector drawable
-	 */
-	public void setSelectorDrawable(int res) {
-		mViewAbove.setSelectorBitmap(BitmapFactory.decodeResource(getResources(), res));
-	}
-
-	/**
-	 * Sets the selector drawable.
-	 *
-	 * @param b the new selector bitmap
-	 */
-	public void setSelectorBitmap(Bitmap b) {
-		mViewAbove.setSelectorBitmap(b);
-	}
-
-	/**
-	 * Add a View ignored by the Touch Down event when mode is Fullscreen
-	 *
-	 * @param v a view to be ignored
-	 */
-	public void addIgnoredView(View v) {
-		mViewAbove.addIgnoredView(v);
-	}
-
-	/**
-	 * Remove a View ignored by the Touch Down event when mode is Fullscreen
-	 *
-	 * @param v a view not wanted to be ignored anymore
-	 */
-	public void removeIgnoredView(View v) {
-		mViewAbove.removeIgnoredView(v);
-	}
-
-	/**
-	 * Clear the list of Views ignored by the Touch Down event when mode is Fullscreen
-	 */
-	public void clearIgnoredViews() {
-		mViewAbove.clearIgnoredViews();
 	}
 
 	/**

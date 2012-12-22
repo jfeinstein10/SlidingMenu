@@ -1,12 +1,7 @@
 package com.slidingmenu.lib;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Rect;
 import android.os.Build;
 import android.support.v4.view.KeyEventCompat;
 import android.support.v4.view.MotionEventCompat;
@@ -15,7 +10,6 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewConfigurationCompat;
 import android.util.AttributeSet;
 import android.util.FloatMath;
-import android.util.Log;
 import android.view.FocusFinder;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -29,13 +23,8 @@ import android.widget.Scroller;
 
 import com.slidingmenu.lib.SlidingMenu.OnClosedListener;
 import com.slidingmenu.lib.SlidingMenu.OnOpenedListener;
-//import com.slidingmenu.lib.SlidingMenu.OnCloseListener;
-//import com.slidingmenu.lib.SlidingMenu.OnOpenListener;
 
 public class CustomViewAbove extends ViewGroup {
-
-	private static final String TAG = "CustomViewAbove";
-	private static final boolean DEBUG = false;
 
 	private static final boolean USE_CACHE = false;
 
@@ -97,8 +86,6 @@ public class CustomViewAbove extends ViewGroup {
 	//	private OnOpenListener mOpenListener;
 	private OnClosedListener mClosedListener;
 	private OnOpenedListener mOpenedListener;
-
-	private List<View> mIgnoredViews = new ArrayList<View>();
 
 	//	private int mScrollState = SCROLL_STATE_IDLE;
 
@@ -284,20 +271,6 @@ public class CustomViewAbove extends ViewGroup {
 		return oldListener;
 	}
 
-	public void addIgnoredView(View v) {
-		if (!mIgnoredViews.contains(v)) {
-			mIgnoredViews.add(v);
-		}
-	}
-
-	public void removeIgnoredView(View v) {
-		mIgnoredViews.remove(v);
-	}
-
-	public void clearIgnoredViews() {
-		mIgnoredViews.clear();
-	}
-
 	// We want the duration of the page snap animation to be influenced by the distance that
 	// the screen has to travel, however, we don't want this duration to be effected in a
 	// purely linear fashion. Instead, we use this method to moderate the effect that the distance
@@ -333,15 +306,6 @@ public class CustomViewAbove extends ViewGroup {
 
 	public boolean isMenuOpen() {
 		return mCurItem == 0 || mCurItem == 2;
-	}
-
-	private boolean isInIgnoredView(MotionEvent ev) {
-		Rect rect = new Rect();
-		for (View v : mIgnoredViews) {
-			v.getHitRect(rect);
-			if (rect.contains((int)ev.getX(), (int)ev.getY())) return true;
-		}
-		return false;
 	}
 
 	public int getBehindWidth() {
@@ -584,7 +548,7 @@ public class CustomViewAbove extends ViewGroup {
 		} else {
 			switch (mTouchMode) {
 			case SlidingMenu.TOUCHMODE_FULLSCREEN:
-				return !isInIgnoredView(ev);
+				return true;
 			case SlidingMenu.TOUCHMODE_NONE:
 				return false;
 			case SlidingMenu.TOUCHMODE_MARGIN:
@@ -601,8 +565,6 @@ public class CustomViewAbove extends ViewGroup {
 		} else {
 			allowed = mCustomViewBehind.menuClosedSlideAllowed(dx);
 		}
-		if (DEBUG)
-			Log.v(TAG, "this slide allowed " + allowed + " dx: " + dx);
 		return allowed;
 	}
 
@@ -620,9 +582,6 @@ public class CustomViewAbove extends ViewGroup {
 			return false;
 
 		final int action = ev.getAction() & MotionEventCompat.ACTION_MASK;
-
-		if (action == MotionEvent.ACTION_DOWN && DEBUG)
-			Log.v(TAG, "Received ACTION_DOWN");
 
 		if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP
 				|| (action != MotionEvent.ACTION_DOWN && mIsUnableToDrag)) {
@@ -644,9 +603,7 @@ public class CustomViewAbove extends ViewGroup {
 			final float xDiff = Math.abs(dx);
 			final float y = MotionEventCompat.getY(ev, pointerIndex);
 			final float yDiff = Math.abs(y - mLastMotionY);
-			if (DEBUG) Log.v(TAG, "onInterceptTouch moved to:(" + x + ", " + y + "), diff:(" + xDiff + ", " + yDiff + "), mLastMotionX:" + mLastMotionX);
 			if (xDiff > mTouchSlop && xDiff > yDiff && thisSlideAllowed(dx)) {
-				if (DEBUG) Log.v(TAG, "Starting drag! from onInterceptTouch");
 				mIsBeingDragged = true;
 				mLastMotionX = x;
 				setScrollingCacheEnabled(true);
@@ -724,9 +681,7 @@ public class CustomViewAbove extends ViewGroup {
 				final float xDiff = Math.abs(dx);
 				final float y = MotionEventCompat.getY(ev, pointerIndex);
 				final float yDiff = Math.abs(y - mLastMotionY);
-				if (DEBUG) Log.v(TAG, "onTouch moved to:(" + x + ", " + y + "), diff:(" + xDiff + ", " + yDiff + "), mLastMotionX:" + mLastMotionX);
 				if (xDiff > mTouchSlop && xDiff > yDiff && thisSlideAllowed(dx)) {
-					if (DEBUG) Log.v(TAG, "Starting drag! from onTouch");
 					mIsBeingDragged = true;
 					mLastMotionX = x;
 					setScrollingCacheEnabled(true);
@@ -849,29 +804,7 @@ public class CustomViewAbove extends ViewGroup {
 
 	// variables for drawing
 	private float mScrollX = 0.0f;
-	// for the indicator
-	private boolean mSelectorEnabled = true;
-	private Bitmap mSelectorDrawable;
 	private View mSelectedView;
-
-	private void onDrawMenuSelector(Canvas canvas, float openPercent) {
-		if (mSelectorDrawable != null && mSelectedView != null) {
-			String tag = (String) mSelectedView.getTag(R.id.selected_view);
-			if (tag.equals(TAG+"SelectedView")) {
-				int right = getContentLeft();
-				int left = (int) (right - mSelectorDrawable.getWidth() * openPercent);
-
-				canvas.save();
-				canvas.clipRect(left, 0, right, getHeight());
-				canvas.drawBitmap(mSelectorDrawable, left, getSelectedTop(), null);
-				canvas.restore();
-			}
-		}
-	}
-
-	public void setSelectorEnabled(boolean b) {
-		mSelectorEnabled = b;
-	}
 
 	public void setSelectedView(View v) {
 		if (mSelectedView != null) {
@@ -880,24 +813,12 @@ public class CustomViewAbove extends ViewGroup {
 		}
 		if (v.getParent() != null) {
 			mSelectedView = v;
-			mSelectedView.setTag(R.id.selected_view, TAG+"SelectedView");
+			mSelectedView.setTag(R.id.selected_view, "SelectedView");
 			invalidate();
 		}
 	}
 
-	private int getSelectedTop() {
-		int y = mSelectedView.getTop();
-		y += (mSelectedView.getHeight() - mSelectorDrawable.getHeight()) / 2;
-		return y;
-	}
-
-	public void setSelectorBitmap(Bitmap b) {
-		mSelectorDrawable = b;
-		refreshDrawableState();
-	}
-
 	private void onSecondaryPointerUp(MotionEvent ev) {
-		if (DEBUG) Log.v(TAG, "onSecondaryPointerUp called");
 		final int pointerIndex = MotionEventCompat.getActionIndex(ev);
 		final int pointerId = MotionEventCompat.getPointerId(ev, pointerIndex);
 		if (pointerId == mActivePointerId) {

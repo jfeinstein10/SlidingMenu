@@ -14,9 +14,7 @@ import android.view.ViewGroup;
 import com.slidingmenu.lib.SlidingMenu.CanvasTransformer;
 
 public class CustomViewBehind extends ViewGroup {
-
-	private static final String TAG = "CustomViewBehind";
-
+	
 	private static final int MARGIN_THRESHOLD = 20; // dips
 
 	private CustomViewAbove mViewAbove;
