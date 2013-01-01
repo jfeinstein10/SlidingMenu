@@ -21,7 +21,6 @@ import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.crittercism.app.Crittercism;
 import com.slidingmenu.example.anim.CustomScaleAnimation;
 import com.slidingmenu.example.anim.CustomSlideAnimation;
 import com.slidingmenu.example.anim.CustomZoomAnimation;
