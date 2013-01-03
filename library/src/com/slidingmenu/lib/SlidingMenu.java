@@ -2,6 +2,7 @@ package com.slidingmenu.lib;
 
 import java.lang.reflect.Method;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,6 +12,7 @@ import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
@@ -18,6 +20,7 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
@@ -28,6 +31,7 @@ public class SlidingMenu extends RelativeLayout {
 
 	public static final int SLIDING_WINDOW = 0;
 	public static final int SLIDING_CONTENT = 1;
+	private boolean mActionbarOverlay = false;
 
 	/** Constant value for use with setTouchModeAbove(). Allows the SlidingMenu to be opened with a swipe
 	 * gesture on the screen's margin
@@ -160,7 +164,7 @@ public class SlidingMenu extends RelativeLayout {
 	public SlidingMenu(Context context) {
 		this(context, null);
 	}
-	
+
 	/**
 	 * Instantiates a new SlidingMenu and attach to Activity.
 	 *
@@ -269,13 +273,30 @@ public class SlidingMenu extends RelativeLayout {
 		ta.recycle();
 	}
 
+	/**
+	 * Attaches the SlidingMenu to an entire Activity
+	 * 
+	 * @param activity the Activity
+	 * @param slideStyle either SLIDING_CONTENT or SLIDING_WINDOW
+	 */
 	public void attachToActivity(Activity activity, int slideStyle) {
+		attachToActivity(activity, slideStyle, false);
+	}
+
+	/**
+	 * Attaches the SlidingMenu to an entire Activity
+	 * 
+	 * @param activity the Activity
+	 * @param slideStyle either SLIDING_CONTENT or SLIDING_WINDOW
+	 * @param actionbarOverlay whether or not the ActionBar is overlaid
+	 */
+	public void attachToActivity(Activity activity, int slideStyle, boolean actionbarOverlay) {
 		if (slideStyle != SLIDING_WINDOW && slideStyle != SLIDING_CONTENT)
 			throw new IllegalArgumentException("slideStyle must be either SLIDING_WINDOW or SLIDING_CONTENT");
 
 		if (getParent() != null)
 			throw new IllegalStateException("This SlidingMenu appears to already be attached");
-		
+
 		// get the window background
 		TypedArray a = activity.getTheme().obtainStyledAttributes(new int[] {android.R.attr.windowBackground});
 		int background = a.getResourceId(0, 0);
@@ -283,6 +304,7 @@ public class SlidingMenu extends RelativeLayout {
 
 		switch (slideStyle) {
 		case SLIDING_WINDOW:
+			mActionbarOverlay = false;
 			ViewGroup decor = (ViewGroup) activity.getWindow().getDecorView();
 			ViewGroup decorChild = (ViewGroup) decor.getChildAt(0);
 			// save ActionBar themes that have transparent assets
@@ -292,17 +314,12 @@ public class SlidingMenu extends RelativeLayout {
 			decor.addView(this);
 			break;
 		case SLIDING_CONTENT:
+			mActionbarOverlay = actionbarOverlay;
 			// take the above view out of
-			ViewGroup content = (ViewGroup) activity.findViewById(android.R.id.content);
-			ViewGroup contentParent = (ViewGroup) content.getParent();
-			int index = 0;
-			for (int i = 0; i < contentParent.getChildCount(); i++)
-				if (contentParent.getChildAt(i) == content) {
-					index = i;
-					break;
-				}
+			ViewGroup contentParent = (ViewGroup)activity.findViewById(android.R.id.content);
+			View content = contentParent.getChildAt(0);
 			contentParent.removeView(content);
-			contentParent.addView(this, index, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+			contentParent.addView(this, 0, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 			setContent(content);
 			// save people from having transparent backgrounds
 			if (content.getBackground() == null)
@@ -670,7 +687,7 @@ public class SlidingMenu extends RelativeLayout {
 		}
 		mViewAbove.setTouchMode(i);
 	}
-	
+
 	/**
 	 * Controls whether the SlidingMenu can be opened with a swipe gesture.
 	 * Options are {@link #TOUCHMODE_MARGIN TOUCHMODE_MARGIN}, {@link #TOUCHMODE_FULLSCREEN TOUCHMODE_FULLSCREEN},
@@ -867,12 +884,12 @@ public class SlidingMenu extends RelativeLayout {
 			super(superState);
 			mItem = item;
 		}
-		
+
 		private SavedState(Parcel in) {
 			super(in);
 			mItem = in.readInt();
 		}
-		
+
 		public int getItem() {
 			return mItem;
 		}
@@ -921,13 +938,15 @@ public class SlidingMenu extends RelativeLayout {
 	/* (non-Javadoc)
 	 * @see android.view.ViewGroup#fitSystemWindows(android.graphics.Rect)
 	 */
+	@SuppressLint("NewApi")
 	@Override
 	protected boolean fitSystemWindows(Rect insets) {
 		int leftPadding = insets.left;
 		int rightPadding = insets.right;
 		int topPadding = insets.top;
 		int bottomPadding = insets.bottom;
-		setPadding(leftPadding, topPadding, rightPadding, bottomPadding);
+		if (!mActionbarOverlay)
+			setPadding(leftPadding, topPadding, rightPadding, bottomPadding);
 		return true;
 	}
 
