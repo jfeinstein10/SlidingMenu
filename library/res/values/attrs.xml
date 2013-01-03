@@ -30,10 +30,14 @@
             <enum name="margin" value="0" />
             <enum name="fullscreen" value="1" />
         </attr>
+        <attr name="touchModeBehind">
+            <enum name="margin" value="0" />
+            <enum name="fullscreen" value="1" />
+        </attr>
         <attr name="shadowDrawable" format="reference" />
         <attr name="shadowWidth" format="dimension" />
-        <attr name="behindFadeEnabled" format="boolean" />
-        <attr name="behindFadeDegree" format="float" />
+        <attr name="fadeEnabled" format="boolean" />
+        <attr name="fadeDegree" format="float" />
         <attr name="selectorEnabled" format="boolean" />
         <attr name="selectorDrawable" format="reference" />
     </declare-styleable>

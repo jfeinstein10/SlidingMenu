@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 
-public abstract class MenuInterface {
+public interface MenuInterface {
 
 	public abstract void scrollBehindTo(int x, int y, 
 			CustomViewBehind cvb, float scrollScale);
@@ -17,7 +17,9 @@ public abstract class MenuInterface {
 
 	public abstract boolean marginTouchAllowed(View content, int x, int threshold);
 	
-	public abstract boolean menuOpenTouchAllowed(View content, int x);
+	public abstract boolean menuOpenTouchAllowed(View content, int currPage, int x);
+	
+	public abstract boolean menuTouchInQuickReturn(View content, int currPage, int x);
 	
 	public abstract boolean menuClosedSlideAllowed(int x);
 	
@@ -27,5 +29,7 @@ public abstract class MenuInterface {
 	
 	public abstract void drawFade(Canvas canvas, int alpha, 
 			CustomViewBehind cvb, View content);
+	
+	public abstract void drawSelector(View content, Canvas canvas, float percentOpen);
 	
 }
