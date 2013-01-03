@@ -1,11 +1,13 @@
 package com.slidingmenu.lib;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,7 +19,8 @@ public class CustomViewBehind extends ViewGroup {
 
 	private static final String TAG = "CustomViewBehind";
 
-	private static final int MARGIN_THRESHOLD = 20; // dips
+	private static final int MARGIN_THRESHOLD = 48; // dips
+	private int mTouchMode = SlidingMenu.TOUCHMODE_MARGIN;
 
 	private CustomViewAbove mViewAbove;
 
@@ -94,12 +97,12 @@ public class CustomViewBehind extends ViewGroup {
 
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent e) {
-		return false;
+		return !mChildrenEnabled;
 	}
 
 	@Override
 	public boolean onTouchEvent(MotionEvent e) {
-		return mChildrenEnabled;
+		return !mChildrenEnabled;
 	}
 
 	@Override
@@ -221,14 +224,26 @@ public class CustomViewBehind extends ViewGroup {
 						(x-getBehindWidth())*mScrollScale), y);				
 			}
 		}
+		if (vis == View.GONE)
+			Log.v(TAG, "behind gone");
 		setVisibility(vis);
 	}
 
 	public int getMenuLeft(View content, int page) {
 		if (mMode == SlidingMenu.LEFT) {
-			return content.getLeft() - getBehindWidth();
+			switch (page) {
+			case 0:
+				return content.getLeft() - getBehindWidth();
+			case 2:
+				return content.getLeft();
+			}
 		} else if (mMode == SlidingMenu.RIGHT) {
-			return content.getLeft() + getBehindWidth();
+			switch (page) {
+			case 0:
+				return content.getLeft();
+			case 2:
+				return content.getLeft() + getBehindWidth();	
+			}
 		} else if (mMode == SlidingMenu.LEFT_RIGHT) {
 			switch (page) {
 			case 0:
@@ -237,7 +252,7 @@ public class CustomViewBehind extends ViewGroup {
 				return content.getLeft() + getBehindWidth();
 			}
 		}
-		return 0;
+		return content.getLeft();
 	}
 
 	public int getAbsLeftBound(View content) {
@@ -272,7 +287,23 @@ public class CustomViewBehind extends ViewGroup {
 		return false;
 	}
 
-	public boolean menuOpenTouchAllowed(View content, int currPage, int x) {
+	public void setTouchMode(int i) {
+		mTouchMode = i;
+	}
+
+	public boolean menuOpenTouchAllowed(View content, int currPage, float x) {
+		if (true)
+			return true;
+		switch (mTouchMode) {
+		case SlidingMenu.TOUCHMODE_FULLSCREEN:
+			return true;
+		case SlidingMenu.TOUCHMODE_MARGIN:
+			return menuTouchInQuickReturn(content, currPage, x);
+		}
+		return false;
+	}
+
+	public boolean menuTouchInQuickReturn(View content, int currPage, float x) {
 		if (mMode == SlidingMenu.LEFT || (mMode == SlidingMenu.LEFT_RIGHT && currPage == 0)) {
 			return x >= content.getLeft();
 		} else if (mMode == SlidingMenu.RIGHT || (mMode == SlidingMenu.LEFT_RIGHT && currPage == 2)) {
@@ -342,6 +373,61 @@ public class CustomViewBehind extends ViewGroup {
 			right = content.getRight() + getBehindWidth();			
 		}
 		canvas.drawRect(left, 0, right, getHeight(), mFadePaint);
+	}
+	
+	private boolean mSelectorEnabled = true;
+	private Bitmap mSelectorDrawable;
+	private View mSelectedView;
+	
+	public void drawSelector(View content, Canvas canvas, float openPercent) {
+		if (!mSelectorEnabled) return;
+		if (mSelectorDrawable != null && mSelectedView != null) {
+			String tag = (String) mSelectedView.getTag(R.id.selected_view);
+			if (tag.equals(TAG+"SelectedView")) {
+				canvas.save();
+				int left, right, offset;
+				offset = (int) (mSelectorDrawable.getWidth() * openPercent);
+				if (mMode == SlidingMenu.LEFT) {
+					right = content.getLeft();
+					left = right - offset;
+					canvas.clipRect(left, 0, right, getHeight());
+					canvas.drawBitmap(mSelectorDrawable, left, getSelectorTop(), null);		
+				} else if (mMode == SlidingMenu.RIGHT) {
+					left = content.getRight();
+					right = left + offset;
+					canvas.clipRect(left, 0, right, getHeight());
+					canvas.drawBitmap(mSelectorDrawable, right - mSelectorDrawable.getWidth(), getSelectorTop(), null);
+				}
+				canvas.restore();
+			}
+		}
+	}
+	
+	public void setSelectorEnabled(boolean b) {
+		mSelectorEnabled = b;
+	}
+
+	public void setSelectedView(View v) {
+		if (mSelectedView != null) {
+			mSelectedView.setTag(R.id.selected_view, null);
+			mSelectedView = null;
+		}
+		if (v != null && v.getParent() != null) {
+			mSelectedView = v;
+			mSelectedView.setTag(R.id.selected_view, TAG+"SelectedView");
+			invalidate();
+		}
+	}
+
+	private int getSelectorTop() {
+		int y = mSelectedView.getTop();
+		y += (mSelectedView.getHeight() - mSelectorDrawable.getHeight()) / 2;
+		return y;
+	}
+
+	public void setSelectorBitmap(Bitmap b) {
+		mSelectorDrawable = b;
+		refreshDrawableState();
 	}
 
 }
