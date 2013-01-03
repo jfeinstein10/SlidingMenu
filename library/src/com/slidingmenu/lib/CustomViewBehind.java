@@ -292,8 +292,6 @@ public class CustomViewBehind extends ViewGroup {
 	}
 
 	public boolean menuOpenTouchAllowed(View content, int currPage, float x) {
-		if (true)
-			return true;
 		switch (mTouchMode) {
 		case SlidingMenu.TOUCHMODE_FULLSCREEN:
 			return true;
