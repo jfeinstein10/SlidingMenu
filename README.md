@@ -9,7 +9,7 @@ SlidingMenu is currently used in some awesome Android apps. Here's a list of som
 * [Rdio][8]
 * [Plume][4]
 * [VLC for Android][5]
-* ESPN ScoreCenter[14]
+* [ESPN ScoreCenter][14]
 * [Wunderlist 2][13]
 * [The Verge][6]
 * [MTG Familiar][9]
