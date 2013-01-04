@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Build;
 import android.support.v4.view.KeyEventCompat;
@@ -29,8 +29,6 @@ import android.widget.Scroller;
 
 import com.slidingmenu.lib.SlidingMenu.OnClosedListener;
 import com.slidingmenu.lib.SlidingMenu.OnOpenedListener;
-//import com.slidingmenu.lib.SlidingMenu.OnCloseListener;
-//import com.slidingmenu.lib.SlidingMenu.OnOpenListener;
 
 public class CustomViewAbove extends ViewGroup {
 
@@ -101,6 +99,9 @@ public class CustomViewAbove extends ViewGroup {
 	private List<View> mIgnoredViews = new ArrayList<View>();
 
 	//	private int mScrollState = SCROLL_STATE_IDLE;
+	
+	private int mBackgroundColor;
+	private Paint mPaint;
 
 	/**
 	 * Callback interface for responding to changing state of the selected page.
@@ -1020,4 +1021,21 @@ public class CustomViewAbove extends ViewGroup {
 		return false;
 	}
 
+	/**
+	 * Set a solid background to the view to draw
+	 * when the menu is moving, useful for content with transparent backgrounds. 
+	 * @param color The color to draw when moving the menu
+	 */
+	public void setDrawBackground(int color){
+		this.mBackgroundColor = color;
+		mPaint = new Paint();
+	}
+
+	protected void onDraw(Canvas canvas) {
+		if( (mScrolling||mIsBeingDragged||getCurrentItem()==0) 
+				&& mBackgroundColor!=0 && mPaint!=null ){
+			mPaint.setColor(mBackgroundColor);
+			canvas.drawRect(0, 0, getWidth(), getHeight(), mPaint);
+		}
+	}
 }

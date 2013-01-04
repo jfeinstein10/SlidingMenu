@@ -300,6 +300,7 @@ public class SlidingMenu extends RelativeLayout {
 		// get the window background
 		TypedArray a = activity.getTheme().obtainStyledAttributes(new int[] {android.R.attr.windowBackground});
 		int background = a.getResourceId(0, 0);
+		int backgroundColor = a.getColor(0, 0);
 		a.recycle();
 
 		switch (slideStyle) {
@@ -316,14 +317,14 @@ public class SlidingMenu extends RelativeLayout {
 		case SLIDING_CONTENT:
 			mActionbarOverlay = actionbarOverlay;
 			// take the above view out of
-			ViewGroup contentParent = (ViewGroup)activity.findViewById(android.R.id.content);
-			View content = contentParent.getChildAt(0);
+			View content = activity.findViewById(android.R.id.content);
+			ViewGroup contentParent = (ViewGroup) content.getParent();
 			contentParent.removeView(content);
-			contentParent.addView(this, 0, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+			contentParent.addView(this, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 			setContent(content);
 			// save people from having transparent backgrounds
 			if (content.getBackground() == null)
-				content.setBackgroundResource(background);
+				mViewAbove.setDrawBackground(backgroundColor);
 			break;
 		}
 	}
