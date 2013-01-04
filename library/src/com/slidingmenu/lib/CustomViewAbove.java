@@ -365,7 +365,7 @@ public class CustomViewAbove extends ViewGroup {
 
 	public void setSlidingEnabled(boolean b) {
 		mEnabled = b;
-        if (b) setClickable(true);
+		if (b) setClickable(true);
 	}
 
 	/**
