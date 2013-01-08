@@ -2,9 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>slidingmenu-example</artifactId>
-	<name>SlidingMenu Example</name>
-	<packaging>apk</packaging>
+	<artifactId>slidingmenu-maps-support</artifactId>
+	<name>SlidingMenu Maps Support</name>
+	<packaging>jar</packaging>
 
 	<parent>
 		<groupId>com.slidingmenu</groupId>
@@ -17,16 +17,7 @@
         <dependency>
             <groupId>com.slidingmenu</groupId>
             <artifactId>slidingmenu-core</artifactId>
-            <version>${project.version}</version>
-            <type>apklib</type>
-        </dependency>
-        <dependency>
-            <groupId>com.slidingmenu</groupId>
-            <artifactId>slidingmenu-abs-support</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.slidingmenu</groupId>
-            <artifactId>slidingmenu-maps-support</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <dependency>
@@ -35,23 +26,11 @@
 			<scope>provided</scope>
 		</dependency>
 
-        <dependency>
-            <groupId>com.google.android</groupId>
-            <artifactId>support-v4</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.actionbarsherlock</groupId>
-            <artifactId>actionbarsherlock</artifactId>
-			<version>4.2.0</version>
-			<type>apklib</type>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.android.maps</groupId>
-            <artifactId>maps</artifactId>
-        </dependency>
-	</dependencies>
+		<dependency>
+			<groupId>com.google.android.maps</groupId>
+			<artifactId>maps</artifactId>
+		</dependency>
+    </dependencies>
 
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -61,6 +40,9 @@
 				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
 				<artifactId>android-maven-plugin</artifactId>
 				<extensions>true</extensions>
+				<configuration>
+					<nativeLibrariesDirectory>ignored</nativeLibrariesDirectory>
+				</configuration>
 			</plugin>
 
             <plugin>

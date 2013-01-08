@@ -1,14 +1,7 @@
 package com.slidingmenu.example;
 
 import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.slidingmenu.example.fragments.ColorFragment;
 import com.slidingmenu.lib.SlidingMenu;
-import com.slidingmenu.lib.SlidingMenu.OnClosedListener;
-import com.slidingmenu.lib.SlidingMenu.OnOpenedListener;
 
 
 public class LeftAndRightActivity extends BaseActivity {

@@ -11,7 +11,9 @@
 	<description>An Android library that allows you to easily create applications with slide-in menus.</description>
 
 	<modules>
-		<module>library</module>
+		<module>library-core</module>
+        <module>library-abs-support</module>
+        <module>library-maps-support</module>
 		<module>example</module>
 	</modules>
 
@@ -41,6 +43,24 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
+                <groupId>com.slidingmenu</groupId>
+                <artifactId>slidingmenu-core</artifactId>
+                <version>${project.version}</version>
+			</dependency>
+
+            <dependency>
+                <groupId>com.slidingmenu</groupId>
+                <artifactId>slidingmenu-abs-support</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.slidingmenu</groupId>
+                <artifactId>slidingmenu-maps-support</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
 				<groupId>com.google.android</groupId>
 				<artifactId>android</artifactId>
 				<version>${android.version}</version>

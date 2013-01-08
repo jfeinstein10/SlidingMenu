@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>slidingmenu</artifactId>
-	<name>SlidingMenu</name>
+	<artifactId>slidingmenu-core</artifactId>
+	<name>SlidingMenu Core</name>
 	<packaging>apklib</packaging>
 
 	<parent>
@@ -24,18 +24,6 @@
             <groupId>com.google.android</groupId>
             <artifactId>support-v4</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>com.actionbarsherlock</groupId>
-            <artifactId>actionbarsherlock</artifactId>
-			<version>4.2.0</version>
-			<type>apklib</type>
-        </dependency>
-
-		<dependency>
-			<groupId>com.google.android.maps</groupId>
-			<artifactId>maps</artifactId>
-		</dependency>
     </dependencies>
 
 	<build>
@@ -50,6 +38,28 @@
 					<nativeLibrariesDirectory>ignored</nativeLibrariesDirectory>
 				</configuration>
 			</plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>attach-artifact</goal>
+                        </goals>
+                        <configuration>
+                            <artifacts>
+                                <artifact>
+                                    <type>jar</type>
+                                    <file>${project.build.directory}/${project.build.finalName}.jar</file>
+                                </artifact>
+                            </artifacts>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
