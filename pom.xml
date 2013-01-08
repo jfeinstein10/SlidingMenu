@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.slidingmenu</groupId>
+	<artifactId>slidingmenu-parent</artifactId>
+	<packaging>pom</packaging>
+	<version>20130101-SNAPSHOT</version>
+
+	<name>SlidingMenu (Parent)</name>
+	<description>An Android library that allows you to easily create applications with slide-in menus.</description>
+
+	<modules>
+		<module>library</module>
+		<module>example</module>
+	</modules>
+
+	<scm>
+		<url>https://github.com/jfeinstein10/SlidingMenu/</url>
+		<connection>scm:git:git://github.com/jfeinstein10/SlidingMenu.git</connection>
+		<developerConnection>scm:git:git@github.com:jfeinstein10/SlidingMenu.git</developerConnection>
+	</scm>
+
+	<licenses>
+		<license>
+			<name>Apache License Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<java.version>1.6</java.version>
+		<android.version>4.1.1.4</android.version>
+		<android.platform>17</android.platform>
+		
+		<android.maven.version>3.5.0</android.maven.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.google.android</groupId>
+				<artifactId>android</artifactId>
+				<version>${android.version}</version>
+			</dependency>
+
+            <dependency>
+                <groupId>com.google.android</groupId>
+	            <artifactId>support-v4</artifactId>
+                <version>r7</version>
+            </dependency>
+
+	        <dependency>
+	            <groupId>com.actionbarsherlock</groupId>
+	            <artifactId>actionbarsherlock</artifactId>
+				<version>4.2.0</version>
+	        </dependency>
+
+			<dependency>
+				<groupId>com.google.android.maps</groupId>
+				<artifactId>maps</artifactId>
+				<version>16_r3</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.0</version>
+					<configuration>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+					<artifactId>android-maven-plugin</artifactId>
+					<version>${android.maven.version}</version>
+					<configuration>
+						<sdk>
+							<platform>${android.platform}</platform>
+						</sdk>
+					</configuration>
+				</plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>2.2.1</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>2.9</version>
+                    <executions>
+                        <execution>
+                            <id>attach-javadocs</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+		</pluginManagement>
+	</build>
+</project>
