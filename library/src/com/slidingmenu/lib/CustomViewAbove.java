@@ -18,7 +18,6 @@ import android.support.v4.view.VelocityTrackerCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewConfigurationCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.FocusFinder;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -601,7 +600,7 @@ public class CustomViewAbove extends ViewGroup {
 			// fling to a new position until we have finished the scroll to
 			// that position, avoiding glitches from happening at that point.
 			if (mPopulatePending) {
-				if (DEBUG) Log.i(TAG, "populate is pending, skipping for now...");
+				if (DEBUG) LogManager.logger.i(TAG, "populate is pending, skipping for now...");
 				return;
 			}
 
@@ -613,9 +612,9 @@ public class CustomViewAbove extends ViewGroup {
 			}
 
 			if (DEBUG) {
-				Log.i(TAG, "Current page list:");
+				LogManager.logger.i(TAG, "Current page list:");
 				for (int i=0; i<getCount(); i++) {
-					Log.i(TAG, "#" + i + ": page " + getItems().get(i).position);
+					LogManager.logger.i(TAG, "#" + i + ": page " + getItems().get(i).position);
 				}
 			}
 
@@ -748,7 +747,7 @@ public class CustomViewAbove extends ViewGroup {
 					if (lp != null && lp.isDecor) {
 						final int hgrav = lp.gravity & Gravity.HORIZONTAL_GRAVITY_MASK;
 						final int vgrav = lp.gravity & Gravity.VERTICAL_GRAVITY_MASK;
-						Log.d(TAG, "gravity: " + lp.gravity + " hgrav: " + hgrav + " vgrav: " + vgrav);
+						LogManager.logger.d(TAG, "gravity: " + lp.gravity + " hgrav: " + hgrav + " vgrav: " + vgrav);
 						int widthMode = MeasureSpec.AT_MOST;
 						int heightMode = MeasureSpec.AT_MOST;
 						boolean consumeVertical = vgrav == Gravity.TOP || vgrav == Gravity.BOTTOM;
@@ -787,7 +786,7 @@ public class CustomViewAbove extends ViewGroup {
 			for (int i = 0; i < size; ++i) {
 				final View child = getChildAt(i);
 				if (child.getVisibility() != GONE) {
-					if (DEBUG) Log.v(TAG, "Measuring #" + i + " " + child
+					if (DEBUG) LogManager.logger.v(TAG, "Measuring #" + i + " " + child
 							+ ": " + mChildWidthMeasureSpec);
 
 					final LayoutParams lp = (LayoutParams) child.getLayoutParams();
@@ -849,7 +848,7 @@ public class CustomViewAbove extends ViewGroup {
 					child.layout(childLeft, childTop,
 							childLeft + child.getMeasuredWidth(),
 							childTop + child.getMeasuredHeight());
-					Log.v(TAG, "top: " + childTop + ", left: " + childLeft +
+					LogManager.logger.v(TAG, "top: " + childTop + ", left: " + childLeft +
 							", height: " + child.getMeasuredHeight() + 
 							", width:" + child.getMeasuredWidth());
 				}
@@ -861,10 +860,10 @@ public class CustomViewAbove extends ViewGroup {
 
 
 		public void computeScroll() {
-			if (DEBUG) Log.i(TAG, "computeScroll: finished=" + mScroller.isFinished());
+			if (DEBUG) LogManager.logger.i(TAG, "computeScroll: finished=" + mScroller.isFinished());
 			if (!mScroller.isFinished()) {
 				if (mScroller.computeScrollOffset()) {
-					if (DEBUG) Log.i(TAG, "computeScroll: still scrolling");
+					if (DEBUG) LogManager.logger.i(TAG, "computeScroll: still scrolling");
 					int oldX = getScrollX();
 					int oldY = getScrollY();
 					int x = mScroller.getCurrX();
@@ -1013,7 +1012,7 @@ public class CustomViewAbove extends ViewGroup {
 			// Always take care of the touch gesture being complete.
 			if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP) {
 				// Release the drag.
-				if (DEBUG) Log.v(TAG, "Intercept done!");
+				if (DEBUG) LogManager.logger.v(TAG, "Intercept done!");
 				mIsBeingDragged = false;
 				mIsUnableToDrag = false;
 				mActivePointerId = INVALID_POINTER;
@@ -1028,11 +1027,11 @@ public class CustomViewAbove extends ViewGroup {
 			// are dragging.
 			if (action != MotionEvent.ACTION_DOWN) {
 				if (mIsBeingDragged) {
-					if (DEBUG) Log.v(TAG, "Intercept returning true!");
+					if (DEBUG) LogManager.logger.v(TAG, "Intercept returning true!");
 					return true;
 				}
 				if (mIsUnableToDrag) {
-					if (DEBUG) Log.v(TAG, "Intercept returning false!");
+					if (DEBUG) LogManager.logger.v(TAG, "Intercept returning false!");
 					return false;
 				}
 			}
@@ -1060,7 +1059,7 @@ public class CustomViewAbove extends ViewGroup {
 				final float xDiff = Math.abs(dx);
 				final float y = MotionEventCompat.getY(ev, pointerIndex);
 				final float yDiff = Math.abs(y - mLastMotionY);
-				if (DEBUG) Log.v(TAG, "Moved x to " + x + "," + y + " diff=" + xDiff + "," + yDiff);
+				if (DEBUG) LogManager.logger.v(TAG, "Moved x to " + x + "," + y + " diff=" + xDiff + "," + yDiff);
 
 				if (canScroll(this, false, (int) dx, (int) x, (int) y)) {
 					// Nested view has scrollable area under this point. Let it be handled there.
@@ -1069,7 +1068,7 @@ public class CustomViewAbove extends ViewGroup {
 					return false;
 				}
 				if (xDiff > mTouchSlop && xDiff > yDiff) {
-					if (DEBUG) Log.v(TAG, "Starting drag!");
+					if (DEBUG) LogManager.logger.v(TAG, "Starting drag!");
 					mIsBeingDragged = true;
 					setScrollState(SCROLL_STATE_DRAGGING);
 					mLastMotionX = x;
@@ -1080,7 +1079,7 @@ public class CustomViewAbove extends ViewGroup {
 						// direction to be counted as a drag...  abort
 						// any attempt to drag horizontally, to work correctly
 						// with children that have scrolling containers.
-						if (DEBUG) Log.v(TAG, "Starting unable to drag!");
+						if (DEBUG) LogManager.logger.v(TAG, "Starting unable to drag!");
 						mIsUnableToDrag = true;
 					}
 				}
@@ -1114,7 +1113,7 @@ public class CustomViewAbove extends ViewGroup {
 					mIsUnableToDrag = false;
 				}
 
-				if (DEBUG) Log.v(TAG, "Down at " + mLastMotionX + "," + mLastMotionY
+				if (DEBUG) LogManager.logger.v(TAG, "Down at " + mLastMotionX + "," + mLastMotionY
 						+ " mIsBeingDragged=" + mIsBeingDragged
 						+ "mIsUnableToDrag=" + mIsUnableToDrag);
 				break;
@@ -1191,9 +1190,9 @@ public class CustomViewAbove extends ViewGroup {
 					final float xDiff = Math.abs(x - mLastMotionX);
 					final float y = MotionEventCompat.getY(ev, pointerIndex);
 					final float yDiff = Math.abs(y - mLastMotionY);
-					if (DEBUG) Log.v(TAG, "Moved x to " + x + "," + y + " diff=" + xDiff + "," + yDiff);
+					if (DEBUG) LogManager.logger.v(TAG, "Moved x to " + x + "," + y + " diff=" + xDiff + "," + yDiff);
 					if (xDiff > mTouchSlop && xDiff > yDiff) {
-						if (DEBUG) Log.v(TAG, "Starting drag!");
+						if (DEBUG) LogManager.logger.v(TAG, "Starting drag!");
 						mIsBeingDragged = true;
 						mLastMotionX = x;
 						setScrollState(SCROLL_STATE_DRAGGING);
@@ -1318,10 +1317,10 @@ public class CustomViewAbove extends ViewGroup {
 //				float openPercent = 0;
 //		        if (mScrollState == SCROLL_STATE_DRAGGING) {
 //		            openPercent= (behindWidth - Math.min(mLastMotionX, behindWidth)) / (float) behindWidth;
-//		            Log.v("STATE_DRAGGING", "openPercent: "+openPercent);
+//		            LogManager.logger.v("STATE_DRAGGING", "openPercent: "+openPercent);
 //		        } else {
 //		            openPercent= (mScroller.getCurrX()) / (float) behindWidth;
-//		            Log.v("STATE_SETTLING", "openPercent: "+openPercent+", scrollerX: "+mScroller.getCurrX());
+//		            LogManager.logger.v("STATE_SETTLING", "openPercent: "+openPercent+", scrollerX: "+mScroller.getCurrX());
 //		        }
 //				onDrawBehindFade(canvas, openPercent, behindWidth);
 //			}
