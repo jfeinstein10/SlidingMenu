@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.os.Build;
@@ -159,9 +158,11 @@ public class CustomViewAbove extends ViewGroup {
 	}
 
 	void initCustomViewAbove() {
-		setWillNotDraw(false);
-		setDescendantFocusability(FOCUS_AFTER_DESCENDANTS);
+//		setDescendantFocusability(FOCUS_AFTER_DESCENDANTS);
+		setDescendantFocusability(FOCUS_BEFORE_DESCENDANTS);
+		setClickable(true);
 		setFocusable(true);
+		setWillNotDraw(false);
 		final Context context = getContext();
 		mScroller = new Scroller(context, sInterpolator);
 		final ViewConfiguration configuration = ViewConfiguration.get(context);
@@ -434,6 +435,8 @@ public class CustomViewAbove extends ViewGroup {
 		if (mContent != null) 
 			this.removeView(mContent);
 		mContent = v;
+//		mContent.setClickable(true);
+		mContent.setFocusable(true);
 		addView(mContent);
 	}
 
@@ -473,7 +476,7 @@ public class CustomViewAbove extends ViewGroup {
 	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
 		final int width = r - l;
-		final int height = b - t;	
+		final int height = b - t;
 		mContent.layout(0, 0, width, height);
 	}
 
@@ -639,7 +642,7 @@ public class CustomViewAbove extends ViewGroup {
 			final float xDiff = Math.abs(dx);
 			final float y = MotionEventCompat.getY(ev, pointerIndex);
 			final float yDiff = Math.abs(y - mLastMotionY);
-//			if (DEBUG) Log.v(TAG, "onInterceptTouch moved to:(" + x + ", " + y + "), diff:(" + xDiff + ", " + yDiff + "), mLastMotionX:" + mLastMotionX);
+			if (DEBUG) Log.v(TAG, "onInterceptTouch moved to:(" + x + ", " + y + "), diff:(" + xDiff + ", " + yDiff + "), mLastMotionX:" + mLastMotionX);
 			if (xDiff > mTouchSlop && xDiff > yDiff && thisSlideAllowed(dx)) {
 				if (DEBUG) Log.v(TAG, "Starting drag! from onInterceptTouch");
 				startDrag();
@@ -721,8 +724,9 @@ public class CustomViewAbove extends ViewGroup {
 				final float xDiff = Math.abs(dx);
 				final float y = MotionEventCompat.getY(ev, pointerIndex);
 				final float yDiff = Math.abs(y - mLastMotionY);
-//				if (DEBUG) Log.v(TAG, "onTouch moved to:(" + x + ", " + y + "), diff:(" + xDiff + ", " + yDiff + ")\nmIsBeingDragged:" + mIsBeingDragged + ", mLastMotionX:" + mLastMotionX);
-				if ((xDiff > mTouchSlop || mQuickReturn) && xDiff > yDiff && thisSlideAllowed(dx)) {
+				if (DEBUG) Log.v(TAG, "onTouch moved to:(" + x + ", " + y + "), diff:(" + xDiff + ", " + yDiff + ")\nmIsBeingDragged:" + mIsBeingDragged + ", mLastMotionX:" + mLastMotionX);
+				if ((xDiff > mTouchSlop || (mQuickReturn && xDiff > mTouchSlop / 4))
+						&& xDiff > yDiff && thisSlideAllowed(dx)) {
 					if (DEBUG) Log.v(TAG, "Starting drag! from onTouch");
 					startDrag();
 					mLastMotionX = x;
@@ -814,9 +818,8 @@ public class CustomViewAbove extends ViewGroup {
 		super.scrollTo(x, y);
 		mScrollX = x;
 		if (mEnabled)
-			mViewBehind.scrollBehindTo(mContent, x, y);
-		//		if (mSelectorDrawable != null)
-		//			invalidate();
+			mViewBehind.scrollBehindTo(mContent, x, y);	
+		((SlidingMenu)getParent()).manageLayers(getPercentOpen());
 	}
 
 	private int determineTargetPage(float pageOffset, int velocity, int deltaX) {
@@ -834,7 +837,6 @@ public class CustomViewAbove extends ViewGroup {
 	}
 
 	protected float getPercentOpen() {
-		if (DEBUG) Log.v(TAG, ""+ Math.abs(mScrollX-mContent.getLeft()) / getBehindWidth());
 		return Math.abs(mScrollX-mContent.getLeft()) / getBehindWidth();
 	}
 
