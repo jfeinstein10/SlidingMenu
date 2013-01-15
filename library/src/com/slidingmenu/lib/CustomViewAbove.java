@@ -34,7 +34,7 @@ import com.slidingmenu.lib.SlidingMenu.OnOpenedListener;
 public class CustomViewAbove extends ViewGroup {
 
 	private static final String TAG = "CustomViewAbove";
-	private static final boolean DEBUG = true;
+	private static final boolean DEBUG = false;
 
 	private static final boolean USE_CACHE = false;
 
@@ -158,11 +158,9 @@ public class CustomViewAbove extends ViewGroup {
 	}
 
 	void initCustomViewAbove() {
-//		setDescendantFocusability(FOCUS_AFTER_DESCENDANTS);
-		setDescendantFocusability(FOCUS_BEFORE_DESCENDANTS);
-		setClickable(true);
-		setFocusable(true);
 		setWillNotDraw(false);
+		setDescendantFocusability(FOCUS_AFTER_DESCENDANTS);
+		setFocusable(true);
 		final Context context = getContext();
 		mScroller = new Scroller(context, sInterpolator);
 		final ViewConfiguration configuration = ViewConfiguration.get(context);
@@ -435,8 +433,6 @@ public class CustomViewAbove extends ViewGroup {
 		if (mContent != null) 
 			this.removeView(mContent);
 		mContent = v;
-//		mContent.setClickable(true);
-		mContent.setFocusable(true);
 		addView(mContent);
 	}
 
@@ -689,11 +685,11 @@ public class CustomViewAbove extends ViewGroup {
 		if (!mEnabled)
 			return false;
 
-		//		if (!mIsBeingDragged && !thisTouchAllowed(ev))
-		//			return false;
-
-		if (!mIsBeingDragged && !mQuickReturn)
+		if (!mIsBeingDragged && !thisTouchAllowed(ev))
 			return false;
+
+		//		if (!mIsBeingDragged && !mQuickReturn)
+		//			return false;
 
 		final int action = ev.getAction();
 
