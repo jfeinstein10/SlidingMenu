@@ -320,11 +320,8 @@ public class SlidingMenu extends RelativeLayout {
 		case SLIDING_CONTENT:
 			mActionbarOverlay = actionbarOverlay;
 			// take the above view out of
-//			ViewGroup contentParent = (ViewGroup)activity.findViewById(android.R.id.content);
-//			View content = contentParent.getChildAt(0);
-			View content = activity.findViewById(android.R.id.content);
-			content.setFocusable(true);
-			ViewGroup contentParent = (ViewGroup)content.getParent();
+			ViewGroup contentParent = (ViewGroup)activity.findViewById(android.R.id.content);
+			View content = contentParent.getChildAt(0);
 			contentParent.removeView(content);
 			contentParent.addView(this);
 			setContent(content);
