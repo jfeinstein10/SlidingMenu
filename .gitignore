@@ -14,3 +14,4 @@ gen
 .metadata/
 .metadata
 *.project
+library/libs/android-support-v4.jar
