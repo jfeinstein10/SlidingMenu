@@ -23,6 +23,7 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
@@ -319,11 +320,24 @@ public class SlidingMenu extends RelativeLayout {
 			break;
 		case SLIDING_CONTENT:
 			mActionbarOverlay = actionbarOverlay;
-			// take the above view out of
+			// Get the id/content frame layout
 			ViewGroup contentParent = (ViewGroup)activity.findViewById(android.R.id.content);
-			View content = contentParent.getChildAt(0);
-			contentParent.removeView(content);
-			contentParent.addView(this);
+			View content = contentParent.getChildAt(0); //This is the CustomViewAbove content
+			contentParent.removeView(content); //Remove the content from the content frame layout
+			ViewParent windowParent = contentParent.getParent(); //Get the parent of the content frame layout
+			//For normal action bars this is a linear layout, 
+			//for overlay its a frame layout extension (id/action_bar_overlay_layout)
+			try {
+				ViewGroup parent = ((ViewGroup) windowParent); //Cast the ViewParent to a ViewGroup
+				//Set the layout params of SlidingMenu to that of the content frame layout
+				this.setLayoutParams(contentParent.getLayoutParams()); 
+				parent.removeView(contentParent); //Remove the content frame layout from the group
+				parent.addView(this, 0); //Add SlidingMenu in its place
+				this.setId(android.R.id.content); //Set the id of this view to replace the content frame layout (id/content)
+			} catch (ClassCastException e) {
+				//This is necessary because there is no guarantee that the ViewParent is a ViewGroup
+				contentParent.addView(this); //If it wasn't a view group, proceed as before
+			}
 			setContent(content);
 			// save people from having transparent backgrounds
 			if (content.getBackground() == null)
