@@ -5,20 +5,20 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 
-import com.google.android.maps.MapActivity;
+import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import com.slidingmenu.lib.SlidingMenu;
 
-public abstract class SlidingMapActivity extends MapActivity implements SlidingActivityBase {
+public class SlidingSherlockPreferenceActivity extends SherlockPreferenceActivity implements SlidingActivityBase {
 
 	private SlidingActivityHelper mHelper;
 
 	/* (non-Javadoc)
-	 * @see com.google.android.maps.MapActivity#onCreate(android.os.Bundle)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		mHelper = new SlidingActivityHelper(this);
+		super.onCreate(savedInstanceState);
 		mHelper.onCreate(savedInstanceState);
 	}
 
@@ -124,7 +124,7 @@ public abstract class SlidingMapActivity extends MapActivity implements SlidingA
 	public void showMenu() {
 		mHelper.showMenu();
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see com.slidingmenu.lib.app.SlidingActivityBase#showSecondaryMenu()
 	 */
@@ -148,5 +148,4 @@ public abstract class SlidingMapActivity extends MapActivity implements SlidingA
 		if (b) return b;
 		return super.onKeyUp(keyCode, event);
 	}
-
 }

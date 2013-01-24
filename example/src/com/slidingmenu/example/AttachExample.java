@@ -1,11 +1,11 @@
 package com.slidingmenu.example;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.slidingmenu.lib.SlidingMenu;
 
-public class AttachExample extends FragmentActivity {
+public class AttachExample extends SherlockFragmentActivity {
 
 	private SlidingMenu menu;
 

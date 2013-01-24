@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>core</artifactId>
+	<name>SlidingMenu Core</name>
+	<packaging>apklib</packaging>
+
+	<parent>
+		<groupId>com.github.jfeinstein10</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.google.android</groupId>
+			<artifactId>android</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.google.android</groupId>
+			<artifactId>support-v4</artifactId>
+			<version>r7</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+
+		<plugins>
+			<plugin>
+				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+				<artifactId>android-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jarsigner-plugin</artifactId>
+				<inherited>true</inherited>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>release</id>
+			<activation>
+				<property>
+					<name>performRelease</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+						<artifactId>android-maven-plugin</artifactId>
+						<extensions>true</extensions>
+						<executions>
+							<execution>
+								<id>manifestUpdate</id>
+								<phase>process-resources</phase>
+								<goals>
+									<goal>manifest-update</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<manifest>
+								<versionName>${project.version}</versionName>
+							</manifest>
+							<sign>
+								<debug>false</debug>
+							</sign>
+						</configuration>
+					</plugin>
+
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>build-helper-maven-plugin</artifactId>
+						<configuration>
+							<artifacts>
+								<artifact>
+									<file>${project.build.directory}/${project.artifactId}-${project.version}.jar</file>
+									<type>jar</type>
+								</artifact>
+							</artifacts>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>attach-artifact</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>
