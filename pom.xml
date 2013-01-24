@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.github.jfeinstein10</groupId>
+	<artifactId>parent</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0.0-SNAPSHOT</version>
+
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>7</version>
+	</parent>
+
+	<name>SlidingMenu Parent</name>
+	<description>An Android library that allows you to easily create applications with slide-in menus.</description>
+	<url>https://github.com/jfeinstein10/SlidingMenu</url>
+	<inceptionYear>2013</inceptionYear>
+
+	<modules>
+		<module>core</module>
+		<module>native</module>
+		<module>abs</module>
+		<module>example</module>
+	</modules>
+
+	<scm>
+		<url>https://github.com/jfeinstein10/SlidingMenu</url>
+		<connection>scm:git:git://github.com/jfeinstein10/SlidingMenu.git</connection>
+		<developerConnection>scm:git:git@github.com:jfeinstein10/SlidingMenu.git</developerConnection>
+		<tag>slidingmenu-1.0.0</tag>
+	</scm>
+
+	<developers>
+		<developer>
+			<name>Jeremy Feinstein</name>
+			<id>jfeinstein10</id>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<issueManagement>
+		<system>GitHub Issues</system>
+		<url>https://github.com/jfeinstein10/SlidingMenu/issues</url>
+	</issueManagement>
+
+	<distributionManagement>
+		<repository>
+			<uniqueVersion>true</uniqueVersion>
+			<id>${project.repo.release.id}</id>
+			<name>SlidingMenu Repo</name>
+			<url>${projec.repo.release.url}</url>
+		</repository>
+		<snapshotRepository>
+			<uniqueVersion>false</uniqueVersion>
+			<id>${project.repo.snapshots.id}</id>
+			<name>Sliding Repo Snapshots</name>
+			<url>${project.repo.snapshots.url}</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<project.repo.release.id>slidingmenu-repo</project.repo.release.id>
+		<project.repo.release.url>https://oss.sonatype.org/service/local/staging/deploy/maven2</project.repo.release.url>
+
+		<project.repo.snapshots.id>slidingmenu-repo-snapshots</project.repo.snapshots.id>
+		<project.repo.snapshots.url>https://oss.sonatype.org/content/repositories/snapshots</project.repo.snapshots.url>
+
+		<java.version>1.6</java.version>
+		<android.version>4.1.1.4</android.version>
+		<android.sdk.platform>16</android.sdk.platform>
+
+		<github.downloads.repositoryOwner>jfeinstein10</github.downloads.repositoryOwner>
+		<github.downloads.repositoryName>SlidingMenu</github.downloads.repositoryName>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.google.android</groupId>
+				<artifactId>android</artifactId>
+				<version>${android.version}</version>
+				<scope>provided</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.0</version>
+					<inherited>true</inherited>
+					<configuration>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>2.9</version>
+					<inherited>true</inherited>
+					<configuration>
+						<skip>true</skip>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+					<artifactId>android-maven-plugin</artifactId>
+					<version>3.5.0</version>
+					<inherited>true</inherited>
+					<extensions>true</extensions>
+					<configuration>
+						<sign>
+							<debug>false</debug>
+						</sign>
+						<zipalign>
+							<skip>true</skip>
+						</zipalign>
+						<undeployBeforeDeploy>true</undeployBeforeDeploy>
+						<proguard>
+							<skip>true</skip>
+						</proguard>
+						<test>
+							<skip>true</skip>
+						</test>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>2.4</version>
+					<configuration>
+						<autoVersionSubmodules>true</autoVersionSubmodules>
+						<tagNameFormat>slidingmenu-${project.version}</tagNameFormat>
+						<scmCommentPrefix>Release: </scmCommentPrefix>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-gpg-plugin</artifactId>
+					<version>1.4</version>
+					<executions>
+						<execution>
+							<id>sign-artifacts</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>sign</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.12.4</version>
+					<inherited>true</inherited>
+					<configuration>
+						<skip>true</skip>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jarsigner-plugin</artifactId>
+					<version>1.2</version>
+					<inherited>true</inherited>
+					<executions>
+						<execution>
+							<goals>
+								<goal>sign</goal>
+								<goal>verify</goal>
+							</goals>
+							<phase>package</phase>
+							<inherited>true</inherited>
+						</execution>
+					</executions>
+					<configuration>
+						<removeExistingSignatures>true</removeExistingSignatures>
+						<includes>
+							<include>${project.build.directory}/*.apk</include>
+							<include>${project.build.directory}/*.jar</include>
+						</includes>
+						<certs>true</certs>
+						<keystore>${slidingmenu.sign.keystore}</keystore>
+						<alias>${slidingmenu.sign.alias}</alias>
+						<storepass>${slidingmenu.sign.storepass}</storepass>
+						<keypass>${slidingmenu.sign.keypass}</keypass>
+						<arguments>
+							<argument>-sigalg</argument>
+							<argument>MD5withRSA</argument>
+							<argument>-digestalg</argument>
+							<argument>SHA1</argument>
+						</arguments>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

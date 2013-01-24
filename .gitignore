@@ -1,16 +1,5 @@
-*.class
-
-# Package Files #
-*.dex
-*.war
-*.ear
-*.apk
+*.DS_Store
+Thumbs.db
+target/
 bin/
-bin
 gen/
-release/
-release
-gen
-.metadata/
-.metadata
-*.project
