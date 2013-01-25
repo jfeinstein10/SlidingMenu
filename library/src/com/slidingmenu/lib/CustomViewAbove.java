@@ -30,6 +30,7 @@ import com.slidingmenu.lib.SlidingMenu.OnClosedListener;
 import com.slidingmenu.lib.SlidingMenu.OnOpenedListener;
 //import com.slidingmenu.lib.SlidingMenu.OnCloseListener;
 //import com.slidingmenu.lib.SlidingMenu.OnOpenListener;
+import com.slidingmenu.lib.SlidingMenu.OnStartDragListener;
 
 public class CustomViewAbove extends ViewGroup {
 
@@ -96,6 +97,7 @@ public class CustomViewAbove extends ViewGroup {
 	//	private OnOpenListener mOpenListener;
 	private OnClosedListener mClosedListener;
 	private OnOpenedListener mOpenedListener;
+	private OnStartDragListener mStartDragListener;
 
 	private List<View> mIgnoredViews = new ArrayList<View>();
 
@@ -265,6 +267,9 @@ public class CustomViewAbove extends ViewGroup {
 
 	public void setOnClosedListener(OnClosedListener l) {
 		mClosedListener = l;
+	}
+	public void setOnStartDragListener(OnStartDragListener l) {
+		mStartDragListener = l;
 	}
 
 	/**
@@ -868,6 +873,9 @@ public class CustomViewAbove extends ViewGroup {
 	private void startDrag() {
 		mIsBeingDragged = true;
 		mQuickReturn = false;
+
+		if (mStartDragListener != null)
+			mStartDragListener.onStartDrag(isMenuOpen());
 	}
 
 	private void endDrag() {
