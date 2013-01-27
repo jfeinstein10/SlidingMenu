@@ -5261,59 +5261,59 @@ com.crittercism.app.CrittercismNDK: boolean installNdk(java.lang.String)
 com.crittercism.app.CrittercismNDK: boolean checkLibraryVersion(int)
 com.crittercism.app.CrittercismNDK: void installNdkLib(android.content.Context,java.lang.String)
 com.crittercism.app.CrittercismNDK: boolean installLib(android.content.Context)
-com.slidingmenu.example.BaseActivity
-com.slidingmenu.example.BaseActivity: BaseActivity(int)
-com.slidingmenu.example.ExampleListActivity
-com.slidingmenu.example.ExampleListActivity: ExampleListActivity()
-com.slidingmenu.example.LeftAndRightActivity
-com.slidingmenu.example.LeftAndRightActivity: LeftAndRightActivity()
-com.slidingmenu.example.PropertiesActivity
-com.slidingmenu.example.PropertiesActivity: PropertiesActivity()
-com.slidingmenu.example.SampleListFragment
-com.slidingmenu.example.SampleListFragment: SampleListFragment()
-com.slidingmenu.example.SlidingContent
-com.slidingmenu.example.SlidingContent: SlidingContent()
-com.slidingmenu.example.SlidingTitleBar
-com.slidingmenu.example.SlidingTitleBar: SlidingTitleBar()
-com.slidingmenu.example.ViewPagerActivity
-com.slidingmenu.example.ViewPagerActivity: ViewPagerActivity()
-com.slidingmenu.example.anim.CustomAnimation
-com.slidingmenu.example.anim.CustomAnimation: CustomAnimation(int,com.slidingmenu.lib.SlidingMenu$CanvasTransformer)
-com.slidingmenu.example.anim.CustomScaleAnimation
-com.slidingmenu.example.anim.CustomScaleAnimation: CustomScaleAnimation()
-com.slidingmenu.example.anim.CustomSlideAnimation
-com.slidingmenu.example.anim.CustomSlideAnimation: CustomSlideAnimation()
-com.slidingmenu.example.anim.CustomZoomAnimation
-com.slidingmenu.example.anim.CustomZoomAnimation: CustomZoomAnimation()
-com.slidingmenu.example.fragments.BirdActivity
-com.slidingmenu.example.fragments.BirdActivity: BirdActivity()
-com.slidingmenu.example.fragments.FragmentChangeActivity
-com.slidingmenu.example.fragments.FragmentChangeActivity: FragmentChangeActivity()
-com.slidingmenu.example.fragments.ResponsiveUIActivity
-com.slidingmenu.example.fragments.ResponsiveUIActivity: ResponsiveUIActivity()
-com.slidingmenu.lib.CustomViewAbove
-com.slidingmenu.lib.CustomViewAbove: CustomViewAbove(android.content.Context,android.util.AttributeSet)
-com.slidingmenu.lib.CustomViewBehind
-com.slidingmenu.lib.CustomViewBehind: CustomViewBehind(android.content.Context,android.util.AttributeSet)
-com.slidingmenu.lib.SlidingMenu
-com.slidingmenu.lib.SlidingMenu: SlidingMenu(android.content.Context)
-com.slidingmenu.lib.SlidingMenu: SlidingMenu(android.content.Context,android.util.AttributeSet)
-com.slidingmenu.lib.SlidingMenu: SlidingMenu(android.content.Context,android.util.AttributeSet,int)
-com.slidingmenu.lib.SlidingMenu$SavedState
-com.slidingmenu.lib.SlidingMenu$SavedState: android.os.Parcelable$Creator CREATOR
-com.slidingmenu.lib.app.SlidingActivity
-com.slidingmenu.lib.app.SlidingActivity: void setContentView(android.view.View)
-com.slidingmenu.lib.app.SlidingActivity: void setBehindContentView(android.view.View)
-com.slidingmenu.lib.app.SlidingFragmentActivity
-com.slidingmenu.lib.app.SlidingFragmentActivity: SlidingFragmentActivity()
-com.slidingmenu.lib.app.SlidingFragmentActivity: void setContentView(android.view.View)
-com.slidingmenu.lib.app.SlidingFragmentActivity: void setBehindContentView(android.view.View)
-com.slidingmenu.lib.app.SlidingListActivity
-com.slidingmenu.lib.app.SlidingListActivity: void setContentView(android.view.View)
-com.slidingmenu.lib.app.SlidingListActivity: void setBehindContentView(android.view.View)
-com.slidingmenu.lib.app.SlidingPreferenceActivity
-com.slidingmenu.lib.app.SlidingPreferenceActivity: void setContentView(android.view.View)
-com.slidingmenu.lib.app.SlidingPreferenceActivity: void setBehindContentView(android.view.View)
+com.github.jfeinstein10.BaseActivity
+com.github.jfeinstein10.BaseActivity: BaseActivity(int)
+com.github.jfeinstein10.ExampleListActivity
+com.github.jfeinstein10.ExampleListActivity: ExampleListActivity()
+com.github.jfeinstein10.LeftAndRightActivity
+com.github.jfeinstein10.LeftAndRightActivity: LeftAndRightActivity()
+com.github.jfeinstein10.PropertiesActivity
+com.github.jfeinstein10.PropertiesActivity: PropertiesActivity()
+com.github.jfeinstein10.SampleListFragment
+com.github.jfeinstein10.SampleListFragment: SampleListFragment()
+com.github.jfeinstein10.SlidingContent
+com.github.jfeinstein10.SlidingContent: SlidingContent()
+com.github.jfeinstein10.SlidingTitleBar
+com.github.jfeinstein10.SlidingTitleBar: SlidingTitleBar()
+com.github.jfeinstein10.ViewPagerActivity
+com.github.jfeinstein10.ViewPagerActivity: ViewPagerActivity()
+com.github.jfeinstein10.anim.CustomAnimation
+com.github.jfeinstein10.anim.CustomAnimation: CustomAnimation(int,com.github.jfeinstein10.SlidingMenu$CanvasTransformer)
+com.github.jfeinstein10.anim.CustomScaleAnimation
+com.github.jfeinstein10.anim.CustomScaleAnimation: CustomScaleAnimation()
+com.github.jfeinstein10.anim.CustomSlideAnimation
+com.github.jfeinstein10.anim.CustomSlideAnimation: CustomSlideAnimation()
+com.github.jfeinstein10.anim.CustomZoomAnimation
+com.github.jfeinstein10.anim.CustomZoomAnimation: CustomZoomAnimation()
+com.github.jfeinstein10.fragments.BirdActivity
+com.github.jfeinstein10.fragments.BirdActivity: BirdActivity()
+com.github.jfeinstein10.fragments.FragmentChangeActivity
+com.github.jfeinstein10.fragments.FragmentChangeActivity: FragmentChangeActivity()
+com.github.jfeinstein10.fragments.ResponsiveUIActivity
+com.github.jfeinstein10.fragments.ResponsiveUIActivity: ResponsiveUIActivity()
+com.github.jfeinstein10.CustomViewAbove
+com.github.jfeinstein10.CustomViewAbove: CustomViewAbove(android.content.Context,android.util.AttributeSet)
+com.github.jfeinstein10.CustomViewBehind
+com.github.jfeinstein10.CustomViewBehind: CustomViewBehind(android.content.Context,android.util.AttributeSet)
+com.github.jfeinstein10.SlidingMenu
+com.github.jfeinstein10.SlidingMenu: SlidingMenu(android.content.Context)
+com.github.jfeinstein10.SlidingMenu: SlidingMenu(android.content.Context,android.util.AttributeSet)
+com.github.jfeinstein10.SlidingMenu: SlidingMenu(android.content.Context,android.util.AttributeSet,int)
+com.github.jfeinstein10.SlidingMenu$SavedState
+com.github.jfeinstein10.SlidingMenu$SavedState: android.os.Parcelable$Creator CREATOR
+com.github.jfeinstein10.app.SlidingActivity
+com.github.jfeinstein10.app.SlidingActivity: void setContentView(android.view.View)
+com.github.jfeinstein10.app.SlidingActivity: void setBehindContentView(android.view.View)
+com.github.jfeinstein10.app.SlidingFragmentActivity
+com.github.jfeinstein10.app.SlidingFragmentActivity: SlidingFragmentActivity()
+com.github.jfeinstein10.app.SlidingFragmentActivity: void setContentView(android.view.View)
+com.github.jfeinstein10.app.SlidingFragmentActivity: void setBehindContentView(android.view.View)
+com.github.jfeinstein10.app.SlidingListActivity
+com.github.jfeinstein10.app.SlidingListActivity: void setContentView(android.view.View)
+com.github.jfeinstein10.app.SlidingListActivity: void setBehindContentView(android.view.View)
+com.github.jfeinstein10.app.SlidingPreferenceActivity
+com.github.jfeinstein10.app.SlidingPreferenceActivity: void setContentView(android.view.View)
+com.github.jfeinstein10.app.SlidingPreferenceActivity: void setBehindContentView(android.view.View)
 crittercism.android.d$a: crittercism.android.d$a[] values()
 crittercism.android.d$a: crittercism.android.d$a valueOf(java.lang.String)
 crittercism.android.f$a: crittercism.android.f$a[] values()

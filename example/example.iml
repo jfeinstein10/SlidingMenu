@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="android" name="Android">
+      <configuration>
+        <option name="GEN_FOLDER_RELATIVE_PATH_APT" value="/target" />
+        <option name="GEN_FOLDER_RELATIVE_PATH_AIDL" value="/gen" />
+        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/AndroidManifest.xml" />
+        <option name="RES_FOLDER_RELATIVE_PATH" value="/res" />
+        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/assets" />
+        <option name="LIBS_FOLDER_RELATIVE_PATH" value="/libs" />
+        <option name="USE_CUSTOM_APK_RESOURCE_FOLDER" value="false" />
+        <option name="CUSTOM_APK_RESOURCE_FOLDER" value="" />
+        <option name="USE_CUSTOM_COMPILER_MANIFEST" value="false" />
+        <option name="CUSTOM_COMPILER_MANIFEST" value="" />
+        <option name="APK_PATH" value="" />
+        <option name="LIBRARY_PROJECT" value="false" />
+        <option name="RUN_PROCESS_RESOURCES_MAVEN_TASK" value="false" />
+        <option name="GENERATE_UNSIGNED_APK" value="false" />
+        <option name="CUSTOM_DEBUG_KEYSTORE_PATH" value="" />
+        <option name="PACK_TEST_CODE" value="false" />
+        <option name="RUN_PROGUARD" value="false" />
+        <option name="PROGUARD_CFG_PATH" value="/proguard-project.txt" />
+        <resOverlayFolders>
+          <path>/res-overlay</path>
+        </resOverlayFolders>
+        <includeSystemProguardFile>true</includeSystemProguardFile>
+        <includeAssetsFromLibraries>false</includeAssetsFromLibraries>
+        <additionalNativeLibs />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/target/idea-classes" />
+    <output-test url="file://$MODULE_DIR$/target/idea-test-classes" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/target/classes" />
+      <excludeFolder url="file://$MODULE_DIR$/target/com" />
+      <excludeFolder url="file://$MODULE_DIR$/target/generated-sources/combined-assets" />
+      <excludeFolder url="file://$MODULE_DIR$/target/generated-sources/combined-resources" />
+      <excludeFolder url="file://$MODULE_DIR$/target/generated-sources/extracted-dependencies" />
+      <excludeFolder url="file://$MODULE_DIR$/target/test-classes" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/crittercism_v3_0_3_sdkonly.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../library/libs/android-support-v4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" scope="PROVIDED" name="Maven: android:android:4.2_r1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.google.android.maps:maps:17_r1" level="project" />
+    <orderEntry type="library" name="Maven: com.google.android:support-v4:r7" level="project" />
+    <orderEntry type="module" module-name="library" />
+    <orderEntry type="jdk" jdkName="Android 4.2 Platform" jdkType="Android SDK" />
+  </component>
+</module>
+

@@ -644,7 +644,7 @@ android.support.v4.widget.SearchViewCompatHoneycomb$OnQueryTextListenerCompatBri
 android.support.v4.widget.SimpleCursorAdapter
 android.support.v4.widget.SimpleCursorAdapter$CursorToStringConverter
 android.support.v4.widget.SimpleCursorAdapter$ViewBinder
-com.slidingmenu.example.BaseActivity$BasePagerAdapter
+com.github.jfeinstein10.BaseActivity$BasePagerAdapter
 com.slidingmenu.example.BuildConfig
 com.slidingmenu.example.R
 com.slidingmenu.example.R$array
@@ -661,16 +661,16 @@ com.slidingmenu.example.R$string
 com.slidingmenu.example.R$style
 com.slidingmenu.example.R$styleable
 com.slidingmenu.example.R$xml
-com.slidingmenu.example.Util:
+com.github.jfeinstein10.Util:
     7:7:public Util()
-com.slidingmenu.lib.CanvasTransformerBuilder
-com.slidingmenu.lib.CanvasTransformerBuilder$1
-com.slidingmenu.lib.CanvasTransformerBuilder$2
-com.slidingmenu.lib.CanvasTransformerBuilder$3
-com.slidingmenu.lib.CanvasTransformerBuilder$4
-com.slidingmenu.lib.CanvasTransformerBuilder$5
-com.slidingmenu.lib.CanvasTransformerBuilder$6
-com.slidingmenu.lib.CustomViewAbove:
+com.github.jfeinstein10.CanvasTransformerBuilder
+com.github.jfeinstein10.CanvasTransformerBuilder$1
+com.github.jfeinstein10.CanvasTransformerBuilder$2
+com.github.jfeinstein10.CanvasTransformerBuilder$3
+com.github.jfeinstein10.CanvasTransformerBuilder$4
+com.github.jfeinstein10.CanvasTransformerBuilder$5
+com.github.jfeinstein10.CanvasTransformerBuilder$6
+com.github.jfeinstein10.CustomViewAbove:
     private static final java.lang.String TAG
     private static final boolean DEBUG
     private static final boolean USE_CACHE
@@ -678,8 +678,8 @@ com.slidingmenu.lib.CustomViewAbove:
     private static final int MIN_DISTANCE_FOR_FLING
     private static final int INVALID_POINTER
     private android.view.View mSelectedView
-    267:268:public void setOnOpenedListener(com.slidingmenu.lib.SlidingMenu$OnOpenedListener)
-    271:272:public void setOnClosedListener(com.slidingmenu.lib.SlidingMenu$OnClosedListener)
+    267:268:public void setOnOpenedListener(com.github.jfeinstein10.SlidingMenu$OnOpenedListener)
+    271:272:public void setOnClosedListener(com.github.jfeinstein10.SlidingMenu$OnClosedListener)
     316:316:public int getContentLeft()
     332:338:public int getChildWidth(int)
     343:343:public boolean isSlidingEnabled()
@@ -691,15 +691,15 @@ com.slidingmenu.lib.CustomViewAbove:
     853:862:public void setSelectedView(android.view.View)
     865:867:private int getSelectedTop()
     929:946:protected boolean canScroll(android.view.View,boolean,int,int,int)
-com.slidingmenu.lib.CustomViewAbove$SimpleOnPageChangeListener:
+com.github.jfeinstein10.CustomViewAbove$SimpleOnPageChangeListener:
     147:147:public void onPageScrollStateChanged(int)
-com.slidingmenu.lib.CustomViewBehind:
+com.github.jfeinstein10.CustomViewBehind:
     private static final java.lang.String TAG
     private static final int MARGIN_THRESHOLD
     66:66:public android.view.View getContent()
     81:81:public android.view.View getSecondaryContent()
     165:165:public float getScrollScale()
-com.slidingmenu.lib.MenuInterface
+com.github.jfeinstein10.MenuInterface
 com.slidingmenu.lib.R:
     9:9:public R()
 com.slidingmenu.lib.R$attr
@@ -874,7 +874,7 @@ com.slidingmenu.lib.R$styleable:
     public static final int SlidingMenu_behindFadeDegree
     public static final int SherlockTheme_windowActionBarOverlay
     210:210:public R$styleable()
-com.slidingmenu.lib.SlidingMenu:
+com.github.jfeinstein10.SlidingMenu:
     public static final int TOUCHMODE_MARGIN
     public static final int TOUCHMODE_FULLSCREEN
     public static final int TOUCHMODE_NONE
@@ -896,41 +896,41 @@ com.slidingmenu.lib.SlidingMenu:
     601:601:public int getTouchModeAbove()
     708:709:public void setSelectedView(android.view.View)
     726:727:public void setSelectorBitmap(android.graphics.Bitmap)
-    736:737:public void setOnOpenListener(com.slidingmenu.lib.SlidingMenu$OnOpenListener)
-    746:747:public void setOnCloseListener(com.slidingmenu.lib.SlidingMenu$OnCloseListener)
-    755:756:public void setOnOpenedListener(com.slidingmenu.lib.SlidingMenu$OnOpenedListener)
-    764:765:public void setOnClosedListener(com.slidingmenu.lib.SlidingMenu$OnClosedListener)
-com.slidingmenu.lib.SlidingMenu$1:
+    736:737:public void setOnOpenListener(com.github.jfeinstein10.SlidingMenu$OnOpenListener)
+    746:747:public void setOnCloseListener(com.github.jfeinstein10.SlidingMenu$OnCloseListener)
+    755:756:public void setOnOpenedListener(com.github.jfeinstein10.SlidingMenu$OnOpenedListener)
+    764:765:public void setOnClosedListener(com.github.jfeinstein10.SlidingMenu$OnClosedListener)
+com.github.jfeinstein10.SlidingMenu$1:
     public static final int POSITION_OPEN
     public static final int POSITION_CLOSE
-com.slidingmenu.lib.app.SlidingActivity:
+com.github.jfeinstein10.app.SlidingActivity:
     83:84:public void setBehindContentView(int)
-    104:104:public com.slidingmenu.lib.SlidingMenu getSlidingMenu()
+    104:104:public com.github.jfeinstein10.SlidingMenu getSlidingMenu()
     111:112:public void toggle()
     118:119:public void showContent()
     125:126:public void showMenu()
     132:133:public void showSecondaryMenu()
     139:140:public void setSlidingActionBarEnabled(boolean)
-com.slidingmenu.lib.app.SlidingActivityBase
-com.slidingmenu.lib.app.SlidingActivityHelper:
+com.github.jfeinstein10.app.SlidingActivityBase
+com.github.jfeinstein10.app.SlidingActivityHelper:
     153:155:public void setContentView(android.view.View)
     196:197:public void showMenu()
     204:205:public void showSecondaryMenu()
-com.slidingmenu.lib.app.SlidingFragmentActivity:
+com.github.jfeinstein10.app.SlidingFragmentActivity:
     118:119:public void showContent()
     125:126:public void showMenu()
     132:133:public void showSecondaryMenu()
-com.slidingmenu.lib.app.SlidingListActivity:
+com.github.jfeinstein10.app.SlidingListActivity:
     87:88:public void setBehindContentView(int)
-    108:108:public com.slidingmenu.lib.SlidingMenu getSlidingMenu()
+    108:108:public com.github.jfeinstein10.SlidingMenu getSlidingMenu()
     115:116:public void toggle()
     122:123:public void showContent()
     129:130:public void showMenu()
     137:138:public void showSecondaryMenu()
     144:145:public void setSlidingActionBarEnabled(boolean)
-com.slidingmenu.lib.app.SlidingPreferenceActivity:
+com.github.jfeinstein10.app.SlidingPreferenceActivity:
     83:84:public void setBehindContentView(int)
-    104:104:public com.slidingmenu.lib.SlidingMenu getSlidingMenu()
+    104:104:public com.github.jfeinstein10.SlidingMenu getSlidingMenu()
     111:112:public void toggle()
     118:119:public void showContent()
     125:126:public void showMenu()

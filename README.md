@@ -88,7 +88,7 @@ XML Usage
 -----
 If you decide to use SlidingMenu as a view, you can define it in your xml layouts like this:
 ```xml
-<com.slidingmenu.lib.SlidingMenu
+<com.github.jfeinstein10.SlidingMenu
     xmlns:sliding="http://schemas.android.com/apk/res-auto"
     android:id="@+id/slidingmenulayout"
     android:layout_width="fill_parent"

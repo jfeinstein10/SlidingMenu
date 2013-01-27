@@ -14,3 +14,10 @@ gen
 .metadata/
 .metadata
 *.project
+
+# IDEA Files #
+.idea/workspace.xml
+.idea/tasks.xml
+
+# Maven Build Output #
+target
