@@ -12,6 +12,7 @@
   <groupId>com.github.jfeinstein10</groupId>
   <artifactId>slidingmenu</artifactId>
   <packaging>apklib</packaging>
+  <version>1.0.0-SNAPSHOT</version>
   <name>SlidingMenu Android Library</name>
 
   <dependencies>
@@ -19,17 +20,20 @@
       <groupId>android</groupId>
       <artifactId>android</artifactId>
       <scope>provided</scope>
+      <version>${android.version}</version>
     </dependency>
 
     <dependency>
       <groupId>com.google.android.maps</groupId>
       <artifactId>maps</artifactId>
       <scope>provided</scope>
+      <version>${google-maps.version}</version>
     </dependency>
 
     <dependency>
       <groupId>com.google.android</groupId>
       <artifactId>support-v4</artifactId>
+      <version>${android-support.version}</version>
     </dependency>
   </dependencies>
 

@@ -5469,157 +5469,157 @@ com.crittercism.app.CrittercismNDK -> com.crittercism.app.CrittercismNDK:
     boolean checkLibraryVersion(int) -> checkLibraryVersion
     void installNdkLib(android.content.Context,java.lang.String) -> installNdkLib
     boolean installLib(android.content.Context) -> installLib
-com.slidingmenu.example.BaseActivity -> com.slidingmenu.example.BaseActivity:
+com.github.jfeinstein10.BaseActivity -> com.github.jfeinstein10.BaseActivity:
     int mTitleRes -> b
     android.support.v4.app.ListFragment mFrag -> a
     void onCreate(android.os.Bundle) -> onCreate
     boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem) -> onOptionsItemSelected
     boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu) -> onCreateOptionsMenu
-com.slidingmenu.example.ExampleListActivity -> com.slidingmenu.example.ExampleListActivity:
+com.github.jfeinstein10.ExampleListActivity -> com.github.jfeinstein10.ExampleListActivity:
     void onCreate(android.os.Bundle) -> onCreate
     boolean onPreferenceTreeClick(android.preference.PreferenceScreen,android.preference.Preference) -> onPreferenceTreeClick
     boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem) -> onOptionsItemSelected
     boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu) -> onCreateOptionsMenu
-com.slidingmenu.example.LeftAndRightActivity -> com.slidingmenu.example.LeftAndRightActivity:
+com.github.jfeinstein10.LeftAndRightActivity -> com.github.jfeinstein10.LeftAndRightActivity:
     void onCreate(android.os.Bundle) -> onCreate
-com.slidingmenu.example.PropertiesActivity -> com.slidingmenu.example.PropertiesActivity:
+com.github.jfeinstein10.PropertiesActivity -> com.github.jfeinstein10.PropertiesActivity:
     void onCreate(android.os.Bundle) -> onCreate
-com.slidingmenu.example.PropertiesActivity$1 -> com.slidingmenu.example.a:
-    com.slidingmenu.example.PropertiesActivity this$0 -> a
+com.github.jfeinstein10.PropertiesActivity$1 -> com.slidingmenu.example.a:
+    com.github.jfeinstein10.PropertiesActivity this$0 -> a
     void onCheckedChanged(android.widget.RadioGroup,int) -> onCheckedChanged
-com.slidingmenu.example.PropertiesActivity$2 -> com.slidingmenu.example.b:
-    com.slidingmenu.example.PropertiesActivity this$0 -> a
+com.github.jfeinstein10.PropertiesActivity$2 -> com.slidingmenu.example.b:
+    com.github.jfeinstein10.PropertiesActivity this$0 -> a
     void onCheckedChanged(android.widget.RadioGroup,int) -> onCheckedChanged
-com.slidingmenu.example.PropertiesActivity$3 -> com.slidingmenu.example.c:
-    com.slidingmenu.example.PropertiesActivity this$0 -> a
+com.github.jfeinstein10.PropertiesActivity$3 -> com.slidingmenu.example.c:
+    com.github.jfeinstein10.PropertiesActivity this$0 -> a
     void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
     void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
     void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
-com.slidingmenu.example.PropertiesActivity$4 -> com.slidingmenu.example.d:
-    com.slidingmenu.example.PropertiesActivity this$0 -> a
+com.github.jfeinstein10.PropertiesActivity$4 -> com.slidingmenu.example.d:
+    com.github.jfeinstein10.PropertiesActivity this$0 -> a
     void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
     void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
     void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
-com.slidingmenu.example.PropertiesActivity$5 -> com.slidingmenu.example.e:
-    com.slidingmenu.example.PropertiesActivity this$0 -> a
+com.github.jfeinstein10.PropertiesActivity$5 -> com.slidingmenu.example.e:
+    com.github.jfeinstein10.PropertiesActivity this$0 -> a
     void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
-com.slidingmenu.example.PropertiesActivity$6 -> com.slidingmenu.example.f:
-    com.slidingmenu.example.PropertiesActivity this$0 -> a
+com.github.jfeinstein10.PropertiesActivity$6 -> com.slidingmenu.example.f:
+    com.github.jfeinstein10.PropertiesActivity this$0 -> a
     void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
     void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
     void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
-com.slidingmenu.example.PropertiesActivity$7 -> com.slidingmenu.example.g:
-    com.slidingmenu.example.PropertiesActivity this$0 -> a
+com.github.jfeinstein10.PropertiesActivity$7 -> com.slidingmenu.example.g:
+    com.github.jfeinstein10.PropertiesActivity this$0 -> a
     void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
-com.slidingmenu.example.PropertiesActivity$8 -> com.slidingmenu.example.h:
-    com.slidingmenu.example.PropertiesActivity this$0 -> a
+com.github.jfeinstein10.PropertiesActivity$8 -> com.slidingmenu.example.h:
+    com.github.jfeinstein10.PropertiesActivity this$0 -> a
     void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
     void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
     void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
-com.slidingmenu.example.SampleListFragment -> com.slidingmenu.example.SampleListFragment:
+com.github.jfeinstein10.SampleListFragment -> com.github.jfeinstein10.SampleListFragment:
     android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
     void onActivityCreated(android.os.Bundle) -> onActivityCreated
-com.slidingmenu.example.SampleListFragment$SampleAdapter -> com.slidingmenu.example.i:
-    com.slidingmenu.example.SampleListFragment this$0 -> a
+com.github.jfeinstein10.SampleListFragment$SampleAdapter -> com.slidingmenu.example.i:
+    com.github.jfeinstein10.SampleListFragment this$0 -> a
     android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-com.slidingmenu.example.SampleListFragment$SampleItem -> com.slidingmenu.example.j:
+com.github.jfeinstein10.SampleListFragment$SampleItem -> com.slidingmenu.example.j:
     java.lang.String tag -> a
     int iconRes -> b
-    com.slidingmenu.example.SampleListFragment this$0 -> c
-com.slidingmenu.example.SlidingContent -> com.slidingmenu.example.SlidingContent:
+    com.github.jfeinstein10.SampleListFragment this$0 -> c
+com.github.jfeinstein10.SlidingContent -> com.github.jfeinstein10.SlidingContent:
     void onCreate(android.os.Bundle) -> onCreate
-com.slidingmenu.example.SlidingTitleBar -> com.slidingmenu.example.SlidingTitleBar:
+com.github.jfeinstein10.SlidingTitleBar -> com.github.jfeinstein10.SlidingTitleBar:
     void onCreate(android.os.Bundle) -> onCreate
-com.slidingmenu.example.Util -> com.slidingmenu.example.k:
+com.github.jfeinstein10.Util -> com.slidingmenu.example.k:
     void goToGitHub(android.content.Context) -> a
-com.slidingmenu.example.ViewPagerActivity -> com.slidingmenu.example.ViewPagerActivity:
+com.github.jfeinstein10.ViewPagerActivity -> com.github.jfeinstein10.ViewPagerActivity:
     void onCreate(android.os.Bundle) -> onCreate
-com.slidingmenu.example.ViewPagerActivity$1 -> com.slidingmenu.example.l:
-    com.slidingmenu.example.ViewPagerActivity this$0 -> a
+com.github.jfeinstein10.ViewPagerActivity$1 -> com.slidingmenu.example.l:
+    com.github.jfeinstein10.ViewPagerActivity this$0 -> a
     void onPageScrollStateChanged(int) -> b
     void onPageScrolled$486775f1(int,float) -> a
     void onPageSelected(int) -> a
-com.slidingmenu.example.ViewPagerActivity$ColorPagerAdapter -> com.slidingmenu.example.m:
+com.github.jfeinstein10.ViewPagerActivity$ColorPagerAdapter -> com.slidingmenu.example.m:
     java.util.ArrayList mFragments -> b
     int[] COLORS -> c
-    com.slidingmenu.example.ViewPagerActivity this$0 -> a
+    com.github.jfeinstein10.ViewPagerActivity this$0 -> a
     int getCount() -> getCount
     android.support.v4.app.Fragment getItem(int) -> getItem
-com.slidingmenu.example.anim.CustomAnimation -> com.slidingmenu.example.anim.CustomAnimation:
-    com.slidingmenu.lib.SlidingMenu$CanvasTransformer mTransformer -> b
+com.github.jfeinstein10.anim.CustomAnimation -> com.github.jfeinstein10.anim.CustomAnimation:
+    com.github.jfeinstein10.SlidingMenu$CanvasTransformer mTransformer -> b
     void onCreate(android.os.Bundle) -> onCreate
-com.slidingmenu.example.anim.CustomScaleAnimation -> com.slidingmenu.example.anim.CustomScaleAnimation:
-com.slidingmenu.example.anim.CustomScaleAnimation$1 -> com.slidingmenu.example.anim.a:
+com.github.jfeinstein10.anim.CustomScaleAnimation -> com.github.jfeinstein10.anim.CustomScaleAnimation:
+com.github.jfeinstein10.anim.CustomScaleAnimation$1 -> com.github.jfeinstein10.anim.a:
     void transformCanvas(android.graphics.Canvas,float) -> a
-com.slidingmenu.example.anim.CustomSlideAnimation -> com.slidingmenu.example.anim.CustomSlideAnimation:
+com.github.jfeinstein10.anim.CustomSlideAnimation -> com.github.jfeinstein10.anim.CustomSlideAnimation:
     android.view.animation.Interpolator interp -> b
     android.view.animation.Interpolator access$0() -> a
-com.slidingmenu.example.anim.CustomSlideAnimation$1 -> com.slidingmenu.example.anim.b:
+com.github.jfeinstein10.anim.CustomSlideAnimation$1 -> com.github.jfeinstein10.anim.b:
     float getInterpolation(float) -> getInterpolation
-com.slidingmenu.example.anim.CustomSlideAnimation$2 -> com.slidingmenu.example.anim.c:
+com.github.jfeinstein10.anim.CustomSlideAnimation$2 -> com.github.jfeinstein10.anim.c:
     void transformCanvas(android.graphics.Canvas,float) -> a
-com.slidingmenu.example.anim.CustomZoomAnimation -> com.slidingmenu.example.anim.CustomZoomAnimation:
-com.slidingmenu.example.anim.CustomZoomAnimation$1 -> com.slidingmenu.example.anim.d:
+com.github.jfeinstein10.anim.CustomZoomAnimation -> com.github.jfeinstein10.anim.CustomZoomAnimation:
+com.github.jfeinstein10.anim.CustomZoomAnimation$1 -> com.github.jfeinstein10.anim.d:
     void transformCanvas(android.graphics.Canvas,float) -> a
-com.slidingmenu.example.fragments.BirdActivity -> com.slidingmenu.example.fragments.BirdActivity:
+com.github.jfeinstein10.fragments.BirdActivity -> com.github.jfeinstein10.fragments.BirdActivity:
     android.os.Handler mHandler -> a
     android.content.Intent newInstance(android.app.Activity,int) -> a
     void onCreate(android.os.Bundle) -> onCreate
     void onResume() -> onResume
     boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem) -> onOptionsItemSelected
     void hideActionBarDelayed(android.os.Handler) -> a
-    android.os.Handler access$0(com.slidingmenu.example.fragments.BirdActivity) -> a
-    void access$1(com.slidingmenu.example.fragments.BirdActivity,android.os.Handler) -> a
-com.slidingmenu.example.fragments.BirdActivity$1 -> com.slidingmenu.example.fragments.a:
-    com.slidingmenu.example.fragments.BirdActivity this$0 -> a
+    android.os.Handler access$0(com.github.jfeinstein10.fragments.BirdActivity) -> a
+    void access$1(com.github.jfeinstein10.fragments.BirdActivity,android.os.Handler) -> a
+com.github.jfeinstein10.fragments.BirdActivity$1 -> com.github.jfeinstein10.fragments.a:
+    com.github.jfeinstein10.fragments.BirdActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.slidingmenu.example.fragments.BirdActivity$2 -> com.slidingmenu.example.fragments.b:
-    com.slidingmenu.example.fragments.BirdActivity this$0 -> a
+com.github.jfeinstein10.fragments.BirdActivity$2 -> com.github.jfeinstein10.fragments.b:
+    com.github.jfeinstein10.fragments.BirdActivity this$0 -> a
     void run() -> run
-com.slidingmenu.example.fragments.BirdGridFragment -> com.slidingmenu.example.fragments.c:
+com.github.jfeinstein10.fragments.BirdGridFragment -> com.github.jfeinstein10.fragments.c:
     int mPos -> a
     int mImgRes -> b
     android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
     void onSaveInstanceState(android.os.Bundle) -> onSaveInstanceState
-    int access$0(com.slidingmenu.example.fragments.BirdGridFragment) -> a
-    int access$1(com.slidingmenu.example.fragments.BirdGridFragment) -> b
-com.slidingmenu.example.fragments.BirdGridFragment$1 -> com.slidingmenu.example.fragments.d:
-    com.slidingmenu.example.fragments.BirdGridFragment this$0 -> a
+    int access$0(com.github.jfeinstein10.fragments.BirdGridFragment) -> a
+    int access$1(com.github.jfeinstein10.fragments.BirdGridFragment) -> b
+com.github.jfeinstein10.fragments.BirdGridFragment$1 -> com.github.jfeinstein10.fragments.d:
+    com.github.jfeinstein10.fragments.BirdGridFragment this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.slidingmenu.example.fragments.BirdGridFragment$GridAdapter -> com.slidingmenu.example.fragments.e:
-    com.slidingmenu.example.fragments.BirdGridFragment this$0 -> a
+com.github.jfeinstein10.fragments.BirdGridFragment$GridAdapter -> com.github.jfeinstein10.fragments.e:
+    com.github.jfeinstein10.fragments.BirdGridFragment this$0 -> a
     int getCount() -> getCount
     java.lang.Object getItem(int) -> getItem
     long getItemId(int) -> getItemId
     android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-com.slidingmenu.example.fragments.BirdMenuFragment -> com.slidingmenu.example.fragments.f:
+com.github.jfeinstein10.fragments.BirdMenuFragment -> com.github.jfeinstein10.fragments.f:
     android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
     void onActivityCreated(android.os.Bundle) -> onActivityCreated
     void onListItemClick(android.widget.ListView,android.view.View,int,long) -> onListItemClick
-com.slidingmenu.example.fragments.ColorFragment -> com.slidingmenu.example.fragments.g:
+com.github.jfeinstein10.fragments.ColorFragment -> com.github.jfeinstein10.fragments.g:
     int mColorRes -> a
     android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
     void onSaveInstanceState(android.os.Bundle) -> onSaveInstanceState
-com.slidingmenu.example.fragments.ColorMenuFragment -> com.slidingmenu.example.fragments.h:
+com.github.jfeinstein10.fragments.ColorMenuFragment -> com.github.jfeinstein10.fragments.h:
     android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
     void onActivityCreated(android.os.Bundle) -> onActivityCreated
     void onListItemClick(android.widget.ListView,android.view.View,int,long) -> onListItemClick
-com.slidingmenu.example.fragments.FragmentChangeActivity -> com.slidingmenu.example.fragments.FragmentChangeActivity:
+com.github.jfeinstein10.fragments.FragmentChangeActivity -> com.github.jfeinstein10.fragments.FragmentChangeActivity:
     android.support.v4.app.Fragment mContent -> b
     void onCreate(android.os.Bundle) -> onCreate
     void onSaveInstanceState(android.os.Bundle) -> onSaveInstanceState
     void switchContent(android.support.v4.app.Fragment) -> a
-com.slidingmenu.example.fragments.ResponsiveUIActivity -> com.slidingmenu.example.fragments.ResponsiveUIActivity:
+com.github.jfeinstein10.fragments.ResponsiveUIActivity -> com.github.jfeinstein10.fragments.ResponsiveUIActivity:
     android.support.v4.app.Fragment mContent -> a
     void onCreate(android.os.Bundle) -> onCreate
     boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem) -> onOptionsItemSelected
     void onSaveInstanceState(android.os.Bundle) -> onSaveInstanceState
     void switchContent(android.support.v4.app.Fragment) -> a
     void onBirdPressed(int) -> a
-com.slidingmenu.example.fragments.ResponsiveUIActivity$1 -> com.slidingmenu.example.fragments.i:
-    com.slidingmenu.example.fragments.ResponsiveUIActivity this$0 -> a
+com.github.jfeinstein10.fragments.ResponsiveUIActivity$1 -> com.github.jfeinstein10.fragments.i:
+    com.github.jfeinstein10.fragments.ResponsiveUIActivity this$0 -> a
     void run() -> run
-com.slidingmenu.lib.CustomViewAbove -> com.slidingmenu.lib.CustomViewAbove:
+com.github.jfeinstein10.CustomViewAbove -> com.github.jfeinstein10.CustomViewAbove:
     android.view.animation.Interpolator sInterpolator -> e
     android.view.View mContent -> f
     int mCurItem -> g
@@ -5637,12 +5637,12 @@ com.slidingmenu.lib.CustomViewAbove -> com.slidingmenu.lib.CustomViewAbove:
     int mMinimumVelocity -> q
     int mMaximumVelocity -> c
     int mFlingDistance -> r
-    com.slidingmenu.lib.CustomViewBehind mCustomViewBehind -> s
+    com.github.jfeinstein10.CustomViewBehind mCustomViewBehind -> s
     boolean mEnabled -> t
-    com.slidingmenu.lib.CustomViewAbove$OnPageChangeListener mOnPageChangeListener -> u
-    com.slidingmenu.lib.CustomViewAbove$OnPageChangeListener mInternalPageChangeListener -> v
-    com.slidingmenu.lib.SlidingMenu$OnClosedListener mClosedListener -> w
-    com.slidingmenu.lib.SlidingMenu$OnOpenedListener mOpenedListener -> x
+    com.github.jfeinstein10.CustomViewAbove$OnPageChangeListener mOnPageChangeListener -> u
+    com.github.jfeinstein10.CustomViewAbove$OnPageChangeListener mInternalPageChangeListener -> v
+    com.github.jfeinstein10.SlidingMenu$OnClosedListener mClosedListener -> w
+    com.github.jfeinstein10.SlidingMenu$OnOpenedListener mOpenedListener -> x
     int mTouchMode -> d
     float mScrollX -> y
     boolean mSelectorEnabled -> z
@@ -5651,13 +5651,13 @@ com.slidingmenu.lib.CustomViewAbove -> com.slidingmenu.lib.CustomViewAbove:
     int getCurrentItem() -> a
     void setCurrentItemInternal$4870cd2e(int,boolean) -> a
     void setCurrentItemInternal(int,boolean,boolean,int) -> a
-    void setOnPageChangeListener(com.slidingmenu.lib.CustomViewAbove$OnPageChangeListener) -> a
+    void setOnPageChangeListener(com.github.jfeinstein10.CustomViewAbove$OnPageChangeListener) -> a
     int getDestScrollX(int) -> c
     boolean isMenuOpen() -> d
     int getBehindWidth() -> e
     void setSlidingEnabled(boolean) -> a
     void setContent(android.view.View) -> a
-    void setCustomViewBehind(com.slidingmenu.lib.CustomViewBehind) -> a
+    void setCustomViewBehind(com.github.jfeinstein10.CustomViewBehind) -> a
     void onMeasure(int,int) -> onMeasure
     void onSizeChanged(int,int,int,int) -> onSizeChanged
     void onLayout(boolean,int,int,int,int) -> onLayout
@@ -5681,23 +5681,23 @@ com.slidingmenu.lib.CustomViewAbove -> com.slidingmenu.lib.CustomViewAbove:
     boolean dispatchKeyEvent(android.view.KeyEvent) -> dispatchKeyEvent
     boolean arrowScroll(int) -> d
     boolean pageLeft() -> i
-    com.slidingmenu.lib.CustomViewBehind access$0(com.slidingmenu.lib.CustomViewAbove) -> a
-com.slidingmenu.lib.CustomViewAbove$1 -> com.slidingmenu.lib.a:
+    com.github.jfeinstein10.CustomViewBehind access$0(com.github.jfeinstein10.CustomViewAbove) -> a
+com.github.jfeinstein10.CustomViewAbove$1 -> com.slidingmenu.lib.a:
     float getInterpolation(float) -> getInterpolation
-com.slidingmenu.lib.CustomViewAbove$2 -> com.slidingmenu.lib.b:
-    com.slidingmenu.lib.CustomViewAbove this$0 -> a
+com.github.jfeinstein10.CustomViewAbove$2 -> com.slidingmenu.lib.b:
+    com.github.jfeinstein10.CustomViewAbove this$0 -> a
     void onPageSelected(int) -> a
-com.slidingmenu.lib.CustomViewAbove$OnPageChangeListener -> com.slidingmenu.lib.c:
+com.github.jfeinstein10.CustomViewAbove$OnPageChangeListener -> com.slidingmenu.lib.c:
     void onPageSelected(int) -> a
-com.slidingmenu.lib.CustomViewAbove$SimpleOnPageChangeListener -> com.slidingmenu.lib.d:
+com.github.jfeinstein10.CustomViewAbove$SimpleOnPageChangeListener -> com.slidingmenu.lib.d:
     void onPageSelected(int) -> a
-com.slidingmenu.lib.CustomViewBehind -> com.slidingmenu.lib.CustomViewBehind:
-    com.slidingmenu.lib.CustomViewAbove mViewAbove -> a
+com.github.jfeinstein10.CustomViewBehind -> com.github.jfeinstein10.CustomViewBehind:
+    com.github.jfeinstein10.CustomViewAbove mViewAbove -> a
     android.view.View mContent -> b
     android.view.View mSecondaryContent -> c
     int mMarginThreshold -> d
     int mWidthOffset -> e
-    com.slidingmenu.lib.SlidingMenu$CanvasTransformer mTransformer -> f
+    com.github.jfeinstein10.SlidingMenu$CanvasTransformer mTransformer -> f
     boolean mChildrenEnabled -> g
     int mMode -> h
     boolean mFadeEnabled -> i
@@ -5707,8 +5707,8 @@ com.slidingmenu.lib.CustomViewBehind -> com.slidingmenu.lib.CustomViewBehind:
     android.graphics.drawable.Drawable mSecondaryShadowDrawable -> m
     int mShadowWidth -> n
     float mFadeDegree -> o
-    void setCustomViewAbove(com.slidingmenu.lib.CustomViewAbove) -> a
-    void setCanvasTransformer(com.slidingmenu.lib.SlidingMenu$CanvasTransformer) -> a
+    void setCustomViewAbove(com.github.jfeinstein10.CustomViewAbove) -> a
+    void setCanvasTransformer(com.github.jfeinstein10.SlidingMenu$CanvasTransformer) -> a
     void setWidthOffset(int) -> a
     int getBehindWidth() -> a
     void setContent(android.view.View) -> a
@@ -5753,11 +5753,11 @@ com.slidingmenu.lib.R$styleable -> com.slidingmenu.lib.g:
     int[] SherlockMenuView -> h
     int[] SlidingMenu -> i
     int[] SherlockSpinner -> j
-com.slidingmenu.lib.SlidingMenu -> com.slidingmenu.lib.SlidingMenu:
-    com.slidingmenu.lib.CustomViewAbove mViewAbove -> a
-    com.slidingmenu.lib.CustomViewBehind mViewBehind -> b
-    com.slidingmenu.lib.SlidingMenu$OnOpenListener mOpenListener -> c
-    com.slidingmenu.lib.SlidingMenu$OnCloseListener mCloseListener -> d
+com.github.jfeinstein10.SlidingMenu -> com.github.jfeinstein10.SlidingMenu:
+    com.github.jfeinstein10.CustomViewAbove mViewAbove -> a
+    com.github.jfeinstein10.CustomViewBehind mViewBehind -> b
+    com.github.jfeinstein10.SlidingMenu$OnOpenListener mOpenListener -> c
+    com.github.jfeinstein10.SlidingMenu$OnCloseListener mCloseListener -> d
     void setContent(android.view.View) -> a
     void setMenu(android.view.View) -> b
     void setSecondaryMenu$13462e() -> a
@@ -5773,7 +5773,7 @@ com.slidingmenu.lib.SlidingMenu -> com.slidingmenu.lib.SlidingMenu:
     void setBehindOffsetRes$13462e() -> f
     void setBehindWidth(int) -> b
     void setBehindScrollScale(float) -> a
-    void setBehindCanvasTransformer(com.slidingmenu.lib.SlidingMenu$CanvasTransformer) -> a
+    void setBehindCanvasTransformer(com.github.jfeinstein10.SlidingMenu$CanvasTransformer) -> a
     void setTouchModeAbove(int) -> c
     void setShadowDrawable(int) -> d
     void setShadowDrawable(android.graphics.drawable.Drawable) -> a
@@ -5785,27 +5785,27 @@ com.slidingmenu.lib.SlidingMenu -> com.slidingmenu.lib.SlidingMenu:
     android.os.Parcelable onSaveInstanceState() -> onSaveInstanceState
     void onRestoreInstanceState(android.os.Parcelable) -> onRestoreInstanceState
     boolean fitSystemWindows(android.graphics.Rect) -> fitSystemWindows
-    com.slidingmenu.lib.SlidingMenu$OnOpenListener access$0(com.slidingmenu.lib.SlidingMenu) -> a
-    com.slidingmenu.lib.SlidingMenu$OnCloseListener access$1(com.slidingmenu.lib.SlidingMenu) -> b
-com.slidingmenu.lib.SlidingMenu$1 -> com.slidingmenu.lib.h:
-    com.slidingmenu.lib.SlidingMenu this$0 -> a
+    com.github.jfeinstein10.SlidingMenu$OnOpenListener access$0(com.github.jfeinstein10.SlidingMenu) -> a
+    com.github.jfeinstein10.SlidingMenu$OnCloseListener access$1(com.github.jfeinstein10.SlidingMenu) -> b
+com.github.jfeinstein10.SlidingMenu$1 -> com.slidingmenu.lib.h:
+    com.github.jfeinstein10.SlidingMenu this$0 -> a
     void onPageSelected(int) -> a
-com.slidingmenu.lib.SlidingMenu$CanvasTransformer -> com.slidingmenu.lib.i:
+com.github.jfeinstein10.SlidingMenu$CanvasTransformer -> com.slidingmenu.lib.i:
     void transformCanvas(android.graphics.Canvas,float) -> a
-com.slidingmenu.lib.SlidingMenu$OnCloseListener -> com.slidingmenu.lib.j:
-com.slidingmenu.lib.SlidingMenu$OnClosedListener -> com.slidingmenu.lib.k:
-com.slidingmenu.lib.SlidingMenu$OnOpenListener -> com.slidingmenu.lib.l:
-com.slidingmenu.lib.SlidingMenu$OnOpenedListener -> com.slidingmenu.lib.m:
-com.slidingmenu.lib.SlidingMenu$SavedState -> com.slidingmenu.lib.SlidingMenu$SavedState:
+com.github.jfeinstein10.SlidingMenu$OnCloseListener -> com.slidingmenu.lib.j:
+com.github.jfeinstein10.SlidingMenu$OnClosedListener -> com.slidingmenu.lib.k:
+com.github.jfeinstein10.SlidingMenu$OnOpenListener -> com.slidingmenu.lib.l:
+com.github.jfeinstein10.SlidingMenu$OnOpenedListener -> com.slidingmenu.lib.m:
+com.github.jfeinstein10.SlidingMenu$SavedState -> com.github.jfeinstein10.SlidingMenu$SavedState:
     boolean mBehindShowing -> a
     android.os.Parcelable$Creator CREATOR -> CREATOR
     void writeToParcel(android.os.Parcel,int) -> writeToParcel
-    boolean access$1(com.slidingmenu.lib.SlidingMenu$SavedState) -> a
-com.slidingmenu.lib.SlidingMenu$SavedState$1 -> com.slidingmenu.lib.n:
+    boolean access$1(com.github.jfeinstein10.SlidingMenu$SavedState) -> a
+com.github.jfeinstein10.SlidingMenu$SavedState$1 -> com.slidingmenu.lib.n:
     java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
     java.lang.Object[] newArray(int) -> newArray
-com.slidingmenu.lib.app.SlidingActivity -> com.slidingmenu.lib.app.SlidingActivity:
-    com.slidingmenu.lib.app.SlidingActivityHelper mHelper -> a
+com.github.jfeinstein10.app.SlidingActivity -> com.github.jfeinstein10.app.SlidingActivity:
+    com.github.jfeinstein10.app.SlidingActivityHelper mHelper -> a
     void onCreate(android.os.Bundle) -> onCreate
     void onPostCreate(android.os.Bundle) -> onPostCreate
     android.view.View findViewById(int) -> findViewById
@@ -5815,9 +5815,9 @@ com.slidingmenu.lib.app.SlidingActivity -> com.slidingmenu.lib.app.SlidingActivi
     void setContentView(android.view.View,android.view.ViewGroup$LayoutParams) -> setContentView
     void setBehindContentView(android.view.View) -> setBehindContentView
     boolean onKeyUp(int,android.view.KeyEvent) -> onKeyUp
-com.slidingmenu.lib.app.SlidingActivityHelper -> com.slidingmenu.lib.app.a:
+com.github.jfeinstein10.app.SlidingActivityHelper -> com.github.jfeinstein10.app.a:
     android.app.Activity mActivity -> a
-    com.slidingmenu.lib.SlidingMenu mSlidingMenu -> b
+    com.github.jfeinstein10.SlidingMenu mSlidingMenu -> b
     android.view.View mViewAbove -> c
     android.view.View mViewBehind -> d
     boolean mBroadcasting -> e
@@ -5830,11 +5830,11 @@ com.slidingmenu.lib.app.SlidingActivityHelper -> com.slidingmenu.lib.app.a:
     void onSaveInstanceState(android.os.Bundle) -> a
     void registerAboveContentView$12ebc280(android.view.View) -> a
     void setBehindContentView$12ebc280(android.view.View) -> b
-    com.slidingmenu.lib.SlidingMenu getSlidingMenu() -> c
+    com.github.jfeinstein10.SlidingMenu getSlidingMenu() -> c
     void toggle() -> d
     boolean onKeyUp$4765ad2(int) -> b
-com.slidingmenu.lib.app.SlidingFragmentActivity -> com.slidingmenu.lib.app.SlidingFragmentActivity:
-    com.slidingmenu.lib.app.SlidingActivityHelper mHelper -> a
+com.github.jfeinstein10.app.SlidingFragmentActivity -> com.github.jfeinstein10.app.SlidingFragmentActivity:
+    com.github.jfeinstein10.app.SlidingActivityHelper mHelper -> a
     void onCreate(android.os.Bundle) -> onCreate
     void onPostCreate(android.os.Bundle) -> onPostCreate
     android.view.View findViewById(int) -> findViewById
@@ -5844,12 +5844,12 @@ com.slidingmenu.lib.app.SlidingFragmentActivity -> com.slidingmenu.lib.app.Slidi
     void setContentView(android.view.View,android.view.ViewGroup$LayoutParams) -> setContentView
     void setBehindContentView$13462e() -> b
     void setBehindContentView(android.view.View) -> setBehindContentView
-    com.slidingmenu.lib.SlidingMenu getSlidingMenu() -> c
+    com.github.jfeinstein10.SlidingMenu getSlidingMenu() -> c
     void toggle() -> d
     void setSlidingActionBarEnabled(boolean) -> a
     boolean onKeyUp(int,android.view.KeyEvent) -> onKeyUp
-com.slidingmenu.lib.app.SlidingListActivity -> com.slidingmenu.lib.app.SlidingListActivity:
-    com.slidingmenu.lib.app.SlidingActivityHelper mHelper -> a
+com.github.jfeinstein10.app.SlidingListActivity -> com.github.jfeinstein10.app.SlidingListActivity:
+    com.github.jfeinstein10.app.SlidingActivityHelper mHelper -> a
     void onCreate(android.os.Bundle) -> onCreate
     void onPostCreate(android.os.Bundle) -> onPostCreate
     android.view.View findViewById(int) -> findViewById
@@ -5859,8 +5859,8 @@ com.slidingmenu.lib.app.SlidingListActivity -> com.slidingmenu.lib.app.SlidingLi
     void setContentView(android.view.View,android.view.ViewGroup$LayoutParams) -> setContentView
     void setBehindContentView(android.view.View) -> setBehindContentView
     boolean onKeyUp(int,android.view.KeyEvent) -> onKeyUp
-com.slidingmenu.lib.app.SlidingPreferenceActivity -> com.slidingmenu.lib.app.SlidingPreferenceActivity:
-    com.slidingmenu.lib.app.SlidingActivityHelper mHelper -> a
+com.github.jfeinstein10.app.SlidingPreferenceActivity -> com.github.jfeinstein10.app.SlidingPreferenceActivity:
+    com.github.jfeinstein10.app.SlidingActivityHelper mHelper -> a
     void onCreate(android.os.Bundle) -> onCreate
     void onPostCreate(android.os.Bundle) -> onPostCreate
     android.view.View findViewById(int) -> findViewById

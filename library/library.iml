@@ -3,7 +3,7 @@
   <component name="FacetManager">
     <facet type="android" name="Android">
       <configuration>
-        <option name="GEN_FOLDER_RELATIVE_PATH_APT" value="/gen" />
+        <option name="GEN_FOLDER_RELATIVE_PATH_APT" value="/target" />
         <option name="GEN_FOLDER_RELATIVE_PATH_AIDL" value="/gen" />
         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/AndroidManifest.xml" />
         <option name="RES_FOLDER_RELATIVE_PATH" value="/res" />
@@ -15,7 +15,7 @@
         <option name="CUSTOM_COMPILER_MANIFEST" value="" />
         <option name="APK_PATH" value="" />
         <option name="LIBRARY_PROJECT" value="true" />
-        <option name="RUN_PROCESS_RESOURCES_MAVEN_TASK" value="true" />
+        <option name="RUN_PROCESS_RESOURCES_MAVEN_TASK" value="false" />
         <option name="GENERATE_UNSIGNED_APK" value="false" />
         <option name="CUSTOM_DEBUG_KEYSTORE_PATH" value="" />
         <option name="PACK_TEST_CODE" value="false" />
@@ -34,14 +34,18 @@
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/target/generated-sources/r" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target/classes" />
+      <excludeFolder url="file://$MODULE_DIR$/target/com" />
       <excludeFolder url="file://$MODULE_DIR$/target/generated-sources/combined-assets" />
       <excludeFolder url="file://$MODULE_DIR$/target/generated-sources/combined-resources" />
       <excludeFolder url="file://$MODULE_DIR$/target/generated-sources/extracted-dependencies" />
+      <excludeFolder url="file://$MODULE_DIR$/target/maven-archiver" />
       <excludeFolder url="file://$MODULE_DIR$/target/maven-status" />
+      <excludeFolder url="file://$MODULE_DIR$/target/test-classes" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">

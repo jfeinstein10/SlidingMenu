@@ -31,6 +31,13 @@
       <groupId>com.google.android</groupId>
       <artifactId>support-v4</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>com.github.jfeinstein10</groupId>
+      <artifactId>slidingmenu</artifactId>
+      <type>apklib</type>
+      <version>1.0.0-SNAPSHOT</version>
+    </dependency>
   </dependencies>
 
   <build>
