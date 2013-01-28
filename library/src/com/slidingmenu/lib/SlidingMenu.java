@@ -18,7 +18,6 @@ import android.os.Handler;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -960,7 +959,7 @@ public class SlidingMenu extends RelativeLayout {
 		int topPadding = insets.top;
 		int bottomPadding = insets.bottom;
 		if (!mActionbarOverlay) {
-			Log.v(TAG, "setting padding!");
+			LogManager.logger.v(TAG, "setting padding!");
 			setPadding(leftPadding, topPadding, rightPadding, bottomPadding);
 		}
 		return true;
@@ -978,7 +977,7 @@ public class SlidingMenu extends RelativeLayout {
 		if (layerType != getContent().getLayerType()) {
 			mHandler.post(new Runnable() {
 				public void run() {
-					Log.v(TAG, "changing layerType. hardware? " + (layerType == View.LAYER_TYPE_HARDWARE));
+					LogManager.logger.v(TAG, "changing layerType. hardware? " + (layerType == View.LAYER_TYPE_HARDWARE));
 					getContent().setLayerType(layerType, null);
 					getMenu().setLayerType(layerType, null);
 					if (getSecondaryMenu() != null) {
