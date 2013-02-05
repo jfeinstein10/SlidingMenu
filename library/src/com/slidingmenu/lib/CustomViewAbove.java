@@ -637,8 +637,8 @@ public class CustomViewAbove extends ViewGroup {
 			mActivePointerId = MotionEventCompat.getPointerId(ev, index);
 			if (mActivePointerId == INVALID_POINTER)
 				break;
-			mLastMotionX = mInitialMotionX = MotionEventCompat.getX(ev, mActivePointerId);
-			mLastMotionY = MotionEventCompat.getY(ev, mActivePointerId);
+			mLastMotionX = mInitialMotionX = MotionEventCompat.getX(ev, index);
+			mLastMotionY = MotionEventCompat.getY(ev, index);
 			if (thisTouchAllowed(ev)) {
 				mIsBeingDragged = false;
 				mIsUnableToDrag = false;
