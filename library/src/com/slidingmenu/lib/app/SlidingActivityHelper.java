@@ -10,6 +10,7 @@ import android.view.ViewGroup.LayoutParams;
 
 import com.slidingmenu.lib.R;
 import com.slidingmenu.lib.SlidingMenu;
+import com.slidingmenu.lib.SlidingMode;
 
 public class SlidingActivityHelper {
 
@@ -160,7 +161,7 @@ public class SlidingActivityHelper {
 	 */
 	public void setBehindContentView(View view, LayoutParams layoutParams) {
 		mViewBehind = view;
-		mSlidingMenu.setMenu(mViewBehind);
+		mSlidingMenu.setMenu(mViewBehind, SlidingMode.LEFT);
 	}
 
 	/**
