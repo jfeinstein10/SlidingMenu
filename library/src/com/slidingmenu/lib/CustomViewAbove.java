@@ -788,7 +788,7 @@ public class CustomViewAbove extends ViewGroup {
 		final float y = MotionEventCompat.getY(ev, pointerIndex);
 		final float dy = y - mLastMotionY;
 		final float yDiff = Math.abs(dy);
-		if (xDiff > (isMenuOpen()?mTouchSlop/2:mTouchSlop) && xDiff > yDiff && thisSlideAllowed(dx)) {		
+		if (xDiff > (isMenuOpen()?mTouchSlop/2:mTouchSlop/2) && xDiff > yDiff && thisSlideAllowed(dx)) {		
 			startDrag();
 			mLastMotionX = x;
 			mLastMotionY = y;
