@@ -313,6 +313,8 @@ public class SlidingMenu extends RelativeLayout {
 			ViewGroup decorChild = (ViewGroup) decor.getChildAt(0);
 			// save ActionBar themes that have transparent assets
 			decorChild.setBackgroundResource(background);
+			decor.setBackgroundResource(0);
+			setBackgroundResource(0);
 			decor.removeView(decorChild);
 			decor.addView(this);
 			setContent(decorChild);
