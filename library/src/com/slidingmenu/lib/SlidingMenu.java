@@ -32,6 +32,7 @@ import com.slidingmenu.lib.CustomViewAbove.OnPageChangeListener;
 public class SlidingMenu extends RelativeLayout {
 
 	private static final String TAG = "SlidingMenu";
+    public static final boolean DEBUG = BuildConfig.DEBUG;
 
 	public static final int SLIDING_WINDOW = 0;
 	public static final int SLIDING_CONTENT = 1;
@@ -960,7 +961,7 @@ public class SlidingMenu extends RelativeLayout {
 		int topPadding = insets.top;
 		int bottomPadding = insets.bottom;
 		if (!mActionbarOverlay) {
-			Log.v(TAG, "setting padding!");
+            if (DEBUG) Log.v(TAG, "setting padding!");
 			setPadding(leftPadding, topPadding, rightPadding, bottomPadding);
 		}
 		return true;
@@ -978,7 +979,7 @@ public class SlidingMenu extends RelativeLayout {
 		if (layerType != getContent().getLayerType()) {
 			mHandler.post(new Runnable() {
 				public void run() {
-					Log.v(TAG, "changing layerType. hardware? " + (layerType == View.LAYER_TYPE_HARDWARE));
+                    if (DEBUG) Log.v(TAG, "changing layerType. hardware? " + (layerType == View.LAYER_TYPE_HARDWARE));
 					getContent().setLayerType(layerType, null);
 					getMenu().setLayerType(layerType, null);
 					if (getSecondaryMenu() != null) {

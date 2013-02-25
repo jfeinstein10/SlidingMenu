@@ -18,6 +18,7 @@ import com.slidingmenu.lib.SlidingMenu.CanvasTransformer;
 public class CustomViewBehind extends ViewGroup {
 
 	private static final String TAG = "CustomViewBehind";
+    public static final boolean DEBUG = BuildConfig.DEBUG;
 
 	private static final int MARGIN_THRESHOLD = 48; // dips
 	private int mTouchMode = SlidingMenu.TOUCHMODE_MARGIN;
@@ -225,7 +226,7 @@ public class CustomViewBehind extends ViewGroup {
 			}
 		}
 		if (vis == View.INVISIBLE)
-			Log.v(TAG, "behind INVISIBLE");
+			if (DEBUG) Log.v(TAG, "behind INVISIBLE");
 		setVisibility(vis);
 	}
 
