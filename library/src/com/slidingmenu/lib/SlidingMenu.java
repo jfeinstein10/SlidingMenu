@@ -269,6 +269,10 @@ public class SlidingMenu extends RelativeLayout {
 		setFadeEnabled(fadeEnabled);
 		float fadeDeg = ta.getFloat(R.styleable.SlidingMenu_fadeDegree, 0.33f);
 		setFadeDegree(fadeDeg);
+		boolean contentFadeEnabled = ta.getBoolean(R.styleable.SlidingMenu_contentFadeEnabled, true);
+		setContentFadeEnabled(contentFadeEnabled);
+		float contentFadeDeg = ta.getFloat(R.styleable.SlidingMenu_fadeDegree, 0.65f);
+		setContentFadeDegree(contentFadeDeg);
 		boolean selectorEnabled = ta.getBoolean(R.styleable.SlidingMenu_selectorEnabled, false);
 		setSelectorEnabled(selectorEnabled);
 		int selectorRes = ta.getResourceId(R.styleable.SlidingMenu_selectorDrawable, -1);
@@ -789,6 +793,25 @@ public class SlidingMenu extends RelativeLayout {
 	 */
 	public void setFadeDegree(float f) {
 		mViewBehind.setFadeDegree(f);
+	}
+
+	/**
+	 * Enables or disables the SlidingMenu's content view fade in and out
+	 *
+	 * @param b true to enable fade, false to disable it
+	 */
+	public void setContentFadeEnabled(boolean b) {
+		mViewAbove.setFadeEnabled(b);
+	}
+
+	/**
+	 * Sets how much the SlidingMenu content fades in and out. Fade must be enabled, see {@link #setContentFadeEnabled(boolean)
+	 * setContentFadeEnabled(boolean)}
+	 *
+	 * @param f the new fade degree, between 0.0f and 1.0f
+	 */
+	public void setContentFadeDegree(float f) {
+		mViewAbove.setFadeDegree(f);
 	}
 
 	/**

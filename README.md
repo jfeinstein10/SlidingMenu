@@ -78,6 +78,7 @@ public class SlidingExample extends Activity {
 		menu.setShadowDrawable(R.drawable.shadow);
 		menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
 		menu.setFadeDegree(0.35f);
+		menu.setContentFadeDegree(0.65f);
 		menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
 		menu.setMenu(R.layout.menu);
 	}
@@ -104,6 +105,8 @@ If you decide to use SlidingMenu as a view, you can define it in your xml layout
     sliding:shadowWidth="@dimen/YOUR_SHADOW_WIDTH"
     sliding:fadeEnabled="true|false"
     sliding:fadeDegree="float"
+    sliding:contentFadeEnabled="true|false"
+    sliding:contentFadeDegree="float"
     sliding:selectorEnabled="true|false"
     sliding:selectorDrawable="@drawable/YOUR_SELECTOR"/>
 ```
@@ -127,6 +130,10 @@ Default is no shadow for now.
 and "un-fade" when opening
 * `fadeDegree` - a float representing the "amount" of fade. `1.0f` would mean fade all the way to black when the
 SlidingMenu is closed. `0.0f` would mean do not fade at all.
+* `contentFadeEnabled` - a boolean representing whether or not the <b>above</b> view should fade when the SlidingMenu is <b>opening</b>
+and "un-fade" when <b>closing</b>. Default is true.
+* `contentFadeDegree` - a float representing the "amount" of fade. `1.0f` would mean fade all the way to black when the
+SlidingMenu is opened. `0.0f` would mean do not fade at all. Default is 0.65f.
 * `selectorEnabled` - a boolean representing whether or not a selector should be drawn on the left side of the above
 view showing a selected view on the behind view.
 * `selectorDrawable` - a reference to a drawable to be used as the selector
