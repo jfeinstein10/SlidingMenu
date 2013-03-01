@@ -67,33 +67,4 @@ public class BaseActivity extends SlidingFragmentActivity {
 		getSupportMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-
-	public class BasePagerAdapter extends FragmentPagerAdapter {
-		private List<Fragment> mFragments = new ArrayList<Fragment>();
-		private ViewPager mPager;
-
-		public BasePagerAdapter(FragmentManager fm, ViewPager vp) {
-			super(fm);
-			mPager = vp;
-			mPager.setAdapter(this);
-			for (int i = 0; i < 3; i++) {
-				addTab(new SampleListFragment());
-			}
-		}
-
-		public void addTab(Fragment frag) {
-			mFragments.add(frag);
-		}
-
-		@Override
-		public Fragment getItem(int position) {
-			return mFragments.get(position);
-		}
-
-		@Override
-		public int getCount() {
-			return mFragments.size();
-		}
-	}
-
 }
