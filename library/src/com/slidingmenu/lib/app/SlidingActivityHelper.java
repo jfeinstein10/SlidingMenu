@@ -216,4 +216,8 @@ public class SlidingActivityHelper {
 		return false;
 	}
 
+	public void onContentChanged() {
+		mSlidingMenu.onContentChanged(mActivity);
+	}
+
 }

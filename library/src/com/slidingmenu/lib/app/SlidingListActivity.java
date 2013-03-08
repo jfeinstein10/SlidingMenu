@@ -128,7 +128,7 @@ public class SlidingListActivity extends ListActivity implements SlidingActivity
 	public void showMenu() {
 		mHelper.showMenu();
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.slidingmenu.lib.app.SlidingActivityBase#showSecondaryMenu()
@@ -152,6 +152,12 @@ public class SlidingListActivity extends ListActivity implements SlidingActivity
 		boolean b = mHelper.onKeyUp(keyCode, event);
 		if (b) return b;
 		return super.onKeyUp(keyCode, event);
+	}
+
+	@Override
+	public void onContentChanged() {
+		super.onContentChanged();
+		mHelper.onContentChanged();
 	}
 
 }
