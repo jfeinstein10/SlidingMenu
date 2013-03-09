@@ -32,7 +32,7 @@ public class SlidingActivityHelper {
 	}
 
 	public void onPostCreate(Bundle savedInstanceState) {
-		if (!mViewBehindSet || mViewAbove == null) {
+		if (!mViewBehindSet && mViewAbove == null) {
 			throw new IllegalStateException("Both setBehindContentView must be called " +
 					"in onCreate in addition to setContentView.");
 		}
