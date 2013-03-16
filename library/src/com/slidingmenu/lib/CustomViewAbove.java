@@ -224,15 +224,17 @@ public class CustomViewAbove extends ViewGroup {
 
 		item = mViewBehind.getMenuPage(item);
 
-		final boolean dispatchSelected = mCurItem != item;
+		if( mCurItem != item) { // dispatch selected
+			if (mOnPageChangeListener != null) {
+				mOnPageChangeListener.onPageSelected(item);
+			}
+			if (mInternalPageChangeListener != null) {
+				mInternalPageChangeListener.onPageSelected(item);
+			};
+		}
 		mCurItem = item;
 		final int destX = getDestScrollX(mCurItem);
-		if (dispatchSelected && mOnPageChangeListener != null) {
-			mOnPageChangeListener.onPageSelected(item);
-		}
-		if (dispatchSelected && mInternalPageChangeListener != null) {
-			mInternalPageChangeListener.onPageSelected(item);
-		}
+		
 		if (smoothScroll) {
 			smoothScrollTo(destX, 0, velocity);
 		} else {
