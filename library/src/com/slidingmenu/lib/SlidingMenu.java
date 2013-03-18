@@ -2,6 +2,8 @@ package com.slidingmenu.lib;
 
 import java.lang.reflect.Method;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,14 +13,16 @@ import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.os.Handler;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
@@ -27,39 +31,45 @@ import com.slidingmenu.lib.CustomViewAbove.OnPageChangeListener;
 
 public class SlidingMenu extends RelativeLayout {
 
+	private static final String TAG = "SlidingMenu";
+
+	public static final int SLIDING_WINDOW = 0;
+	public static final int SLIDING_CONTENT = 1;
+	private boolean mActionbarOverlay = false;
+
 	/** Constant value for use with setTouchModeAbove(). Allows the SlidingMenu to be opened with a swipe
 	 * gesture on the screen's margin
 	 */
 	public static final int TOUCHMODE_MARGIN = 0;
-	
+
 	/** Constant value for use with setTouchModeAbove(). Allows the SlidingMenu to be opened with a swipe
 	 * gesture anywhere on the screen
 	 */
 	public static final int TOUCHMODE_FULLSCREEN = 1;
-	
+
 	/** Constant value for use with setTouchModeAbove(). Denies the SlidingMenu to be opened with a swipe
 	 * gesture
 	 */
 	public static final int TOUCHMODE_NONE = 2;
-	
+
 	/** Constant value for use with setMode(). Puts the menu to the left of the content.
 	 */
 	public static final int LEFT = 0;
-	
+
 	/** Constant value for use with setMode(). Puts the menu to the right of the content.
 	 */
 	public static final int RIGHT = 1;
-	
+
 	/** Constant value for use with setMode(). Puts menus to the left and right of the content.
 	 */
 	public static final int LEFT_RIGHT = 2;
 
 	private CustomViewAbove mViewAbove;
-	
+
 	private CustomViewBehind mViewBehind;
-	
+
 	private OnOpenListener mOpenListener;
-	
+
 	private OnCloseListener mCloseListener;
 
 	/**
@@ -72,7 +82,7 @@ public class SlidingMenu extends RelativeLayout {
 	 * method is invoked
 	 */
 	public interface OnOpenListener {
-		
+
 		/**
 		 * On open.
 		 */
@@ -91,7 +101,7 @@ public class SlidingMenu extends RelativeLayout {
 	 * @see OnOpenedEvent
 	 */
 	public interface OnOpenedListener {
-		
+
 		/**
 		 * On opened.
 		 */
@@ -110,7 +120,7 @@ public class SlidingMenu extends RelativeLayout {
 	 * @see OnCloseEvent
 	 */
 	public interface OnCloseListener {
-		
+
 		/**
 		 * On close.
 		 */
@@ -129,7 +139,7 @@ public class SlidingMenu extends RelativeLayout {
 	 * @see OnClosedEvent
 	 */
 	public interface OnClosedListener {
-		
+
 		/**
 		 * On closed.
 		 */
@@ -140,7 +150,7 @@ public class SlidingMenu extends RelativeLayout {
 	 * The Interface CanvasTransformer.
 	 */
 	public interface CanvasTransformer {
-		
+
 		/**
 		 * Transform canvas.
 		 *
@@ -157,6 +167,17 @@ public class SlidingMenu extends RelativeLayout {
 	 */
 	public SlidingMenu(Context context) {
 		this(context, null);
+	}
+
+	/**
+	 * Instantiates a new SlidingMenu and attach to Activity.
+	 *
+	 * @param activity the activity to attach slidingmenu
+	 * @param slideStyle the slidingmenu style
+	 */
+	public SlidingMenu(Activity activity, int slideStyle) {
+		this(activity, null);
+		this.attachToActivity(activity, slideStyle);
 	}
 
 	/**
@@ -178,15 +199,14 @@ public class SlidingMenu extends RelativeLayout {
 	 */
 	public SlidingMenu(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
-
+		
 		LayoutParams behindParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		mViewBehind = new CustomViewBehind(context);
 		addView(mViewBehind, behindParams);
 		LayoutParams aboveParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-		aboveParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 		mViewAbove = new CustomViewAbove(context);
 		addView(mViewAbove, aboveParams);
-		// register the CustomViewBehind2 with the CustomViewAbove
+		// register the CustomViewBehind with the CustomViewAbove
 		mViewAbove.setCustomViewBehind(mViewBehind);
 		mViewBehind.setCustomViewAbove(mViewAbove);
 		mViewAbove.setOnPageChangeListener(new OnPageChangeListener() {
@@ -224,6 +244,8 @@ public class SlidingMenu extends RelativeLayout {
 		}
 		int touchModeAbove = ta.getInt(R.styleable.SlidingMenu_touchModeAbove, TOUCHMODE_MARGIN);
 		setTouchModeAbove(touchModeAbove);
+		int touchModeBehind = ta.getInt(R.styleable.SlidingMenu_touchModeBehind, TOUCHMODE_MARGIN);
+		setTouchModeBehind(touchModeBehind);
 
 		int offsetBehind = (int) ta.getDimension(R.styleable.SlidingMenu_behindOffset, -1);
 		int widthBehind = (int) ta.getDimension(R.styleable.SlidingMenu_behindWidth, -1);
@@ -243,9 +265,9 @@ public class SlidingMenu extends RelativeLayout {
 		}
 		int shadowWidth = (int) ta.getDimension(R.styleable.SlidingMenu_shadowWidth, 0);
 		setShadowWidth(shadowWidth);
-		boolean fadeEnabled = ta.getBoolean(R.styleable.SlidingMenu_behindFadeEnabled, true);
+		boolean fadeEnabled = ta.getBoolean(R.styleable.SlidingMenu_fadeEnabled, true);
 		setFadeEnabled(fadeEnabled);
-		float fadeDeg = ta.getFloat(R.styleable.SlidingMenu_behindFadeDegree, 0.66f);
+		float fadeDeg = ta.getFloat(R.styleable.SlidingMenu_fadeDegree, 0.33f);
 		setFadeDegree(fadeDeg);
 		boolean selectorEnabled = ta.getBoolean(R.styleable.SlidingMenu_selectorEnabled, false);
 		setSelectorEnabled(selectorEnabled);
@@ -253,6 +275,61 @@ public class SlidingMenu extends RelativeLayout {
 		if (selectorRes != -1)
 			setSelectorDrawable(selectorRes);
 		ta.recycle();
+	}
+
+	/**
+	 * Attaches the SlidingMenu to an entire Activity
+	 * 
+	 * @param activity the Activity
+	 * @param slideStyle either SLIDING_CONTENT or SLIDING_WINDOW
+	 */
+	public void attachToActivity(Activity activity, int slideStyle) {
+		attachToActivity(activity, slideStyle, false);
+	}
+
+	/**
+	 * Attaches the SlidingMenu to an entire Activity
+	 * 
+	 * @param activity the Activity
+	 * @param slideStyle either SLIDING_CONTENT or SLIDING_WINDOW
+	 * @param actionbarOverlay whether or not the ActionBar is overlaid
+	 */
+	public void attachToActivity(Activity activity, int slideStyle, boolean actionbarOverlay) {
+		if (slideStyle != SLIDING_WINDOW && slideStyle != SLIDING_CONTENT)
+			throw new IllegalArgumentException("slideStyle must be either SLIDING_WINDOW or SLIDING_CONTENT");
+
+		if (getParent() != null)
+			throw new IllegalStateException("This SlidingMenu appears to already be attached");
+
+		// get the window background
+		TypedArray a = activity.getTheme().obtainStyledAttributes(new int[] {android.R.attr.windowBackground});
+		int background = a.getResourceId(0, 0);
+		a.recycle();
+
+		switch (slideStyle) {
+		case SLIDING_WINDOW:
+			mActionbarOverlay = false;
+			ViewGroup decor = (ViewGroup) activity.getWindow().getDecorView();
+			ViewGroup decorChild = (ViewGroup) decor.getChildAt(0);
+			// save ActionBar themes that have transparent assets
+			decorChild.setBackgroundResource(background);
+			decor.removeView(decorChild);
+			decor.addView(this);
+			setContent(decorChild);
+			break;
+		case SLIDING_CONTENT:
+			mActionbarOverlay = actionbarOverlay;
+			// take the above view out of
+			ViewGroup contentParent = (ViewGroup)activity.findViewById(android.R.id.content);
+			View content = contentParent.getChildAt(0);
+			contentParent.removeView(content);
+			contentParent.addView(this);
+			setContent(content);
+			// save people from having transparent backgrounds
+			if (content.getBackground() == null)
+				content.setBackgroundResource(background);
+			break;
+		}
 	}
 
 	/**
@@ -272,10 +349,9 @@ public class SlidingMenu extends RelativeLayout {
 	 */
 	public void setContent(View view) {
 		mViewAbove.setContent(view);
-//		mViewAbove.invalidate();
 		showContent();
 	}
-	
+
 	/**
 	 * Retrieves the current content.
 	 * @return the current content
@@ -301,16 +377,16 @@ public class SlidingMenu extends RelativeLayout {
 	 */
 	public void setMenu(View v) {
 		mViewBehind.setContent(v);
-//		mViewBehind.invalidate();
 	}
-	
+
 	/**
-	 * Retrieves the current menu.
-	 * @return the current menu
+	 * Retrieves the main menu.
+	 * @return the main menu
 	 */
 	public View getMenu() {
 		return mViewBehind.getContent();
 	}
+
 	/**
 	 * Set the secondary behind view (right menu) content from a layout resource. The resource will be inflated, adding all top-level views
 	 * to the behind view.
@@ -328,9 +404,9 @@ public class SlidingMenu extends RelativeLayout {
 	 */
 	public void setSecondaryMenu(View v) {
 		mViewBehind.setSecondaryContent(v);
-//		mViewBehind.invalidate();
+		//		mViewBehind.invalidate();
 	}
-	
+
 	/**
 	 * Retrieves the current secondary menu (right).
 	 * @return the current menu
@@ -338,7 +414,7 @@ public class SlidingMenu extends RelativeLayout {
 	public View getSecondaryMenu() {
 		return mViewBehind.getSecondaryContent();
 	}
-	
+
 
 	/**
 	 * Sets the sliding enabled.
@@ -357,7 +433,7 @@ public class SlidingMenu extends RelativeLayout {
 	public boolean isSlidingEnabled() {
 		return mViewAbove.isSlidingEnabled();
 	}
-	
+
 	/**
 	 * Sets which side the SlidingMenu should appear on.
 	 * @param mode must be either SlidingMenu.LEFT or SlidingMenu.RIGHT
@@ -368,7 +444,7 @@ public class SlidingMenu extends RelativeLayout {
 		}
 		mViewBehind.setMode(mode);
 	}
-	
+
 	/**
 	 * Returns the current side that the SlidingMenu is on.
 	 * @return the current mode, either SlidingMenu.LEFT or SlidingMenu.RIGHT
@@ -387,10 +463,10 @@ public class SlidingMenu extends RelativeLayout {
 			setSlidingEnabled(false);
 			mViewAbove.setCustomViewBehind(null);
 			mViewAbove.setCurrentItem(1);
-//			mViewBehind.setCurrentItem(0);	
+			//			mViewBehind.setCurrentItem(0);	
 		} else {
 			mViewAbove.setCurrentItem(1);
-//			mViewBehind.setCurrentItem(1);
+			//			mViewBehind.setCurrentItem(1);
 			mViewAbove.setCustomViewBehind(mViewBehind);
 			setSlidingEnabled(true);
 		}
@@ -402,7 +478,7 @@ public class SlidingMenu extends RelativeLayout {
 	public void showMenu() {
 		showMenu(true);
 	}
-	
+
 	/**
 	 * Opens the menu and shows the menu view.
 	 *
@@ -411,7 +487,7 @@ public class SlidingMenu extends RelativeLayout {
 	public void showMenu(boolean animate) {
 		mViewAbove.setCurrentItem(0, animate);
 	}
-	
+
 	/**
 	 * Opens the menu and shows the secondary menu view. Will default to the regular menu
 	 * if there is only one.
@@ -419,7 +495,7 @@ public class SlidingMenu extends RelativeLayout {
 	public void showSecondaryMenu() {
 		showSecondaryMenu(true);
 	}
-	
+
 	/**
 	 * Opens the menu and shows the secondary (right) menu view. Will default to the regular menu
 	 * if there is only one.
@@ -436,7 +512,7 @@ public class SlidingMenu extends RelativeLayout {
 	public void showContent() {
 		showContent(true);
 	}
-	
+
 	/**
 	 * Closes the menu and shows the above view.
 	 *
@@ -445,14 +521,14 @@ public class SlidingMenu extends RelativeLayout {
 	public void showContent(boolean animate) {
 		mViewAbove.setCurrentItem(1, animate);
 	}
-	
+
 	/**
 	 * Toggle the SlidingMenu. If it is open, it will be closed, and vice versa.
 	 */
 	public void toggle() {
 		toggle(true);
 	}
-	
+
 	/**
 	 * Toggle the SlidingMenu. If it is open, it will be closed, and vice versa.
 	 *
@@ -474,6 +550,15 @@ public class SlidingMenu extends RelativeLayout {
 	public boolean isMenuShowing() {
 		return mViewAbove.getCurrentItem() == 0 || mViewAbove.getCurrentItem() == 2;
 	}
+	
+	/**
+	 * Checks if is the behind view showing.
+	 *
+	 * @return Whether or not the behind view is showing
+	 */
+	public boolean isSecondaryMenuShowing() {
+		return mViewAbove.getCurrentItem() == 2;
+	}
 
 	/**
 	 * Gets the behind offset.
@@ -490,11 +575,11 @@ public class SlidingMenu extends RelativeLayout {
 	 * @param i The margin, in pixels, on the right of the screen that the behind view scrolls to.
 	 */
 	public void setBehindOffset(int i) {
-//		RelativeLayout.LayoutParams params = ((RelativeLayout.LayoutParams)mViewBehind.getLayoutParams());
-//		int bottom = params.bottomMargin;
-//		int top = params.topMargin;
-//		int left = params.leftMargin;
-//		params.setMargins(left, top, i, bottom);
+		//		RelativeLayout.LayoutParams params = ((RelativeLayout.LayoutParams)mViewBehind.getLayoutParams());
+		//		int bottom = params.bottomMargin;
+		//		int top = params.topMargin;
+		//		int left = params.leftMargin;
+		//		params.setMargins(left, top, i, bottom);
 		mViewBehind.setWidthOffset(i);
 	}
 
@@ -508,7 +593,7 @@ public class SlidingMenu extends RelativeLayout {
 		int i = (int) getContext().getResources().getDimension(resID);
 		setBehindOffset(i);
 	}
-	
+
 	/**
 	 * Sets the above offset.
 	 *
@@ -517,7 +602,7 @@ public class SlidingMenu extends RelativeLayout {
 	public void setAboveOffset(int i) {
 		mViewAbove.setAboveOffset(i);
 	}
-		
+
 	/**
 	 * Sets the above offset.
 	 *
@@ -550,7 +635,7 @@ public class SlidingMenu extends RelativeLayout {
 		}
 		setBehindOffset(width-i);
 	}
-	
+
 	/**
 	 * Sets the behind width.
 	 *
@@ -618,6 +703,22 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	/**
+	 * Controls whether the SlidingMenu can be opened with a swipe gesture.
+	 * Options are {@link #TOUCHMODE_MARGIN TOUCHMODE_MARGIN}, {@link #TOUCHMODE_FULLSCREEN TOUCHMODE_FULLSCREEN},
+	 * or {@link #TOUCHMODE_NONE TOUCHMODE_NONE}
+	 *
+	 * @param i the new touch mode
+	 */
+	public void setTouchModeBehind(int i) {
+		if (i != TOUCHMODE_FULLSCREEN && i != TOUCHMODE_MARGIN
+				&& i != TOUCHMODE_NONE) {
+			throw new IllegalStateException("TouchMode must be set to either" +
+					"TOUCHMODE_FULLSCREEN or TOUCHMODE_MARGIN or TOUCHMODE_NONE.");
+		}
+		mViewBehind.setTouchMode(i);
+	}
+
+	/**
 	 * Sets the shadow drawable.
 	 *
 	 * @param resId the resource ID of the new shadow drawable
@@ -625,7 +726,7 @@ public class SlidingMenu extends RelativeLayout {
 	public void setShadowDrawable(int resId) {
 		setShadowDrawable(getContext().getResources().getDrawable(resId));
 	}
-	
+
 	/**
 	 * Sets the shadow drawable.
 	 *
@@ -634,7 +735,7 @@ public class SlidingMenu extends RelativeLayout {
 	public void setShadowDrawable(Drawable d) {
 		mViewBehind.setShadowDrawable(d);
 	}
-	
+
 	/**
 	 * Sets the secondary (right) shadow drawable.
 	 *
@@ -643,7 +744,7 @@ public class SlidingMenu extends RelativeLayout {
 	public void setSecondaryShadowDrawable(int resId) {
 		setSecondaryShadowDrawable(getContext().getResources().getDrawable(resId));
 	}
-	
+
 	/**
 	 * Sets the secondary (right) shadow drawable.
 	 *
@@ -696,7 +797,7 @@ public class SlidingMenu extends RelativeLayout {
 	 * @param b true to draw the selector, false to not draw the selector
 	 */
 	public void setSelectorEnabled(boolean b) {
-		mViewAbove.setSelectorEnabled(true);
+		mViewBehind.setSelectorEnabled(true);
 	}
 
 	/**
@@ -705,7 +806,7 @@ public class SlidingMenu extends RelativeLayout {
 	 * @param v the new selected view
 	 */
 	public void setSelectedView(View v) {
-		mViewAbove.setSelectedView(v);
+		mViewBehind.setSelectedView(v);
 	}
 
 	/**
@@ -714,7 +815,7 @@ public class SlidingMenu extends RelativeLayout {
 	 * @param res a resource ID for the selector drawable
 	 */
 	public void setSelectorDrawable(int res) {
-		mViewAbove.setSelectorBitmap(BitmapFactory.decodeResource(getResources(), res));
+		mViewBehind.setSelectorBitmap(BitmapFactory.decodeResource(getResources(), res));
 	}
 
 	/**
@@ -723,7 +824,32 @@ public class SlidingMenu extends RelativeLayout {
 	 * @param b the new selector bitmap
 	 */
 	public void setSelectorBitmap(Bitmap b) {
-		mViewAbove.setSelectorBitmap(b);
+		mViewBehind.setSelectorBitmap(b);
+	}
+
+	/**
+	 * Add a View ignored by the Touch Down event when mode is Fullscreen
+	 *
+	 * @param v a view to be ignored
+	 */
+	public void addIgnoredView(View v) {
+		mViewAbove.addIgnoredView(v);
+	}
+
+	/**
+	 * Remove a View ignored by the Touch Down event when mode is Fullscreen
+	 *
+	 * @param v a view not wanted to be ignored anymore
+	 */
+	public void removeIgnoredView(View v) {
+		mViewAbove.removeIgnoredView(v);
+	}
+
+	/**
+	 * Clear the list of Views ignored by the Touch Down event when mode is Fullscreen
+	 */
+	public void clearIgnoredViews() {
+		mViewAbove.clearIgnoredViews();
 	}
 
 	/**
@@ -765,12 +891,21 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	public static class SavedState extends BaseSavedState {
-		
-		private final boolean mBehindShowing;
 
-		public SavedState(Parcelable superState, boolean isBehindShowing) {
+		private final int mItem;
+
+		public SavedState(Parcelable superState, int item) {
 			super(superState);
-			mBehindShowing = isBehindShowing;
+			mItem = item;
+		}
+
+		private SavedState(Parcel in) {
+			super(in);
+			mItem = in.readInt();
+		}
+
+		public int getItem() {
+			return mItem;
 		}
 
 		/* (non-Javadoc)
@@ -778,24 +913,20 @@ public class SlidingMenu extends RelativeLayout {
 		 */
 		public void writeToParcel(Parcel out, int flags) {
 			super.writeToParcel(out, flags);
-			out.writeByte(mBehindShowing ? (byte)1 : 0);
+			out.writeInt(mItem);
 		}
 
-        public static final Parcelable.Creator<SavedState> CREATOR =
-                new Parcelable.Creator<SavedState>() {
-            public SavedState createFromParcel(Parcel in) {
-                return new SavedState(in);
-            }
+		public static final Parcelable.Creator<SavedState> CREATOR =
+				new Parcelable.Creator<SavedState>() {
+			public SavedState createFromParcel(Parcel in) {
+				return new SavedState(in);
+			}
 
-            public SavedState[] newArray(int size) {
-                return new SavedState[size];
-            }
-        };
-        
-		private SavedState(Parcel in) {
-			super(in);
-			mBehindShowing = in.readByte()!=0;
-		}
+			public SavedState[] newArray(int size) {
+				return new SavedState[size];
+			}
+		};
+
 	}
 
 	/* (non-Javadoc)
@@ -804,7 +935,7 @@ public class SlidingMenu extends RelativeLayout {
 	@Override
 	protected Parcelable onSaveInstanceState() {
 		Parcelable superState = super.onSaveInstanceState();
-		SavedState ss = new SavedState(superState, isMenuShowing());
+		SavedState ss = new SavedState(superState, mViewAbove.getCurrentItem());
 		return ss;
 	}
 
@@ -813,32 +944,49 @@ public class SlidingMenu extends RelativeLayout {
 	 */
 	@Override
 	protected void onRestoreInstanceState(Parcelable state) {
-		if (!(state instanceof SavedState)) {
-			super.onRestoreInstanceState(state);
-			return;
-		}
-
 		SavedState ss = (SavedState)state;
 		super.onRestoreInstanceState(ss.getSuperState());
-
-		if (ss.mBehindShowing) {
-			showMenu();
-		} else {
-			showContent();
-		}
+		mViewAbove.setCurrentItem(ss.getItem());
 	}
 
 	/* (non-Javadoc)
 	 * @see android.view.ViewGroup#fitSystemWindows(android.graphics.Rect)
 	 */
+	@SuppressLint("NewApi")
 	@Override
 	protected boolean fitSystemWindows(Rect insets) {
-        int leftPadding = insets.left;
-        int rightPadding = insets.right;
-        int topPadding = insets.top;
-        int bottomPadding = insets.bottom;
-        setPadding(leftPadding, topPadding, rightPadding, bottomPadding);
-        return true;
+		int leftPadding = insets.left;
+		int rightPadding = insets.right;
+		int topPadding = insets.top;
+		int bottomPadding = insets.bottom;
+		if (!mActionbarOverlay) {
+			Log.v(TAG, "setting padding!");
+			setPadding(leftPadding, topPadding, rightPadding, bottomPadding);
+		}
+		return true;
+	}
+	
+	private Handler mHandler = new Handler();
+
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	public void manageLayers(float percentOpen) {
+		if (Build.VERSION.SDK_INT < 11) return;
+
+		boolean layer = percentOpen > 0.0f && percentOpen < 1.0f;
+		final int layerType = layer ? View.LAYER_TYPE_HARDWARE : View.LAYER_TYPE_NONE;
+
+		if (layerType != getContent().getLayerType()) {
+			mHandler.post(new Runnable() {
+				public void run() {
+					Log.v(TAG, "changing layerType. hardware? " + (layerType == View.LAYER_TYPE_HARDWARE));
+					getContent().setLayerType(layerType, null);
+					getMenu().setLayerType(layerType, null);
+					if (getSecondaryMenu() != null) {
+						getSecondaryMenu().setLayerType(layerType, null);
+					}
+				}
+			});
+		}
 	}
 
 }

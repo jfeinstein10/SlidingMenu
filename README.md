@@ -6,10 +6,12 @@ with sliding menus like those made popular in the Google+, YouTube, and Facebook
 to use it all you want in your Android apps provided that you cite this project and include the license in your app.
 
 SlidingMenu is currently used in some awesome Android apps. Here's a list of some of them: 
+* [Foursquare][15]
 * [Rdio][8]
-* [Zappos][3]
 * [Plume][4]
 * [VLC for Android][5]
+* [ESPN ScoreCenter][14]
+* [Wunderlist 2][13]
 * [The Verge][6]
 * [MTG Familiar][9]
 * [Mantano Reader][10]
@@ -39,7 +41,12 @@ How to Integrate this Library into Your Projects
 ------------------------------------------------
 In order to integrate SlidingMenu into your own projects you can do one of two things.
 
-__1.__      You can embed the SlidingMenu at the Activity level by making your Activity extend `SlidingActivity`.
+__1.__      You can wrap your Activities in a SlidingMenu by constructing it programmatically (`new SlidingMenu(Context context)`)
+and then calling `SlidingMenu.attachToActivity(Activity activity, SlidingMenu.SLIDING_WINDOW | SlidingMenu.SLIDING_CONTENT)`.
+`SLIDING_WINDOW` will include the Title/ActionBar in the content section of the SlidingMenu, while `SLIDING_CONTENT`
+does not. You can check it out in the example app AttachExample Activity.
+
+__2.__      You can embed the SlidingMenu at the Activity level by making your Activity extend `SlidingActivity`.
 * In your Activity's onCreate method, you will have to call `setContentView`, as usual, and also 
 `setBehindContentView`, which has the same syntax as setContentView. `setBehindContentView` will place 
 the view in the "behind" portion of the SlidingMenu. You will have access to the `getSlidingMenu` method so you can
@@ -47,12 +54,38 @@ customize the SlidingMenu to your liking.
 * If you want to use another library such as ActionBarSherlock, you can just change the SlidingActivities to extend
 the SherlockActivities instead of the regular Activities.
 
-__2.__      You can use the SlidingMenu view directly in your xml layouts or programmatically in you Java code.
+__3.__      You can use the SlidingMenu view directly in your xml layouts or programmatically in you Java code.
 * This way, you can treat SlidingMenu as you would any other view type and put it in crazy awesome places like in the
 rows of a ListView.
 * So. Many. Possibilities.
 
-Usage
+Simple Example
+-----
+```java
+public class SlidingExample extends Activity {
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setTitle(R.string.attach);
+		// set the content view
+		setContentView(R.layout.content);
+		// configure the SlidingMenu
+		SlidingMenu menu = new SlidingMenu(this);
+        menu.setMode(SlidingMenu.LEFT);
+		menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+		menu.setShadowWidthRes(R.dimen.shadow_width);
+		menu.setShadowDrawable(R.drawable.shadow);
+		menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+		menu.setFadeDegree(0.35f);
+		menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
+		menu.setMenu(R.layout.menu);
+	}
+    
+}
+```
+
+XML Usage
 -----
 If you decide to use SlidingMenu as a view, you can define it in your xml layouts like this:
 ```xml
@@ -64,7 +97,6 @@ If you decide to use SlidingMenu as a view, you can define it in your xml layout
     sliding:viewAbove="@layout/YOUR_ABOVE_VIEW"
     sliding:viewBehind="@layout/YOUR_BEHIND_BEHIND"
     sliding:touchModeAbove="margin|fullscreen"
-    sliding:touchModeBehind="margin|fullscreen"
     sliding:behindOffset="@dimen/YOUR_OFFSET"
     sliding:behindWidth="@dimen/YOUR_WIDTH"
     sliding:behindScrollScale="@dimen/YOUR_SCALE"
@@ -80,9 +112,6 @@ NOTE : you cannot use both behindOffset and behindWidth. You will get an excepti
 * `viewBehind` - a reference to the layout that you want to use as the behind view of the SlidingMenu
 * `touchModeAbove` - an enum that designates what part of the screen is touchable when the above view is 
 showing. Margin means only the left margin. Fullscreen means the entire screen. Default is margin.
-* `touchModeBehind` - an enum that designates what part of the screen is touchable when the behind view
-is showing. Margin means only what is showing of the above view. Fullscreen means the entire screen.
-Default is margin.
 * `behindOffset` - a dimension representing the number of pixels that you want the above view to show when the
 behind view is showing. Default is 0.
 * `behindWidth` - a dimension representing the width of the behind view. Default is the width of the screen
@@ -142,3 +171,6 @@ License
 [10]: https://play.google.com/store/apps/details?id=com.mantano.reader.android
 [11]: https://play.google.com/store/apps/details?id=com.phonegap.MW3BarracksFree
 [12]: http://forum.xda-developers.com/showthread.php?p=34361296
+[13]: http://bit.ly/xs1sMN
+[14]: https://play.google.com/store/apps/details?id=com.espn.score_center
+[15]: https://play.google.com/store/apps/details?id=com.joelapenna.foursquared

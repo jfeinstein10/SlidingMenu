@@ -3,6 +3,7 @@
 
     <PreferenceCategory android:title="@string/general" >
         <Preference android:title="@string/properties" />
+        <Preference android:title="@string/attach" />
         <Preference android:title="@string/left_and_right" />
         <Preference android:title="@string/changing_fragments" />
         <Preference android:title="@string/responsive_ui" />

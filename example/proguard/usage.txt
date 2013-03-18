@@ -646,12 +646,6 @@ android.support.v4.widget.SimpleCursorAdapter$CursorToStringConverter
 android.support.v4.widget.SimpleCursorAdapter$ViewBinder
 com.slidingmenu.example.BaseActivity$BasePagerAdapter
 com.slidingmenu.example.BuildConfig
-com.slidingmenu.example.ExampleListActivity$ActivityAdapter:
-    134:136:public ExampleListActivity$ActivityAdapter(com.slidingmenu.example.ExampleListActivity,android.content.Context)
-    139:140:public void addInfo(java.lang.String,android.content.Intent)
-com.slidingmenu.example.ExampleListActivity$ActivityInfo:
-    final synthetic com.slidingmenu.example.ExampleListActivity this$0
-    126:129:public ExampleListActivity$ActivityInfo(com.slidingmenu.example.ExampleListActivity,java.lang.String,android.content.Intent)
 com.slidingmenu.example.R
 com.slidingmenu.example.R$array
 com.slidingmenu.example.R$attr
@@ -669,13 +663,13 @@ com.slidingmenu.example.R$styleable
 com.slidingmenu.example.R$xml
 com.slidingmenu.example.Util:
     7:7:public Util()
-com.slidingmenu.lib.CanvasTranformerBuilder
-com.slidingmenu.lib.CanvasTranformerBuilder$1
-com.slidingmenu.lib.CanvasTranformerBuilder$2
-com.slidingmenu.lib.CanvasTranformerBuilder$3
-com.slidingmenu.lib.CanvasTranformerBuilder$4
-com.slidingmenu.lib.CanvasTranformerBuilder$5
-com.slidingmenu.lib.CanvasTranformerBuilder$6
+com.slidingmenu.lib.CanvasTransformerBuilder
+com.slidingmenu.lib.CanvasTransformerBuilder$1
+com.slidingmenu.lib.CanvasTransformerBuilder$2
+com.slidingmenu.lib.CanvasTransformerBuilder$3
+com.slidingmenu.lib.CanvasTransformerBuilder$4
+com.slidingmenu.lib.CanvasTransformerBuilder$5
+com.slidingmenu.lib.CanvasTransformerBuilder$6
 com.slidingmenu.lib.CustomViewAbove:
     private static final java.lang.String TAG
     private static final boolean DEBUG
@@ -683,330 +677,265 @@ com.slidingmenu.lib.CustomViewAbove:
     private static final int MAX_SETTLE_DURATION
     private static final int MIN_DISTANCE_FOR_FLING
     private static final int INVALID_POINTER
-    209:210:void initCustomViewAbove()
-    330:331:public void setOnOpenedListener(com.slidingmenu.lib.SlidingMenu$OnOpenedListener)
-    334:335:public void setOnClosedListener(com.slidingmenu.lib.SlidingMenu$OnClosedListener)
-    368:368:public int getShadowWidth()
-    419:422:public int getDestScrollX()
-    446:446:public int getChildRight(int)
-    475:475:public boolean isSlidingEnabled()
-    489:490:void smoothScrollTo(int,int)
-    604:606:public void setAboveOffset(int)
-    696:696:public int getTouchMode()
-    704:704:protected int getTouchModeBehind()
-    972:972:public float getScrollScale()
-    1098:1107:public void setSelectedView(android.view.View)
-    1174:1191:protected boolean canScroll(android.view.View,boolean,int,int,int)
+    private android.view.View mSelectedView
+    267:268:public void setOnOpenedListener(com.slidingmenu.lib.SlidingMenu$OnOpenedListener)
+    271:272:public void setOnClosedListener(com.slidingmenu.lib.SlidingMenu$OnClosedListener)
+    316:316:public int getContentLeft()
+    332:338:public int getChildWidth(int)
+    343:343:public boolean isSlidingEnabled()
+    357:358:void smoothScrollTo(int,int)
+    421:421:public android.view.View getContent()
+    463:465:public void setAboveOffset(int)
+    553:553:public int getTouchMode()
+    834:846:private void onDrawMenuSelector(android.graphics.Canvas,float)
+    853:862:public void setSelectedView(android.view.View)
+    865:867:private int getSelectedTop()
+    929:946:protected boolean canScroll(android.view.View,boolean,int,int,int)
 com.slidingmenu.lib.CustomViewAbove$SimpleOnPageChangeListener:
-    157:157:public void onPageScrollStateChanged(int)
+    147:147:public void onPageScrollStateChanged(int)
+com.slidingmenu.lib.CustomViewBehind:
+    private static final java.lang.String TAG
+    private static final int MARGIN_THRESHOLD
+    66:66:public android.view.View getContent()
+    81:81:public android.view.View getSecondaryContent()
+    165:165:public float getScrollScale()
+com.slidingmenu.lib.MenuInterface
 com.slidingmenu.lib.R:
-    10:10:public R()
-com.slidingmenu.lib.R$array
+    9:9:public R()
 com.slidingmenu.lib.R$attr
 com.slidingmenu.lib.R$bool
 com.slidingmenu.lib.R$color
 com.slidingmenu.lib.R$dimen
 com.slidingmenu.lib.R$drawable
-com.slidingmenu.lib.R$id:
-    public static final int about
-    public static final int abs__action_bar
-    public static final int abs__action_bar_container
-    public static final int abs__action_bar_subtitle
-    public static final int abs__action_bar_title
-    public static final int abs__action_context_bar
-    public static final int abs__action_menu_divider
-    public static final int abs__action_menu_presenter
-    public static final int abs__action_mode_bar
-    public static final int abs__action_mode_bar_stub
-    public static final int abs__action_mode_close_button
-    public static final int abs__activity_chooser_view_content
-    public static final int abs__checkbox
-    public static final int abs__content
-    public static final int abs__default_activity_button
-    public static final int abs__expand_activities_button
-    public static final int abs__home
-    public static final int abs__icon
-    public static final int abs__image
-    public static final int abs__imageButton
-    public static final int abs__list_item
-    public static final int abs__progress_circular
-    public static final int abs__progress_horizontal
-    public static final int abs__radio
-    public static final int abs__shortcut
-    public static final int abs__split_action_bar
-    public static final int abs__textButton
-    public static final int abs__title
-    public static final int abs__titleDivider
-    public static final int abs__up
-    public static final int behind_width
-    public static final int contact
-    public static final int content_frame
-    public static final int disableHome
-    public static final int fade_degree
-    public static final int fade_enabled
-    public static final int fullscreen
-    public static final int github
-    public static final int github_button
-    public static final int grid_item_img
-    public static final int homeAsUp
-    public static final int licenses
-    public static final int listMode
-    public static final int margin
-    public static final int menu_frame
-    public static final int normal
-    public static final int pager
-    public static final int row_icon
-    public static final int row_title
-    public static final int scroll_scale
-    public static final int shadow_enabled
-    public static final int shadow_width
-    public static final int showCustom
-    public static final int showHome
-    public static final int showTitle
-    public static final int slidingmenulayout
-    public static final int slidingmenumain
-    public static final int slidingmenurowicon
-    public static final int slidingmenurowtitle
-    public static final int tabMode
-    public static final int touch_above
-    public static final int touch_above_full
-    public static final int touch_above_margin
-    public static final int touch_above_none
-    public static final int touch_behind
-    public static final int touch_behind_full
-    public static final int touch_behind_margin
-    public static final int useLogo
-    public static final int wrap_content
-    920:920:public R$id()
+com.slidingmenu.lib.R$id
 com.slidingmenu.lib.R$integer
 com.slidingmenu.lib.R$layout:
-    public static final int abs__action_bar_home
-    public static final int abs__action_bar_tab
-    public static final int abs__action_bar_tab_bar_view
-    public static final int abs__action_bar_title_item
-    public static final int abs__action_menu_item_layout
+    public static final int abs__dialog_title_holo
     public static final int abs__action_menu_layout
     public static final int abs__action_mode_bar
-    public static final int abs__action_mode_close_item
+    public static final int sherlock_spinner_item
+    public static final int shadow
     public static final int abs__activity_chooser_view
+    public static final int abs__popup_menu_item_layout
+    public static final int abs__action_bar_tab_bar_view
+    public static final int abs__action_bar_home
+    public static final int abs__action_menu_item_layout
+    public static final int abs__list_menu_item_radio
+    public static final int abs__action_mode_close_item
     public static final int abs__activity_chooser_view_list_item
-    public static final int abs__dialog_title_holo
+    public static final int slidingmenumainlist
+    public static final int abs__screen_simple_overlay_action_mode
+    public static final int abs__screen_action_bar
+    public static final int list
+    public static final int slidingmenurow
+    public static final int sherlock_spinner_dropdown_item
+    public static final int abs__action_bar_title_item
+    public static final int abs__screen_action_bar_overlay
     public static final int abs__list_menu_item_checkbox
     public static final int abs__list_menu_item_icon
     public static final int abs__list_menu_item_layout
-    public static final int abs__list_menu_item_radio
-    public static final int abs__popup_menu_item_layout
-    public static final int abs__screen_action_bar
-    public static final int abs__screen_action_bar_overlay
     public static final int abs__screen_simple
-    public static final int abs__screen_simple_overlay_action_mode
-    public static final int content_frame
-    public static final int github_button
-    public static final int grid_item
-    public static final int list
-    public static final int list_grid
-    public static final int menu_frame
-    public static final int pager
-    public static final int properties
-    public static final int responsive_content_frame
-    public static final int row
-    public static final int shadow
-    public static final int sherlock_spinner_dropdown_item
-    public static final int sherlock_spinner_item
-    public static final int slidingmenumainlist
-    public static final int slidingmenurow
-    996:996:public R$layout()
-com.slidingmenu.lib.R$menu
+    public static final int abs__action_bar_tab
+    181:181:public R$layout()
 com.slidingmenu.lib.R$string
 com.slidingmenu.lib.R$style
 com.slidingmenu.lib.R$styleable:
-    public static final int SherlockActionBar_background
-    public static final int SherlockActionBar_backgroundSplit
-    public static final int SherlockActionBar_backgroundStacked
-    public static final int SherlockActionBar_customNavigationLayout
+    public static final int SherlockTheme_textColorPrimaryInverse
     public static final int SherlockActionBar_displayOptions
-    public static final int SherlockActionBar_divider
-    public static final int SherlockActionBar_height
-    public static final int SherlockActionBar_homeLayout
-    public static final int SherlockActionBar_icon
-    public static final int SherlockActionBar_indeterminateProgressStyle
-    public static final int SherlockActionBar_itemPadding
-    public static final int SherlockActionBar_logo
-    public static final int SherlockActionBar_navigationMode
-    public static final int SherlockActionBar_progressBarPadding
-    public static final int SherlockActionBar_progressBarStyle
-    public static final int SherlockActionBar_subtitle
-    public static final int SherlockActionBar_subtitleTextStyle
-    public static final int SherlockActionBar_title
-    public static final int SherlockActionBar_titleTextStyle
-    public static final int SherlockActionMenuItemView_android_minWidth
-    public static final int SherlockActionMode_background
-    public static final int SherlockActionMode_backgroundSplit
-    public static final int SherlockActionMode_height
-    public static final int SherlockActionMode_subtitleTextStyle
-    public static final int SherlockActionMode_titleTextStyle
-    public static final int SherlockActivityChooserView_android_background
-    public static final int SherlockActivityChooserView_expandActivityOverflowButtonDrawable
-    public static final int SherlockActivityChooserView_initialActivityCount
-    public static final int SherlockMenuGroup_android_checkableBehavior
-    public static final int SherlockMenuGroup_android_enabled
-    public static final int SherlockMenuGroup_android_id
-    public static final int SherlockMenuGroup_android_menuCategory
-    public static final int SherlockMenuGroup_android_orderInCategory
-    public static final int SherlockMenuGroup_android_visible
-    public static final int SherlockMenuItem_android_actionLayout
-    public static final int SherlockMenuItem_android_actionProviderClass
-    public static final int SherlockMenuItem_android_actionViewClass
-    public static final int SherlockMenuItem_android_alphabeticShortcut
-    public static final int SherlockMenuItem_android_checkable
-    public static final int SherlockMenuItem_android_checked
-    public static final int SherlockMenuItem_android_enabled
-    public static final int SherlockMenuItem_android_icon
-    public static final int SherlockMenuItem_android_id
-    public static final int SherlockMenuItem_android_menuCategory
-    public static final int SherlockMenuItem_android_numericShortcut
-    public static final int SherlockMenuItem_android_onClick
-    public static final int SherlockMenuItem_android_orderInCategory
-    public static final int SherlockMenuItem_android_showAsAction
-    public static final int SherlockMenuItem_android_title
-    public static final int SherlockMenuItem_android_titleCondensed
-    public static final int SherlockMenuItem_android_visible
-    public static final int SherlockMenuView_headerBackground
-    public static final int SherlockMenuView_horizontalDivider
-    public static final int SherlockMenuView_itemBackground
-    public static final int SherlockMenuView_itemIconDisabledAlpha
-    public static final int SherlockMenuView_itemTextAppearance
-    public static final int SherlockMenuView_preserveIconSpacing
-    public static final int SherlockMenuView_verticalDivider
-    public static final int SherlockMenuView_windowAnimationStyle
-    public static final int SherlockSpinner_android_dropDownHorizontalOffset
-    public static final int SherlockSpinner_android_dropDownSelector
-    public static final int SherlockSpinner_android_dropDownVerticalOffset
-    public static final int SherlockSpinner_android_dropDownWidth
-    public static final int SherlockSpinner_android_gravity
-    public static final int SherlockSpinner_android_popupBackground
-    public static final int SherlockSpinner_android_popupPromptView
-    public static final int SherlockSpinner_android_prompt
-    public static final int SherlockTheme_absForceOverflow
-    public static final int SherlockTheme_actionBarDivider
-    public static final int SherlockTheme_actionBarItemBackground
-    public static final int SherlockTheme_actionBarSize
-    public static final int SherlockTheme_actionBarSplitStyle
-    public static final int SherlockTheme_actionBarStyle
-    public static final int SherlockTheme_actionBarTabBarStyle
-    public static final int SherlockTheme_actionBarTabStyle
-    public static final int SherlockTheme_actionBarTabTextStyle
-    public static final int SherlockTheme_actionBarWidgetTheme
-    public static final int SherlockTheme_actionButtonStyle
-    public static final int SherlockTheme_actionDropDownStyle
     public static final int SherlockTheme_actionMenuTextAppearance
-    public static final int SherlockTheme_actionMenuTextColor
-    public static final int SherlockTheme_actionModeBackground
-    public static final int SherlockTheme_actionModeCloseButtonStyle
-    public static final int SherlockTheme_actionModeCloseDrawable
-    public static final int SherlockTheme_actionModePopupWindowStyle
+    public static final int SherlockTheme_listPreferredItemPaddingLeft
+    public static final int SherlockMenuView_itemBackground
+    public static final int SherlockTheme_actionBarDivider
+    public static final int SherlockTheme_homeAsUpIndicator
+    public static final int SherlockMenuItem_android_id
+    public static final int SherlockTheme_actionBarSplitStyle
     public static final int SherlockTheme_actionModeShareDrawable
+    public static final int SherlockTheme_activatedBackgroundIndicator
+    public static final int SherlockActionBar_subtitle
+    public static final int SherlockActionMode_backgroundSplit
+    public static final int SherlockTheme_buttonStyleSmall
+    public static final int SherlockMenuItem_android_icon
+    public static final int SherlockMenuItem_android_title
+    public static final int SherlockTheme_dropdownListPreferredItemHeight
+    public static final int SherlockActivityChooserView_initialActivityCount
+    public static final int SherlockActionBar_itemPadding
+    public static final int SherlockTheme_actionBarWidgetTheme
+    public static final int SlidingMenu_behindOffset
+    public static final int SlidingMenu_selectorEnabled
+    public static final int SherlockSpinner_android_dropDownHorizontalOffset
+    public static final int SherlockMenuGroup_android_orderInCategory
+    public static final int SherlockTheme_actionOverflowButtonStyle
+    public static final int SherlockTheme_spinnerDropDownItemStyle
+    public static final int SherlockTheme_android_windowIsFloating
+    public static final int SherlockActionMode_background
+    public static final int SherlockTheme_actionMenuTextColor
+    public static final int SherlockActionBar_progressBarPadding
+    public static final int SherlockMenuItem_android_titleCondensed
+    public static final int SherlockActionMode_height
+    public static final int SherlockActionMenuItemView_android_minWidth
+    public static final int SherlockTheme_actionBarTabStyle
+    public static final int SherlockTheme_actionSpinnerItemStyle
+    public static final int SherlockActivityChooserView_expandActivityOverflowButtonDrawable
+    public static final int SherlockActionBar_backgroundSplit
+    public static final int SherlockMenuView_headerBackground
+    public static final int SlidingMenu_shadowDrawable
+    public static final int SherlockActionBar_subtitleTextStyle
+    public static final int SherlockActionBar_icon
+    public static final int SherlockTheme_dropDownListViewStyle
+    public static final int SherlockMenuItem_android_alphabeticShortcut
+    public static final int SlidingMenu_viewBehind
+    public static final int SherlockSpinner_android_dropDownWidth
+    public static final int SherlockActionBar_indeterminateProgressStyle
+    public static final int SherlockTheme_textAppearanceLargePopupMenu
+    public static final int SherlockTheme_windowMinWidthMajor
+    public static final int SherlockMenuItem_android_checked
+    public static final int SherlockActionBar_progressBarStyle
+    public static final int SherlockMenuView_horizontalDivider
+    public static final int SlidingMenu_behindWidth
+    public static final int SherlockTheme_actionBarStyle
+    public static final int SherlockTheme_windowSplitActionBar
+    public static final int SherlockMenuGroup_android_enabled
+    public static final int SherlockSpinner_android_gravity
+    public static final int SherlockActionBar_customNavigationLayout
+    public static final int SherlockSpinner_android_prompt
+    public static final int SherlockTheme_actionBarTabBarStyle
+    public static final int SherlockActionBar_title
+    public static final int SherlockMenuItem_android_menuCategory
+    public static final int SherlockActionBar_height
+    public static final int SherlockActionBar_navigationMode
+    public static final int SherlockTheme_actionBarTabTextStyle
+    public static final int SherlockTheme_windowMinWidthMinor
+    public static final int SherlockMenuItem_android_actionViewClass
+    public static final int SherlockMenuView_itemTextAppearance
+    public static final int SherlockTheme_actionModeBackground
+    public static final int SherlockMenuItem_android_checkable
+    public static final int SherlockTheme_actionModeCloseDrawable
+    public static final int SherlockTheme_windowNoTitle
+    public static final int SherlockTheme_textAppearanceSmall
+    public static final int SherlockSpinner_android_dropDownVerticalOffset
+    public static final int SherlockMenuView_verticalDivider
+    public static final int SherlockMenuGroup_android_visible
+    public static final int SherlockActionMode_subtitleTextStyle
+    public static final int SherlockMenuView_itemIconDisabledAlpha
+    public static final int SherlockTheme_actionBarItemBackground
+    public static final int SherlockTheme_textColorPrimary
+    public static final int SherlockTheme_listPreferredItemHeightSmall
+    public static final int SherlockTheme_windowContentOverlay
+    public static final int SherlockTheme_listPopupWindowStyle
+    public static final int SherlockMenuGroup_android_menuCategory
+    public static final int SherlockActionBar_logo
+    public static final int SherlockMenuItem_android_actionProviderClass
+    public static final int SherlockTheme_actionBarSize
+    public static final int SherlockActionBar_backgroundStacked
+    public static final int SherlockTheme_actionModeCloseButtonStyle
+    public static final int SherlockActivityChooserView_android_background
+    public static final int SherlockTheme_absForceOverflow
+    public static final int SlidingMenu_shadowWidth
+    public static final int SherlockTheme_dividerVertical
+    public static final int SherlockTheme_actionModePopupWindowStyle
+    public static final int SherlockTheme_textAppearanceSmallPopupMenu
+    public static final int SherlockSpinner_android_popupBackground
+    public static final int SherlockTheme_popupMenuStyle
+    public static final int SherlockSpinner_android_popupPromptView
+    public static final int SlidingMenu_selectorDrawable
+    public static final int SherlockActionBar_background
+    public static final int SherlockSpinner_android_dropDownSelector
     public static final int SherlockTheme_actionModeSplitBackground
     public static final int SherlockTheme_actionModeStyle
-    public static final int SherlockTheme_actionOverflowButtonStyle
-    public static final int SherlockTheme_actionSpinnerItemStyle
-    public static final int SherlockTheme_activatedBackgroundIndicator
-    public static final int SherlockTheme_activityChooserViewStyle
-    public static final int SherlockTheme_android_windowIsFloating
-    public static final int SherlockTheme_buttonStyleSmall
-    public static final int SherlockTheme_dividerVertical
-    public static final int SherlockTheme_dropDownListViewStyle
-    public static final int SherlockTheme_dropdownListPreferredItemHeight
-    public static final int SherlockTheme_homeAsUpIndicator
-    public static final int SherlockTheme_listPopupWindowStyle
-    public static final int SherlockTheme_listPreferredItemHeightSmall
-    public static final int SherlockTheme_listPreferredItemPaddingLeft
+    public static final int SlidingMenu_mode
+    public static final int SherlockMenuView_windowAnimationStyle
     public static final int SherlockTheme_listPreferredItemPaddingRight
-    public static final int SherlockTheme_popupMenuStyle
-    public static final int SherlockTheme_spinnerDropDownItemStyle
-    public static final int SherlockTheme_spinnerItemStyle
-    public static final int SherlockTheme_textAppearanceLargePopupMenu
-    public static final int SherlockTheme_textAppearanceListItemSmall
-    public static final int SherlockTheme_textAppearanceSmall
-    public static final int SherlockTheme_textAppearanceSmallPopupMenu
-    public static final int SherlockTheme_textColorPrimary
-    public static final int SherlockTheme_textColorPrimaryDisableOnly
-    public static final int SherlockTheme_textColorPrimaryInverse
-    public static final int SherlockTheme_windowActionBar
-    public static final int SherlockTheme_windowActionBarOverlay
-    public static final int SherlockTheme_windowActionModeOverlay
-    public static final int SherlockTheme_windowContentOverlay
-    public static final int SherlockTheme_windowMinWidthMajor
-    public static final int SherlockTheme_windowMinWidthMinor
-    public static final int SherlockTheme_windowNoTitle
-    public static final int SherlockTheme_windowSplitActionBar
-    public static final int SlidingMenu_behindFadeDegree
-    public static final int SlidingMenu_behindFadeEnabled
-    public static final int SlidingMenu_behindOffset
-    public static final int SlidingMenu_behindScrollScale
-    public static final int SlidingMenu_behindWidth
-    public static final int SlidingMenu_selectorDrawable
-    public static final int SlidingMenu_selectorEnabled
-    public static final int SlidingMenu_shadowDrawable
-    public static final int SlidingMenu_shadowWidth
+    public static final int SherlockMenuItem_android_numericShortcut
+    public static final int SherlockMenuItem_android_showAsAction
+    public static final int SherlockTheme_actionButtonStyle
     public static final int SlidingMenu_touchModeAbove
-    public static final int SlidingMenu_touchModeBehind
+    public static final int SherlockMenuGroup_android_checkableBehavior
+    public static final int SherlockMenuGroup_android_id
+    public static final int SherlockTheme_actionDropDownStyle
+    public static final int SlidingMenu_behindScrollScale
+    public static final int SherlockActionMode_titleTextStyle
+    public static final int SherlockTheme_textColorPrimaryDisableOnly
+    public static final int SherlockTheme_textAppearanceListItemSmall
+    public static final int SherlockTheme_windowActionModeOverlay
+    public static final int SherlockActionBar_homeLayout
+    public static final int SlidingMenu_behindFadeEnabled
+    public static final int SherlockActionBar_divider
+    public static final int SherlockTheme_spinnerItemStyle
+    public static final int SherlockMenuItem_android_visible
+    public static final int SherlockMenuItem_android_orderInCategory
     public static final int SlidingMenu_viewAbove
-    public static final int SlidingMenu_viewBehind
-    1188:1188:public R$styleable()
-com.slidingmenu.lib.R$xml
+    public static final int SherlockActionBar_titleTextStyle
+    public static final int SherlockMenuView_preserveIconSpacing
+    public static final int SherlockTheme_windowActionBar
+    public static final int SherlockTheme_activityChooserViewStyle
+    public static final int SherlockMenuItem_android_enabled
+    public static final int SherlockMenuItem_android_onClick
+    public static final int SherlockMenuItem_android_actionLayout
+    public static final int SlidingMenu_behindFadeDegree
+    public static final int SherlockTheme_windowActionBarOverlay
+    210:210:public R$styleable()
 com.slidingmenu.lib.SlidingMenu:
     public static final int TOUCHMODE_MARGIN
     public static final int TOUCHMODE_FULLSCREEN
     public static final int TOUCHMODE_NONE
-    43:68:public static void attachSlidingMenu(android.app.Activity,com.slidingmenu.lib.SlidingMenu,boolean)
-    195:195:public boolean isSlidingEnabled()
-    204:215:public void setStatic(boolean)
-    238:239:public void toggle()
-    241:246:public void toggle(boolean)
-    261:261:public int getBehindOffset()
-    292:293:public void setAboveOffset(int)
-    322:324:public void setBehindWidthRes(int)
-    336:338:public void setAboveOffsetRes(int)
-    345:345:public float getBehindScrollScale()
-    362:362:public int getTouchModeAbove()
-    375:375:public int getTouchModeBehind()
-    416:417:public void setSelectedView(android.view.View)
-    424:425:public void setSelectorDrawable(android.graphics.Bitmap)
-    429:430:public void setOnOpenListener(com.slidingmenu.lib.SlidingMenu$OnOpenListener)
-    434:435:public void setOnCloseListener(com.slidingmenu.lib.SlidingMenu$OnCloseListener)
-    438:439:public void setOnOpenedListener(com.slidingmenu.lib.SlidingMenu$OnOpenedListener)
-    442:443:public void setOnClosedListener(com.slidingmenu.lib.SlidingMenu$OnClosedListener)
+    public static final int LEFT
+    public static final int RIGHT
+    public static final int LEFT_RIGHT
+    284:284:public android.view.View getContent()
+    312:312:public android.view.View getMenu()
+    339:339:public android.view.View getSecondaryMenu()
+    358:358:public boolean isSlidingEnabled()
+    386:397:public void setStatic(boolean)
+    420:421:public void showSecondaryMenu()
+    430:431:public void showSecondaryMenu(boolean)
+    484:484:public int getBehindOffset()
+    518:519:public void setAboveOffset(int)
+    527:529:public void setAboveOffsetRes(int)
+    561:563:public void setBehindWidthRes(int)
+    571:571:public float getBehindScrollScale()
+    601:601:public int getTouchModeAbove()
+    708:709:public void setSelectedView(android.view.View)
+    726:727:public void setSelectorBitmap(android.graphics.Bitmap)
+    736:737:public void setOnOpenListener(com.slidingmenu.lib.SlidingMenu$OnOpenListener)
+    746:747:public void setOnCloseListener(com.slidingmenu.lib.SlidingMenu$OnCloseListener)
+    755:756:public void setOnOpenedListener(com.slidingmenu.lib.SlidingMenu$OnOpenedListener)
+    764:765:public void setOnClosedListener(com.slidingmenu.lib.SlidingMenu$OnClosedListener)
 com.slidingmenu.lib.SlidingMenu$1:
     public static final int POSITION_OPEN
     public static final int POSITION_CLOSE
 com.slidingmenu.lib.app.SlidingActivity:
-    59:60:public void setBehindContentView(int)
-    71:71:public com.slidingmenu.lib.SlidingMenu getSlidingMenu()
-    75:76:public void toggle()
-    79:80:public void showAbove()
-    83:84:public void showBehind()
-    87:88:public void setSlidingActionBarEnabled(boolean)
+    83:84:public void setBehindContentView(int)
+    104:104:public com.slidingmenu.lib.SlidingMenu getSlidingMenu()
+    111:112:public void toggle()
+    118:119:public void showContent()
+    125:126:public void showMenu()
+    132:133:public void showSecondaryMenu()
+    139:140:public void setSlidingActionBarEnabled(boolean)
 com.slidingmenu.lib.app.SlidingActivityBase
 com.slidingmenu.lib.app.SlidingActivityHelper:
-    98:100:public void setContentView(android.view.View)
+    153:155:public void setContentView(android.view.View)
+    196:197:public void showMenu()
+    204:205:public void showSecondaryMenu()
 com.slidingmenu.lib.app.SlidingFragmentActivity:
-    79:80:public void showAbove()
-    83:84:public void showBehind()
+    118:119:public void showContent()
+    125:126:public void showMenu()
+    132:133:public void showSecondaryMenu()
 com.slidingmenu.lib.app.SlidingListActivity:
-    63:64:public void setBehindContentView(int)
-    75:75:public com.slidingmenu.lib.SlidingMenu getSlidingMenu()
-    79:80:public void toggle()
-    83:84:public void showAbove()
-    87:88:public void showBehind()
-    91:92:public void setSlidingActionBarEnabled(boolean)
-com.slidingmenu.lib.app.SlidingMapActivity:
-    60:61:public void setBehindContentView(int)
-    72:72:public com.slidingmenu.lib.SlidingMenu getSlidingMenu()
-    76:77:public void toggle()
-    80:81:public void showAbove()
-    84:85:public void showBehind()
-    88:89:public void setSlidingActionBarEnabled(boolean)
+    87:88:public void setBehindContentView(int)
+    108:108:public com.slidingmenu.lib.SlidingMenu getSlidingMenu()
+    115:116:public void toggle()
+    122:123:public void showContent()
+    129:130:public void showMenu()
+    137:138:public void showSecondaryMenu()
+    144:145:public void setSlidingActionBarEnabled(boolean)
+com.slidingmenu.lib.app.SlidingPreferenceActivity:
+    83:84:public void setBehindContentView(int)
+    104:104:public com.slidingmenu.lib.SlidingMenu getSlidingMenu()
+    111:112:public void toggle()
+    118:119:public void showContent()
+    125:126:public void showMenu()
+    132:133:public void showSecondaryMenu()
+    139:140:public void setSlidingActionBarEnabled(boolean)
 crittercism.android.f:
     private static final long serialVersionUID
 crittercism.android.g:
