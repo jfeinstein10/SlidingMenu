@@ -25,14 +25,10 @@ public class BaseActivity extends SlidingFragmentActivity {
 		mTitleRes = titleRes;
 	}
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-
-		setTitle(mTitleRes);
-
+	private void initSlidingMenu() {
 		// set the Behind View
 		setBehindContentView(R.layout.menu_frame);
+		
 		FragmentTransaction t = this.getSupportFragmentManager().beginTransaction();
 		mFrag = new SampleListFragment();
 		t.replace(R.id.menu_frame, mFrag);
@@ -46,7 +42,20 @@ public class BaseActivity extends SlidingFragmentActivity {
 		sm.setFadeDegree(0.35f);
 		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);			
+	}
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		setTitle(mTitleRes);
+
+		if (savedInstanceState == null) {
+			initSlidingMenu();
+		} else {
+			mFrag = (ListFragment)this.getSupportFragmentManager().findFragmentById(R.id.menu_frame);			
+		}
 	}
 
 	@Override
