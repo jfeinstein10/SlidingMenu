@@ -11,6 +11,8 @@ SlidingMenu is currently used in some awesome Android apps. Here's a list of som
 * [Plume][4]
 * [VLC for Android][5]
 * [ESPN ScoreCenter][14]
+* [MLS MatchDay][16]
+* [9GAG][17]
 * [Wunderlist 2][13]
 * [The Verge][6]
 * [MTG Familiar][9]
@@ -174,3 +176,5 @@ License
 [13]: http://bit.ly/xs1sMN
 [14]: https://play.google.com/store/apps/details?id=com.espn.score_center
 [15]: https://play.google.com/store/apps/details?id=com.joelapenna.foursquared
+[16]: https://play.google.com/store/apps/details?id=com.mlssoccer
+[17]: https://play.google.com/store/apps/details?id=com.ninegag.android.app
