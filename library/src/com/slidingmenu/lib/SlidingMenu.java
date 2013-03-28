@@ -71,6 +71,8 @@ public class SlidingMenu extends RelativeLayout {
 	private OnOpenListener mOpenListener;
 
 	private OnCloseListener mCloseListener;
+	
+	private boolean useHardwareAcceleration = true;
 
 	/**
 	 * The listener interface for receiving onOpen events.
@@ -277,6 +279,18 @@ public class SlidingMenu extends RelativeLayout {
 		ta.recycle();
 	}
 
+	/**
+	 * Sets the use HAL boolean. Turning off HAL in Post-Honeycomb
+	 * will allow the sliding menu to be use in conjunction with 
+	 * Webview without having any black or white pattern redrawing
+	 * when sliding.
+	 * 
+	 * @param useHAL the boolean
+	 */
+	public void setHardwareAccelerationUse(boolean useHAL){
+		useHardwareAcceleration = useHAL;
+	}
+	
 	/**
 	 * Attaches the SlidingMenu to an entire Activity
 	 * 
@@ -971,6 +985,7 @@ public class SlidingMenu extends RelativeLayout {
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public void manageLayers(float percentOpen) {
 		if (Build.VERSION.SDK_INT < 11) return;
+		if (!useHardwareAcceleration) return;
 
 		boolean layer = percentOpen > 0.0f && percentOpen < 1.0f;
 		final int layerType = layer ? View.LAYER_TYPE_HARDWARE : View.LAYER_TYPE_NONE;
