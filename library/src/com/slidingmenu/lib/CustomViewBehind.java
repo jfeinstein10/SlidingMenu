@@ -53,6 +53,14 @@ public class CustomViewBehind extends ViewGroup {
 		mWidthOffset = i;
 		requestLayout();
 	}
+	
+	public void setMarginThreshold(int marginThreshold) {
+		mMarginThreshold = marginThreshold;
+	}
+	
+	public int getMarginThreshold() {
+		return mMarginThreshold;
+	}
 
 	public int getBehindWidth() {
 		return mContent.getWidth();

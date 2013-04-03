@@ -655,6 +655,22 @@ public class SlidingMenu extends RelativeLayout {
 	public float getBehindScrollScale() {
 		return mViewBehind.getScrollScale();
 	}
+	
+	/**
+	 * Gets the touch mode margin threshold
+	 * @return the touch mode margin threshold
+	 */
+	public int getTouchmodeMarginThreshold() {
+		return mViewBehind.getMarginThreshold();
+	}
+	
+	/**
+	 * Set the touch mode margin threshold
+	 * @param touchmodeMarginThreshold
+	 */
+	public void setTouchmodeMarginThreshold(int touchmodeMarginThreshold) {
+		mViewBehind.setMarginThreshold(touchmodeMarginThreshold);
+	}
 
 	/**
 	 * Sets the behind scroll scale.
