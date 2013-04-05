@@ -982,8 +982,6 @@ public class SlidingMenu extends RelativeLayout {
 		return true;
 	}
 	
-	private Handler mHandler = new Handler();
-
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public void manageLayers(float percentOpen) {
 		if (Build.VERSION.SDK_INT < 11) return;
@@ -992,7 +990,7 @@ public class SlidingMenu extends RelativeLayout {
 		final int layerType = layer ? View.LAYER_TYPE_HARDWARE : View.LAYER_TYPE_NONE;
 
 		if (layerType != getContent().getLayerType()) {
-			mHandler.post(new Runnable() {
+			getHandler().post(new Runnable() {
 				public void run() {
 					Log.v(TAG, "changing layerType. hardware? " + (layerType == View.LAYER_TYPE_HARDWARE));
 					getContent().setLayerType(layerType, null);
