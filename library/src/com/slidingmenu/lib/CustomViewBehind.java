@@ -28,11 +28,14 @@ public class CustomViewBehind extends ViewGroup {
 	private View mSecondaryContent;
 	private int mMarginThreshold;
 	private int mWidthOffset;
+	private int mScreenWidth;
 	private CanvasTransformer mTransformer;
 	private boolean mChildrenEnabled;
 
 	public CustomViewBehind(Context context) {
 		this(context, null);
+		mScreenWidth = getResources().getDisplayMetrics().widthPixels;
+		Log.i(TAG, "mScreenWidth:" + mScreenWidth);
 	}
 
 	public CustomViewBehind(Context context, AttributeSet attrs) {
@@ -50,8 +53,11 @@ public class CustomViewBehind extends ViewGroup {
 	}
 
 	public void setWidthOffset(int i) {
-		mWidthOffset = i;
-		requestLayout();
+		if (mWidthOffset != i) {
+			mWidthOffset = i;
+			Log.i(TAG, "setWidthOffset: "+i);
+			requestLayout();
+		}
 	}
 	
 	public void setMarginThreshold(int marginThreshold) {
@@ -128,6 +134,7 @@ public class CustomViewBehind extends ViewGroup {
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
 		final int width = r - l;
 		final int height = b - t;
+		Log.i(TAG, "onLayout: "+l+" "+t+" "+r+" "+b);
 		mContent.layout(0, 0, width-mWidthOffset, height);
 		if (mSecondaryContent != null)
 			mSecondaryContent.layout(0, 0, width-mWidthOffset, height);
@@ -252,12 +259,12 @@ public class CustomViewBehind extends ViewGroup {
 			case 2:
 				return content.getLeft() + getBehindWidth();	
 			}
-		} else if (mMode == SlidingMenu.LEFT_RIGHT) {
+		} else if (mMode == SlidingMenu.LEFT_RIGHT) {			
 			switch (page) {
 			case 0:
-				return content.getLeft() - getBehindWidth();
+				return content.getLeft() - (mScreenWidth - mWidthOffset);
 			case 2:
-				return content.getLeft() + getBehindWidth();
+				return content.getLeft() + (mScreenWidth - mWidthOffset);
 			}
 		}
 		return content.getLeft();

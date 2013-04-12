@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import com.slidingmenu.example.fragments.ColorFragment;
 import com.slidingmenu.lib.SlidingMenu;
 import com.slidingmenu.lib.SlidingMenu.OnClosedListener;
+import com.slidingmenu.lib.SlidingMenu.OnOpenListener;
 import com.slidingmenu.lib.SlidingMenu.OnOpenedListener;
 
 
@@ -35,6 +36,18 @@ public class LeftAndRightActivity extends BaseActivity {
 		.beginTransaction()
 		.replace(R.id.menu_frame_two, new SampleListFragment())
 		.commit();
+		
+		final SlidingMenu sm = getSlidingMenu();
+		sm.setOnOpenListener(new OnOpenListener(){
+			@Override
+			public void onOpen() {
+				sm.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+			}});
+		sm.setOnOpenSecondaryListener(new OnOpenListener(){
+			@Override
+			public void onOpen() {
+				sm.setBehindOffsetRes(R.dimen.slidingmenu_right_offset);
+			}});
 	}
 
 }

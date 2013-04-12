@@ -68,7 +68,7 @@ public class SlidingMenu extends RelativeLayout {
 
 	private CustomViewBehind mViewBehind;
 
-	private OnOpenListener mOpenListener;
+	private OnOpenListener mOpenListener, mSecondaryOpenListener;
 
 	private OnCloseListener mCloseListener;
 
@@ -212,15 +212,27 @@ public class SlidingMenu extends RelativeLayout {
 		mViewAbove.setOnPageChangeListener(new OnPageChangeListener() {
 			public static final int POSITION_OPEN = 0;
 			public static final int POSITION_CLOSE = 1;
+			public static final int POSITION_OPEN2ED = 2;
 
 			public void onPageScrolled(int position, float positionOffset,
-					int positionOffsetPixels) { }
+					int positionOffsetPixels) { 
+				Log.i("OnPageChangeListener", position+" positionOffset: "+positionOffset+" positionOffsetPixels:"+positionOffsetPixels);
+				
+				if (position == POSITION_OPEN && mOpenListener != null) {
+					if (positionOffset < 0) mOpenListener.onOpen();
+				}
+				if (position == POSITION_OPEN && mSecondaryOpenListener != null) {
+					if (positionOffset > 0) mSecondaryOpenListener.onOpen();
+				}
+			}
 
 			public void onPageSelected(int position) {
 				if (position == POSITION_OPEN && mOpenListener != null) {
 					mOpenListener.onOpen();
 				} else if (position == POSITION_CLOSE && mCloseListener != null) {
 					mCloseListener.onClose();
+				} else if (position == POSITION_OPEN2ED && mSecondaryOpenListener != null) {
+					mSecondaryOpenListener.onOpen();
 				}
 			}
 		});
@@ -476,7 +488,7 @@ public class SlidingMenu extends RelativeLayout {
 	 * Opens the menu and shows the menu view.
 	 */
 	public void showMenu() {
-		showMenu(true);
+		if (isSlidingEnabled())	showMenu(true);
 	}
 
 	/**
@@ -485,6 +497,7 @@ public class SlidingMenu extends RelativeLayout {
 	 * @param animate true to animate the transition, false to ignore animation
 	 */
 	public void showMenu(boolean animate) {
+		if (mOpenListener != null) mOpenListener.onOpen();
 		mViewAbove.setCurrentItem(0, animate);
 	}
 
@@ -493,7 +506,7 @@ public class SlidingMenu extends RelativeLayout {
 	 * if there is only one.
 	 */
 	public void showSecondaryMenu() {
-		showSecondaryMenu(true);
+		if (isSlidingEnabled())	showSecondaryMenu(true);
 	}
 
 	/**
@@ -503,6 +516,7 @@ public class SlidingMenu extends RelativeLayout {
 	 * @param animate true to animate the transition, false to ignore animation
 	 */
 	public void showSecondaryMenu(boolean animate) {
+		if (mSecondaryOpenListener != null) mSecondaryOpenListener.onOpen();
 		mViewAbove.setCurrentItem(2, animate);
 	}
 
@@ -876,6 +890,15 @@ public class SlidingMenu extends RelativeLayout {
 	public void setOnOpenListener(OnOpenListener listener) {
 		//mViewAbove.setOnOpenListener(listener);
 		mOpenListener = listener;
+	}
+
+	/**
+	 * Sets the OnOpenSecondaryListener. {@link OnOpenListener#onOpen() OnOpenListener.onOpen()} will be called when the Secondary SlidingMenu is opened
+	 *
+	 * @param listener the new OnOpenListener
+	 */
+	public void setOnOpenSecondaryListener(OnOpenListener listener) {
+		mSecondaryOpenListener = listener;
 	}
 
 	/**
