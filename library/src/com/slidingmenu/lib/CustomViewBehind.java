@@ -145,7 +145,7 @@ public class CustomViewBehind extends ViewGroup {
 			mSecondaryContent.measure(contentWidth, contentHeight);
 	}
 
-	private int mMode;
+	private int mMode = SlidingMenu.LEFT;
 	private boolean mFadeEnabled;
 	private final Paint mFadePaint = new Paint();
 	private float mScrollScale;

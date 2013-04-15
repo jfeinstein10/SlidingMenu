@@ -54,15 +54,15 @@ public class SlidingMenu extends RelativeLayout {
 
 	/** Constant value for use with setMode(). Puts the menu to the left of the content.
 	 */
-	public static final int LEFT = 0;
+	public static final int LEFT = 1;
 
 	/** Constant value for use with setMode(). Puts the menu to the right of the content.
 	 */
-	public static final int RIGHT = 1;
+	public static final int RIGHT = 2;
 
 	/** Constant value for use with setMode(). Puts menus to the left and right of the content.
 	 */
-	public static final int LEFT_RIGHT = 2;
+	public static final int LEFT_RIGHT = LEFT | RIGHT;
 
 	private CustomViewAbove mViewAbove;
 

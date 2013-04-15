@@ -18,8 +18,8 @@
 
     <declare-styleable name="SlidingMenu">
         <attr name="mode">
-            <enum name="left" value="0" />
-            <enum name="right" value="1" />
+            <flag name="left" value="1" />
+            <flag name="right" value="2" />
         </attr>
         <attr name="viewAbove" format="reference" />
         <attr name="viewBehind" format="reference" />
