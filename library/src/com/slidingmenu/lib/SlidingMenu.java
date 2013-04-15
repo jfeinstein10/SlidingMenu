@@ -242,7 +242,13 @@ public class SlidingMenu extends RelativeLayout {
 		} else {
 			setMenu(new FrameLayout(context));
 		}
-		int touchModeAbove = ta.getInt(R.styleable.SlidingMenu_touchModeAbove, TOUCHMODE_MARGIN);
+        int secondaryView = ta.getResourceId(R.styleable.SlidingMenu_viewSecondary, -1);
+        if (secondaryView != -1) {
+            setSecondaryMenu(secondaryView);
+        } else {
+            setSecondaryMenu(new FrameLayout(context));
+        }
+        int touchModeAbove = ta.getInt(R.styleable.SlidingMenu_touchModeAbove, TOUCHMODE_MARGIN);
 		setTouchModeAbove(touchModeAbove);
 		int touchModeBehind = ta.getInt(R.styleable.SlidingMenu_touchModeBehind, TOUCHMODE_MARGIN);
 		setTouchModeBehind(touchModeBehind);
@@ -263,6 +269,10 @@ public class SlidingMenu extends RelativeLayout {
 		if (shadowRes != -1) {
 			setShadowDrawable(shadowRes);
 		}
+        int secondaryShadowRes = ta.getResourceId(R.styleable.SlidingMenu_secondaryShadowDrawable, -1);
+        if (secondaryShadowRes != -1) {
+            setSecondaryShadowDrawable(shadowRes);
+        }
 		int shadowWidth = (int) ta.getDimension(R.styleable.SlidingMenu_shadowWidth, 0);
 		setShadowWidth(shadowWidth);
 		boolean fadeEnabled = ta.getBoolean(R.styleable.SlidingMenu_fadeEnabled, true);
