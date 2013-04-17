@@ -2,7 +2,6 @@ package com.slidingmenu.example;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,17 +20,15 @@ public class SampleListFragment extends ListFragment {
 		super.onActivityCreated(savedInstanceState);
 		SampleAdapter adapter = new SampleAdapter(getActivity());
 		for (int i = 0; i < 20; i++) {
-			adapter.add(new SampleItem(new Fragment(), "Sample List", android.R.drawable.btn_star));
+			adapter.add(new SampleItem("Sample List", android.R.drawable.ic_menu_search));
 		}
 		setListAdapter(adapter);
 	}
 
 	private class SampleItem {
-		public Fragment frag;
 		public String tag;
 		public int iconRes;
-		public SampleItem(Fragment fram, String tag, int iconRes) {
-			this.frag = frag; 
+		public SampleItem(String tag, int iconRes) {
 			this.tag = tag; 
 			this.iconRes = iconRes;
 		}
@@ -48,7 +45,9 @@ public class SampleListFragment extends ListFragment {
 				convertView = LayoutInflater.from(getContext()).inflate(R.layout.row, null);
 			}
 			ImageView icon = (ImageView) convertView.findViewById(R.id.row_icon);
+			icon.setImageResource(getItem(position).iconRes);
 			TextView title = (TextView) convertView.findViewById(R.id.row_title);
+			title.setText(getItem(position).tag);
 
 			return convertView;
 		}

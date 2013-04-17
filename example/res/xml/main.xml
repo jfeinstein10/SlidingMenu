@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/general" >
+        <Preference android:title="@string/properties" />
+        <Preference android:title="@string/attach" />
+        <Preference android:title="@string/left_and_right" />
+        <Preference android:title="@string/changing_fragments" />
+        <Preference android:title="@string/responsive_ui" />
+        <Preference android:title="@string/viewpager" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/title_bar" >
+        <Preference android:title="@string/title_bar_slide" />
+        <Preference android:title="@string/title_bar_content" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/animations" >
+        <Preference android:title="@string/anim_zoom" />
+        <Preference android:title="@string/anim_scale" />
+        <Preference android:title="@string/anim_slide" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
