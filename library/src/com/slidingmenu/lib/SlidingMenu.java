@@ -1000,7 +1000,7 @@ public class SlidingMenu extends RelativeLayout {
 					if (mViewBehind != null && getMenu() != null) {
 						getMenu().setLayerType(layerType, null);
 					}
-					if (getSecondaryMenu() != null) {
+					if (mViewBehind != null && getSecondaryMenu() != null) {
 						getSecondaryMenu().setLayerType(layerType, null);
 					}
 				}
