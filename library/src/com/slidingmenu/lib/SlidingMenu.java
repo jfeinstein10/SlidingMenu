@@ -277,6 +277,22 @@ public class SlidingMenu extends RelativeLayout {
 		ta.recycle();
 	}
 
+	@Override
+	protected void onDetachedFromWindow() {
+		super.onDetachedFromWindow();
+		if (null != mViewAbove) {
+			mViewAbove.setCustomViewBehind(null);
+			mViewAbove.setOnPageChangeListener(null);
+			mViewAbove.removeAllViews();
+			mViewAbove = null;
+		}
+		if (null != mViewBehind) {
+			mViewBehind.setCustomViewAbove(null);
+			mViewBehind.removeAllViews();
+			mViewBehind = null;
+		}
+	}
+
 	/**
 	 * Attaches the SlidingMenu to an entire Activity
 	 * 
@@ -995,9 +1011,13 @@ public class SlidingMenu extends RelativeLayout {
 			mHandler.post(new Runnable() {
 				public void run() {
 					Log.v(TAG, "changing layerType. hardware? " + (layerType == View.LAYER_TYPE_HARDWARE));
-					getContent().setLayerType(layerType, null);
-					getMenu().setLayerType(layerType, null);
-					if (getSecondaryMenu() != null) {
+					if (mViewAbove != null && getContent() != null) {
+						getContent().setLayerType(layerType, null);
+					}
+					if (mViewBehind != null && getMenu() != null) {
+						getMenu().setLayerType(layerType, null);
+					}
+					if (mViewBehind != null && getSecondaryMenu() != null) {
 						getSecondaryMenu().setLayerType(layerType, null);
 					}
 				}

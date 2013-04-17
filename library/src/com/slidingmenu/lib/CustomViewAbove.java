@@ -575,7 +575,8 @@ public class CustomViewAbove extends ViewGroup {
 	private boolean thisTouchAllowed(MotionEvent ev) {
 		int x = (int) (ev.getX() + mScrollX);
 		if (isMenuOpen()) {
-			return mViewBehind.menuOpenTouchAllowed(mContent, mCurItem, x);
+			if (mViewBehind != null)
+				return mViewBehind.menuOpenTouchAllowed(mContent, mCurItem, x);
 		} else {
 			switch (mTouchMode) {
 			case SlidingMenu.TOUCHMODE_FULLSCREEN:
@@ -583,7 +584,8 @@ public class CustomViewAbove extends ViewGroup {
 			case SlidingMenu.TOUCHMODE_NONE:
 				return false;
 			case SlidingMenu.TOUCHMODE_MARGIN:
-				return mViewBehind.marginTouchAllowed(mContent, x);
+				if (mViewBehind != null)
+					return mViewBehind.marginTouchAllowed(mContent, x);
 			}
 		}
 		return false;
@@ -635,7 +637,7 @@ public class CustomViewAbove extends ViewGroup {
 		case MotionEvent.ACTION_DOWN:
 			int index = MotionEventCompat.getActionIndex(ev);
 			mActivePointerId = MotionEventCompat.getPointerId(ev, index);
-			if (mActivePointerId == INVALID_POINTER)
+			if (mActivePointerId == INVALID_POINTER || index < 0 || index >= ev.getPointerCount())
 				break;
 			mLastMotionX = mInitialMotionX = MotionEventCompat.getX(ev, index);
 			mLastMotionY = MotionEventCompat.getY(ev, index);
@@ -705,7 +707,7 @@ public class CustomViewAbove extends ViewGroup {
 			if (mIsBeingDragged) {
 				// Scroll to follow the motion event
 				final int activePointerIndex = getPointerIndex(ev, mActivePointerId);
-				if (mActivePointerId == INVALID_POINTER)
+				if (mActivePointerId == INVALID_POINTER || activePointerIndex < 0 || activePointerIndex >= ev.getPointerCount())
 					break;
 				final float x = MotionEventCompat.getX(ev, activePointerIndex);
 				final float deltaX = mLastMotionX - x;
@@ -737,7 +739,7 @@ public class CustomViewAbove extends ViewGroup {
 				// TODO test this. should get better flinging behavior
 				final float pageOffset = (float) (scrollX - getDestScrollX(mCurItem)) / getBehindWidth();
 				final int activePointerIndex = getPointerIndex(ev, mActivePointerId);
-				if (mActivePointerId != INVALID_POINTER) {
+				if (mActivePointerId != INVALID_POINTER && activePointerIndex >= 0 && activePointerIndex < ev.getPointerCount()) {
 					final float x = MotionEventCompat.getX(ev, activePointerIndex);
 					final int totalDelta = (int) (x - mInitialMotionX);
 					int nextPage = determineTargetPage(pageOffset, initialVelocity, totalDelta);
@@ -769,7 +771,7 @@ public class CustomViewAbove extends ViewGroup {
 		case MotionEventCompat.ACTION_POINTER_UP:
 			onSecondaryPointerUp(ev);
 			int pointerIndex = getPointerIndex(ev, mActivePointerId);
-			if (mActivePointerId == INVALID_POINTER)
+			if (mActivePointerId == INVALID_POINTER || pointerIndex < 0 || pointerIndex >= ev.getPointerCount())
 				break;
 			mLastMotionX = MotionEventCompat.getX(ev, pointerIndex);
 			break;
@@ -780,7 +782,7 @@ public class CustomViewAbove extends ViewGroup {
 	private void determineDrag(MotionEvent ev) {
 		final int activePointerId = mActivePointerId;
 		final int pointerIndex = getPointerIndex(ev, activePointerId);
-		if (activePointerId == INVALID_POINTER)
+		if (activePointerId == INVALID_POINTER || pointerIndex < 0 || pointerIndex >= ev.getPointerCount())
 			return;
 		final float x = MotionEventCompat.getX(ev, pointerIndex);
 		final float dx = x - mLastMotionX;
@@ -841,7 +843,7 @@ public class CustomViewAbove extends ViewGroup {
 		if (DEBUG) Log.v(TAG, "onSecondaryPointerUp called");
 		final int pointerIndex = MotionEventCompat.getActionIndex(ev);
 		final int pointerId = MotionEventCompat.getPointerId(ev, pointerIndex);
-		if (pointerId == mActivePointerId) {
+		if (pointerId == mActivePointerId || pointerIndex < 0 || pointerIndex >= ev.getPointerCount()) {
 			// This was our active pointer going up. Choose a new
 			// active pointer and adjust accordingly.
 			final int newPointerIndex = pointerIndex == 0 ? 1 : 0;
