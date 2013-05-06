@@ -15,3 +15,4 @@ gen
 .metadata
 *.project
 .DS_Store
+target/
