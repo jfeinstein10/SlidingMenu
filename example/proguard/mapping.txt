@@ -5469,13 +5469,13 @@ com.crittercism.app.CrittercismNDK -> com.crittercism.app.CrittercismNDK:
     boolean checkLibraryVersion(int) -> checkLibraryVersion
     void installNdkLib(android.content.Context,java.lang.String) -> installNdkLib
     boolean installLib(android.content.Context) -> installLib
-com.slidingmenu.example.BaseActivity -> com.slidingmenu.example.BaseActivity:
+com.jeremyfeinstein.slidingmenu.example.BaseActivity -> com.jeremyfeinstein.slidingmenu.example.BaseActivity:
     int mTitleRes -> b
     android.support.v4.app.ListFragment mFrag -> a
     void onCreate(android.os.Bundle) -> onCreate
     boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem) -> onOptionsItemSelected
     boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu) -> onCreateOptionsMenu
-com.slidingmenu.example.ExampleListActivity -> com.slidingmenu.example.ExampleListActivity:
+com.jeremyfeinstein.slidingmenu.example.ExampleListActivity -> com.jeremyfeinstein.slidingmenu.example.ExampleListActivity:
     void onCreate(android.os.Bundle) -> onCreate
     boolean onPreferenceTreeClick(android.preference.PreferenceScreen,android.preference.Preference) -> onPreferenceTreeClick
     boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem) -> onOptionsItemSelected

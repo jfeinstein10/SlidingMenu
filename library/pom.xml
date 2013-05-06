@@ -8,7 +8,7 @@
 	<packaging>apklib</packaging>
 
 	<parent>
-		<groupId>com.slidingmenu</groupId>
+		<groupId>com.jeremyfeinstein.slidingmenu</groupId>
 		<artifactId>parent</artifactId>
 		<version>1.3-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
@@ -26,7 +26,6 @@
 	</dependencies>
 
 	<build>
-		<sourceDirectory>src</sourceDirectory>
 
 		<plugins>
 			<plugin>
