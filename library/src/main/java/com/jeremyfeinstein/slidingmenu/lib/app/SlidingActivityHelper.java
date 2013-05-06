@@ -1,4 +1,4 @@
-package com.slidingmenu.lib.app;
+package com.jeremyfeinstein.lib.app;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,8 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 
-import com.slidingmenu.lib.R;
-import com.slidingmenu.lib.SlidingMenu;
+import com.jeremyfeinstein.lib.R;
+import com.jeremyfeinstein.lib.SlidingMenu;
 
 public class SlidingActivityHelper {
 

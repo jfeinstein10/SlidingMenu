@@ -1,24 +1,24 @@
-package com.slidingmenu.lib.app;
-
-import com.slidingmenu.lib.SlidingMenu;
+package com.jeremyfeinstein.slidingmenu.lib.app;
 
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 
-public class SlidingPreferenceActivity extends PreferenceActivity implements SlidingActivityBase {
+import com.google.android.maps.MapActivity;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+
+public abstract class SlidingMapActivity extends MapActivity implements SlidingActivityBase {
 
 	private SlidingActivityHelper mHelper;
 
 	/* (non-Javadoc)
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 * @see com.google.android.maps.MapActivity#onCreate(android.os.Bundle)
 	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		mHelper = new SlidingActivityHelper(this);
 		super.onCreate(savedInstanceState);
+		mHelper = new SlidingActivityHelper(this);
 		mHelper.onCreate(savedInstanceState);
 	}
 
@@ -77,63 +77,63 @@ public class SlidingPreferenceActivity extends PreferenceActivity implements Sli
 	}
 
 	/* (non-Javadoc)
-	 * @see com.slidingmenu.lib.app.SlidingActivityBase#setBehindContentView(int)
+	 * @see com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase#setBehindContentView(int)
 	 */
 	public void setBehindContentView(int id) {
 		setBehindContentView(getLayoutInflater().inflate(id, null));
 	}
 
 	/* (non-Javadoc)
-	 * @see com.slidingmenu.lib.app.SlidingActivityBase#setBehindContentView(android.view.View)
+	 * @see com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase#setBehindContentView(android.view.View)
 	 */
 	public void setBehindContentView(View v) {
 		setBehindContentView(v, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 	}
 
 	/* (non-Javadoc)
-	 * @see com.slidingmenu.lib.app.SlidingActivityBase#setBehindContentView(android.view.View, android.view.ViewGroup.LayoutParams)
+	 * @see com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase#setBehindContentView(android.view.View, android.view.ViewGroup.LayoutParams)
 	 */
 	public void setBehindContentView(View v, LayoutParams params) {
 		mHelper.setBehindContentView(v, params);
 	}
 
 	/* (non-Javadoc)
-	 * @see com.slidingmenu.lib.app.SlidingActivityBase#getSlidingMenu()
+	 * @see com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase#getSlidingMenu()
 	 */
 	public SlidingMenu getSlidingMenu() {
 		return mHelper.getSlidingMenu();
 	}
 
 	/* (non-Javadoc)
-	 * @see com.slidingmenu.lib.app.SlidingActivityBase#toggle()
+	 * @see com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase#toggle()
 	 */
 	public void toggle() {
 		mHelper.toggle();
 	}
 
 	/* (non-Javadoc)
-	 * @see com.slidingmenu.lib.app.SlidingActivityBase#showAbove()
+	 * @see com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase#showAbove()
 	 */
 	public void showContent() {
 		mHelper.showContent();
 	}
 
 	/* (non-Javadoc)
-	 * @see com.slidingmenu.lib.app.SlidingActivityBase#showBehind()
+	 * @see com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase#showBehind()
 	 */
 	public void showMenu() {
 		mHelper.showMenu();
 	}
-	
+
 	/* (non-Javadoc)
-	 * @see com.slidingmenu.lib.app.SlidingActivityBase#showSecondaryMenu()
+	 * @see com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase#showSecondaryMenu()
 	 */
 	public void showSecondaryMenu() {
 		mHelper.showSecondaryMenu();
 	}
 
 	/* (non-Javadoc)
-	 * @see com.slidingmenu.lib.app.SlidingActivityBase#setSlidingActionBarEnabled(boolean)
+	 * @see com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase#setSlidingActionBarEnabled(boolean)
 	 */
 	public void setSlidingActionBarEnabled(boolean b) {
 		mHelper.setSlidingActionBarEnabled(b);
@@ -148,4 +148,5 @@ public class SlidingPreferenceActivity extends PreferenceActivity implements Sli
 		if (b) return b;
 		return super.onKeyUp(keyCode, event);
 	}
+
 }

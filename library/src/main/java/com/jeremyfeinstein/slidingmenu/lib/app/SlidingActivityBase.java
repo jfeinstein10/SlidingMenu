@@ -1,9 +1,9 @@
-package com.slidingmenu.lib.app;
+package com.jeremyfeinstein.lib.app;
 
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 
-import com.slidingmenu.lib.SlidingMenu;
+import com.jeremyfeinstein.lib.SlidingMenu;
 
 public interface SlidingActivityBase {
 	

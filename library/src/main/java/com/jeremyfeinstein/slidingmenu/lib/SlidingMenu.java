@@ -1,4 +1,4 @@
-package com.slidingmenu.lib;
+package com.jeremyfeinstein.lib;
 
 import java.lang.reflect.Method;
 
@@ -27,7 +27,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
-import com.slidingmenu.lib.CustomViewAbove.OnPageChangeListener;
+import com.jeremyfeinstein.slidingmenu.lib.CustomViewAbove.OnPageChangeListener;
 
 public class SlidingMenu extends RelativeLayout {
 
