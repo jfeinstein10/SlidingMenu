@@ -1,4 +1,4 @@
-package com.jeremyfeinstein.lib.app;
+package com.jeremyfeinstein.slidingmenu.lib.app;
 
 import android.app.ListActivity;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ListView;
 
-import com.jeremyfeinstein.lib.SlidingMenu;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 public class SlidingListActivity extends ListActivity implements SlidingActivityBase {
 
@@ -81,49 +81,49 @@ public class SlidingListActivity extends ListActivity implements SlidingActivity
 	}
 
 	/* (non-Javadoc)
-	 * @see com.jeremyfeinstein.lib.app.SlidingActivityBase#setBehindContentView(int)
+	 * @see com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase#setBehindContentView(int)
 	 */
 	public void setBehindContentView(int id) {
 		setBehindContentView(getLayoutInflater().inflate(id, null));
 	}
 
 	/* (non-Javadoc)
-	 * @see com.jeremyfeinstein.lib.app.SlidingActivityBase#setBehindContentView(android.view.View)
+	 * @see com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase#setBehindContentView(android.view.View)
 	 */
 	public void setBehindContentView(View v) {
 		setBehindContentView(v, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 	}
 
 	/* (non-Javadoc)
-	 * @see com.jeremyfeinstein.lib.app.SlidingActivityBase#setBehindContentView(android.view.View, android.view.ViewGroup.LayoutParams)
+	 * @see com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase#setBehindContentView(android.view.View, android.view.ViewGroup.LayoutParams)
 	 */
 	public void setBehindContentView(View v, LayoutParams params) {
 		mHelper.setBehindContentView(v, params);
 	}
 
 	/* (non-Javadoc)
-	 * @see com.jeremyfeinstein.lib.app.SlidingActivityBase#getSlidingMenu()
+	 * @see com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase#getSlidingMenu()
 	 */
 	public SlidingMenu getSlidingMenu() {
 		return mHelper.getSlidingMenu();
 	}
 
 	/* (non-Javadoc)
-	 * @see com.jeremyfeinstein.lib.app.SlidingActivityBase#toggle()
+	 * @see com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase#toggle()
 	 */
 	public void toggle() {
 		mHelper.toggle();
 	}
 
 	/* (non-Javadoc)
-	 * @see com.jeremyfeinstein.lib.app.SlidingActivityBase#showAbove()
+	 * @see com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase#showAbove()
 	 */
 	public void showContent() {
 		mHelper.showContent();
 	}
 
 	/* (non-Javadoc)
-	 * @see com.jeremyfeinstein.lib.app.SlidingActivityBase#showBehind()
+	 * @see com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase#showBehind()
 	 */
 	public void showMenu() {
 		mHelper.showMenu();
@@ -131,14 +131,14 @@ public class SlidingListActivity extends ListActivity implements SlidingActivity
 	
 	/*
 	 * (non-Javadoc)
-	 * @see com.jeremyfeinstein.lib.app.SlidingActivityBase#showSecondaryMenu()
+	 * @see com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase#showSecondaryMenu()
 	 */
 	public void showSecondaryMenu() {
 		mHelper.showSecondaryMenu();
 	}
 
 	/* (non-Javadoc)
-	 * @see com.jeremyfeinstein.lib.app.SlidingActivityBase#setSlidingActionBarEnabled(boolean)
+	 * @see com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase#setSlidingActionBarEnabled(boolean)
 	 */
 	public void setSlidingActionBarEnabled(boolean b) {
 		mHelper.setSlidingActionBarEnabled(b);

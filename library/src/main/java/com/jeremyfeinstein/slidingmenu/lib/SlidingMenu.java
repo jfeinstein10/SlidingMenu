@@ -1,4 +1,4 @@
-package com.jeremyfeinstein.lib;
+package com.jeremyfeinstein.slidingmenu.lib;
 
 import java.lang.reflect.Method;
 
