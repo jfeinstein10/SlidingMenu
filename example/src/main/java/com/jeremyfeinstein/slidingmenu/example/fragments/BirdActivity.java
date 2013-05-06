@@ -1,4 +1,4 @@
-package com.slidingmenu.example.fragments;
+package com.jeremyfeinstein.slidingmenu.example.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,7 +15,7 @@ import android.widget.ImageView.ScaleType;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
-import com.slidingmenu.example.R;
+import com.jeremyfeinstein.slidingmenu.example.R;
 
 public class BirdActivity extends SherlockActivity {
 

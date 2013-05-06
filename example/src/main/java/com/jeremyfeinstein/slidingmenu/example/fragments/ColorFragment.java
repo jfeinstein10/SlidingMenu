@@ -1,6 +1,6 @@
-package com.slidingmenu.example.fragments;
+package com.jeremyfeinstein.slidingmenu.example.fragments;
 
-import com.slidingmenu.example.R;
+import com.jeremyfeinstein.slidingmenu.example.R;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

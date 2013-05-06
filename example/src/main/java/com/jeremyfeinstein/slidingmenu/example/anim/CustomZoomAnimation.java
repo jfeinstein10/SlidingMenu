@@ -1,10 +1,10 @@
-package com.slidingmenu.example.anim;
+package com.jeremyfeinstein.slidingmenu.example.anim;
 
 import android.graphics.Canvas;
 
-import com.slidingmenu.example.R;
-import com.slidingmenu.example.R.string;
-import com.slidingmenu.lib.SlidingMenu.CanvasTransformer;
+import com.jeremyfeinstein.slidingmenu.example.R;
+import com.jeremyfeinstein.slidingmenu.example.R.string;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.CanvasTransformer;
 
 public class CustomZoomAnimation extends CustomAnimation {
 

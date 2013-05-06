@@ -1,4 +1,4 @@
-package com.slidingmenu.example.fragments;
+package com.jeremyfeinstein.slidingmenu.example.fragments;
 
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import com.slidingmenu.example.R;
+import com.jeremyfeinstein.slidingmenu.example.R;
 
 public class BirdGridFragment extends Fragment {
 

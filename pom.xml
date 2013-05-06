@@ -16,7 +16,7 @@
 	<dependencyManagement>
 		<dependencies>
             <dependency>
-                <groupId>com.slidingmenu</groupId>
+                <groupId>com.jeremyfeinstein.slidingmenu</groupId>
                 <artifactId>slidingmenu</artifactId>
                 <version>${project.version}</version>
                 <type>jar</type>

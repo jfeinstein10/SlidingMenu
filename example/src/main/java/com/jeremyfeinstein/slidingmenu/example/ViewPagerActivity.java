@@ -1,4 +1,4 @@
-package com.slidingmenu.example;
+package com.jeremyfeinstein.slidingmenu.example;
 
 import java.util.ArrayList;
 
@@ -9,8 +9,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 
-import com.slidingmenu.example.fragments.ColorFragment;
-import com.slidingmenu.lib.SlidingMenu;
+import com.jeremyfeinstein.slidingmenu.example.fragments.ColorFragment;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 public class ViewPagerActivity extends BaseActivity {
 

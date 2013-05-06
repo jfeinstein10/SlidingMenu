@@ -1,4 +1,4 @@
-package com.slidingmenu.example;
+package com.jeremyfeinstein.slidingmenu.example;
 
 import java.net.URLEncoder;
 
@@ -22,11 +22,11 @@ import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.crittercism.app.Crittercism;
-import com.slidingmenu.example.anim.CustomScaleAnimation;
-import com.slidingmenu.example.anim.CustomSlideAnimation;
-import com.slidingmenu.example.anim.CustomZoomAnimation;
-import com.slidingmenu.example.fragments.FragmentChangeActivity;
-import com.slidingmenu.example.fragments.ResponsiveUIActivity;
+import com.jeremyfeinstein.slidingmenu.example.anim.CustomScaleAnimation;
+import com.jeremyfeinstein.slidingmenu.example.anim.CustomSlideAnimation;
+import com.jeremyfeinstein.slidingmenu.example.anim.CustomZoomAnimation;
+import com.jeremyfeinstein.slidingmenu.example.fragments.FragmentChangeActivity;
+import com.jeremyfeinstein.slidingmenu.example.fragments.ResponsiveUIActivity;
 
 public class ExampleListActivity extends SherlockPreferenceActivity {
 

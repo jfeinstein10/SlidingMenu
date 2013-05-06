@@ -1,4 +1,4 @@
-package com.slidingmenu.example;
+package com.jeremyfeinstein.slidingmenu.example;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +13,8 @@ import android.support.v4.view.ViewPager;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.slidingmenu.lib.SlidingMenu;
-import com.slidingmenu.lib.app.SlidingFragmentActivity;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
 public class BaseActivity extends SlidingFragmentActivity {
 

@@ -1,4 +1,4 @@
-package com.slidingmenu.example;
+package com.jeremyfeinstein.slidingmenu.example;
 
 import android.content.Context;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.slidingmenu.example.fragments;
+package com.jeremyfeinstein.slidingmenu.example.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.slidingmenu.example.R;
+import com.jeremyfeinstein.slidingmenu.example.R;
 
 public class BirdMenuFragment extends ListFragment {
 	
