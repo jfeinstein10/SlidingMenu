@@ -26,6 +26,7 @@
 	</dependencies>
 
 	<build>
+    <sourceDirectory>src</sourceDirectory>
 
 		<plugins>
 			<plugin>
