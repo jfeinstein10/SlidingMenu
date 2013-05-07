@@ -8,7 +8,7 @@
 	<packaging>jar</packaging>
 
 	<parent>
-		<groupId>com.slidingmenu</groupId>
+		<groupId>com.jeremyfeinstein.slidingmenu</groupId>
 		<artifactId>parent</artifactId>
 		<version>1.3-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
@@ -16,7 +16,7 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.slidingmenu</groupId>
+			<groupId>com.jeremyfeinstein.slidingmenu</groupId>
 			<artifactId>slidingmenu</artifactId>
 			<optional>true</optional>
 		</dependency>
