@@ -3,15 +3,47 @@
 	         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
+
 	<groupId>com.jeremyfeinstein.slidingmenu</groupId>
 	<artifactId>parent</artifactId>
-	<version>1.3-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	<version>1.3-SNAPSHOT</version>
+
+	<name>SlidingMenu (Parent)</name>
+	<description>SlidingMenu is an Open Source Android library that allows developers to easily create applications with sliding menus like those made popular in the Google+, YouTube, and Facebook apps.</description>
+	<url>https://github.com/jfeinstein10/SlidingMenu</url>
+	<inceptionYear>2012</inceptionYear>
 
 	<modules>
 		<module>library</module>
 		<module>library-maps-support</module>
 	</modules>
+
+	<scm>
+		<url>https://github.com/jfeinstein10/SlidingMenu</url>
+		<connection>scm:git:git://github.com/jfeinstein10/SlidingMenu.git</connection>
+	</scm>
+
+	<developers>
+	  <developer>
+	    <name>Jeremy Feinstein</name>
+	    <email>jfeinstein10@gmail.com</email>
+	    <id>jfeinstein10</id>
+	    <url>http://jeremyfeinstein.com</url>
+	    <timezone>-5</timezone>
+	    <roles>
+	      <role>developer</role>
+	    </roles>
+	  </developer>
+	</developers>
+
+	<licenses>
+	  <license>
+	    <name>Apache License Version 2.0</name>
+	    <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+	    <distribution>repo</distribution>
+	  </license>
+	</licenses>
 
 	<dependencyManagement>
 		<dependencies>
