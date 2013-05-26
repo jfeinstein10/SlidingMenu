@@ -57,7 +57,7 @@ customize the SlidingMenu to your liking.
 * If you want to use another library such as ActionBarSherlock, you can just change the SlidingActivities to extend
 the SherlockActivities instead of the regular Activities.
 
-__3.__      You can use the SlidingMenu view directly in your xml layouts or programmatically in you Java code.
+__3.__      You can use the SlidingMenu view directly in your xml layouts or programmatically in your Java code.
 * This way, you can treat SlidingMenu as you would any other view type and put it in crazy awesome places like in the
 rows of a ListView.
 * So. Many. Possibilities.
