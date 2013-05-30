@@ -56,6 +56,8 @@ public class CustomViewAbove extends ViewGroup {
 	private boolean mScrollingCacheEnabled;
 
 	private boolean mScrolling;
+	private boolean mHasLayout;
+	private int mPendingScrollFrom = -1;
 
 	private boolean mIsBeingDragged;
 	private boolean mIsUnableToDrag;
@@ -217,27 +219,37 @@ public class CustomViewAbove extends ViewGroup {
 	}
 
 	void setCurrentItemInternal(int item, boolean smoothScroll, boolean always, int velocity) {
+		item = mViewBehind.getMenuPage(item);
 		if (!always && mCurItem == item) {
 			setScrollingCacheEnabled(false);
 			return;
 		}
 
-		item = mViewBehind.getMenuPage(item);
-
-		final boolean dispatchSelected = mCurItem != item;
-		mCurItem = item;
-		final int destX = getDestScrollX(mCurItem);
-		if (dispatchSelected && mOnPageChangeListener != null) {
-			mOnPageChangeListener.onPageSelected(item);
-		}
-		if (dispatchSelected && mInternalPageChangeListener != null) {
-			mInternalPageChangeListener.onPageSelected(item);
-		}
-		if (smoothScroll) {
-			smoothScrollTo(destX, 0, velocity);
+		if (mHasLayout) {
+			int destX = getDestScrollX(item);
+			if (smoothScroll) {
+				smoothScrollTo(destX, 0, velocity);
+			} else {
+				completeScroll();
+				scrollTo(destX, 0);
+			}
 		} else {
-			completeScroll();
-			scrollTo(destX, 0);
+			if (smoothScroll) {
+				// We will update mCurItem eagerly, but remember where to animate the scroll from
+				if (mPendingScrollFrom < 0) mPendingScrollFrom = mCurItem;
+			} else {
+				mPendingScrollFrom = -1;
+			}
+		}
+
+		if (mCurItem != item) {
+			mCurItem = item;
+			if (mOnPageChangeListener != null) {
+				mOnPageChangeListener.onPageSelected(item);
+			}
+			if (mInternalPageChangeListener != null) {
+				mInternalPageChangeListener.onPageSelected(item);
+			}
 		}
 	}
 
@@ -304,6 +316,7 @@ public class CustomViewAbove extends ViewGroup {
 	}
 
 	public int getDestScrollX(int page) {
+	  if (DEBUG) Log.w(TAG, "getDestScrollX() called when mHasLayout=false");
 		switch (page) {
 		case 0:
 		case 2:
@@ -459,14 +472,7 @@ public class CustomViewAbove extends ViewGroup {
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 		super.onSizeChanged(w, h, oldw, oldh);
-		// Make sure scroll position is set correctly.
-		if (w != oldw) {
-			// [ChrisJ] - This fixes the onConfiguration change for orientation issue..
-			// maybe worth having a look why the recomputeScroll pos is screwing
-			// up?
-			completeScroll();
-			scrollTo(getDestScrollX(mCurItem), getScrollY());
-		}
+		if (w != oldw) mHasLayout = false;
 	}
 
 	@Override
@@ -474,6 +480,20 @@ public class CustomViewAbove extends ViewGroup {
 		final int width = r - l;
 		final int height = b - t;
 		mContent.layout(0, 0, width, height);
+		
+		// Update scroll position now that we've got layout. We assume that the behind view has
+		// also had layout performed by now, as it's ordered before the above view in the parent.
+		if (!mHasLayout) {
+      mHasLayout = true;
+      completeScroll();
+      if (mPendingScrollFrom >= 0) {
+        scrollTo(getDestScrollX(mPendingScrollFrom), 0);
+        smoothScrollTo(getDestScrollX(mCurItem), 0);
+        mPendingScrollFrom = -1;
+      } else {
+        scrollTo(getDestScrollX(mCurItem), 0);
+      }
+		}
 	}
 
 	public void setAboveOffset(int i) {
@@ -486,26 +506,23 @@ public class CustomViewAbove extends ViewGroup {
 
 	@Override
 	public void computeScroll() {
-		if (!mScroller.isFinished()) {
-			if (mScroller.computeScrollOffset()) {
-				int oldX = getScrollX();
-				int oldY = getScrollY();
-				int x = mScroller.getCurrX();
-				int y = mScroller.getCurrY();
+		if (mScroller.computeScrollOffset()) {
+			int oldX = getScrollX();
+			int oldY = getScrollY();
+			int x = mScroller.getCurrX();
+			int y = mScroller.getCurrY();
 
-				if (oldX != x || oldY != y) {
-					scrollTo(x, y);
-					pageScrolled(x);
-				}
-
-				// Keep on drawing until the animation has finished.
-				invalidate();
-				return;
+			if (oldX != x || oldY != y) {
+				scrollTo(x, y);
+				pageScrolled(x);
 			}
-		}
 
-		// Done with scroll, clean up state.
-		completeScroll();
+			// Keep on drawing until the animation has finished.
+			invalidate();
+		} else {
+	    // Done with scroll, clean up state.
+	    completeScroll();
+		}
 	}
 
 	private void pageScrolled(int xpos) {
