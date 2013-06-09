@@ -28,6 +28,7 @@ import android.widget.Scroller;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnClosedListener;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenedListener;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnSecondaryMenuOpenedListener;
 //import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnCloseListener;
 //import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenListener;
 
@@ -96,6 +97,8 @@ public class CustomViewAbove extends ViewGroup {
 	//	private OnOpenListener mOpenListener;
 	private OnClosedListener mClosedListener;
 	private OnOpenedListener mOpenedListener;
+	
+	private OnSecondaryMenuOpenedListener mSecondaryMenuOpenedListener;
 
 	private List<View> mIgnoredViews = new ArrayList<View>();
 
@@ -262,6 +265,10 @@ public class CustomViewAbove extends ViewGroup {
 	public void setOnOpenedListener(OnOpenedListener l) {
 		mOpenedListener = l;
 	}
+	
+	public void setOnSecondaryMenuOpenedListener(OnSecondaryMenuOpenedListener l) {
+		mSecondaryMenuOpenedListener = l;
+	}
 
 	public void setOnClosedListener(OnClosedListener l) {
 		mClosedListener = l;
@@ -327,7 +334,15 @@ public class CustomViewAbove extends ViewGroup {
 	}
 
 	public boolean isMenuOpen() {
-		return mCurItem == 0 || mCurItem == 2;
+		return isPrimaryMenuOpen() || isSecondaryMenuOpen();
+	}
+	
+	public boolean isPrimaryMenuOpen(){
+		return mCurItem == 0;
+	}
+	
+	public boolean isSecondaryMenuOpen(){
+		return mCurItem == 2;
 	}
 
 	private boolean isInIgnoredView(MotionEvent ev) {
@@ -395,13 +410,7 @@ public class CustomViewAbove extends ViewGroup {
 		int dy = y - sy;
 		if (dx == 0 && dy == 0) {
 			completeScroll();
-			if (isMenuOpen()) {
-				if (mOpenedListener != null)
-					mOpenedListener.onOpened();
-			} else {
-				if (mClosedListener != null)
-					mClosedListener.onClosed();
-			}
+			notifyListeners();
 			return;
 		}
 
@@ -551,15 +560,21 @@ public class CustomViewAbove extends ViewGroup {
 			if (oldX != x || oldY != y) {
 				scrollTo(x, y);
 			}
-			if (isMenuOpen()) {
-				if (mOpenedListener != null)
-					mOpenedListener.onOpened();
-			} else {
-				if (mClosedListener != null)
-					mClosedListener.onClosed();
-			}
+			notifyListeners();
 		}
 		mScrolling = false;
+	}
+
+	private void notifyListeners() {
+		if (isMenuOpen()) {
+			if (isPrimaryMenuOpen() && mOpenedListener != null)
+				mOpenedListener.onOpened();
+			else if (isSecondaryMenuOpen() && mSecondaryMenuOpenedListener != null)
+				mSecondaryMenuOpenedListener.onOpened();
+		} else {
+			if (mClosedListener != null)
+				mClosedListener.onClosed();
+		}
 	}
 
 	protected int mTouchMode = SlidingMenu.TOUCHMODE_MARGIN;

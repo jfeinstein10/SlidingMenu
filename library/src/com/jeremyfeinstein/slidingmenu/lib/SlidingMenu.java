@@ -71,6 +71,8 @@ public class SlidingMenu extends RelativeLayout {
 	private OnOpenListener mOpenListener;
 
 	private OnCloseListener mCloseListener;
+	
+	private OnSecondaryMenuOpenListener mSecondaryMenuOpenListener;
 
 	/**
 	 * The listener interface for receiving onOpen events.
@@ -145,6 +147,42 @@ public class SlidingMenu extends RelativeLayout {
 		 */
 		public void onClosed();
 	}
+	
+	/**
+	 * The listener interface for receiving onOpen events.
+	 * The class that is interested in processing a onOpen
+	 * event implements this interface, and the object created
+	 * with that class is registered with a component using the
+	 * component's <code>setOnSecondaryMenuOpenListener<code> method. 
+	 * When the onOpen event occurs, that object's appropriate
+	 * method is invoked
+	 */
+	public interface OnSecondaryMenuOpenListener {
+
+		/**
+		 * On open.
+		 */
+		public void onOpen();
+	}
+	
+	/**
+	 * The listener interface for receiving onOpened events.
+	 * The class that is interested in processing a onOpened
+	 * event implements this interface, and the object created
+	 * with that class is registered with a component using the
+	 * component's <code>setOnSecondaryMenuOpenedListener<code> method. When
+	 * the onOpened event occurs, that object's appropriate
+	 * method is invoked.
+	 *
+	 * @see OnOpenedEvent
+	 */
+	public interface OnSecondaryMenuOpenedListener {
+
+		/**
+		 * On opened.
+		 */
+		public void onOpened();
+	}
 
 	/**
 	 * The Interface CanvasTransformer.
@@ -212,6 +250,7 @@ public class SlidingMenu extends RelativeLayout {
 		mViewAbove.setOnPageChangeListener(new OnPageChangeListener() {
 			public static final int POSITION_OPEN = 0;
 			public static final int POSITION_CLOSE = 1;
+			public static final int POSITION_SECONDARY_MENU_OPEN = 2;
 
 			public void onPageScrolled(int position, float positionOffset,
 					int positionOffsetPixels) { }
@@ -219,6 +258,8 @@ public class SlidingMenu extends RelativeLayout {
 			public void onPageSelected(int position) {
 				if (position == POSITION_OPEN && mOpenListener != null) {
 					mOpenListener.onOpen();
+				} else if(position == POSITION_SECONDARY_MENU_OPEN && mSecondaryMenuOpenListener != null){
+					mSecondaryMenuOpenListener.onOpen();
 				} else if (position == POSITION_CLOSE && mCloseListener != null) {
 					mCloseListener.onClose();
 				}
@@ -904,6 +945,24 @@ public class SlidingMenu extends RelativeLayout {
 	 */
 	public void setOnClosedListener(OnClosedListener listener) {
 		mViewAbove.setOnClosedListener(listener);
+	}
+	
+	/**
+	 * Sets the OnSecondaryMenuOpenListener. {@link OnSecondaryMenuOpenListener#onOpen()} will be called when the secondary SlidingMenu is opened
+	 *
+	 * @param listener the new OnSecondaryMenuOpenListener
+	 */
+	public void setOnSecondaryMenuOpenListener(OnSecondaryMenuOpenListener listener) {
+		mSecondaryMenuOpenListener = listener;
+	}
+	
+	/**
+	 * Sets the OnSecondaryMenuOpenedListener. {@link OnSecondaryMenuOpenedListener#onOpened()} will be called after the secondary SlidingMenu is opened
+	 *
+	 * @param listener the new OnSecondaryMenuOpenedListener
+	 */
+	public void setOnSecondaryMenuOpenedListener(OnSecondaryMenuOpenedListener listener) {
+		mViewAbove.setOnSecondaryMenuOpenedListener(listener);
 	}
 
 	public static class SavedState extends BaseSavedState {
