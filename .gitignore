@@ -13,6 +13,8 @@ release
 gen
 .metadata/
 .metadata
+.idea/
+.idea
 *.project
-
-target
+.DS_Store
+target/
