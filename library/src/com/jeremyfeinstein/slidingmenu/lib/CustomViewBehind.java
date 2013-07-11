@@ -215,16 +215,16 @@ public class CustomViewBehind extends ViewGroup {
 	public void scrollBehindTo(View content, int x, int y) {
 		int vis = View.VISIBLE;		
 		if (mMode == SlidingMenu.LEFT) {
-			if (x >= content.getLeft()) vis = View.INVISIBLE;
+			if (x >= content.getLeft()) vis = View.GONE;
 			scrollTo((int)((x + getBehindWidth())*mScrollScale), y);
 		} else if (mMode == SlidingMenu.RIGHT) {
-			if (x <= content.getLeft()) vis = View.INVISIBLE;
+			if (x <= content.getLeft()) vis = View.GONE;
 			scrollTo((int)(getBehindWidth() - getWidth() + 
 					(x-getBehindWidth())*mScrollScale), y);
 		} else if (mMode == SlidingMenu.LEFT_RIGHT) {
-			mContent.setVisibility(x >= content.getLeft() ? View.INVISIBLE : View.VISIBLE);
-			mSecondaryContent.setVisibility(x <= content.getLeft() ? View.INVISIBLE : View.VISIBLE);
-			vis = x == 0 ? View.INVISIBLE : View.VISIBLE;
+			mContent.setVisibility(x >= content.getLeft() ? View.GONE : View.VISIBLE);
+			mSecondaryContent.setVisibility(x <= content.getLeft() ? View.GONE : View.VISIBLE);
+			vis = x == 0 ? View.GONE : View.VISIBLE;
 			if (x <= content.getLeft()) {
 				scrollTo((int)((x + getBehindWidth())*mScrollScale), y);				
 			} else {
@@ -232,8 +232,8 @@ public class CustomViewBehind extends ViewGroup {
 						(x-getBehindWidth())*mScrollScale), y);				
 			}
 		}
-		if (vis == View.INVISIBLE)
-			Log.v(TAG, "behind INVISIBLE");
+		if (vis == View.GONE)
+			Log.v(TAG, "behind GONE");
 		setVisibility(vis);
 	}
 
