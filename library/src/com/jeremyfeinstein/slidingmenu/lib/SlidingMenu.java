@@ -895,7 +895,7 @@ public class SlidingMenu extends RelativeLayout {
 	}
 	
 	/**
-	 * Sets the OnCloseListener. {@link OnCloseListener#onClose() OnCloseListener.onClose()} will be called when nay one of the SlidingMenu is closed
+	 * Sets the OnCloseListener. {@link OnCloseListener#onClose() OnCloseListener.onClose()} will be called when any one of the SlidingMenu is closed
 	 *
 	 * @param listener the new setOnCloseListener
 	 */
