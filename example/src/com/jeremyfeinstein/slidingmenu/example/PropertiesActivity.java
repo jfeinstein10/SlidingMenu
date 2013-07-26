@@ -164,6 +164,15 @@ public class PropertiesActivity extends BaseActivity {
 				getSlidingMenu().setFadeDegree((float) seekBar.getProgress()/seekBar.getMax());
 			}			
 		});
+		
+		CheckBox addBackgroundEnabled = (CheckBox) findViewById(R.id.add_background_enabled);
+		addBackgroundEnabled.setChecked(true);
+		addBackgroundEnabled.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				getSlidingMenu().setAddBackground(isChecked);
+			}			
+		});
 	}
 
 }
