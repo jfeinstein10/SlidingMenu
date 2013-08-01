@@ -155,11 +155,30 @@ public class CustomViewBehind extends ViewGroup {
 	private float mFadeDegree;
 
 	public void setMode(int mode) {
-		if (mode == SlidingMenu.LEFT || mode == SlidingMenu.RIGHT) {
-			if (mContent != null)
-				mContent.setVisibility(View.VISIBLE);
-			if (mSecondaryContent != null)
-				mSecondaryContent.setVisibility(View.INVISIBLE);
+		switch (mode) {
+			case SlidingMenu.LEFT:
+				if (mContent != null)
+					mContent.setVisibility(View.VISIBLE);
+				if (mSecondaryContent != null)
+					mSecondaryContent.setVisibility(View.INVISIBLE);
+				
+				break;
+				
+			case SlidingMenu.RIGHT:
+				if (mContent != null && mSecondaryContent != null) {
+					mContent.setVisibility(View.INVISIBLE);
+					mSecondaryContent.setVisibility(View.VISIBLE);
+				} else {
+					if (mContent != null)
+						mContent.setVisibility(View.VISIBLE);
+					if (mSecondaryContent != null)
+						mSecondaryContent.setVisibility(View.INVISIBLE);
+				}
+				
+				break;
+				
+			default:
+				break;
 		}
 		mMode = mode;
 	}
@@ -346,7 +365,16 @@ public class CustomViewBehind extends ViewGroup {
 		if (mMode == SlidingMenu.LEFT) {
 			left = content.getLeft() - mShadowWidth;
 		} else if (mMode == SlidingMenu.RIGHT) {
-			left = content.getRight();
+			if (mSecondaryContent == null) {
+				left = content.getRight();
+			} else {
+				if (mSecondaryShadowDrawable != null) {
+					left = content.getRight();
+					mSecondaryShadowDrawable.setBounds(left, 0, left + mShadowWidth, getHeight());
+					mSecondaryShadowDrawable.draw(canvas);
+				}
+				left = content.getLeft() - mShadowWidth;
+			}
 		} else if (mMode == SlidingMenu.LEFT_RIGHT) {
 			if (mSecondaryShadowDrawable != null) {
 				left = content.getRight();
