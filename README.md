@@ -7,10 +7,15 @@ to use it all you want in your Android apps provided that you cite this project 
 
 SlidingMenu is currently used in some awesome Android apps. Here's a list of some of them: 
 * [Foursquare][15]
+* [LinkedIn][19]
+* [Zappos][20]
 * [Rdio][8]
+* [Evernote Food][18]
 * [Plume][4]
 * [VLC for Android][5]
 * [ESPN ScoreCenter][14]
+* [MLS MatchDay][16]
+* [9GAG][17]
 * [Wunderlist 2][13]
 * [The Verge][6]
 * [MTG Familiar][9]
@@ -54,7 +59,7 @@ customize the SlidingMenu to your liking.
 * If you want to use another library such as ActionBarSherlock, you can just change the SlidingActivities to extend
 the SherlockActivities instead of the regular Activities.
 
-__3.__      You can use the SlidingMenu view directly in your xml layouts or programmatically in you Java code.
+__3.__      You can use the SlidingMenu view directly in your xml layouts or programmatically in your Java code.
 * This way, you can treat SlidingMenu as you would any other view type and put it in crazy awesome places like in the
 rows of a ListView.
 * So. Many. Possibilities.
@@ -89,7 +94,7 @@ XML Usage
 -----
 If you decide to use SlidingMenu as a view, you can define it in your xml layouts like this:
 ```xml
-<com.slidingmenu.lib.SlidingMenu
+<com.jeremyfeinstein.slidingmenu.lib.SlidingMenu
     xmlns:sliding="http://schemas.android.com/apk/res-auto"
     android:id="@+id/slidingmenulayout"
     android:layout_width="fill_parent"
@@ -174,3 +179,8 @@ License
 [13]: http://bit.ly/xs1sMN
 [14]: https://play.google.com/store/apps/details?id=com.espn.score_center
 [15]: https://play.google.com/store/apps/details?id=com.joelapenna.foursquared
+[16]: https://play.google.com/store/apps/details?id=com.mlssoccer
+[17]: https://play.google.com/store/apps/details?id=com.ninegag.android.app
+[18]: https://play.google.com/store/apps/details?id=com.evernote.food
+[19]: https://play.google.com/store/apps/details?id=com.linkedin.android
+[20]: https://play.google.com/store/apps/details?id=com.zappos.android
