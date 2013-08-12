@@ -263,7 +263,7 @@ public class ActionBarSlideIcon {
 	public ActionBarSlideIcon(Activity activity, int openContentDescRes,
 			int closeContentDescRes) {
 
-		if (mActionBarHelper != null)
+		if (mActionBarHelper == null)
 			mActionBarHelper = new ActionBarHelper(activity);
 
 		Drawable themedIcon = mActionBarHelper.getThemeUpIndicator();
@@ -294,7 +294,7 @@ public class ActionBarSlideIcon {
 
 		mSlideDrawble = new SlideDrawable(slideDrawable);
 
-		if (mActionBarHelper != null)
+		if (mActionBarHelper == null)
 			mActionBarHelper = new ActionBarHelper(activity);
 
 		mActionBarHelper.setActionBarUpIndicator(slideDrawable,
