@@ -1185,7 +1185,8 @@ public class SlidingMenu extends RelativeLayout {
 		if (mOnSlideListener != null)
 			mOnSlideListener.onSlideMenu(percentOpen);
 
-		mActionBarSlideIcon.setSlideOffset(percentOpen);
+		if (mActionBarSlideIcon != null)
+			mActionBarSlideIcon.setSlideOffset(percentOpen);
 
 		if (Build.VERSION.SDK_INT < 11)
 			return;

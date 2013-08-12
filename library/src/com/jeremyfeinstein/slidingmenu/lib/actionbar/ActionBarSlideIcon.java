@@ -57,6 +57,7 @@ public class ActionBarSlideIcon {
 			canvas.translate(mOffsetBy * mTmpRect.width() * -mOffset, 0);
 			mWrapped.draw(canvas);
 			canvas.restore();
+
 		}
 
 		@Override
@@ -293,11 +294,12 @@ public class ActionBarSlideIcon {
 		mOpenContentDescription = openContentDescRes;
 
 		mSlideDrawble = new SlideDrawable(slideDrawable);
+		mSlideDrawble.setOffsetBy(1.f / 3);
 
 		if (mActionBarHelper == null)
 			mActionBarHelper = new ActionBarHelper(activity);
 
-		mActionBarHelper.setActionBarUpIndicator(slideDrawable,
+		mActionBarHelper.setActionBarUpIndicator(mSlideDrawble,
 				mOpenContentDescription);
 		mActionBarHelper.setDisplayShowHomeAsUpEnabled(true);
 	}
@@ -335,7 +337,15 @@ public class ActionBarSlideIcon {
 			mActionBarHelper
 					.setActionBarUpDescription(mCloseContentDescription);
 
-		mSlideDrawble.setOffset(offset);
+		float glyphOffset = mSlideDrawble.getOffset();
+		if (offset > 0.5f) {
+			glyphOffset = Math.max(glyphOffset,
+					Math.max(0.f, offset - 0.5f) * 2);
+		} else {
+			glyphOffset = Math.min(glyphOffset, offset * 2);
+		}
+		mSlideDrawble.setOffset(glyphOffset);
+
 	}
 
 }
