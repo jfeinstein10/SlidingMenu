@@ -28,7 +28,7 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import com.jeremyfeinstein.slidingmenu.lib.CustomViewAbove.OnPageChangeListener;
-import com.jeremyfeinstein.slidingmenu.lib.actionbar.ActionBarDrawerToggle;
+import com.jeremyfeinstein.slidingmenu.lib.actionbar.ActionBarSlideIcon;
 
 public class SlidingMenu extends RelativeLayout {
 
@@ -74,6 +74,8 @@ public class SlidingMenu extends RelativeLayout {
 	 */
 	public static final int LEFT_RIGHT = 2;
 
+	private ActionBarSlideIcon mActionBarSlideIcon;
+
 	private final CustomViewAbove mViewAbove;
 
 	private final CustomViewBehind mViewBehind;
@@ -85,8 +87,6 @@ public class SlidingMenu extends RelativeLayout {
 	private OnCloseListener mCloseListener;
 
 	private OnSlideListener mOnSlideListener;
-
-	private final ActionBarDrawerToggle mActionBarDrawerToggle = new ActionBarDrawerToggle();
 
 	/**
 	 * The listener interface for receiving onOpen events. The class that is
@@ -401,6 +401,27 @@ public class SlidingMenu extends RelativeLayout {
 				content.setBackgroundResource(background);
 			break;
 		}
+
+		// TODO slide
+	}
+
+	/**
+	 * Sets the {@link ActionBarSlideIcon}
+	 * 
+	 * @param slideIcon
+	 */
+	public void setActionBarSlideIcon(ActionBarSlideIcon slideIcon) {
+		this.mActionBarSlideIcon = slideIcon;
+	}
+
+	/**
+	 * Get the {@link ActionBarSlideIcon}
+	 * 
+	 * @return the {@link ActionBarSlideIcon} or null, if no
+	 *         {@link ActionBarSlideIcon} has been set yet
+	 */
+	public ActionBarSlideIcon getSlideIcon() {
+		return mActionBarSlideIcon;
 	}
 
 	/**
@@ -1164,7 +1185,7 @@ public class SlidingMenu extends RelativeLayout {
 		if (mOnSlideListener != null)
 			mOnSlideListener.onSlideMenu(percentOpen);
 
-		mActionBarDrawerToggle.setDrawerIconSlideOffset(percentOpen);
+		mActionBarSlideIcon.setSlideOffset(percentOpen);
 
 		if (Build.VERSION.SDK_INT < 11)
 			return;
