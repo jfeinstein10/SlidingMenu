@@ -40,6 +40,14 @@
         <attr name="fadeDegree" format="float" />
         <attr name="selectorEnabled" format="boolean" />
         <attr name="selectorDrawable" format="reference" />
+        
+        <!-- ActionBar slide icon  (up indicator replacement) -->
+        <attr name="actionBarIconSlideable" format="boolean" />
+        <attr name="actionBarSlideIconDrawable" format="reference" />
+        <attr name="actionBarSlideIconOpenContentDesc" format="reference" />
+        <attr name="actionBarSlideIconCloseContentDesc" format="reference" />
+        
+        
     </declare-styleable>
 
 </resources>

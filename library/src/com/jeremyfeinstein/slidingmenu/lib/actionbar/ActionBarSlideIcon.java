@@ -320,6 +320,7 @@ public class ActionBarSlideIcon {
 	 */
 	public void setDrawable(Drawable drawable) {
 		mSlideDrawble.mWrapped = drawable;
+		mSlideDrawble.invalidateSelf();
 	}
 
 	/**

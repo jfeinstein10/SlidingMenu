@@ -192,6 +192,23 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	/**
+	 * This attribute is set / read in
+	 * {@link #SlidingMenu(Context, AttributeSet, int)}, where the xml attribute
+	 * will be read
+	 */
+	private boolean mXmlAttrActionBarSlideIconEnabled = false;
+
+	/**
+	 * This attribute is set in {@link #SlidingMenu(Context, AttributeSet, int)}
+	 * by reading the corresponding xml attribute. This
+	 */
+	private int mXmlAttrActionBarSlideIconDrawable = -1;
+
+	private int mXmlAttrActionBarSlideIconOpenContentDescRes = -1;
+
+	private int mXmlAttrActionBarSlideIconCloseContentDescRes = -1;
+
+	/**
 	 * Instantiates a new SlidingMenu.
 	 * 
 	 * @param context
@@ -335,7 +352,49 @@ public class SlidingMenu extends RelativeLayout {
 				R.styleable.SlidingMenu_selectorDrawable, -1);
 		if (selectorRes != -1)
 			setSelectorDrawable(selectorRes);
+
+		// ActionBarSlideIcon
+		mXmlAttrActionBarSlideIconEnabled = ta.getBoolean(
+				R.styleable.SlidingMenu_actionBarIconSlideable, false);
+
+		mXmlAttrActionBarSlideIconDrawable = ta.getResourceId(
+				R.styleable.SlidingMenu_actionBarSlideIconDrawable, -1);
+
+		mXmlAttrActionBarSlideIconOpenContentDescRes = ta.getResourceId(
+				R.styleable.SlidingMenu_actionBarSlideIconOpenContentDesc, 0);
+
+		mXmlAttrActionBarSlideIconCloseContentDescRes = ta.getResourceId(
+				R.styleable.SlidingMenu_actionBarSlideIconCloseContentDesc, 0);
+
 		ta.recycle();
+	}
+
+	/**
+	 * This method initializes the {@link ActionBarSlideIcon}, that has been
+	 * specified in the {@link SlidingMenu} xml. Since the
+	 * {@link ActionBarSlideIcon} needs a reference to the attached activity, a
+	 * {@link ActionBarSlideIcon} can not be created from the
+	 * {@link #SlidingMenu(Context, AttributeSet, int)} constructor. So this
+	 * method will be called from
+	 * {@link #attachToActivity(Activity, int, boolean)}
+	 * 
+	 * @param activity
+	 */
+	private void initActionBarSlideIconFromXmlAttributes(Activity activity) {
+
+		if (mXmlAttrActionBarSlideIconEnabled) {
+
+			if (mXmlAttrActionBarSlideIconDrawable != -1) {
+				setActionBarSlideIcon(new ActionBarSlideIcon(activity,
+						mXmlAttrActionBarSlideIconDrawable,
+						mXmlAttrActionBarSlideIconOpenContentDescRes,
+						mXmlAttrActionBarSlideIconCloseContentDescRes));
+			} else
+				setActionBarSlideIcon(new ActionBarSlideIcon(activity,
+						mXmlAttrActionBarSlideIconOpenContentDescRes,
+						mXmlAttrActionBarSlideIconOpenContentDescRes));
+		}
+
 	}
 
 	/**
@@ -402,7 +461,8 @@ public class SlidingMenu extends RelativeLayout {
 			break;
 		}
 
-		// TODO slide
+		// init the ActionBarSlideIcon
+		initActionBarSlideIconFromXmlAttributes(activity);
 	}
 
 	/**
