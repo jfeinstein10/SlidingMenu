@@ -1,11 +1,11 @@
 SlidingMenu ([Play Store Demo][7])
 ===========
 
-SlidingMenu is an Open Source Android library that allows developers to easily create applications 
-with sliding menus like those made popular in the Google+, YouTube, and Facebook apps. Feel free 
+SlidingMenu is an Open Source Android library that allows developers to easily create applications
+with sliding menus like those made popular in the Google+, YouTube, and Facebook apps. Feel free
 to use it all you want in your Android apps provided that you cite this project and include the license in your app.
 
-SlidingMenu is currently used in some awesome Android apps. Here's a list of some of them: 
+SlidingMenu is currently used in some awesome Android apps. Here's a list of some of them:
 * [Foursquare][15]
 * [LinkedIn][19]
 * [Zappos][20]
@@ -31,7 +31,7 @@ Also, you can follow the project on Twitter : [@SlidingMenu][1]
 
 Setup
 -----
-* In Eclipse, just import the library as an Android library project. Project > Clean to generate the binaries 
+* In Eclipse, just import the library as an Android library project. Project > Clean to generate the binaries
 you need, like R.java, etc.
 * Then, just add SlidingMenu as a dependency to your existing project and you're good to go!
 
@@ -40,7 +40,7 @@ Setup with ActionBarSherlock
 * Setup as above.
 * Checkout a clean copy of [ActionBarSherlock][2] and import into your Eclipse workspace.
 * Add ActionBarSherlock as a dependency to SlidingMenu
-* Go into the SlidingActivities that you plan on using make them extend Sherlock___Activity instead of ___Activity. 
+* Go into the SlidingActivities that you plan on using make them extend Sherlock___Activity instead of ___Activity.
 
 How to Integrate this Library into Your Projects
 ------------------------------------------------
@@ -52,8 +52,8 @@ and then calling `SlidingMenu.attachToActivity(Activity activity, SlidingMenu.SL
 does not. You can check it out in the example app AttachExample Activity.
 
 __2.__      You can embed the SlidingMenu at the Activity level by making your Activity extend `SlidingActivity`.
-* In your Activity's onCreate method, you will have to call `setContentView`, as usual, and also 
-`setBehindContentView`, which has the same syntax as setContentView. `setBehindContentView` will place 
+* In your Activity's onCreate method, you will have to call `setContentView`, as usual, and also
+`setBehindContentView`, which has the same syntax as setContentView. `setBehindContentView` will place
 the view in the "behind" portion of the SlidingMenu. You will have access to the `getSlidingMenu` method so you can
 customize the SlidingMenu to your liking.
 * If you want to use another library such as ActionBarSherlock, you can just change the SlidingActivities to extend
@@ -85,8 +85,12 @@ public class SlidingExample extends Activity {
 		menu.setFadeDegree(0.35f);
 		menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
 		menu.setMenu(R.layout.menu);
+
+        // Set the ActionBarSlideIcon, that will replace the up indicator of the ActionBar
+        slidingMenu.setActionBarSlideIcon(new ActionBarSlideIcon(this,
+                R.drawable.ic_navigation_drawer, R.string.open_content_desc, R.string.close_content_desc);
 	}
-    
+
 }
 ```
 
@@ -110,12 +114,18 @@ If you decide to use SlidingMenu as a view, you can define it in your xml layout
     sliding:fadeEnabled="true|false"
     sliding:fadeDegree="float"
     sliding:selectorEnabled="true|false"
-    sliding:selectorDrawable="@drawable/YOUR_SELECTOR"/>
+    sliding:selectorDrawable="@drawable/YOUR_SELECTOR"
+
+    sliding:actionBarIconSlideable="true"
+    sliding:actionBarSlideIconDrawable="@drawable/ic_navigation_drawer"
+    sliding:actionBarSlideIconOpenContentDesc="@string/open_string"
+    sliding:actionBarSlideIconCloseContentDesc="@string/close_string"
+    />
 ```
 NOTE : you cannot use both behindOffset and behindWidth. You will get an exception if you try.
 * `viewAbove` - a reference to the layout that you want to use as the above view of the SlidingMenu
 * `viewBehind` - a reference to the layout that you want to use as the behind view of the SlidingMenu
-* `touchModeAbove` - an enum that designates what part of the screen is touchable when the above view is 
+* `touchModeAbove` - an enum that designates what part of the screen is touchable when the above view is
 showing. Margin means only the left margin. Fullscreen means the entire screen. Default is margin.
 * `behindOffset` - a dimension representing the number of pixels that you want the above view to show when the
 behind view is showing. Default is 0.
@@ -137,11 +147,15 @@ view showing a selected view on the behind view.
 * `selectorDrawable` - a reference to a drawable to be used as the selector
 NOTE : in order to have the selector drawn, you must call SlidingMenu.setSelectedView(View v) with the selected view.
 Note that this will most likely not work with items in a ListView because of the way that Android recycles item views.
+* `actionBarIconSlideable` - Set it to true if you want to enable the slide icon, that will replace the up indicator of the ActionBar.
+* `actionBarSlideIconDrawable` - Set the drawable of the slide icon, that will replace the up indicator of the ActionBar. This is optional. If this one is not set, the up indicator of that has been specified in your app theme will be used (homeAsUpIndicator).
+* `actionBarSlideIconOpenContentDesc` - This string will be shown as content description for the ActionBar home button, when the SlidingMenu is closed. This attribute is optional.
+* `actionBarSlideIconCloseContentDesc`- This string will be shown as content description for the ActionBar home button, when the SlidingMenu is open. This attribute is optional.
 
 Caveats
 -------
 * Your layouts have to be based on a viewgroup, unfortunatly this negates the `<merge>` optimisations.
-            
+
 
 Developed By
 ------------
@@ -151,19 +165,19 @@ License
 -------
 
     Copyright 2012 Jeremy Feinstein
-    
+
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
-    
+
     http://www.apache.org/licenses/LICENSE-2.0
-    
+
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-    
+
 [1]: http://twitter.com/slidingmenu
 [2]: http://actionbarsherlock.com/
 [3]: https://play.google.com/store/apps/details?id=com.zappos.android&hl=en
