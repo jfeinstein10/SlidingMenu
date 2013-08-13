@@ -192,23 +192,6 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	/**
-	 * This attribute is set / read in
-	 * {@link #SlidingMenu(Context, AttributeSet, int)}, where the xml attribute
-	 * will be read
-	 */
-	private boolean mXmlAttrActionBarSlideIconEnabled = false;
-
-	/**
-	 * This attribute is set in {@link #SlidingMenu(Context, AttributeSet, int)}
-	 * by reading the corresponding xml attribute. This
-	 */
-	private int mXmlAttrActionBarSlideIconDrawable = -1;
-
-	private int mXmlAttrActionBarSlideIconOpenContentDescRes = -1;
-
-	private int mXmlAttrActionBarSlideIconCloseContentDescRes = -1;
-
-	/**
 	 * Instantiates a new SlidingMenu.
 	 * 
 	 * @param context
@@ -354,19 +337,29 @@ public class SlidingMenu extends RelativeLayout {
 			setSelectorDrawable(selectorRes);
 
 		// ActionBarSlideIcon
-		mXmlAttrActionBarSlideIconEnabled = ta.getBoolean(
+		boolean xmlAttrActionBarSlideIconEnabled = ta.getBoolean(
 				R.styleable.SlidingMenu_actionBarIconSlideable, false);
 
-		mXmlAttrActionBarSlideIconDrawable = ta.getResourceId(
+		int xmlAttrActionBarSlideIconDrawable = ta.getResourceId(
 				R.styleable.SlidingMenu_actionBarSlideIconDrawable, -1);
 
-		mXmlAttrActionBarSlideIconOpenContentDescRes = ta.getResourceId(
+		int xmlAttrActionBarSlideIconOpenContentDescRes = ta.getResourceId(
 				R.styleable.SlidingMenu_actionBarSlideIconOpenContentDesc, 0);
 
-		mXmlAttrActionBarSlideIconCloseContentDescRes = ta.getResourceId(
+		int xmlAttrActionBarSlideIconCloseContentDescRes = ta.getResourceId(
 				R.styleable.SlidingMenu_actionBarSlideIconCloseContentDesc, 0);
 
 		ta.recycle();
+
+		if (context instanceof Activity)
+			initActionBarSlideIconFromXmlAttributes(((Activity) context),
+					xmlAttrActionBarSlideIconEnabled,
+					xmlAttrActionBarSlideIconDrawable,
+					xmlAttrActionBarSlideIconOpenContentDescRes,
+					xmlAttrActionBarSlideIconCloseContentDescRes);
+		else
+			Log.e(TAG,
+					"The context who has created the this View seems not to be an Activity. Therefore the ActionBarSlideIcon could not be instantiated");
 	}
 
 	/**
@@ -380,19 +373,23 @@ public class SlidingMenu extends RelativeLayout {
 	 * 
 	 * @param activity
 	 */
-	private void initActionBarSlideIconFromXmlAttributes(Activity activity) {
+	private void initActionBarSlideIconFromXmlAttributes(Activity activity,
+			boolean actionBarSlideIconEnabled,
+			int actionBarSlideIconDrawable,
+			int actionBarSlideIconOpenContentDescRes,
+			int actionBarSlideIconCloseContentDescRes) {
 
-		if (mXmlAttrActionBarSlideIconEnabled) {
+		if (actionBarSlideIconEnabled) {
 
-			if (mXmlAttrActionBarSlideIconDrawable != -1) {
+			if (actionBarSlideIconDrawable != -1) {
 				setActionBarSlideIcon(new ActionBarSlideIcon(activity,
-						mXmlAttrActionBarSlideIconDrawable,
-						mXmlAttrActionBarSlideIconOpenContentDescRes,
-						mXmlAttrActionBarSlideIconCloseContentDescRes));
+						actionBarSlideIconDrawable,
+						actionBarSlideIconOpenContentDescRes,
+						actionBarSlideIconCloseContentDescRes));
 			} else
 				setActionBarSlideIcon(new ActionBarSlideIcon(activity,
-						mXmlAttrActionBarSlideIconOpenContentDescRes,
-						mXmlAttrActionBarSlideIconOpenContentDescRes));
+						actionBarSlideIconOpenContentDescRes,
+						actionBarSlideIconOpenContentDescRes));
 		}
 
 	}
@@ -461,8 +458,6 @@ public class SlidingMenu extends RelativeLayout {
 			break;
 		}
 
-		// init the ActionBarSlideIcon
-		initActionBarSlideIconFromXmlAttributes(activity);
 	}
 
 	/**

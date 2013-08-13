@@ -7,7 +7,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.Log;
 
-
 public final class ActionBarHelper {
 
 	public static final String TAG = "ActionBarHelper";
@@ -24,7 +23,7 @@ public final class ActionBarHelper {
 		mActivity = activity;
 
 		try {
-			Class clazz = activity.getClass();
+			Class<?> clazz = activity.getClass();
 			Method m = clazz.getMethod("getSupportActionBar");
 			mUsesCompat = true;
 		} catch (NoSuchMethodException e) {
