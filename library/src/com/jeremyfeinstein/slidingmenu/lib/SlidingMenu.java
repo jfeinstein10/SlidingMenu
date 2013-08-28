@@ -31,7 +31,7 @@ import com.jeremyfeinstein.slidingmenu.lib.CustomViewAbove.OnPageChangeListener;
 
 public class SlidingMenu extends RelativeLayout {
 
-	private static final String TAG = "SlidingMenu";
+	private static final String TAG = getClass().getSimpleName();
 
 	public static final int SLIDING_WINDOW = 0;
 	public static final int SLIDING_CONTENT = 1;
