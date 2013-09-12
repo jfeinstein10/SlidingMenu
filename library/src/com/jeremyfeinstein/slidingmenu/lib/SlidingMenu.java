@@ -270,6 +270,8 @@ public class SlidingMenu extends RelativeLayout {
 		}
 		int shadowWidth = (int) ta.getDimension(R.styleable.SlidingMenu_shadowWidth, 0);
 		setShadowWidth(shadowWidth);
+		boolean shadowOutside = (boolean) ta.getBoolean(R.styleable.SlidingMenu_shadowOutside, false);
+		setShadowOutside(shadowOutside);
 		boolean fadeEnabled = ta.getBoolean(R.styleable.SlidingMenu_fadeEnabled, true);
 		setFadeEnabled(fadeEnabled);
 		float fadeDeg = ta.getFloat(R.styleable.SlidingMenu_fadeDegree, 0.33f);
@@ -791,6 +793,15 @@ public class SlidingMenu extends RelativeLayout {
 	 */
 	public void setShadowWidth(int pixels) {
 		mViewBehind.setShadowWidth(pixels);
+	}
+	
+	/**
+	 * Sets the to be drawn on outside below view.
+	 *
+	 * @param b true to enable outside shadow, false to disable it
+	 */
+	public void setShadowOutside(boolean b) {
+		mViewBehind.setShadowOutside(b);
 	}
 
 	/**
