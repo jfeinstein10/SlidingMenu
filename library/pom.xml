@@ -37,11 +37,10 @@
 					<nativeLibrariesDirectory>ignored</nativeLibrariesDirectory>
 				</configuration>
 			</plugin>
-
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
-                <version>1.7</version>
+                <version>1.8</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -53,6 +52,10 @@
                                 <artifact>
                                     <type>jar</type>
                                     <file>${project.build.directory}/${project.build.finalName}.jar</file>
+                                </artifact>
+                                <artifact>
+                                    <type>aar</type>
+                                    <file>${project.basedir}/build/libs/library-${project.version}.aar</file>
                                 </artifact>
                             </artifacts>
                         </configuration>
