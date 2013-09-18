@@ -15,7 +15,12 @@
 	</parent>
 
 	<dependencies>
-		<dependency>
+        <dependency>
+          <groupId>com.google.android</groupId>
+          <artifactId>android</artifactId>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
 			<groupId>com.jeremyfeinstein.slidingmenu</groupId>
 			<artifactId>slidingmenu</artifactId>
 			<optional>true</optional>
