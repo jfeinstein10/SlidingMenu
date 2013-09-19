@@ -64,6 +64,8 @@ public class SlidingMenu extends RelativeLayout {
 	 */
 	public static final int LEFT_RIGHT = 2;
 
+    public static final int TOP = 3;
+	
 	private CustomViewAbove mViewAbove;
 
 	private CustomViewBehind mViewBehind;
@@ -257,11 +259,11 @@ public class SlidingMenu extends RelativeLayout {
 		if (offsetBehind != -1 && widthBehind != -1)
 			throw new IllegalStateException("Cannot set both behindOffset and behindWidth for a SlidingMenu");
 		else if (offsetBehind != -1)
-			setBehindOffset(offsetBehind);
+			setBehindOffsetX(offsetBehind);
 		else if (widthBehind != -1)
 			setBehindWidth(widthBehind);
 		else
-			setBehindOffset(0);
+			setBehindOffsetX(0);
 		float scrollOffsetBehind = ta.getFloat(R.styleable.SlidingMenu_behindScrollScale, 0.33f);
 		setBehindScrollScale(scrollOffsetBehind);
 		int shadowRes = ta.getResourceId(R.styleable.SlidingMenu_shadowDrawable, -1);
@@ -444,8 +446,8 @@ public class SlidingMenu extends RelativeLayout {
 	 * @param mode must be either SlidingMenu.LEFT or SlidingMenu.RIGHT
 	 */
 	public void setMode(int mode) {
-		if (mode != LEFT && mode != RIGHT && mode != LEFT_RIGHT) {
-			throw new IllegalStateException("SlidingMenu mode must be LEFT, RIGHT, or LEFT_RIGHT");
+		if (mode != LEFT && mode != RIGHT && mode != LEFT_RIGHT && mode != TOP) {
+			throw new IllegalStateException("SlidingMenu mode must be LEFT, RIGHT, or LEFT_RIGHT or TOP");
 		}
 		mViewBehind.setMode(mode);
 	}
@@ -579,7 +581,7 @@ public class SlidingMenu extends RelativeLayout {
 	 *
 	 * @param i The margin, in pixels, on the right of the screen that the behind view scrolls to.
 	 */
-	public void setBehindOffset(int i) {
+	public void setBehindOffsetX(int i) {
 		//		RelativeLayout.LayoutParams params = ((RelativeLayout.LayoutParams)mViewBehind.getLayoutParams());
 		//		int bottom = params.bottomMargin;
 		//		int top = params.topMargin;
@@ -587,6 +589,15 @@ public class SlidingMenu extends RelativeLayout {
 		//		params.setMargins(left, top, i, bottom);
 		mViewBehind.setWidthOffset(i);
 	}
+
+    public void setBehindOffsetY(int i) {
+        //      RelativeLayout.LayoutParams params = ((RelativeLayout.LayoutParams)mViewBehind.getLayoutParams());
+        //      int bottom = params.bottomMargin;
+        //      int top = params.topMargin;
+        //      int left = params.leftMargin;
+        //      params.setMargins(left, top, i, bottom);
+        mViewBehind.setHeightOffset(i);
+    }
 
 	/**
 	 * Sets the behind offset.
@@ -596,7 +607,7 @@ public class SlidingMenu extends RelativeLayout {
 	 */
 	public void setBehindOffsetRes(int resID) {
 		int i = (int) getContext().getResources().getDimension(resID);
-		setBehindOffset(i);
+		setBehindOffsetX(i);
 	}
 
 	/**
@@ -638,7 +649,7 @@ public class SlidingMenu extends RelativeLayout {
 		} catch (Exception e) {
 			width = display.getWidth();
 		}
-		setBehindOffset(width-i);
+		setBehindOffsetX(width-i);
 	}
 
 	/**
@@ -651,7 +662,7 @@ public class SlidingMenu extends RelativeLayout {
 		int i = (int) getContext().getResources().getDimension(res);
 		setBehindWidth(i);
 	}
-
+	
 	/**
 	 * Gets the behind scroll scale.
 	 *
