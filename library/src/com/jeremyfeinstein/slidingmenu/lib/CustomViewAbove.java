@@ -87,7 +87,7 @@ public class CustomViewAbove extends ViewGroup {
 	private int mFlingDistance;
 
 	private CustomViewBehind mViewBehind;
-	// private int mMode;
+	//      private int mMode;
 	private boolean mEnabled = true;
 
 	private OnPageChangeListener mOnPageChangeListener;
