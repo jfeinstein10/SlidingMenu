@@ -359,7 +359,7 @@ public class CustomViewAbove extends ViewGroup {
 		Rect rect = new Rect();
 		for (View v : mIgnoredViews) {
 			v.getHitRect(rect);
-			if (rect.contains((int)ev.getX(), (int)ev.getY())) {Log.d("","INOGRED VIEW");return true;};
+			if (rect.contains((int)ev.getX(), (int)ev.getY())) return true;
 		}
 		return false;
 	}
@@ -610,10 +610,8 @@ public class CustomViewAbove extends ViewGroup {
 		int x = (int) (ev.getX() + mScrollX);
 		int y = (int) (ev.getY() + mScrollY);
 		if (isMenuOpen()) {
-		    Log.d("","isopen");
 			return mViewBehind.menuOpenTouchAllowed(mContent, mCurItem, x, y);
 		} else {
-            Log.d("","touch");
 			switch (mTouchMode) {
 			case SlidingMenu.TOUCHMODE_FULLSCREEN:
 				return !isInIgnoredView(ev);
@@ -685,7 +683,6 @@ public class CustomViewAbove extends ViewGroup {
 			} else {
 				mIsUnableToDrag = true;
 			}
-			Log.d("DRAGM","unable " +mIsUnableToDrag);
 			break;
 		case MotionEventCompat.ACTION_POINTER_UP:
 			onSecondaryPointerUp(ev);
@@ -760,6 +757,7 @@ public class CustomViewAbove extends ViewGroup {
                     } else if (scrollY > bottomBound) {
                         scrollY = bottomBound;
                     }
+                    Log.d("","s "  + scrollY + " b "+bottomBound);
                     // Don't lose the rounded component
                     mLastMotionY += scrollY - (int) scrollY;
                     scrollTo(getScrollX(), (int)scrollY);
@@ -887,8 +885,6 @@ public class CustomViewAbove extends ViewGroup {
     			mIsUnableToDrag = true;
     		}
 		}
-		
-		Log.d("DRAG","unable to drag "+mIsUnableToDrag);
 	}
 
 	@Override
