@@ -757,7 +757,6 @@ public class CustomViewAbove extends ViewGroup {
                     } else if (scrollY > bottomBound) {
                         scrollY = bottomBound;
                     }
-                    Log.d("","s "  + scrollY + " b "+bottomBound);
                     // Don't lose the rounded component
                     mLastMotionY += scrollY - (int) scrollY;
                     scrollTo(getScrollX(), (int)scrollY);

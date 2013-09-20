@@ -12,7 +12,7 @@ import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout.LayoutParams;
+import android.widget.FrameLayout;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.CanvasTransformer;
 
@@ -149,6 +149,14 @@ public class CustomViewBehind extends ViewGroup {
 		int width = getDefaultSize(0, widthMeasureSpec);
 		int height = getDefaultSize(0, heightMeasureSpec);
 		setMeasuredDimension(width, height);
+		
+		if (getMode() == SlidingMenu.TOP) {
+            mContent.measure(widthMeasureSpec, heightMeasureSpec);
+            
+            int mh = mContent.getMeasuredHeight();
+            mHeightOffset = height - mh;
+        }
+		
 		final int contentWidth = getChildMeasureSpec(widthMeasureSpec, 0, width - mWidthOffset);
 		final int contentHeight = getChildMeasureSpec(heightMeasureSpec, 0, height - mHeightOffset);
 		mContent.measure(contentWidth, contentHeight);
