@@ -227,7 +227,7 @@ public class CustomViewAbove extends ViewGroup {
 
 		final boolean dispatchSelected = mCurItem != item;
 		mCurItem = item;
-		int destX = 0;
+	    int destX = 0;
         int destY = 0;
         if(mViewBehind.getMode() == SlidingMenu.TOP)
             destY = getDestScrollY(mCurItem);
@@ -340,11 +340,11 @@ public class CustomViewAbove extends ViewGroup {
 	}
 
     private int getTopBound() {
-        return mViewBehind.getAbsTopBound();
+        return mViewBehind.getAbsTopBound(mContent);
     }
 
     private int getBottomBound() {
-        return mViewBehind.getAbsBottomBound();
+        return mViewBehind.getAbsBottomBound(mContent);
     }
     
 	public int getContentLeft() {

@@ -316,16 +316,16 @@ public class CustomViewBehind extends ViewGroup {
 		return 0;
 	}
 
-    public int getAbsTopBound() {
+    public int getAbsTopBound(View content) {
         if (mMode == SlidingMenu.TOP) {
-            return mContent.getTop() - getBehindHeight();
+            return content.getTop() - getBehindHeight();
         }
         return 0;
     }
 
-    public int getAbsBottomBound() {
+    public int getAbsBottomBound(View content) {
         if (mMode == SlidingMenu.TOP) {
-            return mContent.getBottom();
+            return content.getBottom();
         }
         return 0;
     }
