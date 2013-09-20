@@ -75,6 +75,8 @@ public class SlidingMenu extends RelativeLayout {
 	private OnOpenListener mSecondaryOpenListner;
 
 	private OnCloseListener mCloseListener;
+	
+	private View bg;
 
 	/**
 	 * The listener interface for receiving onOpen events.
@@ -203,11 +205,17 @@ public class SlidingMenu extends RelativeLayout {
 	 */
 	public SlidingMenu(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
-		
+
+		// bg
+		bg = new View(context);
+		bg.setBackgroundColor(0xff000000);
+        addView(bg, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+
 		mViewBehind = new CustomViewBehind(context);
 		addView(mViewBehind);
 		mViewAbove = new CustomViewAbove(context);
 		addView(mViewAbove);
+        
 		// register the CustomViewBehind with the CustomViewAbove
 		mViewAbove.setCustomViewBehind(mViewBehind);
 		mViewBehind.setCustomViewAbove(mViewAbove);
@@ -1030,4 +1038,7 @@ public class SlidingMenu extends RelativeLayout {
 		}
 	}
 
+	public void setBackgroundViewColor(int i) {
+	    bg.setBackgroundColor(i);
+	}
 }

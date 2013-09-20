@@ -250,6 +250,9 @@ public class CustomViewBehind extends ViewGroup {
 				scrollTo((int)(getBehindWidth() - getWidth() + 
 						(x-getBehindWidth())*mScrollScale), y);				
 			}
+		} else if (mMode == SlidingMenu.TOP) {
+            if (y >= content.getTop()) vis = View.INVISIBLE;
+            scrollTo(x, (int)((y + getBehindHeight())*mScrollScale));
 		}
 		if (vis == View.INVISIBLE)
 			Log.v(TAG, "behind INVISIBLE");

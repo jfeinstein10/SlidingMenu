@@ -910,7 +910,10 @@ public class CustomViewAbove extends ViewGroup {
 	}
 
 	protected float getPercentOpen() {
-		return Math.abs(mScrollX-mContent.getLeft()) / getBehindWidth();
+	    if(mViewBehind.getMode() == SlidingMenu.TOP)
+	        return Math.abs(mScrollY-mContent.getTop()) / getBehindHeight();
+	    else
+	        return Math.abs(mScrollX-mContent.getLeft()) / getBehindWidth();
 	}
 
 	@Override
