@@ -206,9 +206,8 @@ public class SlidingMenu extends RelativeLayout {
 		
 		mViewBehind = new CustomViewBehind(context);
 		addView(mViewBehind);
-		LayoutParams aboveParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		mViewAbove = new CustomViewAbove(context);
-		addView(mViewAbove, aboveParams);
+		addView(mViewAbove);
 		// register the CustomViewBehind with the CustomViewAbove
 		mViewAbove.setCustomViewBehind(mViewBehind);
 		mViewBehind.setCustomViewAbove(mViewAbove);
