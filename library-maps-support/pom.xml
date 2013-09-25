@@ -15,7 +15,12 @@
 	</parent>
 
 	<dependencies>
-		<dependency>
+        <dependency>
+          <groupId>com.google.android</groupId>
+          <artifactId>android</artifactId>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
 			<groupId>com.jeremyfeinstein.slidingmenu</groupId>
 			<artifactId>slidingmenu</artifactId>
 			<optional>true</optional>
@@ -38,6 +43,14 @@
 					<nativeLibrariesDirectory>ignored</nativeLibrariesDirectory>
 				</configuration>
 			</plugin>
+			<plugin>
+		        <artifactId>maven-compiler-plugin</artifactId>
+		        <version>3.0</version>
+		        <configuration>
+		          <source>1.6</source>
+		          <target>1.6</target>
+		        </configuration>
+		    </plugin>
 		</plugins>
 	</build>
 </project>
