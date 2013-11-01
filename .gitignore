@@ -18,3 +18,5 @@ gen
 *.project
 .DS_Store
 target/
+library/.settings/
+library/.settings
