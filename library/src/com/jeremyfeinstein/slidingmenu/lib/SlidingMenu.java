@@ -31,7 +31,7 @@ import com.jeremyfeinstein.slidingmenu.lib.CustomViewAbove.OnPageChangeListener;
 
 public class SlidingMenu extends RelativeLayout {
 
-	private static final String TAG = getClass().getSimpleName();
+	private static final String TAG = SlidingMenu.class.getSimpleName();
 
 	public static final int SLIDING_WINDOW = 0;
 	public static final int SLIDING_CONTENT = 1;
@@ -997,8 +997,6 @@ public class SlidingMenu extends RelativeLayout {
 		}
 		return true;
 	}
-	
-	private Handler mHandler = new Handler();
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public void manageLayers(float percentOpen) {
@@ -1008,7 +1006,7 @@ public class SlidingMenu extends RelativeLayout {
 		final int layerType = layer ? View.LAYER_TYPE_HARDWARE : View.LAYER_TYPE_NONE;
 
 		if (layerType != getContent().getLayerType()) {
-			mHandler.post(new Runnable() {
+			getHandler().post(new Runnable() {
 				public void run() {
 					Log.v(TAG, "changing layerType. hardware? " + (layerType == View.LAYER_TYPE_HARDWARE));
 					getContent().setLayerType(layerType, null);
