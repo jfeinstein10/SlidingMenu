@@ -588,6 +588,15 @@ public class SlidingMenu extends RelativeLayout {
 		mViewBehind.setWidthOffset(i);
 	}
 
+    /**
+     * Sets the behind secondary offset.
+     *
+     * @param offset The margin, in pixels, on the right of the screen that the behind secondary view scrolls to.
+     */
+    public void setBehindSecondaryOffset(int offset) {
+        mViewBehind.setSecondaryWidthOffset(offset);
+    }
+
 	/**
 	 * Sets the behind offset.
 	 *
@@ -598,6 +607,17 @@ public class SlidingMenu extends RelativeLayout {
 		int i = (int) getContext().getResources().getDimension(resID);
 		setBehindOffset(i);
 	}
+
+    /**
+     * Sets the behind secondary offset.
+     *
+     * @param resID The dimension resource id to be set as the behind secondary offset.
+     *              The secondary menu, when open, will leave this width margin on the right of the screen.
+     */
+    public void setBehindSecondaryOffsetRes(int resID) {
+        int i = (int) getContext().getResources().getDimension(resID);
+        setBehindSecondaryOffset(i);
+    }
 
 	/**
 	 * Sets the above offset.
@@ -641,7 +661,31 @@ public class SlidingMenu extends RelativeLayout {
 		setBehindOffset(width-i);
 	}
 
-	/**
+    /**
+     * Sets the behind secondary width.
+     *
+     * @param i The width the Secondary Sliding Menu will open to, in pixels
+     */
+    @SuppressWarnings("deprecation")
+    public void setBehindSecondaryWidth(int i) {
+        int width;
+        Display display = ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE))
+                .getDefaultDisplay();
+        try {
+            Class<?> cls = Display.class;
+            Class<?>[] parameterTypes = {Point.class};
+            Point parameter = new Point();
+            Method method = cls.getMethod("getSize", parameterTypes);
+            method.invoke(display, parameter);
+            width = parameter.x;
+        } catch (Exception e) {
+            width = display.getWidth();
+        }
+        setBehindSecondaryOffset(width - i);
+    }
+
+
+    /**
 	 * Sets the behind width.
 	 *
 	 * @param res The dimension resource id to be set as the behind width offset.
@@ -651,6 +695,17 @@ public class SlidingMenu extends RelativeLayout {
 		int i = (int) getContext().getResources().getDimension(res);
 		setBehindWidth(i);
 	}
+
+    /**
+     * Sets the behind secondary width.
+     *
+     * @param res The dimension resource id to be set as the behind secondary width offset.
+     *            The secondary  menu, when open, will open this wide.
+     */
+    public void setBehindSecondaryWidthRes(int res) {
+        int i = (int) getContext().getResources().getDimension(res);
+        setBehindSecondaryWidth(i);
+    }
 
 	/**
 	 * Gets the behind scroll scale.
