@@ -687,7 +687,7 @@ public class CustomViewAbove extends ViewGroup {
 		if (!mEnabled)
 			return false;
 
-		if (!mIsBeingDragged && !thisTouchAllowed(ev))
+		if (!mIsBeingDragged && !mQuickReturn && !thisTouchAllowed(ev))
 			return false;
 
 		//		if (!mIsBeingDragged && !mQuickReturn)
@@ -760,19 +760,18 @@ public class CustomViewAbove extends ViewGroup {
 					setCurrentItemInternal(mCurItem, true, true, initialVelocity);
 				}
 				mActivePointerId = INVALID_POINTER;
-				endDrag();
 			} else if (mQuickReturn && mViewBehind.menuTouchInQuickReturn(mContent, mCurItem, ev.getX() + mScrollX)) {
 				// close the menu
 				setCurrentItem(1);
-				endDrag();
 			}
+			endDrag();
 			break;
 		case MotionEvent.ACTION_CANCEL:
 			if (mIsBeingDragged) {
 				setCurrentItemInternal(mCurItem, true, true);
 				mActivePointerId = INVALID_POINTER;
-				endDrag();
 			}
+			endDrag();
 			break;
 		case MotionEventCompat.ACTION_POINTER_DOWN: {
 			final int indexx = MotionEventCompat.getActionIndex(ev);
