@@ -289,8 +289,13 @@ public class CustomViewBehind extends ViewGroup {
 		} else if (mMode == SlidingMenu.RIGHT) {
 			return (x <= right && x >= right - mMarginThreshold);
 		} else if (mMode == SlidingMenu.LEFT_RIGHT) {
-			return (x >= left && x <= mMarginThreshold + left) || 
-					(x <= right && x >= right - mMarginThreshold);
+			int aboveTouchMode = mViewAbove.getTouchMode();
+			if(x >= left && x <= mMarginThreshold + left) {
+				if(aboveTouchMode == SlidingMenu.TOUCHMODE_MARGIN_LEFT)
+					return true;
+				else
+					return (x <= right && x >= right - mMarginThreshold);
+			}
 		}
 		return false;
 	}

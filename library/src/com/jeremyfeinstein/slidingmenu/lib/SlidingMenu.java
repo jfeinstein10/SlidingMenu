@@ -51,6 +51,11 @@ public class SlidingMenu extends RelativeLayout {
 	 * gesture
 	 */
 	public static final int TOUCHMODE_NONE = 2;
+	
+	/** Constant value for use with setTouchModeAbove(). Allows the SlidingMenu to be opened with a swipe
+	 * gesture on the screen's left margin only.
+	 */
+	public static final int TOUCHMODE_MARGIN_LEFT = 3;
 
 	/** Constant value for use with setMode(). Puts the menu to the left of the content.
 	 */
@@ -716,9 +721,9 @@ public class SlidingMenu extends RelativeLayout {
 	 */
 	public void setTouchModeAbove(int i) {
 		if (i != TOUCHMODE_FULLSCREEN && i != TOUCHMODE_MARGIN
-				&& i != TOUCHMODE_NONE) {
+				&& i != TOUCHMODE_NONE && i != TOUCHMODE_MARGIN_LEFT) {
 			throw new IllegalStateException("TouchMode must be set to either" +
-					"TOUCHMODE_FULLSCREEN or TOUCHMODE_MARGIN or TOUCHMODE_NONE.");
+					"TOUCHMODE_FULLSCREEN or TOUCHMODE_MARGIN or TOUCHMODE_NONE or TOUCHMOD_MARGIN_LEFT.");
 		}
 		mViewAbove.setTouchMode(i);
 	}

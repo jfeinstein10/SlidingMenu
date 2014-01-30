@@ -583,6 +583,7 @@ public class CustomViewAbove extends ViewGroup {
 			case SlidingMenu.TOUCHMODE_NONE:
 				return false;
 			case SlidingMenu.TOUCHMODE_MARGIN:
+			case SlidingMenu.TOUCHMODE_MARGIN_LEFT:
 				return mViewBehind.marginTouchAllowed(mContent, x);
 			}
 		}
