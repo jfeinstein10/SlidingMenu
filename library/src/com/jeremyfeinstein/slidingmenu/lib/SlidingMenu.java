@@ -14,7 +14,6 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.os.Handler;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
@@ -203,10 +202,10 @@ public class SlidingMenu extends RelativeLayout {
 		super(context, attrs, defStyle);
 		
 		LayoutParams behindParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-		mViewBehind = new CustomViewBehind(context);
+		mViewBehind = newCustomViewBehind(context);
 		addView(mViewBehind, behindParams);
 		LayoutParams aboveParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-		mViewAbove = new CustomViewAbove(context);
+		mViewAbove = newCustomViewAbove(context);
 		addView(mViewAbove, aboveParams);
 		// register the CustomViewBehind with the CustomViewAbove
 		mViewAbove.setCustomViewBehind(mViewBehind);
@@ -1018,5 +1017,13 @@ public class SlidingMenu extends RelativeLayout {
 			});
 		}
 	}
-
+	
+	protected CustomViewAbove newCustomViewAbove(Context context) {
+		return new CustomViewAbove(context);
+	}
+	
+	protected CustomViewBehind newCustomViewBehind(Context context) {
+		return new CustomViewBehind(context);
+	}
+	
 }
