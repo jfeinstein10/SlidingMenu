@@ -395,13 +395,6 @@ public class CustomViewAbove extends ViewGroup {
 		int dy = y - sy;
 		if (dx == 0 && dy == 0) {
 			completeScroll();
-			if (isMenuOpen()) {
-				if (mOpenedListener != null)
-					mOpenedListener.onOpened();
-			} else {
-				if (mClosedListener != null)
-					mClosedListener.onClosed();
-			}
 			return;
 		}
 
@@ -551,13 +544,13 @@ public class CustomViewAbove extends ViewGroup {
 			if (oldX != x || oldY != y) {
 				scrollTo(x, y);
 			}
-			if (isMenuOpen()) {
-				if (mOpenedListener != null)
-					mOpenedListener.onOpened();
-			} else {
-				if (mClosedListener != null)
-					mClosedListener.onClosed();
-			}
+		}
+		if (isMenuOpen()) {
+			if (mOpenedListener != null)
+				mOpenedListener.onOpened();
+		} else {
+			if (mClosedListener != null)
+				mClosedListener.onClosed();
 		}
 		mScrolling = false;
 	}
