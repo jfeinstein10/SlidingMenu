@@ -36,6 +36,9 @@ public class SlidingMenu extends RelativeLayout {
 	public static final int SLIDING_WINDOW = 0;
 	public static final int SLIDING_CONTENT = 1;
 	private boolean mActionbarOverlay = false;
+	private boolean mAddBackground = true;
+	private int mBackground;
+	private View mViewForBackground;
 
 	/** Constant value for use with setTouchModeAbove(). Allows the SlidingMenu to be opened with a swipe
 	 * gesture on the screen's margin
@@ -308,7 +311,7 @@ public class SlidingMenu extends RelativeLayout {
 
 		// get the window background
 		TypedArray a = activity.getTheme().obtainStyledAttributes(new int[] {android.R.attr.windowBackground});
-		int background = a.getResourceId(0, 0);
+		mBackground = a.getResourceId(0, 0);
 		a.recycle();
 
 		switch (slideStyle) {
@@ -317,7 +320,9 @@ public class SlidingMenu extends RelativeLayout {
 			ViewGroup decor = (ViewGroup) activity.getWindow().getDecorView();
 			ViewGroup decorChild = (ViewGroup) decor.getChildAt(0);
 			// save ActionBar themes that have transparent assets
-			decorChild.setBackgroundResource(background);
+			mViewForBackground = decorChild;
+			if (mAddBackground)
+			    decorChild.setBackgroundResource(mBackground);
 			decor.removeView(decorChild);
 			decor.addView(this);
 			setContent(decorChild);
@@ -327,12 +332,13 @@ public class SlidingMenu extends RelativeLayout {
 			// take the above view out of
 			ViewGroup contentParent = (ViewGroup)activity.findViewById(android.R.id.content);
 			View content = contentParent.getChildAt(0);
+			mViewForBackground = content;
 			contentParent.removeView(content);
 			contentParent.addView(this);
 			setContent(content);
 			// save people from having transparent backgrounds
-			if (content.getBackground() == null)
-				content.setBackgroundResource(background);
+			if (mAddBackground)
+				content.setBackgroundResource(mBackground);
 			break;
 		}
 	}
@@ -793,6 +799,23 @@ public class SlidingMenu extends RelativeLayout {
 		mViewBehind.setShadowWidth(pixels);
 	}
 
+	/**
+	 * Sets whether the window background should be set as the background behind the content.
+	 * If false then the content view needs to have its own background set.
+	 * @param b true to automatically set the background, false to set none
+	 */
+	public void setAddBackground(boolean b) {
+		if (b != mAddBackground) {
+			if (null != mViewForBackground) {
+			    if (b) {
+				    mViewForBackground.setBackgroundResource(mBackground);
+			    } else {
+				    mViewForBackground.setBackground(null);
+			    }
+			}
+			mAddBackground = b;
+		}
+	}
 	/**
 	 * Enables or disables the SlidingMenu's fade in and out
 	 *

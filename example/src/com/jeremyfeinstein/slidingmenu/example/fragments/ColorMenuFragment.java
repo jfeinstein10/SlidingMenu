@@ -15,7 +15,9 @@ public class ColorMenuFragment extends ListFragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.list, null);
+		View view =inflater.inflate(R.layout.list, null);
+		view.setBackgroundColor(getResources().getColor(android.R.color.white));
+		return view;
 	}
 
 	@Override
