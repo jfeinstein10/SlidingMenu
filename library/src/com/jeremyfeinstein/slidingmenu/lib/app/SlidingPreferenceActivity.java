@@ -148,4 +148,11 @@ public class SlidingPreferenceActivity extends PreferenceActivity implements Sli
 		if (b) return b;
 		return super.onKeyUp(keyCode, event);
 	}
+
+	@Override
+	public void onContentChanged() {
+		super.onContentChanged();
+		mHelper.onContentChanged();
+	}
+
 }

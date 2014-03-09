@@ -149,4 +149,10 @@ public class SlidingActivity extends Activity implements SlidingActivityBase {
 		return super.onKeyUp(keyCode, event);
 	}
 
+	@Override
+	public void onContentChanged() {
+		super.onContentChanged();
+		mHelper.onContentChanged();
+	}
+
 }

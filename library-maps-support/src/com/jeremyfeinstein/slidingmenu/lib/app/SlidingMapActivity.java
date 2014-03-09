@@ -149,4 +149,10 @@ public abstract class SlidingMapActivity extends MapActivity implements SlidingA
 		return super.onKeyUp(keyCode, event);
 	}
 
+	@Override
+	public void onContentChanged() {
+		super.onContentChanged();
+		mHelper.onContentChanged();
+	}
+
 }

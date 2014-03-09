@@ -149,4 +149,10 @@ public class SlidingFragmentActivity extends FragmentActivity implements Sliding
 		return super.onKeyUp(keyCode, event);
 	}
 
+	@Override
+	public void onContentChanged() {
+		super.onContentChanged();
+		mHelper.onContentChanged();
+	}
+
 }
