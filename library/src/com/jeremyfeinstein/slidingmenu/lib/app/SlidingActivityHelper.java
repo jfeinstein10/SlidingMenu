@@ -61,28 +61,21 @@ public class SlidingActivityHelper {
 		mSlidingMenu.attachToActivity(mActivity, 
 				mEnableSlide ? SlidingMenu.SLIDING_WINDOW : SlidingMenu.SLIDING_CONTENT);
 		
-		final boolean open;
-		final boolean secondary;
 		if (savedInstanceState != null) {
-			open = savedInstanceState.getBoolean("SlidingActivityHelper.open");
-			secondary = savedInstanceState.getBoolean("SlidingActivityHelper.secondary");
+			boolean open = savedInstanceState.getBoolean("SlidingActivityHelper.open");
+			boolean secondary = savedInstanceState.getBoolean("SlidingActivityHelper.secondary");
+      if (open) {
+        if (secondary) {
+          mSlidingMenu.showSecondaryMenu(false);
+        } else {
+          mSlidingMenu.showMenu(false);
+        }
+      } else {
+        mSlidingMenu.showContent(false);          
+      }
 		} else {
-			open = false;
-			secondary = false;
+		  mSlidingMenu.showContent(false);
 		}
-		new Handler().post(new Runnable() {
-			public void run() {
-				if (open) {
-					if (secondary) {
-						mSlidingMenu.showSecondaryMenu(false);
-					} else {
-						mSlidingMenu.showMenu(false);
-					}
-				} else {
-					mSlidingMenu.showContent(false);					
-				}
-			}
-		});
 	}
 
 	/**

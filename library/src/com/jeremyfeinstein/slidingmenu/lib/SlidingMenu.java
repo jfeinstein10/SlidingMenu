@@ -29,7 +29,7 @@ import android.widget.RelativeLayout;
 
 import com.jeremyfeinstein.slidingmenu.lib.CustomViewAbove.OnPageChangeListener;
 
-public class SlidingMenu extends RelativeLayout {
+public class SlidingMenu extends FrameLayout {
 
 	private static final String TAG = SlidingMenu.class.getSimpleName();
 
@@ -354,7 +354,6 @@ public class SlidingMenu extends RelativeLayout {
 	 */
 	public void setContent(View view) {
 		mViewAbove.setContent(view);
-		showContent();
 	}
 
 	/**
