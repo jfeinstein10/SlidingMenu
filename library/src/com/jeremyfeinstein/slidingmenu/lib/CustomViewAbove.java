@@ -609,12 +609,37 @@ public class CustomViewAbove extends ViewGroup {
 	}
 
 	private boolean mQuickReturn = false;
+	
+	
+	/**
+	 *  This is addded so that we can disable slide on touch on particular children views
+	 *  
+	 *  @param id of the child on which slide is not detected
+	 */
+	
+	private int childId;
+
+	public void setChildId(int id) {
+	    this.childId = id;
+	}
 
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent ev) {
 
 		if (!mEnabled)
 			return false;
+			
+		
+		if (childId > 0) {
+	         View scroll = findViewById(childId);
+	         if (scroll != null) {
+	             Rect rect = new Rect();
+	             scroll.getHitRect(rect);
+	             if (rect.contains((int) ev.getX(), (int) ev.getY())) {
+	                 return false;
+	             }
+	           }
+	        }
 
 		final int action = ev.getAction() & MotionEventCompat.ACTION_MASK;
 
