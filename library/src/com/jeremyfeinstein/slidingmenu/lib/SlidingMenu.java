@@ -171,6 +171,10 @@ public class SlidingMenu extends RelativeLayout {
 		this(context, null);
 	}
 
+	public void scrollWithBounceInterpolator(){
+		 mViewAbove.scrollWithBounceInterpolator();
+		 }
+	
 	/**
 	 * Instantiates a new SlidingMenu and attach to Activity.
 	 *

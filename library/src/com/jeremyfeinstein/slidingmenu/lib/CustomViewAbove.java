@@ -157,6 +157,7 @@ public class CustomViewAbove extends ViewGroup {
 		initCustomViewAbove();
 	}
 
+	private CustomScroller mBounceScroller;
 	void initCustomViewAbove() {
 		setWillNotDraw(false);
 		setDescendantFocusability(FOCUS_AFTER_DESCENDANTS);
@@ -185,6 +186,8 @@ public class CustomViewAbove extends ViewGroup {
 
 		final float density = context.getResources().getDisplayMetrics().density;
 		mFlingDistance = (int) (MIN_DISTANCE_FOR_FLING * density);
+		
+		mBounceScroller = new CustomScroller(context, new CustomBounceInterpolator());
 	}
 
 	/**
@@ -483,9 +486,36 @@ public class CustomViewAbove extends ViewGroup {
 				mContent.getPaddingRight(), mContent.getPaddingBottom());
 	}
 
-
+	public void scrollWithBounceInterpolator() {
+		 int x = mViewBehind.getBehindWidth();
+		 int y = 0;
+		 if (getChildCount() == 0) {
+		 // Nothing to do.
+		 setScrollingCacheEnabled(false);
+		 return;
+		 }
+		 int sx = getScrollX();
+		 int sy = getScrollY();
+		 int dx = x - sx;
+		 int dy = y - sy;
+		 mBounceScroller.startScroll(sx, sy, dx, dy, 1000, 0, 0);
+		 invalidate();
+		 }
+	
 	@Override
 	public void computeScroll() {
+		if (!mBounceScroller.isFinished()) {
+			if (mBounceScroller.computeScrollOffset()) {
+			int x = mBounceScroller.getCurrX();
+			int y = mBounceScroller.getCurrY();
+			 
+			scrollTo(x, y);
+			 
+			// Keep on drawing until the animation has finished.
+			invalidate();
+			return;
+			}
+			}
 		if (!mScroller.isFinished()) {
 			if (mScroller.computeScrollOffset()) {
 				int oldX = getScrollX();
