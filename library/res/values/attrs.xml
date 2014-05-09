@@ -29,10 +29,12 @@
         <attr name="touchModeAbove">
             <enum name="margin" value="0" />
             <enum name="fullscreen" value="1" />
+            <enum name="none" value="2" />
         </attr>
         <attr name="touchModeBehind">
             <enum name="margin" value="0" />
             <enum name="fullscreen" value="1" />
+            <enum name="none" value="2" />
         </attr>
         <attr name="shadowDrawable" format="reference" />
         <attr name="shadowWidth" format="dimension" />
