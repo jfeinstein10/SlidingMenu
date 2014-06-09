@@ -68,11 +68,34 @@ public class SlidingMenu extends RelativeLayout {
 
 	private CustomViewBehind mViewBehind;
 
+    private OnOpenBeginListener mOpenBeginListener;
+
+    private OnCloseBeginListener mCloseBeginListener;
+
 	private OnOpenListener mOpenListener;
 	
 	private OnOpenListener mSecondaryOpenListner;
 
 	private OnCloseListener mCloseListener;
+
+    /**
+     * The listener interface for receiving onOpenBegin events.
+     * The class that is interested in processing a onOpenBegin
+     * event implements this interface, and the object created
+     * with that class is registered with a component using the
+     * component's <code>addOnOpenBeginListener<code> method. When
+     * the onOpenBegin event occurs, that object's appropriate
+     * method is invoked
+     */
+    public interface OnOpenBeginListener {
+
+        /**
+         * On open begin.
+         */
+        public void onOpenBegin();
+    }
+
+
 
 	/**
 	 * The listener interface for receiving onOpen events.
@@ -109,6 +132,27 @@ public class SlidingMenu extends RelativeLayout {
 		 */
 		public void onOpened();
 	}
+
+    /**
+     * The listener interface for receiving onCloseBegin events.
+     * The class that is interested in processing an onCloseBegin
+     * event implements this interface, and the object created
+     * with that class is registered with a component using the
+     * component's <code>addOnCloseBeginListener<code> method. When
+     * the onCloseBegin event occurs, that object's appropriate
+     * method is invoked.
+     *
+     * @see OnCloseEvent
+     */
+    public interface OnCloseBeginListener {
+
+        /**
+         * On close begin
+         */
+        public void onCloseBegin();
+    }
+
+
 
 	/**
 	 * The listener interface for receiving onClose events.
@@ -872,6 +916,26 @@ public class SlidingMenu extends RelativeLayout {
 	public void clearIgnoredViews() {
 		mViewAbove.clearIgnoredViews();
 	}
+
+    /**
+     * Sets the OnOpenBeginListener. {@link OnOpenBeginListener#onOpenBegin() OnOpenBeginListener.onOpenBegin()} will be called when the SlidingMenu begins opening
+     *
+     * @param listener the new OnOpenBeginListener
+     */
+    public void setOnOpenBeginListener(OnOpenBeginListener listener) {
+        mOpenBeginListener = listener;
+        mViewAbove.setOnOpenBeginListener(listener);
+    }
+
+    /**
+     * Sets the OnCloseBeginListener. {@link OnCloseBeginListener#onCloseBegin() OnCloseBeginListener.onCloseBegin()} will be called when the SlidingMenu begins closing
+     *
+     * @param listener the new OnCloseBeginListener
+     */
+    public void setOnCloseBeginListener(OnCloseBeginListener listener) {
+        mCloseBeginListener = listener;
+        mViewAbove.setOnCloseBeginListener(listener);
+    }
 
 	/**
 	 * Sets the OnOpenListener. {@link OnOpenListener#onOpen() OnOpenListener.onOpen()} will be called when the SlidingMenu is opened
