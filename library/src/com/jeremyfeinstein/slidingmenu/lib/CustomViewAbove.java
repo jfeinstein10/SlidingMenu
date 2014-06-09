@@ -817,7 +817,6 @@ public class CustomViewAbove extends ViewGroup {
 		super.scrollTo(x, y);
 		mScrollX = x;
 		mViewBehind.scrollBehindTo(mContent, x, y);
-        System.out.println(getPercentOpen());
 		((SlidingMenu)getParent()).manageLayers(getPercentOpen());
 	}
 
