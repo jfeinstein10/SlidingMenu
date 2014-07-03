@@ -20,3 +20,5 @@ gen
 target/
 
 *.iml
+
+*.swp
