@@ -98,8 +98,19 @@ public class CustomViewAbove extends ViewGroup {
 	private OnOpenedListener mOpenedListener;
 
 	private List<View> mIgnoredViews = new ArrayList<View>();
+    private SlidingMenu.CanvasTransformer mTransformer;
+    private SlidingMenu.OnOpeningListener mOnOpeningListener;
+    private SlidingMenu.OnOpeningListener mSecondaryOnOpeningListener;
 
-	//	private int mScrollState = SCROLL_STATE_IDLE;
+    public void setOnOpeningListener(SlidingMenu.OnOpeningListener onOpeningListener) {
+        mOnOpeningListener = onOpeningListener;
+    }
+
+    public void setSecondaryOnOpeningListener(SlidingMenu.OnOpeningListener onOpeningListener) {
+        mSecondaryOnOpeningListener = onOpeningListener;
+    }
+
+    //	private int mScrollState = SCROLL_STATE_IDLE;
 
 	/**
 	 * Callback interface for responding to changing state of the selected page.
@@ -156,6 +167,10 @@ public class CustomViewAbove extends ViewGroup {
 		super(context, attrs);
 		initCustomViewAbove();
 	}
+
+    public void setCanvasTransformer(SlidingMenu.CanvasTransformer t) {
+        mTransformer = t;
+    }
 
 	void initCustomViewAbove() {
 		setWillNotDraw(false);
@@ -575,7 +590,7 @@ public class CustomViewAbove extends ViewGroup {
 	private boolean thisTouchAllowed(MotionEvent ev) {
 		int x = (int) (ev.getX() + mScrollX);
 		if (isMenuOpen()) {
-			return mViewBehind.menuOpenTouchAllowed(mContent, mCurItem, x);
+			return mViewBehind.menuOpenTouchAllowed(mContent, mCurItem, x, ev.getY());
 		} else {
 			switch (mTouchMode) {
 			case SlidingMenu.TOUCHMODE_FULLSCREEN:
@@ -642,7 +657,7 @@ public class CustomViewAbove extends ViewGroup {
 			if (thisTouchAllowed(ev)) {
 				mIsBeingDragged = false;
 				mIsUnableToDrag = false;
-				if (isMenuOpen() && mViewBehind.menuTouchInQuickReturn(mContent, mCurItem, ev.getX() + mScrollX)) {
+				if (isMenuOpen() && mViewBehind.menuTouchInQuickReturn(mContent, mCurItem, ev.getX() + mScrollX, ev.getY())) {
 					mQuickReturn = true;
 				}
 			} else {
@@ -744,7 +759,7 @@ public class CustomViewAbove extends ViewGroup {
 				}
 				mActivePointerId = INVALID_POINTER;
 				endDrag();
-			} else if (mQuickReturn && mViewBehind.menuTouchInQuickReturn(mContent, mCurItem, ev.getX() + mScrollX)) {
+			} else if (mQuickReturn && mViewBehind.menuTouchInQuickReturn(mContent, mCurItem, ev.getX() + mScrollX, ev.getY())) {
 				// close the menu
 				setCurrentItem(1);
 				endDrag();
@@ -789,6 +804,7 @@ public class CustomViewAbove extends ViewGroup {
 			startDrag();
 			mLastMotionX = x;
 			mLastMotionY = y;
+            if (!isMenuOpen()) isOpening(dx == xDiff);
 			setScrollingCacheEnabled(true);
 			// TODO add back in touch slop check
 		} else if (xDiff > mTouchSlop) {
@@ -796,7 +812,21 @@ public class CustomViewAbove extends ViewGroup {
 		}
 	}
 
-	@Override
+    private void isOpening(boolean isMovingLeftToRight) {
+        if (mViewBehind.getMode() == SlidingMenu.LEFT && isMovingLeftToRight && mOnOpeningListener != null) {
+            mOnOpeningListener.onOpening();
+        }else if (mViewBehind.getMode() == SlidingMenu.RIGHT && !isMovingLeftToRight && mOnOpeningListener != null) {
+            mOnOpeningListener.onOpening();
+        }else if (mViewBehind.getMode() == SlidingMenu.LEFT_RIGHT) {
+            if (isMovingLeftToRight && mOnOpeningListener != null) {
+                mOnOpeningListener.onOpening();
+            }else if (!isMovingLeftToRight && mSecondaryOnOpeningListener != null) {
+                mSecondaryOnOpeningListener.onOpening();
+            }
+        }
+    }
+
+    @Override
 	public void scrollTo(int x, int y) {
 		super.scrollTo(x, y);
 		mScrollX = x;
@@ -824,7 +854,13 @@ public class CustomViewAbove extends ViewGroup {
 
 	@Override
 	protected void dispatchDraw(Canvas canvas) {
-		super.dispatchDraw(canvas);
+        if (mTransformer != null) {
+            canvas.save();
+            mTransformer.transformCanvas(canvas, getPercentOpen());
+            super.dispatchDraw(canvas);
+            canvas.restore();
+        } else
+            super.dispatchDraw(canvas);
 		// Draw the margin drawable if needed.
 		mViewBehind.drawShadow(mContent, canvas);
 		mViewBehind.drawFade(mContent, canvas, getPercentOpen());
