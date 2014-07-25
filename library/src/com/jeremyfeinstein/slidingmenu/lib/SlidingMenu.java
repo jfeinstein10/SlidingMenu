@@ -1008,12 +1008,17 @@ public class SlidingMenu extends RelativeLayout {
 		if (layerType != getContent().getLayerType()) {
 			getHandler().post(new Runnable() {
 				public void run() {
-					Log.v(TAG, "changing layerType. hardware? " + (layerType == View.LAYER_TYPE_HARDWARE));
-					getContent().setLayerType(layerType, null);
-					getMenu().setLayerType(layerType, null);
-					if (getSecondaryMenu() != null) {
-						getSecondaryMenu().setLayerType(layerType, null);
-					}
+                    try {
+                        Log.v(TAG, "changing layerType. hardware? " + (layerType == View.LAYER_TYPE_HARDWARE));
+                        getContent().setLayerType(layerType, null);
+                        getMenu().setLayerType(layerType, null);
+                        if (getSecondaryMenu() != null) {
+                            getSecondaryMenu().setLayerType(layerType, null);
+                        }
+                    }
+                    catch (NullPointerException e) {
+                        // Happens on some motorola devices
+                    }
 				}
 			});
 		}
