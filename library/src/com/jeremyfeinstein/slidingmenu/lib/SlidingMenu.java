@@ -14,7 +14,6 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.os.Handler;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
@@ -69,10 +68,12 @@ public class SlidingMenu extends RelativeLayout {
 	private CustomViewBehind mViewBehind;
 
 	private OnOpenListener mOpenListener;
-	
+
 	private OnOpenListener mSecondaryOpenListner;
 
 	private OnCloseListener mCloseListener;
+
+	private OnSlideListener mSlideListener;
 
 	/**
 	 * The listener interface for receiving onOpen events.
@@ -149,6 +150,50 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	/**
+	 * The listener interface for receiving onSlide events.
+	 * The class that is interested in processing a onSlide
+	 * event implements this interface, and the object created
+	 * with that class is registered with a component using the
+	 * component's <code>addOnSlideListener<code> method. When
+	 * the Slide event occurs, that object's appropriate
+	 * method is invoked.
+	 */
+	public interface OnSlideListener {
+
+		/**
+		 * On slide.
+		 *
+		 * @param position Position index of the first page currently being displayed.
+		 *                 Page position+1 will be visible if positionOffset is nonzero.
+		 * @param positionOffset Value from [0, 1) indicating the offset from the page at position.
+		 * @param positionOffsetPixels Value in pixels indicating the offset from position.
+		 */
+		public void onSlide(int position, float positionOffset, int positionOffsetPixels);
+	}
+
+	/**
+	 * The listener interface for receiving onSliding events.
+	 * The class that is interested in processing a onSliding
+	 * event implements this interface, and the object created
+	 * with that class is registered with a component using the
+	 * component's <code>addOnSlidingListener<code> method. When
+	 * the Sliding event occurs, that object's appropriate
+	 * method is invoked.
+	 */
+	public interface OnSlidingListener {
+
+		/**
+		 * On sliding.
+		 *
+		 * @param position Position index of the first page currently being displayed.
+		 *                 Page position+1 will be visible if positionOffset is nonzero.
+		 * @param positionOffset Value from [0, 1) indicating the offset from the page at position.
+		 * @param positionOffsetPixels Value in pixels indicating the offset from position.
+		 */
+		public void onSliding(int position, float positionOffset, int positionOffsetPixels);
+	}
+
+	/**
 	 * The Interface CanvasTransformer.
 	 */
 	public interface CanvasTransformer {
@@ -201,7 +246,7 @@ public class SlidingMenu extends RelativeLayout {
 	 */
 	public SlidingMenu(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
-		
+
 		LayoutParams behindParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		mViewBehind = new CustomViewBehind(context);
 		addView(mViewBehind, behindParams);
@@ -216,9 +261,14 @@ public class SlidingMenu extends RelativeLayout {
 			public static final int POSITION_CLOSE = 1;
 			public static final int POSITION_SECONDARY_OPEN = 2;
 
-			public void onPageScrolled(int position, float positionOffset,
-					int positionOffsetPixels) { }
+			@Override
+			public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+				if (mSlideListener != null) {
+					mSlideListener.onSlide(position, positionOffset, positionOffsetPixels);
+				}
+			}
 
+			@Override
 			public void onPageSelected(int position) {
 				if (position == POSITION_OPEN && mOpenListener != null) {
 					mOpenListener.onOpen();
@@ -243,7 +293,7 @@ public class SlidingMenu extends RelativeLayout {
 		}
 		int viewBehind = ta.getResourceId(R.styleable.SlidingMenu_viewBehind, -1);
 		if (viewBehind != -1) {
-			setMenu(viewBehind); 
+			setMenu(viewBehind);
 		} else {
 			setMenu(new FrameLayout(context));
 		}
@@ -284,7 +334,7 @@ public class SlidingMenu extends RelativeLayout {
 
 	/**
 	 * Attaches the SlidingMenu to an entire Activity
-	 * 
+	 *
 	 * @param activity the Activity
 	 * @param slideStyle either SLIDING_CONTENT or SLIDING_WINDOW
 	 */
@@ -294,7 +344,7 @@ public class SlidingMenu extends RelativeLayout {
 
 	/**
 	 * Attaches the SlidingMenu to an entire Activity
-	 * 
+	 *
 	 * @param activity the Activity
 	 * @param slideStyle either SLIDING_CONTENT or SLIDING_WINDOW
 	 * @param actionbarOverlay whether or not the ActionBar is overlaid
@@ -468,7 +518,7 @@ public class SlidingMenu extends RelativeLayout {
 			setSlidingEnabled(false);
 			mViewAbove.setCustomViewBehind(null);
 			mViewAbove.setCurrentItem(1);
-			//			mViewBehind.setCurrentItem(0);	
+			//			mViewBehind.setCurrentItem(0);
 		} else {
 			mViewAbove.setCurrentItem(1);
 			//			mViewBehind.setCurrentItem(1);
@@ -555,7 +605,7 @@ public class SlidingMenu extends RelativeLayout {
 	public boolean isMenuShowing() {
 		return mViewAbove.getCurrentItem() == 0 || mViewAbove.getCurrentItem() == 2;
 	}
-	
+
 	/**
 	 * Checks if is the behind view showing.
 	 *
@@ -660,7 +710,7 @@ public class SlidingMenu extends RelativeLayout {
 	public float getBehindScrollScale() {
 		return mViewBehind.getScrollScale();
 	}
-	
+
 	/**
 	 * Gets the touch mode margin threshold
 	 * @return the touch mode margin threshold
@@ -668,7 +718,7 @@ public class SlidingMenu extends RelativeLayout {
 	public int getTouchmodeMarginThreshold() {
 		return mViewBehind.getMarginThreshold();
 	}
-	
+
 	/**
 	 * Set the touch mode margin threshold
 	 * @param touchmodeMarginThreshold
@@ -883,17 +933,17 @@ public class SlidingMenu extends RelativeLayout {
 		mOpenListener = listener;
 	}
 
-	
+
 	/**
 	 * Sets the OnOpenListner for secondary menu  {@link OnOpenListener#onOpen() OnOpenListener.onOpen()} will be called when the secondary SlidingMenu is opened
-	 * 
+	 *
 	 * @param listener the new OnOpenListener
 	 */
-	
+
 	public void setSecondaryOnOpenListner(OnOpenListener listener) {
 		mSecondaryOpenListner = listener;
 	}
-	
+
 	/**
 	 * Sets the OnCloseListener. {@link OnCloseListener#onClose() OnCloseListener.onClose()} will be called when any one of the SlidingMenu is closed
 	 *
@@ -902,6 +952,15 @@ public class SlidingMenu extends RelativeLayout {
 	public void setOnCloseListener(OnCloseListener listener) {
 		//mViewAbove.setOnCloseListener(listener);
 		mCloseListener = listener;
+	}
+
+	/**
+	 * Sets the OnSlideListener. {@link OnSlideListener#onSlide() OnSlideListener.onSlide()} will be called while any one of the SlidingMenu is sliding
+	 *
+	 * @param listener the new setOnCloseListener
+	 */
+	public void setOnSlideListener(OnSlideListener listener) {
+		mSlideListener = listener;
 	}
 
 	/**
@@ -920,6 +979,15 @@ public class SlidingMenu extends RelativeLayout {
 	 */
 	public void setOnClosedListener(OnClosedListener listener) {
 		mViewAbove.setOnClosedListener(listener);
+	}
+
+	/**
+	 * Sets the OnSlidingListener. {@link OnSlidingListener#onSliding() OnSlidingListener.onSliding()} will be called while the SlidingMenu is sliding
+	 *
+	 * @param listener the new OnSlidingListener
+	 */
+	public void setOnSlidingListener(OnSlidingListener listener) {
+		mViewAbove.setOnSlidingListener(listener);
 	}
 
 	public static class SavedState extends BaseSavedState {

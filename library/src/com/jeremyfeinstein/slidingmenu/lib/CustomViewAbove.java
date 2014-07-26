@@ -28,6 +28,7 @@ import android.widget.Scroller;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnClosedListener;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenedListener;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnSlidingListener;
 //import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnCloseListener;
 //import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenListener;
 
@@ -96,6 +97,7 @@ public class CustomViewAbove extends ViewGroup {
 	//	private OnOpenListener mOpenListener;
 	private OnClosedListener mClosedListener;
 	private OnOpenedListener mOpenedListener;
+	private OnSlidingListener mSlidingListener;
 
 	private List<View> mIgnoredViews = new ArrayList<View>();
 
@@ -168,6 +170,7 @@ public class CustomViewAbove extends ViewGroup {
 		mMinimumVelocity = configuration.getScaledMinimumFlingVelocity();
 		mMaximumVelocity = configuration.getScaledMaximumFlingVelocity();
 		setInternalPageChangeListener(new SimpleOnPageChangeListener() {
+			@Override
 			public void onPageSelected(int position) {
 				if (mViewBehind != null) {
 					switch (position) {
@@ -265,6 +268,10 @@ public class CustomViewAbove extends ViewGroup {
 
 	public void setOnClosedListener(OnClosedListener l) {
 		mClosedListener = l;
+	}
+
+	public void setOnSlidingListener(OnSlidingListener l) {
+		mSlidingListener = l;
 	}
 
 	/**
@@ -430,7 +437,7 @@ public class CustomViewAbove extends ViewGroup {
 	}
 
 	public void setContent(View v) {
-		if (mContent != null) 
+		if (mContent != null)
 			this.removeView(mContent);
 		mContent = v;
 		addView(mContent);
@@ -479,7 +486,7 @@ public class CustomViewAbove extends ViewGroup {
 	public void setAboveOffset(int i) {
 		//		RelativeLayout.LayoutParams params = ((RelativeLayout.LayoutParams)mContent.getLayoutParams());
 		//		params.setMargins(i, params.topMargin, params.rightMargin, params.bottomMargin);
-		mContent.setPadding(i, mContent.getPaddingTop(), 
+		mContent.setPadding(i, mContent.getPaddingTop(),
 				mContent.getPaddingRight(), mContent.getPaddingBottom());
 	}
 
@@ -530,6 +537,9 @@ public class CustomViewAbove extends ViewGroup {
 	 * @param offsetPixels Value in pixels indicating the offset from position.
 	 */
 	protected void onPageScrolled(int position, float offset, int offsetPixels) {
+		if (mSlidingListener != null) {
+			mSlidingListener.onSliding(position, offset, offsetPixels);
+		}
 		if (mOnPageChangeListener != null) {
 			mOnPageChangeListener.onPageScrolled(position, offset, offsetPixels);
 		}
@@ -697,7 +707,7 @@ public class CustomViewAbove extends ViewGroup {
 			mLastMotionX = mInitialMotionX = ev.getX();
 			break;
 		case MotionEvent.ACTION_MOVE:
-			if (!mIsBeingDragged) {	
+			if (!mIsBeingDragged) {
 				determineDrag(ev);
 				if (mIsUnableToDrag)
 					return false;
@@ -739,7 +749,7 @@ public class CustomViewAbove extends ViewGroup {
 					final int totalDelta = (int) (x - mInitialMotionX);
 					int nextPage = determineTargetPage(pageOffset, initialVelocity, totalDelta);
 					setCurrentItemInternal(nextPage, true, true, initialVelocity);
-				} else {	
+				} else {
 					setCurrentItemInternal(mCurItem, true, true, initialVelocity);
 				}
 				mActivePointerId = INVALID_POINTER;
@@ -773,7 +783,7 @@ public class CustomViewAbove extends ViewGroup {
 		}
 		return true;
 	}
-	
+
 	private void determineDrag(MotionEvent ev) {
 		final int activePointerId = mActivePointerId;
 		final int pointerIndex = getPointerIndex(ev, activePointerId);
@@ -785,7 +795,7 @@ public class CustomViewAbove extends ViewGroup {
 		final float y = MotionEventCompat.getY(ev, pointerIndex);
 		final float dy = y - mLastMotionY;
 		final float yDiff = Math.abs(dy);
-		if (xDiff > (isMenuOpen()?mTouchSlop/2:mTouchSlop) && xDiff > yDiff && thisSlideAllowed(dx)) {		
+		if (xDiff > (isMenuOpen()?mTouchSlop/2:mTouchSlop) && xDiff > yDiff && thisSlideAllowed(dx)) {
 			startDrag();
 			mLastMotionX = x;
 			mLastMotionY = y;
@@ -800,7 +810,7 @@ public class CustomViewAbove extends ViewGroup {
 	public void scrollTo(int x, int y) {
 		super.scrollTo(x, y);
 		mScrollX = x;
-		mViewBehind.scrollBehindTo(mContent, x, y);	
+		mViewBehind.scrollBehindTo(mContent, x, y);
 		((SlidingMenu)getParent()).manageLayers(getPercentOpen());
 	}
 
