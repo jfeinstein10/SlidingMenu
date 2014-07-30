@@ -28,7 +28,7 @@ import android.widget.Scroller;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnClosedListener;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenedListener;
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnSlidingListener;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnSlideListener;
 //import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnCloseListener;
 //import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenListener;
 
@@ -97,7 +97,7 @@ public class CustomViewAbove extends ViewGroup {
 	//	private OnOpenListener mOpenListener;
 	private OnClosedListener mClosedListener;
 	private OnOpenedListener mOpenedListener;
-	private OnSlidingListener mSlidingListener;
+	private OnSlideListener mSlideListener;
 
 	private List<View> mIgnoredViews = new ArrayList<View>();
 
@@ -270,8 +270,8 @@ public class CustomViewAbove extends ViewGroup {
 		mClosedListener = l;
 	}
 
-	public void setOnSlidingListener(OnSlidingListener l) {
-		mSlidingListener = l;
+	public void setOnSlideListener(OnSlideListener l) {
+		mSlideListener = l;
 	}
 
 	/**
@@ -537,8 +537,8 @@ public class CustomViewAbove extends ViewGroup {
 	 * @param offsetPixels Value in pixels indicating the offset from position.
 	 */
 	protected void onPageScrolled(int position, float offset, int offsetPixels) {
-		if (mSlidingListener != null) {
-			mSlidingListener.onSliding(position, offset, offsetPixels);
+		if (mSlideListener != null) {
+			mSlideListener.onSlide(position, offset, offsetPixels);
 		}
 		if (mOnPageChangeListener != null) {
 			mOnPageChangeListener.onPageScrolled(position, offset, offsetPixels);

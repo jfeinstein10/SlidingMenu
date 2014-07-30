@@ -26,6 +26,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
+import com.fineswap.android.play.R;
 import com.jeremyfeinstein.slidingmenu.lib.CustomViewAbove.OnPageChangeListener;
 
 public class SlidingMenu extends RelativeLayout {
@@ -162,35 +163,13 @@ public class SlidingMenu extends RelativeLayout {
 
 		/**
 		 * On slide.
-		 *
+                 *
 		 * @param position Position index of the first page currently being displayed.
 		 *                 Page position+1 will be visible if positionOffset is nonzero.
 		 * @param positionOffset Value from [0, 1) indicating the offset from the page at position.
 		 * @param positionOffsetPixels Value in pixels indicating the offset from position.
 		 */
 		public void onSlide(int position, float positionOffset, int positionOffsetPixels);
-	}
-
-	/**
-	 * The listener interface for receiving onSliding events.
-	 * The class that is interested in processing a onSliding
-	 * event implements this interface, and the object created
-	 * with that class is registered with a component using the
-	 * component's <code>addOnSlidingListener<code> method. When
-	 * the Sliding event occurs, that object's appropriate
-	 * method is invoked.
-	 */
-	public interface OnSlidingListener {
-
-		/**
-		 * On sliding.
-		 *
-		 * @param position Position index of the first page currently being displayed.
-		 *                 Page position+1 will be visible if positionOffset is nonzero.
-		 * @param positionOffset Value from [0, 1) indicating the offset from the page at position.
-		 * @param positionOffsetPixels Value in pixels indicating the offset from position.
-		 */
-		public void onSliding(int position, float positionOffset, int positionOffsetPixels);
 	}
 
 	/**
@@ -960,7 +939,7 @@ public class SlidingMenu extends RelativeLayout {
 	 * @param listener the new setOnCloseListener
 	 */
 	public void setOnSlideListener(OnSlideListener listener) {
-		mSlideListener = listener;
+    mSlideListener = listener;
 	}
 
 	/**
@@ -979,15 +958,6 @@ public class SlidingMenu extends RelativeLayout {
 	 */
 	public void setOnClosedListener(OnClosedListener listener) {
 		mViewAbove.setOnClosedListener(listener);
-	}
-
-	/**
-	 * Sets the OnSlidingListener. {@link OnSlidingListener#onSliding() OnSlidingListener.onSliding()} will be called while the SlidingMenu is sliding
-	 *
-	 * @param listener the new OnSlidingListener
-	 */
-	public void setOnSlidingListener(OnSlidingListener listener) {
-		mViewAbove.setOnSlidingListener(listener);
 	}
 
 	public static class SavedState extends BaseSavedState {
