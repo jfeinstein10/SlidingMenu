@@ -73,8 +73,28 @@ public class SlidingMenu extends RelativeLayout {
 	private OnOpenListener mSecondaryOpenListner;
 
 	private OnCloseListener mCloseListener;
+    private OnOpeningListener mOpeningListener;
+    private OnOpeningListener mSecondaryOpeningListener;
 
-	/**
+    public void setAboveCanvasTransformer(CanvasTransformer canvasTransformer) {
+        mViewAbove.setCanvasTransformer(canvasTransformer);
+    }
+
+    public void setOnOpeningListener(OnOpeningListener onOpeningListener) {
+        mOpeningListener = onOpeningListener;
+        mViewAbove.setOnOpeningListener(onOpeningListener);
+    }
+
+    public void setSecondaryOnOpeningListner(OnOpeningListener onOpeningListener) {
+        mSecondaryOpeningListener = onOpeningListener;
+        mViewAbove.setSecondaryOnOpeningListener(onOpeningListener);
+    }
+
+    public void setTouchRangeListener(TouchRangeListener touchRangeListener) {
+        mViewBehind.setTouchRangeListener(touchRangeListener);
+    }
+
+    /**
 	 * The listener interface for receiving onOpen events.
 	 * The class that is interested in processing a onOpen
 	 * event implements this interface, and the object created
@@ -490,6 +510,7 @@ public class SlidingMenu extends RelativeLayout {
 	 * @param animate true to animate the transition, false to ignore animation
 	 */
 	public void showMenu(boolean animate) {
+        if (mOpeningListener != null) mOpeningListener.onOpening();
 		mViewAbove.setCurrentItem(0, animate);
 	}
 
@@ -508,6 +529,7 @@ public class SlidingMenu extends RelativeLayout {
 	 * @param animate true to animate the transition, false to ignore animation
 	 */
 	public void showSecondaryMenu(boolean animate) {
+        if (mSecondaryOpeningListener != null) mSecondaryOpeningListener.onOpening();
 		mViewAbove.setCurrentItem(2, animate);
 	}
 
@@ -546,6 +568,23 @@ public class SlidingMenu extends RelativeLayout {
 			showMenu(animate);
 		}
 	}
+
+    public void toggleSecondaryMenu() {
+        toggleSecondaryMenu(true);
+    }
+
+    /**
+     * Toggle the SlidingMenu. If it is open, it will be closed, and vice versa.
+     *
+     * @param animate true to animate the transition, false to ignore animation
+     */
+    public void toggleSecondaryMenu(boolean animate) {
+        if (isMenuShowing()) {
+            showContent(animate);
+        } else {
+            showSecondaryMenu(animate);
+        }
+    }
 
 	/**
 	 * Checks if is the behind view showing.
@@ -922,7 +961,15 @@ public class SlidingMenu extends RelativeLayout {
 		mViewAbove.setOnClosedListener(listener);
 	}
 
-	public static class SavedState extends BaseSavedState {
+    public interface OnOpeningListener {
+        void onOpening();
+    }
+
+    public interface TouchRangeListener {
+        boolean isInTouchRange(int x, int y);
+    }
+
+    public static class SavedState extends BaseSavedState {
 
 		private final int mItem;
 

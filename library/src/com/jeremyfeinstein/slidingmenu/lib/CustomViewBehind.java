@@ -30,8 +30,9 @@ public class CustomViewBehind extends ViewGroup {
 	private int mWidthOffset;
 	private CanvasTransformer mTransformer;
 	private boolean mChildrenEnabled;
+    private SlidingMenu.TouchRangeListener mTouchRangeListener;
 
-	public CustomViewBehind(Context context) {
+    public CustomViewBehind(Context context) {
 		this(context, null);
 	}
 
@@ -299,20 +300,22 @@ public class CustomViewBehind extends ViewGroup {
 		mTouchMode = i;
 	}
 
-	public boolean menuOpenTouchAllowed(View content, int currPage, float x) {
+	public boolean menuOpenTouchAllowed(View content, int currPage, float x, float y) {
 		switch (mTouchMode) {
 		case SlidingMenu.TOUCHMODE_FULLSCREEN:
 			return true;
 		case SlidingMenu.TOUCHMODE_MARGIN:
-			return menuTouchInQuickReturn(content, currPage, x);
+			return menuTouchInQuickReturn(content, currPage, x, y);
 		}
 		return false;
 	}
 
-	public boolean menuTouchInQuickReturn(View content, int currPage, float x) {
+	public boolean menuTouchInQuickReturn(View content, int currPage, float x, float y) {
 		if (mMode == SlidingMenu.LEFT || (mMode == SlidingMenu.LEFT_RIGHT && currPage == 0)) {
+            if (mTouchRangeListener != null) return mTouchRangeListener.isInTouchRange((int)x, (int)y);
 			return x >= content.getLeft();
 		} else if (mMode == SlidingMenu.RIGHT || (mMode == SlidingMenu.LEFT_RIGHT && currPage == 2)) {
+            if (mTouchRangeListener != null) return mTouchRangeListener.isInTouchRange((int)x, (int)y);
 			return x <= content.getRight();
 		}
 		return false;
@@ -436,4 +439,7 @@ public class CustomViewBehind extends ViewGroup {
 		refreshDrawableState();
 	}
 
+    public void setTouchRangeListener(SlidingMenu.TouchRangeListener touchRangeListener) {
+        mTouchRangeListener = touchRangeListener;
+    }
 }
