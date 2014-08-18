@@ -23,6 +23,12 @@
 			<groupId>com.google.android</groupId>
 			<artifactId>support-v4</artifactId>
 		</dependency>
+         	<dependency>
+        		 <groupId>com.actionbarsherlock</groupId>
+             		 <artifactId>actionbarsherlock</artifactId>
+        		 <version>4.4.0</version>
+			 <type>apklib</type>
+         	</dependency>
 	</dependencies>
 
 	<build>
