@@ -14,7 +14,6 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.os.Handler;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
@@ -70,7 +69,7 @@ public class SlidingMenu extends RelativeLayout {
 
 	private OnOpenListener mOpenListener;
 	
-	private OnOpenListener mSecondaryOpenListner;
+	private OnOpenListener mSecondaryOpenListener;
 
 	private OnCloseListener mCloseListener;
 
@@ -224,8 +223,8 @@ public class SlidingMenu extends RelativeLayout {
 					mOpenListener.onOpen();
 				} else if (position == POSITION_CLOSE && mCloseListener != null) {
 					mCloseListener.onClose();
-				} else if (position == POSITION_SECONDARY_OPEN && mSecondaryOpenListner != null ) {
-					mSecondaryOpenListner.onOpen();
+				} else if (position == POSITION_SECONDARY_OPEN && mSecondaryOpenListener != null ) {
+					mSecondaryOpenListener.onOpen();
 				}
 			}
 		});
@@ -883,15 +882,24 @@ public class SlidingMenu extends RelativeLayout {
 		mOpenListener = listener;
 	}
 
-	
 	/**
-	 * Sets the OnOpenListner for secondary menu  {@link OnOpenListener#onOpen() OnOpenListener.onOpen()} will be called when the secondary SlidingMenu is opened
+	 * Sets the OnOpenListener for the secondary menu. {@link OnOpenListener#onOpen() OnOpenListener.onOpen()} will be called when the secondary SlidingMenu is opened
 	 * 
 	 * @param listener the new OnOpenListener
 	 */
-	
+    public void setSecondaryOnOpenListener(OnOpenListener listener) {
+        mSecondaryOpenListener = listener;
+    }
+
+    /**
+     * Sets the OnOpenListener for the secondary menu. {@link OnOpenListener#onOpen() OnOpenListener.onOpen()} will be called when the secondary SlidingMenu is opened
+     *
+     * @param listener the new OnOpenListener
+     * @deprecated Use {@link #setSecondaryOnOpenListener} instead.
+     */
+    @Deprecated
 	public void setSecondaryOnOpenListner(OnOpenListener listener) {
-		mSecondaryOpenListner = listener;
+		mSecondaryOpenListener = listener;
 	}
 	
 	/**
