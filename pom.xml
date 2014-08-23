@@ -20,7 +20,8 @@
 
 	<modules>
 		<module>library</module>
-		<module>library-maps-support</module>
+		<!-- This is not used, so commenting this out -->
+		<!--<module>library-maps-support</module>-->
 	</modules>
 
 	<scm>
@@ -66,7 +67,7 @@
 			<dependency>
 				<groupId>com.google.android.maps</groupId>
 				<artifactId>maps</artifactId>
-				<version>17_r1</version>
+				<version>19_r5</version>
 			</dependency>
 			<dependency>
 				<groupId>com.google.android</groupId>
@@ -82,7 +83,7 @@
 				<plugin>
 					<groupId>com.jayway.maven.plugins.android.generation2</groupId>
 					<artifactId>android-maven-plugin</artifactId>
-					<version>3.6.0</version>
+					<version>3.9.0-rc.2</version>
 
 					<configuration>
 						<sdk>
