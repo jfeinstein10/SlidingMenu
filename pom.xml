@@ -20,6 +20,7 @@
 
 	<modules>
 		<module>library</module>
+		<!-- This is not used, so commenting this out -->
 		<!--<module>library-maps-support</module>-->
 	</modules>
 
