@@ -803,6 +803,24 @@ public class SlidingMenu extends RelativeLayout {
 	}
 
 	/**
+	 * Enables or disables the content's fade in and out
+	 * @param isEnabled true to enable fade, false to disable it
+	 */
+	public void setContentFadeEnabled(boolean isEnabled){
+		mViewAbove.setFadeEnabled(isEnabled);
+	}
+
+	/**
+	 * Sets how much the content fades in and out. Fade must be enabled, see
+	 * {@link #setFadeEnabled(boolean) setFadeEnabled(boolean)}
+	 *
+	 * @param f the new fade degree, between 0.0f and 1.0f
+	 */
+	public void setContentFadeDegree(float f) {
+		mViewAbove.setFadeDegree(f);
+	}
+
+	/**
 	 * Sets how much the SlidingMenu fades in and out. Fade must be enabled, see
 	 * {@link #setFadeEnabled(boolean) setFadeEnabled(boolean)}
 	 *
@@ -859,9 +877,9 @@ public class SlidingMenu extends RelativeLayout {
 
 	/**
 	 * Remove a View ignored by the Touch Down event when mode is Fullscreen
-	 *
-	 * @param v a view not wanted to be ignored anymore
-	 */
+	*
+			* @param v a view not wanted to be ignored anymore
+	*/
 	public void removeIgnoredView(View v) {
 		mViewAbove.removeIgnoredView(v);
 	}
