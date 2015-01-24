@@ -1,0 +1,946 @@
+android.support.v13.app.FragmentCompat
+android.support.v13.app.FragmentCompat$BaseFragmentCompatImpl
+android.support.v13.app.FragmentCompat$FragmentCompatImpl
+android.support.v13.app.FragmentCompat$ICSFragmentCompatImpl
+android.support.v13.app.FragmentCompat$ICSMR1FragmentCompatImpl
+android.support.v13.app.FragmentCompatICS
+android.support.v13.app.FragmentCompatICSMR1
+android.support.v13.app.FragmentPagerAdapter
+android.support.v13.app.FragmentStatePagerAdapter
+android.support.v13.dreams.BasicDream:
+    private static final java.lang.String TAG
+    private static final boolean DEBUG
+    112:112:protected android.view.View getContentView()
+    122:123:protected void invalidate()
+android.support.v13.dreams.BasicDream$BasicDreamView:
+    47:49:public BasicDream$BasicDreamView(android.support.v13.dreams.BasicDream,android.content.Context,android.util.AttributeSet)
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompat
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompat$AccessibilityServiceInfoIcsImpl
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompat$AccessibilityServiceInfoStubImpl
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompatIcs
+android.support.v4.content.AsyncTaskLoader
+android.support.v4.content.AsyncTaskLoader$LoadTask
+android.support.v4.content.ContextCompatHoneycomb:
+    25:25:ContextCompatHoneycomb()
+android.support.v4.content.ContextCompatJellybean:
+    23:23:ContextCompatJellybean()
+android.support.v4.content.CursorLoader
+android.support.v4.content.IntentCompat
+android.support.v4.content.Loader:
+    android.content.Context mContext
+    90:92:public Loader(android.content.Context)
+    102:105:public void deliverResult(java.lang.Object)
+    111:111:public android.content.Context getContext()
+    118:118:public int getId()
+    157:157:public boolean isStarted()
+    166:166:public boolean isAbandoned()
+    175:175:public boolean isReset()
+    217:218:public void forceLoad()
+    225:225:protected void onForceLoad()
+    312:314:public boolean takeContentChanged()
+    326:334:public void onContentChanged()
+android.support.v4.content.Loader$ForceLoadContentObserver
+android.support.v4.content.Loader$OnLoadCompleteListener:
+    public abstract void onLoadComplete(android.support.v4.content.Loader,java.lang.Object)
+android.support.v4.content.LocalBroadcastManager
+android.support.v4.content.LocalBroadcastManager$1
+android.support.v4.content.LocalBroadcastManager$BroadcastRecord
+android.support.v4.content.LocalBroadcastManager$ReceiverRecord
+android.support.v4.content.ModernAsyncTask
+android.support.v4.content.ModernAsyncTask$1
+android.support.v4.content.ModernAsyncTask$2
+android.support.v4.content.ModernAsyncTask$3
+android.support.v4.content.ModernAsyncTask$4
+android.support.v4.content.ModernAsyncTask$AsyncTaskResult
+android.support.v4.content.ModernAsyncTask$InternalHandler
+android.support.v4.content.ModernAsyncTask$Status
+android.support.v4.content.ModernAsyncTask$WorkerRunnable
+android.support.v4.content.pm.ActivityInfoCompat
+android.support.v4.database.DatabaseUtilsCompat
+android.support.v4.net.ConnectivityManagerCompat
+android.support.v4.net.ConnectivityManagerCompat$BaseConnectivityManagerCompatImpl
+android.support.v4.net.ConnectivityManagerCompat$ConnectivityManagerCompatImpl
+android.support.v4.net.ConnectivityManagerCompat$GingerbreadConnectivityManagerCompatImpl
+android.support.v4.net.ConnectivityManagerCompat$HoneycombMR2ConnectivityManagerCompatImpl
+android.support.v4.net.ConnectivityManagerCompat$JellyBeanConnectivityManagerCompatImpl
+android.support.v4.net.ConnectivityManagerCompatGingerbread
+android.support.v4.net.ConnectivityManagerCompatHoneycombMR2
+android.support.v4.net.ConnectivityManagerCompatJellyBean
+android.support.v4.net.TrafficStatsCompat
+android.support.v4.net.TrafficStatsCompat$1
+android.support.v4.net.TrafficStatsCompat$BaseTrafficStatsCompatImpl
+android.support.v4.net.TrafficStatsCompat$BaseTrafficStatsCompatImpl$1
+android.support.v4.net.TrafficStatsCompat$BaseTrafficStatsCompatImpl$SocketTags
+android.support.v4.net.TrafficStatsCompat$IcsTrafficStatsCompatImpl
+android.support.v4.net.TrafficStatsCompat$TrafficStatsCompatImpl
+android.support.v4.net.TrafficStatsCompatIcs
+android.support.v4.os.ParcelableCompat:
+    26:42:public ParcelableCompat()
+android.support.v4.os.ParcelableCompatCreatorHoneycombMR2Stub:
+    22:22:ParcelableCompatCreatorHoneycombMR2Stub()
+android.support.v4.util.DebugUtils:
+    25:25:public DebugUtils()
+android.support.v4.util.LongSparseArray
+android.support.v4.util.LruCache
+android.support.v4.util.SparseArrayCompat:
+    107:111:public void removeAtRange(int,int)
+    236:241:public void setValueAt(int,java.lang.Object)
+    265:273:public int indexOfValue(java.lang.Object)
+    296:323:public void append(int,java.lang.Object)
+android.support.v4.util.TimeUtils
+android.support.v4.view.AccessibilityDelegateCompatIcs:
+    28:30:AccessibilityDelegateCompatIcs()
+android.support.v4.view.AccessibilityDelegateCompatJellyBean:
+    30:32:AccessibilityDelegateCompatJellyBean()
+android.support.v4.view.KeyEventCompat:
+    25:95:public KeyEventCompat()
+    127:127:public static int normalizeMetaState(int)
+    131:131:public static boolean metaStateHasModifiers(int,int)
+    135:135:public static boolean metaStateHasNoModifiers(int)
+android.support.v4.view.KeyEventCompat$BaseKeyEventVersionImpl:
+    private static final int META_MODIFIER_MASK
+    private static final int META_ALL_MASK
+android.support.v4.view.KeyEventCompat$HoneycombKeyEventVersionImpl:
+    98:98:public int normalizeMetaState(int)
+android.support.v4.view.KeyEventCompat$KeyEventVersionImpl:
+    public abstract int normalizeMetaState(int)
+android.support.v4.view.KeyEventCompatHoneycomb:
+    24:24:KeyEventCompatHoneycomb()
+    26:26:public static int normalizeMetaState(int)
+android.support.v4.view.MenuCompat
+android.support.v4.view.MenuCompat$BaseMenuVersionImpl
+android.support.v4.view.MenuCompat$HoneycombMenuVersionImpl
+android.support.v4.view.MenuCompat$MenuVersionImpl
+android.support.v4.view.MenuItemCompat
+android.support.v4.view.MenuItemCompat$BaseMenuVersionImpl
+android.support.v4.view.MenuItemCompat$HoneycombMenuVersionImpl
+android.support.v4.view.MenuItemCompat$MenuVersionImpl
+android.support.v4.view.MenuItemCompatHoneycomb
+android.support.v4.view.MotionEventCompat:
+    public static final int ACTION_MASK
+    public static final int ACTION_POINTER_DOWN
+    public static final int ACTION_POINTER_UP
+    public static final int ACTION_HOVER_MOVE
+    public static final int ACTION_SCROLL
+    public static final int ACTION_POINTER_INDEX_MASK
+    public static final int ACTION_POINTER_INDEX_SHIFT
+    public static final int ACTION_HOVER_ENTER
+    public static final int ACTION_HOVER_EXIT
+    25:75:public MotionEventCompat()
+    174:174:public static int getActionMasked(android.view.MotionEvent)
+android.support.v4.view.MotionEventCompatEclair:
+    24:24:MotionEventCompatEclair()
+android.support.v4.view.PagerTabStrip:
+    private static final java.lang.String TAG
+    private static final int INDICATOR_HEIGHT
+    private static final int MIN_PADDING_BOTTOM
+    private static final int TAB_PADDING
+    private static final int TAB_SPACING
+    private static final int MIN_TEXT_SPACING
+    private static final int FULL_UNDERLINE_HEIGHT
+    private static final int MIN_STRIP_HEIGHT
+    76:77:public PagerTabStrip(android.content.Context)
+    129:132:public void setTabIndicatorColor(int)
+    140:141:public void setTabIndicatorColorResource(int)
+    147:147:public int getTabIndicatorColor()
+    197:200:public void setDrawFullUnderline(boolean)
+    210:210:public boolean getDrawFullUnderline()
+android.support.v4.view.PagerTitleStrip:
+    private static final java.lang.String TAG
+    private static final float SIDE_ALPHA
+    private static final int TEXT_SPACING
+    108:109:public PagerTitleStrip(android.content.Context)
+    202:207:public void setTextColor(int)
+    232:234:public void setGravity(int)
+android.support.v4.view.PagerTitleStripIcs:
+    26:31:PagerTitleStripIcs()
+android.support.v4.view.PagerTitleStripIcs$SingleLineAllCapsTransform:
+    private static final java.lang.String TAG
+android.support.v4.view.VelocityTrackerCompat:
+    25:51:public VelocityTrackerCompat()
+    91:91:public static float getYVelocity(android.view.VelocityTracker,int)
+android.support.v4.view.VelocityTrackerCompat$BaseVelocityTrackerVersionImpl:
+    44:44:public float getYVelocity(android.view.VelocityTracker,int)
+android.support.v4.view.VelocityTrackerCompat$HoneycombVelocityTrackerVersionImpl:
+    58:58:public float getYVelocity(android.view.VelocityTracker,int)
+android.support.v4.view.VelocityTrackerCompat$VelocityTrackerVersionImpl:
+    public abstract float getYVelocity(android.view.VelocityTracker,int)
+android.support.v4.view.VelocityTrackerCompatHoneycomb:
+    24:24:VelocityTrackerCompatHoneycomb()
+    29:29:public static float getYVelocity(android.view.VelocityTracker,int)
+android.support.v4.view.ViewCompat:
+    public static final int OVER_SCROLL_ALWAYS
+    public static final int OVER_SCROLL_IF_CONTENT_SCROLLS
+    public static final int OVER_SCROLL_NEVER
+    private static final long FAKE_FRAME_TIME
+    public static final int IMPORTANT_FOR_ACCESSIBILITY_AUTO
+    public static final int IMPORTANT_FOR_ACCESSIBILITY_YES
+    public static final int IMPORTANT_FOR_ACCESSIBILITY_NO
+    29:186:public ViewCompat()
+    264:264:public static boolean canScrollVertically(android.view.View,int)
+    293:294:public static void setOverScrollMode(android.view.View,int)
+    330:331:public static void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    363:364:public static void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    399:400:public static void onInitializeAccessibilityNodeInfo(android.view.View,android.support.v4.view.accessibility.AccessibilityNodeInfoCompat)
+    426:426:public static boolean hasTransientState(android.view.View)
+    437:438:public static void setHasTransientState(android.view.View,boolean)
+    468:469:public static void postInvalidateOnAnimation(android.view.View,int,int,int,int)
+    482:483:public static void postOnAnimation(android.view.View,java.lang.Runnable)
+    499:500:public static void postOnAnimationDelayed(android.view.View,java.lang.Runnable,long)
+    558:558:public static android.support.v4.view.accessibility.AccessibilityNodeProviderCompat getAccessibilityNodeProvider(android.view.View)
+android.support.v4.view.ViewCompat$BaseViewCompatImpl:
+    89:89:public boolean canScrollVertically(android.view.View,int)
+    96:96:public void setOverScrollMode(android.view.View,int)
+    102:102:public void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    105:105:public void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    108:108:public void onInitializeAccessibilityNodeInfo(android.view.View,android.support.v4.view.accessibility.AccessibilityNodeInfoCompat)
+    111:111:public boolean hasTransientState(android.view.View)
+    115:115:public void setHasTransientState(android.view.View,boolean)
+    120:121:public void postInvalidateOnAnimation(android.view.View,int,int,int,int)
+    123:124:public void postOnAnimation(android.view.View,java.lang.Runnable)
+    126:127:public void postOnAnimationDelayed(android.view.View,java.lang.Runnable,long)
+    138:138:public android.support.v4.view.accessibility.AccessibilityNodeProviderCompat getAccessibilityNodeProvider(android.view.View)
+android.support.v4.view.ViewCompat$GBViewCompatImpl:
+    149:150:public void setOverScrollMode(android.view.View,int)
+android.support.v4.view.ViewCompat$ICSViewCompatImpl:
+    166:166:public boolean canScrollVertically(android.view.View,int)
+    170:171:public void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    174:175:public void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    178:179:public void onInitializeAccessibilityNodeInfo(android.view.View,android.support.v4.view.accessibility.AccessibilityNodeInfoCompat)
+android.support.v4.view.ViewCompat$JBViewCompatImpl:
+    189:189:public boolean hasTransientState(android.view.View)
+    193:194:public void setHasTransientState(android.view.View,boolean)
+    201:202:public void postInvalidateOnAnimation(android.view.View,int,int,int,int)
+    205:206:public void postOnAnimation(android.view.View,java.lang.Runnable)
+    209:210:public void postOnAnimationDelayed(android.view.View,java.lang.Runnable,long)
+    221:225:public android.support.v4.view.accessibility.AccessibilityNodeProviderCompat getAccessibilityNodeProvider(android.view.View)
+android.support.v4.view.ViewCompat$ViewCompatImpl:
+    public abstract boolean canScrollVertically(android.view.View,int)
+    public abstract void setOverScrollMode(android.view.View,int)
+    public abstract void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    public abstract void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    public abstract void onInitializeAccessibilityNodeInfo(android.view.View,android.support.v4.view.accessibility.AccessibilityNodeInfoCompat)
+    public abstract boolean hasTransientState(android.view.View)
+    public abstract void setHasTransientState(android.view.View,boolean)
+    public abstract void postInvalidateOnAnimation(android.view.View,int,int,int,int)
+    public abstract void postOnAnimation(android.view.View,java.lang.Runnable)
+    public abstract void postOnAnimationDelayed(android.view.View,java.lang.Runnable,long)
+    public abstract android.support.v4.view.accessibility.AccessibilityNodeProviderCompat getAccessibilityNodeProvider(android.view.View)
+android.support.v4.view.ViewCompatGingerbread:
+    21:21:ViewCompatGingerbread()
+    27:28:public static void setOverScrollMode(android.view.View,int)
+android.support.v4.view.ViewCompatHC:
+    21:21:ViewCompatHC()
+android.support.v4.view.ViewCompatICS:
+    27:27:ViewCompatICS()
+    34:34:public static boolean canScrollVertically(android.view.View,int)
+    42:43:public static void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    46:47:public static void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    50:51:public static void onInitializeAccessibilityNodeInfo(android.view.View,java.lang.Object)
+android.support.v4.view.ViewCompatJB:
+    24:24:public ViewCompatJB()
+    27:27:public static boolean hasTransientState(android.view.View)
+    31:32:public static void setHasTransientState(android.view.View,boolean)
+    40:41:public static void postInvalidateOnAnimation(android.view.View,int,int,int,int)
+    44:45:public static void postOnAnimation(android.view.View,java.lang.Runnable)
+    48:49:public static void postOnAnimationDelayed(android.view.View,java.lang.Runnable,long)
+    60:60:public static java.lang.Object getAccessibilityNodeProvider(android.view.View)
+android.support.v4.view.ViewConfigurationCompat:
+    25:46:public ViewConfigurationCompat()
+android.support.v4.view.ViewConfigurationCompatFroyo:
+    24:24:ViewConfigurationCompatFroyo()
+android.support.v4.view.ViewGroupCompat
+android.support.v4.view.ViewGroupCompat$ViewGroupCompatIcsImpl
+android.support.v4.view.ViewGroupCompat$ViewGroupCompatImpl
+android.support.v4.view.ViewGroupCompat$ViewGroupCompatStubImpl
+android.support.v4.view.ViewGroupCompatIcs
+android.support.v4.view.ViewPager:
+    private static final java.lang.String TAG
+    private static final boolean DEBUG
+    private static final boolean USE_CACHE
+    private static final int DEFAULT_OFFSCREEN_PAGES
+    private static final int MAX_SETTLE_DURATION
+    private static final int MIN_DISTANCE_FOR_FLING
+    private static final int DEFAULT_GUTTER_SIZE
+    private boolean mIgnoreGutter
+    private static final int INVALID_POINTER
+    private static final int CLOSE_ENOUGH
+    private long mFakeDragBeginTime
+    public static final int SCROLL_STATE_IDLE
+    public static final int SCROLL_STATE_DRAGGING
+    public static final int SCROLL_STATE_SETTLING
+    527:527:public int getOffscreenPageLimit()
+    548:557:public void setOffscreenPageLimit(int)
+    568:575:public void setPageMargin(int)
+    583:583:public int getPageMargin()
+    592:596:public void setPageMarginDrawable(android.graphics.drawable.Drawable)
+    604:605:public void setPageMarginDrawable(int)
+    638:639:void smoothScrollTo(int,int)
+    2025:2041:public boolean beginFakeDrag()
+    2051:2072:public void endFakeDrag()
+    2082:2120:public void fakeDragBy(float)
+    2132:2132:public boolean isFakeDragging()
+android.support.v4.view.ViewPager$SimpleOnPageChangeListener
+android.support.v4.view.accessibility.AccessibilityEventCompat
+android.support.v4.view.accessibility.AccessibilityEventCompat$AccessibilityEventIcsImpl
+android.support.v4.view.accessibility.AccessibilityEventCompat$AccessibilityEventStubImpl
+android.support.v4.view.accessibility.AccessibilityEventCompat$AccessibilityEventVersionImpl
+android.support.v4.view.accessibility.AccessibilityEventCompatIcs
+android.support.v4.view.accessibility.AccessibilityManagerCompat
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityManagerIcsImpl
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityManagerIcsImpl$1
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityManagerStubImpl
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityManagerVersionImpl
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityStateChangeListenerCompat
+android.support.v4.view.accessibility.AccessibilityManagerCompatIcs
+android.support.v4.view.accessibility.AccessibilityManagerCompatIcs$1
+android.support.v4.view.accessibility.AccessibilityManagerCompatIcs$AccessibilityStateChangeListenerBridge
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat:
+    public static final int ACTION_FOCUS
+    public static final int ACTION_CLEAR_FOCUS
+    public static final int ACTION_SELECT
+    public static final int ACTION_CLEAR_SELECTION
+    public static final int ACTION_CLICK
+    public static final int ACTION_LONG_CLICK
+    public static final int ACTION_ACCESSIBILITY_FOCUS
+    public static final int ACTION_CLEAR_ACCESSIBILITY_FOCUS
+    public static final int ACTION_NEXT_AT_MOVEMENT_GRANULARITY
+    public static final int ACTION_PREVIOUS_AT_MOVEMENT_GRANULARITY
+    public static final int ACTION_NEXT_HTML_ELEMENT
+    public static final int ACTION_PREVIOUS_HTML_ELEMENT
+    public static final int ACTION_SCROLL_FORWARD
+    public static final int ACTION_SCROLL_BACKWARD
+    public static final java.lang.String ACTION_ARGUMENT_MOVEMENT_GRANULARITY_INT
+    public static final java.lang.String ACTION_ARGUMENT_HTML_ELEMENT_STRING
+    public static final int FOCUS_INPUT
+    public static final int FOCUS_ACCESSIBILITY
+    public static final int MOVEMENT_GRANULARITY_CHARACTER
+    public static final int MOVEMENT_GRANULARITY_WORD
+    public static final int MOVEMENT_GRANULARITY_LINE
+    public static final int MOVEMENT_GRANULARITY_PARAGRAPH
+    public static final int MOVEMENT_GRANULARITY_PAGE
+    918:921:static android.support.v4.view.accessibility.AccessibilityNodeInfoCompat wrapNonNullInstance(java.lang.Object)
+    949:949:public static android.support.v4.view.accessibility.AccessibilityNodeInfoCompat obtain(android.view.View)
+    963:963:public static android.support.v4.view.accessibility.AccessibilityNodeInfoCompat obtain(android.view.View,int)
+    973:973:public static android.support.v4.view.accessibility.AccessibilityNodeInfoCompat obtain()
+    984:984:public static android.support.v4.view.accessibility.AccessibilityNodeInfoCompat obtain(android.support.v4.view.accessibility.AccessibilityNodeInfoCompat)
+    993:994:public void setSource(android.view.View)
+    1016:1017:public void setSource(android.view.View,int)
+    1031:1031:public android.support.v4.view.accessibility.AccessibilityNodeInfoCompat findFocus(int)
+    1049:1049:public android.support.v4.view.accessibility.AccessibilityNodeInfoCompat focusSearch(int)
+    1058:1058:public int getWindowId()
+    1067:1067:public int getChildCount()
+    1084:1084:public android.support.v4.view.accessibility.AccessibilityNodeInfoCompat getChild(int)
+    1099:1100:public void addChild(android.view.View)
+    1117:1118:public void addChild(android.view.View,int)
+    1130:1130:public int getActions()
+    1161:1161:public boolean performAction(int)
+    1178:1178:public boolean performAction(int,android.os.Bundle)
+    1194:1195:public void setMovementGranularities(int)
+    1203:1203:public int getMovementGranularities()
+    1220:1227:public java.util.List findAccessibilityNodeInfosByText(java.lang.String)
+    1241:1241:public android.support.v4.view.accessibility.AccessibilityNodeInfoCompat getParent()
+    1256:1257:public void setParent(android.view.View)
+    1279:1280:public void setParent(android.view.View,int)
+    1288:1289:public void getBoundsInParent(android.graphics.Rect)
+    1303:1304:public void setBoundsInParent(android.graphics.Rect)
+    1312:1313:public void getBoundsInScreen(android.graphics.Rect)
+    1327:1328:public void setBoundsInScreen(android.graphics.Rect)
+    1336:1336:public boolean isCheckable()
+    1351:1352:public void setCheckable(boolean)
+    1360:1360:public boolean isChecked()
+    1375:1376:public void setChecked(boolean)
+    1384:1384:public boolean isFocusable()
+    1399:1400:public void setFocusable(boolean)
+    1408:1408:public boolean isFocused()
+    1423:1424:public void setFocused(boolean)
+    1432:1432:public boolean isVisibleToUser()
+    1448:1449:public void setVisibleToUser(boolean)
+    1457:1457:public boolean isAccessibilityFocused()
+    1473:1474:public void setAccessibilityFocused(boolean)
+    1482:1482:public boolean isSelected()
+    1497:1498:public void setSelected(boolean)
+    1506:1506:public boolean isClickable()
+    1521:1522:public void setClickable(boolean)
+    1530:1530:public boolean isLongClickable()
+    1545:1546:public void setLongClickable(boolean)
+    1554:1554:public boolean isEnabled()
+    1569:1570:public void setEnabled(boolean)
+    1578:1578:public boolean isPassword()
+    1593:1594:public void setPassword(boolean)
+    1602:1602:public boolean isScrollable()
+    1626:1626:public java.lang.CharSequence getPackageName()
+    1641:1642:public void setPackageName(java.lang.CharSequence)
+    1650:1650:public java.lang.CharSequence getClassName()
+    1674:1674:public java.lang.CharSequence getText()
+    1689:1690:public void setText(java.lang.CharSequence)
+    1698:1698:public java.lang.CharSequence getContentDescription()
+    1713:1714:public void setContentDescription(java.lang.CharSequence)
+    1724:1725:public void recycle()
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityNodeInfoIcsImpl:
+    402:402:public java.lang.Object obtain()
+    407:407:public java.lang.Object obtain(android.view.View)
+    412:412:public java.lang.Object obtain(java.lang.Object)
+    422:423:public void addChild(java.lang.Object,android.view.View)
+    427:427:public java.util.List findAccessibilityNodeInfosByText(java.lang.Object,java.lang.String)
+    432:432:public int getActions(java.lang.Object)
+    437:438:public void getBoundsInParent(java.lang.Object,android.graphics.Rect)
+    442:443:public void getBoundsInScreen(java.lang.Object,android.graphics.Rect)
+    447:447:public java.lang.Object getChild(java.lang.Object,int)
+    452:452:public int getChildCount(java.lang.Object)
+    457:457:public java.lang.CharSequence getClassName(java.lang.Object)
+    462:462:public java.lang.CharSequence getContentDescription(java.lang.Object)
+    467:467:public java.lang.CharSequence getPackageName(java.lang.Object)
+    472:472:public java.lang.Object getParent(java.lang.Object)
+    477:477:public java.lang.CharSequence getText(java.lang.Object)
+    482:482:public int getWindowId(java.lang.Object)
+    487:487:public boolean isCheckable(java.lang.Object)
+    492:492:public boolean isChecked(java.lang.Object)
+    497:497:public boolean isClickable(java.lang.Object)
+    502:502:public boolean isEnabled(java.lang.Object)
+    507:507:public boolean isFocusable(java.lang.Object)
+    512:512:public boolean isFocused(java.lang.Object)
+    517:517:public boolean isLongClickable(java.lang.Object)
+    522:522:public boolean isPassword(java.lang.Object)
+    527:527:public boolean isScrollable(java.lang.Object)
+    532:532:public boolean isSelected(java.lang.Object)
+    537:537:public boolean performAction(java.lang.Object,int)
+    542:543:public void setBoundsInParent(java.lang.Object,android.graphics.Rect)
+    547:548:public void setBoundsInScreen(java.lang.Object,android.graphics.Rect)
+    552:553:public void setCheckable(java.lang.Object,boolean)
+    557:558:public void setChecked(java.lang.Object,boolean)
+    567:568:public void setClickable(java.lang.Object,boolean)
+    572:573:public void setContentDescription(java.lang.Object,java.lang.CharSequence)
+    577:578:public void setEnabled(java.lang.Object,boolean)
+    582:583:public void setFocusable(java.lang.Object,boolean)
+    587:588:public void setFocused(java.lang.Object,boolean)
+    592:593:public void setLongClickable(java.lang.Object,boolean)
+    597:598:public void setPackageName(java.lang.Object,java.lang.CharSequence)
+    602:603:public void setParent(java.lang.Object,android.view.View)
+    607:608:public void setPassword(java.lang.Object,boolean)
+    617:618:public void setSelected(java.lang.Object,boolean)
+    622:623:public void setSource(java.lang.Object,android.view.View)
+    627:628:public void setText(java.lang.Object,java.lang.CharSequence)
+    632:633:public void recycle(java.lang.Object)
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityNodeInfoImpl:
+    public abstract java.lang.Object obtain()
+    public abstract java.lang.Object obtain(android.view.View)
+    public abstract java.lang.Object obtain(java.lang.Object)
+    public abstract java.lang.Object obtain(android.view.View,int)
+    public abstract void setSource(java.lang.Object,android.view.View)
+    public abstract void setSource(java.lang.Object,android.view.View,int)
+    public abstract java.lang.Object findFocus(java.lang.Object,int)
+    public abstract java.lang.Object focusSearch(java.lang.Object,int)
+    public abstract int getWindowId(java.lang.Object)
+    public abstract int getChildCount(java.lang.Object)
+    public abstract java.lang.Object getChild(java.lang.Object,int)
+    public abstract void addChild(java.lang.Object,android.view.View)
+    public abstract void addChild(java.lang.Object,android.view.View,int)
+    public abstract int getActions(java.lang.Object)
+    public abstract boolean performAction(java.lang.Object,int)
+    public abstract boolean performAction(java.lang.Object,int,android.os.Bundle)
+    public abstract void setMovementGranularities(java.lang.Object,int)
+    public abstract int getMovementGranularities(java.lang.Object)
+    public abstract java.util.List findAccessibilityNodeInfosByText(java.lang.Object,java.lang.String)
+    public abstract java.lang.Object getParent(java.lang.Object)
+    public abstract void setParent(java.lang.Object,android.view.View,int)
+    public abstract void setParent(java.lang.Object,android.view.View)
+    public abstract void getBoundsInParent(java.lang.Object,android.graphics.Rect)
+    public abstract void setBoundsInParent(java.lang.Object,android.graphics.Rect)
+    public abstract void getBoundsInScreen(java.lang.Object,android.graphics.Rect)
+    public abstract void setBoundsInScreen(java.lang.Object,android.graphics.Rect)
+    public abstract boolean isCheckable(java.lang.Object)
+    public abstract void setCheckable(java.lang.Object,boolean)
+    public abstract boolean isChecked(java.lang.Object)
+    public abstract void setChecked(java.lang.Object,boolean)
+    public abstract boolean isFocusable(java.lang.Object)
+    public abstract void setFocusable(java.lang.Object,boolean)
+    public abstract boolean isFocused(java.lang.Object)
+    public abstract void setFocused(java.lang.Object,boolean)
+    public abstract boolean isVisibleToUser(java.lang.Object)
+    public abstract void setVisibleToUser(java.lang.Object,boolean)
+    public abstract boolean isAccessibilityFocused(java.lang.Object)
+    public abstract void setAccessibilityFocused(java.lang.Object,boolean)
+    public abstract boolean isSelected(java.lang.Object)
+    public abstract void setSelected(java.lang.Object,boolean)
+    public abstract boolean isClickable(java.lang.Object)
+    public abstract void setClickable(java.lang.Object,boolean)
+    public abstract boolean isLongClickable(java.lang.Object)
+    public abstract void setLongClickable(java.lang.Object,boolean)
+    public abstract boolean isEnabled(java.lang.Object)
+    public abstract void setEnabled(java.lang.Object,boolean)
+    public abstract boolean isPassword(java.lang.Object)
+    public abstract void setPassword(java.lang.Object,boolean)
+    public abstract boolean isScrollable(java.lang.Object)
+    public abstract java.lang.CharSequence getPackageName(java.lang.Object)
+    public abstract void setPackageName(java.lang.Object,java.lang.CharSequence)
+    public abstract java.lang.CharSequence getClassName(java.lang.Object)
+    public abstract java.lang.CharSequence getText(java.lang.Object)
+    public abstract void setText(java.lang.Object,java.lang.CharSequence)
+    public abstract java.lang.CharSequence getContentDescription(java.lang.Object)
+    public abstract void setContentDescription(java.lang.Object,java.lang.CharSequence)
+    public abstract void recycle(java.lang.Object)
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityNodeInfoJellybeanImpl:
+    639:639:public java.lang.Object obtain(android.view.View,int)
+    644:644:public java.lang.Object findFocus(java.lang.Object,int)
+    649:649:public java.lang.Object focusSearch(java.lang.Object,int)
+    654:655:public void addChild(java.lang.Object,android.view.View,int)
+    659:660:public void setSource(java.lang.Object,android.view.View,int)
+    664:664:public boolean isVisibleToUser(java.lang.Object)
+    669:670:public void setVisibleToUser(java.lang.Object,boolean)
+    674:674:public boolean isAccessibilityFocused(java.lang.Object)
+    679:680:public void setAccessibilityFocused(java.lang.Object,boolean)
+    684:684:public boolean performAction(java.lang.Object,int,android.os.Bundle)
+    689:690:public void setMovementGranularities(java.lang.Object,int)
+    694:694:public int getMovementGranularities(java.lang.Object)
+    699:700:public void setParent(java.lang.Object,android.view.View,int)
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityNodeInfoStubImpl:
+    100:100:public java.lang.Object obtain()
+    105:105:public java.lang.Object obtain(android.view.View)
+    110:110:public java.lang.Object obtain(android.view.View,int)
+    115:115:public java.lang.Object obtain(java.lang.Object)
+    126:126:public void addChild(java.lang.Object,android.view.View)
+    131:131:public void addChild(java.lang.Object,android.view.View,int)
+    135:135:public java.util.List findAccessibilityNodeInfosByText(java.lang.Object,java.lang.String)
+    140:140:public int getActions(java.lang.Object)
+    146:146:public void getBoundsInParent(java.lang.Object,android.graphics.Rect)
+    151:151:public void getBoundsInScreen(java.lang.Object,android.graphics.Rect)
+    155:155:public java.lang.Object getChild(java.lang.Object,int)
+    160:160:public int getChildCount(java.lang.Object)
+    165:165:public java.lang.CharSequence getClassName(java.lang.Object)
+    170:170:public java.lang.CharSequence getContentDescription(java.lang.Object)
+    175:175:public java.lang.CharSequence getPackageName(java.lang.Object)
+    180:180:public java.lang.Object getParent(java.lang.Object)
+    185:185:public java.lang.CharSequence getText(java.lang.Object)
+    190:190:public int getWindowId(java.lang.Object)
+    195:195:public boolean isCheckable(java.lang.Object)
+    200:200:public boolean isChecked(java.lang.Object)
+    205:205:public boolean isClickable(java.lang.Object)
+    210:210:public boolean isEnabled(java.lang.Object)
+    215:215:public boolean isFocusable(java.lang.Object)
+    220:220:public boolean isFocused(java.lang.Object)
+    225:225:public boolean isVisibleToUser(java.lang.Object)
+    230:230:public boolean isAccessibilityFocused(java.lang.Object)
+    235:235:public boolean isLongClickable(java.lang.Object)
+    240:240:public boolean isPassword(java.lang.Object)
+    245:245:public boolean isScrollable(java.lang.Object)
+    250:250:public boolean isSelected(java.lang.Object)
+    255:255:public boolean performAction(java.lang.Object,int)
+    260:260:public boolean performAction(java.lang.Object,int,android.os.Bundle)
+    266:266:public void setMovementGranularities(java.lang.Object,int)
+    270:270:public int getMovementGranularities(java.lang.Object)
+    276:276:public void setBoundsInParent(java.lang.Object,android.graphics.Rect)
+    281:281:public void setBoundsInScreen(java.lang.Object,android.graphics.Rect)
+    286:286:public void setCheckable(java.lang.Object,boolean)
+    291:291:public void setChecked(java.lang.Object,boolean)
+    301:301:public void setClickable(java.lang.Object,boolean)
+    306:306:public void setContentDescription(java.lang.Object,java.lang.CharSequence)
+    311:311:public void setEnabled(java.lang.Object,boolean)
+    316:316:public void setFocusable(java.lang.Object,boolean)
+    321:321:public void setFocused(java.lang.Object,boolean)
+    326:326:public void setVisibleToUser(java.lang.Object,boolean)
+    331:331:public void setAccessibilityFocused(java.lang.Object,boolean)
+    336:336:public void setLongClickable(java.lang.Object,boolean)
+    341:341:public void setPackageName(java.lang.Object,java.lang.CharSequence)
+    346:346:public void setParent(java.lang.Object,android.view.View)
+    351:351:public void setPassword(java.lang.Object,boolean)
+    361:361:public void setSelected(java.lang.Object,boolean)
+    366:366:public void setSource(java.lang.Object,android.view.View)
+    371:371:public void setSource(java.lang.Object,android.view.View,int)
+    375:375:public java.lang.Object findFocus(java.lang.Object,int)
+    380:380:public java.lang.Object focusSearch(java.lang.Object,int)
+    386:386:public void setText(java.lang.Object,java.lang.CharSequence)
+    391:391:public void recycle(java.lang.Object)
+    396:396:public void setParent(java.lang.Object,android.view.View,int)
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompatIcs:
+    28:28:AccessibilityNodeInfoCompatIcs()
+    31:31:public static java.lang.Object obtain()
+    35:35:public static java.lang.Object obtain(android.view.View)
+    39:39:public static java.lang.Object obtain(java.lang.Object)
+    47:48:public static void addChild(java.lang.Object,android.view.View)
+    52:53:public static java.util.List findAccessibilityNodeInfosByText(java.lang.Object,java.lang.String)
+    57:57:public static int getActions(java.lang.Object)
+    61:62:public static void getBoundsInParent(java.lang.Object,android.graphics.Rect)
+    65:66:public static void getBoundsInScreen(java.lang.Object,android.graphics.Rect)
+    69:69:public static java.lang.Object getChild(java.lang.Object,int)
+    73:73:public static int getChildCount(java.lang.Object)
+    77:77:public static java.lang.CharSequence getClassName(java.lang.Object)
+    81:81:public static java.lang.CharSequence getContentDescription(java.lang.Object)
+    85:85:public static java.lang.CharSequence getPackageName(java.lang.Object)
+    89:89:public static java.lang.Object getParent(java.lang.Object)
+    93:93:public static java.lang.CharSequence getText(java.lang.Object)
+    97:97:public static int getWindowId(java.lang.Object)
+    101:101:public static boolean isCheckable(java.lang.Object)
+    105:105:public static boolean isChecked(java.lang.Object)
+    109:109:public static boolean isClickable(java.lang.Object)
+    113:113:public static boolean isEnabled(java.lang.Object)
+    117:117:public static boolean isFocusable(java.lang.Object)
+    121:121:public static boolean isFocused(java.lang.Object)
+    125:125:public static boolean isLongClickable(java.lang.Object)
+    129:129:public static boolean isPassword(java.lang.Object)
+    133:133:public static boolean isScrollable(java.lang.Object)
+    137:137:public static boolean isSelected(java.lang.Object)
+    141:141:public static boolean performAction(java.lang.Object,int)
+    145:146:public static void setBoundsInParent(java.lang.Object,android.graphics.Rect)
+    149:150:public static void setBoundsInScreen(java.lang.Object,android.graphics.Rect)
+    153:154:public static void setCheckable(java.lang.Object,boolean)
+    157:158:public static void setChecked(java.lang.Object,boolean)
+    165:166:public static void setClickable(java.lang.Object,boolean)
+    169:170:public static void setContentDescription(java.lang.Object,java.lang.CharSequence)
+    173:174:public static void setEnabled(java.lang.Object,boolean)
+    177:178:public static void setFocusable(java.lang.Object,boolean)
+    181:182:public static void setFocused(java.lang.Object,boolean)
+    185:186:public static void setLongClickable(java.lang.Object,boolean)
+    189:190:public static void setPackageName(java.lang.Object,java.lang.CharSequence)
+    193:194:public static void setParent(java.lang.Object,android.view.View)
+    197:198:public static void setPassword(java.lang.Object,boolean)
+    205:206:public static void setSelected(java.lang.Object,boolean)
+    209:210:public static void setSource(java.lang.Object,android.view.View)
+    213:214:public static void setText(java.lang.Object,java.lang.CharSequence)
+    217:218:public static void recycle(java.lang.Object)
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompatJellyBean
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompatJellyBean:
+    28:29:AccessibilityNodeProviderCompatJellyBean()
+android.support.v4.view.accessibility.AccessibilityRecordCompat
+android.support.v4.view.accessibility.AccessibilityRecordCompat$AccessibilityRecordIcsImpl
+android.support.v4.view.accessibility.AccessibilityRecordCompat$AccessibilityRecordIcsMr1Impl
+android.support.v4.view.accessibility.AccessibilityRecordCompat$AccessibilityRecordImpl
+android.support.v4.view.accessibility.AccessibilityRecordCompat$AccessibilityRecordJellyBeanImpl
+android.support.v4.view.accessibility.AccessibilityRecordCompat$AccessibilityRecordStubImpl
+android.support.v4.view.accessibility.AccessibilityRecordCompatIcs
+android.support.v4.view.accessibility.AccessibilityRecordCompatIcsMr1
+android.support.v4.view.accessibility.AccessibilityRecordCompatJellyBean
+android.support.v4.widget.CursorAdapter
+android.support.v4.widget.CursorAdapter$1
+android.support.v4.widget.CursorAdapter$ChangeObserver
+android.support.v4.widget.CursorAdapter$MyDataSetObserver
+android.support.v4.widget.CursorFilter
+android.support.v4.widget.CursorFilter$CursorFilterClient
+android.support.v4.widget.EdgeEffectCompat:
+    204:204:public boolean onAbsorb(int)
+android.support.v4.widget.EdgeEffectCompat$BaseEdgeEffectImpl:
+    82:82:public boolean onAbsorb(java.lang.Object,int)
+android.support.v4.widget.EdgeEffectCompat$EdgeEffectIcsImpl:
+    116:116:public boolean onAbsorb(java.lang.Object,int)
+android.support.v4.widget.EdgeEffectCompat$EdgeEffectImpl:
+    public abstract boolean onAbsorb(java.lang.Object,int)
+android.support.v4.widget.EdgeEffectCompatIcs:
+    28:28:EdgeEffectCompatIcs()
+    57:58:public static boolean onAbsorb(java.lang.Object,int)
+android.support.v4.widget.ResourceCursorAdapter
+android.support.v4.widget.ScrollerCompat
+android.support.v4.widget.ScrollerCompat$ScrollerCompatImplIcs
+android.support.v4.widget.ScrollerCompatIcs
+android.support.v4.widget.SearchViewCompat
+android.support.v4.widget.SearchViewCompat$OnQueryTextListenerCompat
+android.support.v4.widget.SearchViewCompat$SearchViewCompatHoneycombImpl
+android.support.v4.widget.SearchViewCompat$SearchViewCompatHoneycombImpl$1
+android.support.v4.widget.SearchViewCompat$SearchViewCompatImpl
+android.support.v4.widget.SearchViewCompat$SearchViewCompatStubImpl
+android.support.v4.widget.SearchViewCompatHoneycomb
+android.support.v4.widget.SearchViewCompatHoneycomb$1
+android.support.v4.widget.SearchViewCompatHoneycomb$OnQueryTextListenerCompatBridge
+android.support.v4.widget.SimpleCursorAdapter
+android.support.v4.widget.SimpleCursorAdapter$CursorToStringConverter
+android.support.v4.widget.SimpleCursorAdapter$ViewBinder
+com.slidingmenu.example.BaseActivity$BasePagerAdapter
+com.slidingmenu.example.BuildConfig
+com.slidingmenu.example.R
+com.slidingmenu.example.R$array
+com.slidingmenu.example.R$attr
+com.slidingmenu.example.R$bool
+com.slidingmenu.example.R$color
+com.slidingmenu.example.R$dimen
+com.slidingmenu.example.R$drawable
+com.slidingmenu.example.R$id
+com.slidingmenu.example.R$integer
+com.slidingmenu.example.R$layout
+com.slidingmenu.example.R$menu
+com.slidingmenu.example.R$string
+com.slidingmenu.example.R$style
+com.slidingmenu.example.R$styleable
+com.slidingmenu.example.R$xml
+com.slidingmenu.example.Util:
+    7:7:public Util()
+com.slidingmenu.lib.CanvasTransformerBuilder
+com.slidingmenu.lib.CanvasTransformerBuilder$1
+com.slidingmenu.lib.CanvasTransformerBuilder$2
+com.slidingmenu.lib.CanvasTransformerBuilder$3
+com.slidingmenu.lib.CanvasTransformerBuilder$4
+com.slidingmenu.lib.CanvasTransformerBuilder$5
+com.slidingmenu.lib.CanvasTransformerBuilder$6
+com.slidingmenu.lib.CustomViewAbove:
+    private static final java.lang.String TAG
+    private static final boolean DEBUG
+    private static final boolean USE_CACHE
+    private static final int MAX_SETTLE_DURATION
+    private static final int MIN_DISTANCE_FOR_FLING
+    private static final int INVALID_POINTER
+    private android.view.View mSelectedView
+    267:268:public void setOnOpenedListener(com.slidingmenu.lib.SlidingMenu$OnOpenedListener)
+    271:272:public void setOnClosedListener(com.slidingmenu.lib.SlidingMenu$OnClosedListener)
+    316:316:public int getContentLeft()
+    332:338:public int getChildWidth(int)
+    343:343:public boolean isSlidingEnabled()
+    357:358:void smoothScrollTo(int,int)
+    421:421:public android.view.View getContent()
+    463:465:public void setAboveOffset(int)
+    553:553:public int getTouchMode()
+    834:846:private void onDrawMenuSelector(android.graphics.Canvas,float)
+    853:862:public void setSelectedView(android.view.View)
+    865:867:private int getSelectedTop()
+    929:946:protected boolean canScroll(android.view.View,boolean,int,int,int)
+com.slidingmenu.lib.CustomViewAbove$SimpleOnPageChangeListener:
+    147:147:public void onPageScrollStateChanged(int)
+com.slidingmenu.lib.CustomViewBehind:
+    private static final java.lang.String TAG
+    private static final int MARGIN_THRESHOLD
+    66:66:public android.view.View getContent()
+    81:81:public android.view.View getSecondaryContent()
+    165:165:public float getScrollScale()
+com.slidingmenu.lib.MenuInterface
+com.slidingmenu.lib.R:
+    9:9:public R()
+com.slidingmenu.lib.R$attr
+com.slidingmenu.lib.R$bool
+com.slidingmenu.lib.R$color
+com.slidingmenu.lib.R$dimen
+com.slidingmenu.lib.R$drawable
+com.slidingmenu.lib.R$id
+com.slidingmenu.lib.R$integer
+com.slidingmenu.lib.R$layout:
+    public static final int abs__dialog_title_holo
+    public static final int abs__action_menu_layout
+    public static final int abs__action_mode_bar
+    public static final int sherlock_spinner_item
+    public static final int shadow
+    public static final int abs__activity_chooser_view
+    public static final int abs__popup_menu_item_layout
+    public static final int abs__action_bar_tab_bar_view
+    public static final int abs__action_bar_home
+    public static final int abs__action_menu_item_layout
+    public static final int abs__list_menu_item_radio
+    public static final int abs__action_mode_close_item
+    public static final int abs__activity_chooser_view_list_item
+    public static final int slidingmenumainlist
+    public static final int abs__screen_simple_overlay_action_mode
+    public static final int abs__screen_action_bar
+    public static final int list
+    public static final int slidingmenurow
+    public static final int sherlock_spinner_dropdown_item
+    public static final int abs__action_bar_title_item
+    public static final int abs__screen_action_bar_overlay
+    public static final int abs__list_menu_item_checkbox
+    public static final int abs__list_menu_item_icon
+    public static final int abs__list_menu_item_layout
+    public static final int abs__screen_simple
+    public static final int abs__action_bar_tab
+    181:181:public R$layout()
+com.slidingmenu.lib.R$string
+com.slidingmenu.lib.R$style
+com.slidingmenu.lib.R$styleable:
+    public static final int SherlockTheme_textColorPrimaryInverse
+    public static final int SherlockActionBar_displayOptions
+    public static final int SherlockTheme_actionMenuTextAppearance
+    public static final int SherlockTheme_listPreferredItemPaddingLeft
+    public static final int SherlockMenuView_itemBackground
+    public static final int SherlockTheme_actionBarDivider
+    public static final int SherlockTheme_homeAsUpIndicator
+    public static final int SherlockMenuItem_android_id
+    public static final int SherlockTheme_actionBarSplitStyle
+    public static final int SherlockTheme_actionModeShareDrawable
+    public static final int SherlockTheme_activatedBackgroundIndicator
+    public static final int SherlockActionBar_subtitle
+    public static final int SherlockActionMode_backgroundSplit
+    public static final int SherlockTheme_buttonStyleSmall
+    public static final int SherlockMenuItem_android_icon
+    public static final int SherlockMenuItem_android_title
+    public static final int SherlockTheme_dropdownListPreferredItemHeight
+    public static final int SherlockActivityChooserView_initialActivityCount
+    public static final int SherlockActionBar_itemPadding
+    public static final int SherlockTheme_actionBarWidgetTheme
+    public static final int SlidingMenu_behindOffset
+    public static final int SlidingMenu_selectorEnabled
+    public static final int SherlockSpinner_android_dropDownHorizontalOffset
+    public static final int SherlockMenuGroup_android_orderInCategory
+    public static final int SherlockTheme_actionOverflowButtonStyle
+    public static final int SherlockTheme_spinnerDropDownItemStyle
+    public static final int SherlockTheme_android_windowIsFloating
+    public static final int SherlockActionMode_background
+    public static final int SherlockTheme_actionMenuTextColor
+    public static final int SherlockActionBar_progressBarPadding
+    public static final int SherlockMenuItem_android_titleCondensed
+    public static final int SherlockActionMode_height
+    public static final int SherlockActionMenuItemView_android_minWidth
+    public static final int SherlockTheme_actionBarTabStyle
+    public static final int SherlockTheme_actionSpinnerItemStyle
+    public static final int SherlockActivityChooserView_expandActivityOverflowButtonDrawable
+    public static final int SherlockActionBar_backgroundSplit
+    public static final int SherlockMenuView_headerBackground
+    public static final int SlidingMenu_shadowDrawable
+    public static final int SherlockActionBar_subtitleTextStyle
+    public static final int SherlockActionBar_icon
+    public static final int SherlockTheme_dropDownListViewStyle
+    public static final int SherlockMenuItem_android_alphabeticShortcut
+    public static final int SlidingMenu_viewBehind
+    public static final int SherlockSpinner_android_dropDownWidth
+    public static final int SherlockActionBar_indeterminateProgressStyle
+    public static final int SherlockTheme_textAppearanceLargePopupMenu
+    public static final int SherlockTheme_windowMinWidthMajor
+    public static final int SherlockMenuItem_android_checked
+    public static final int SherlockActionBar_progressBarStyle
+    public static final int SherlockMenuView_horizontalDivider
+    public static final int SlidingMenu_behindWidth
+    public static final int SherlockTheme_actionBarStyle
+    public static final int SherlockTheme_windowSplitActionBar
+    public static final int SherlockMenuGroup_android_enabled
+    public static final int SherlockSpinner_android_gravity
+    public static final int SherlockActionBar_customNavigationLayout
+    public static final int SherlockSpinner_android_prompt
+    public static final int SherlockTheme_actionBarTabBarStyle
+    public static final int SherlockActionBar_title
+    public static final int SherlockMenuItem_android_menuCategory
+    public static final int SherlockActionBar_height
+    public static final int SherlockActionBar_navigationMode
+    public static final int SherlockTheme_actionBarTabTextStyle
+    public static final int SherlockTheme_windowMinWidthMinor
+    public static final int SherlockMenuItem_android_actionViewClass
+    public static final int SherlockMenuView_itemTextAppearance
+    public static final int SherlockTheme_actionModeBackground
+    public static final int SherlockMenuItem_android_checkable
+    public static final int SherlockTheme_actionModeCloseDrawable
+    public static final int SherlockTheme_windowNoTitle
+    public static final int SherlockTheme_textAppearanceSmall
+    public static final int SherlockSpinner_android_dropDownVerticalOffset
+    public static final int SherlockMenuView_verticalDivider
+    public static final int SherlockMenuGroup_android_visible
+    public static final int SherlockActionMode_subtitleTextStyle
+    public static final int SherlockMenuView_itemIconDisabledAlpha
+    public static final int SherlockTheme_actionBarItemBackground
+    public static final int SherlockTheme_textColorPrimary
+    public static final int SherlockTheme_listPreferredItemHeightSmall
+    public static final int SherlockTheme_windowContentOverlay
+    public static final int SherlockTheme_listPopupWindowStyle
+    public static final int SherlockMenuGroup_android_menuCategory
+    public static final int SherlockActionBar_logo
+    public static final int SherlockMenuItem_android_actionProviderClass
+    public static final int SherlockTheme_actionBarSize
+    public static final int SherlockActionBar_backgroundStacked
+    public static final int SherlockTheme_actionModeCloseButtonStyle
+    public static final int SherlockActivityChooserView_android_background
+    public static final int SherlockTheme_absForceOverflow
+    public static final int SlidingMenu_shadowWidth
+    public static final int SherlockTheme_dividerVertical
+    public static final int SherlockTheme_actionModePopupWindowStyle
+    public static final int SherlockTheme_textAppearanceSmallPopupMenu
+    public static final int SherlockSpinner_android_popupBackground
+    public static final int SherlockTheme_popupMenuStyle
+    public static final int SherlockSpinner_android_popupPromptView
+    public static final int SlidingMenu_selectorDrawable
+    public static final int SherlockActionBar_background
+    public static final int SherlockSpinner_android_dropDownSelector
+    public static final int SherlockTheme_actionModeSplitBackground
+    public static final int SherlockTheme_actionModeStyle
+    public static final int SlidingMenu_mode
+    public static final int SherlockMenuView_windowAnimationStyle
+    public static final int SherlockTheme_listPreferredItemPaddingRight
+    public static final int SherlockMenuItem_android_numericShortcut
+    public static final int SherlockMenuItem_android_showAsAction
+    public static final int SherlockTheme_actionButtonStyle
+    public static final int SlidingMenu_touchModeAbove
+    public static final int SherlockMenuGroup_android_checkableBehavior
+    public static final int SherlockMenuGroup_android_id
+    public static final int SherlockTheme_actionDropDownStyle
+    public static final int SlidingMenu_behindScrollScale
+    public static final int SherlockActionMode_titleTextStyle
+    public static final int SherlockTheme_textColorPrimaryDisableOnly
+    public static final int SherlockTheme_textAppearanceListItemSmall
+    public static final int SherlockTheme_windowActionModeOverlay
+    public static final int SherlockActionBar_homeLayout
+    public static final int SlidingMenu_behindFadeEnabled
+    public static final int SherlockActionBar_divider
+    public static final int SherlockTheme_spinnerItemStyle
+    public static final int SherlockMenuItem_android_visible
+    public static final int SherlockMenuItem_android_orderInCategory
+    public static final int SlidingMenu_viewAbove
+    public static final int SherlockActionBar_titleTextStyle
+    public static final int SherlockMenuView_preserveIconSpacing
+    public static final int SherlockTheme_windowActionBar
+    public static final int SherlockTheme_activityChooserViewStyle
+    public static final int SherlockMenuItem_android_enabled
+    public static final int SherlockMenuItem_android_onClick
+    public static final int SherlockMenuItem_android_actionLayout
+    public static final int SlidingMenu_behindFadeDegree
+    public static final int SherlockTheme_windowActionBarOverlay
+    210:210:public R$styleable()
+com.slidingmenu.lib.SlidingMenu:
+    public static final int TOUCHMODE_MARGIN
+    public static final int TOUCHMODE_FULLSCREEN
+    public static final int TOUCHMODE_NONE
+    public static final int LEFT
+    public static final int RIGHT
+    public static final int LEFT_RIGHT
+    284:284:public android.view.View getContent()
+    312:312:public android.view.View getMenu()
+    339:339:public android.view.View getSecondaryMenu()
+    358:358:public boolean isSlidingEnabled()
+    386:397:public void setStatic(boolean)
+    420:421:public void showSecondaryMenu()
+    430:431:public void showSecondaryMenu(boolean)
+    484:484:public int getBehindOffset()
+    518:519:public void setAboveOffset(int)
+    527:529:public void setAboveOffsetRes(int)
+    561:563:public void setBehindWidthRes(int)
+    571:571:public float getBehindScrollScale()
+    601:601:public int getTouchModeAbove()
+    708:709:public void setSelectedView(android.view.View)
+    726:727:public void setSelectorBitmap(android.graphics.Bitmap)
+    736:737:public void setOnOpenListener(com.slidingmenu.lib.SlidingMenu$OnOpenListener)
+    746:747:public void setOnCloseListener(com.slidingmenu.lib.SlidingMenu$OnCloseListener)
+    755:756:public void setOnOpenedListener(com.slidingmenu.lib.SlidingMenu$OnOpenedListener)
+    764:765:public void setOnClosedListener(com.slidingmenu.lib.SlidingMenu$OnClosedListener)
+com.slidingmenu.lib.SlidingMenu$1:
+    public static final int POSITION_OPEN
+    public static final int POSITION_CLOSE
+com.slidingmenu.lib.app.SlidingActivity:
+    83:84:public void setBehindContentView(int)
+    104:104:public com.slidingmenu.lib.SlidingMenu getSlidingMenu()
+    111:112:public void toggle()
+    118:119:public void showContent()
+    125:126:public void showMenu()
+    132:133:public void showSecondaryMenu()
+    139:140:public void setSlidingActionBarEnabled(boolean)
+com.slidingmenu.lib.app.SlidingActivityBase
+com.slidingmenu.lib.app.SlidingActivityHelper:
+    153:155:public void setContentView(android.view.View)
+    196:197:public void showMenu()
+    204:205:public void showSecondaryMenu()
+com.slidingmenu.lib.app.SlidingFragmentActivity:
+    118:119:public void showContent()
+    125:126:public void showMenu()
+    132:133:public void showSecondaryMenu()
+com.slidingmenu.lib.app.SlidingListActivity:
+    87:88:public void setBehindContentView(int)
+    108:108:public com.slidingmenu.lib.SlidingMenu getSlidingMenu()
+    115:116:public void toggle()
+    122:123:public void showContent()
+    129:130:public void showMenu()
+    137:138:public void showSecondaryMenu()
+    144:145:public void setSlidingActionBarEnabled(boolean)
+com.slidingmenu.lib.app.SlidingPreferenceActivity:
+    83:84:public void setBehindContentView(int)
+    104:104:public com.slidingmenu.lib.SlidingMenu getSlidingMenu()
+    111:112:public void toggle()
+    118:119:public void showContent()
+    125:126:public void showMenu()
+    132:133:public void showSecondaryMenu()
+    139:140:public void setSlidingActionBarEnabled(boolean)
+crittercism.android.f:
+    private static final long serialVersionUID
+crittercism.android.g:
+    private static int b(byte[],byte[])
+    static synthetic byte[] a()
+    static synthetic int a(byte[],byte[])
+    static synthetic byte[] a(byte[],byte[],int)
+crittercism.android.g$a
