@@ -6,22 +6,20 @@ with sliding menus like those made popular in the Google+, YouTube, and Facebook
 to use it all you want in your Android apps provided that you cite this project and include the license in your app.
 
 SlidingMenu is currently used in some awesome Android apps. Here's a list of some of them: 
-* [Foursquare][15]
-* [LinkedIn][19]
-* [Zappos][20]
-* [Rdio][8]
-* [Evernote Food][18]
+* [Foursquare][13]
+* [LinkedIn][17]
+* [Zappos][18]
+* [Rdio][7]
+* [Evernote Food][16]
 * [Plume][4]
 * [VLC for Android][5]
-* [ESPN ScoreCenter][14]
-* [MLS MatchDay][16]
-* [9GAG][17]
-* [Wunderlist 2][13]
-* [The Verge][6]
-* [MTG Familiar][9]
-* [Mantano Reader][10]
-* [Falcon Pro (BETA)][12]
-* [MW3 Barracks][11]
+* [ESPN ScoreCenter][12]
+* [MLS MatchDay][13]
+* [9GAG][15]
+* [Wunderlist 2][11]
+* [MTG Familiar][8]
+* [Mantano Reader][9]
+* [Falcon Pro (BETA)][10]
 
 If you are using SlidingMenu in your app and would like to be listed here, please let me know via [Twitter][1]!
 
@@ -169,18 +167,16 @@ License
 [3]: https://play.google.com/store/apps/details?id=com.zappos.android&hl=en
 [4]: https://play.google.com/store/apps/details?id=com.levelup.touiteur&hl=en
 [5]: https://play.google.com/store/apps/details?id=org.videolan.vlc.betav7neon
-[6]: https://play.google.com/store/apps/details?id=com.verge.android
-[7]: http://bit.ly/TWejze
-[8]: https://play.google.com/store/apps/details?id=com.rdio.android.ui
-[9]: https://play.google.com/store/apps/details?id=com.gelakinetic.mtgfam
-[10]: https://play.google.com/store/apps/details?id=com.mantano.reader.android
-[11]: https://play.google.com/store/apps/details?id=com.phonegap.MW3BarracksFree
-[12]: http://forum.xda-developers.com/showthread.php?p=34361296
-[13]: http://bit.ly/xs1sMN
-[14]: https://play.google.com/store/apps/details?id=com.espn.score_center
-[15]: https://play.google.com/store/apps/details?id=com.joelapenna.foursquared
-[16]: https://play.google.com/store/apps/details?id=com.mlssoccer
-[17]: https://play.google.com/store/apps/details?id=com.ninegag.android.app
-[18]: https://play.google.com/store/apps/details?id=com.evernote.food
-[19]: https://play.google.com/store/apps/details?id=com.linkedin.android
-[20]: https://play.google.com/store/apps/details?id=com.zappos.android
+[6]: http://bit.ly/TWejze
+[7]: https://play.google.com/store/apps/details?id=com.rdio.android.ui
+[8]: https://play.google.com/store/apps/details?id=com.gelakinetic.mtgfam
+[9]: https://play.google.com/store/apps/details?id=com.mantano.reader.android
+[10]: http://forum.xda-developers.com/showthread.php?p=34361296
+[11]: http://bit.ly/xs1sMN
+[12]: https://play.google.com/store/apps/details?id=com.espn.score_center
+[13]: https://play.google.com/store/apps/details?id=com.joelapenna.foursquared
+[14]: https://play.google.com/store/apps/details?id=com.mlssoccer
+[15]: https://play.google.com/store/apps/details?id=com.ninegag.android.app
+[16]: https://play.google.com/store/apps/details?id=com.evernote.food
+[17]: https://play.google.com/store/apps/details?id=com.linkedin.android
+[18]: https://play.google.com/store/apps/details?id=com.zappos.android
