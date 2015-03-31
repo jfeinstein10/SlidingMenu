@@ -20,3 +20,6 @@ gen
 target/
 
 *.iml
+
+# Gradle build
+library/build/
