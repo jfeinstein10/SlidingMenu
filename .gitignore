@@ -20,3 +20,8 @@ gen
 target/
 
 *.iml
+
+# Gradle build
+library/.gradle/
+library/build/
+library/local.properties
