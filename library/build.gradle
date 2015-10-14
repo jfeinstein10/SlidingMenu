@@ -9,7 +9,7 @@ buildscript {
 apply plugin: 'com.android.library'
 
 dependencies {
-    compile 'com.android.support:support-v4:13.0.0'
+    compile 'com.android.support:support-v4:23.0.1'
 }
 
 android {
