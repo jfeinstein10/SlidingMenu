@@ -933,7 +933,7 @@ public class SlidingMenu extends RelativeLayout {
 	 * Add listener for fragment back stack changes
 	 * @param listener - Listener that will respond on fragment back stack change.
 	 */
-	public void addOnFragmentChangedListener(OnFragmentChangeListener listener) {
+	public void addOnFragmentChangedListener(OnFragmentChangeListener listener) throws IllegalArgumentException {
 		Context context = getContext();
 		
 		if(!(context instanceof Activity)){
