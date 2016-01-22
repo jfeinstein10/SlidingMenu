@@ -1,6 +1,7 @@
 package com.jeremyfeinstein.slidingmenu.lib;
 
 import java.lang.reflect.Method;
+import java.util.HashSet;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -36,6 +37,7 @@ public class SlidingMenu extends RelativeLayout {
 	public static final int SLIDING_WINDOW = 0;
 	public static final int SLIDING_CONTENT = 1;
 	private boolean mActionbarOverlay = false;
+	private HashSet<OnFragmentChangeListener> onFragmentChangeListeners;
 
 	/** Constant value for use with setTouchModeAbove(). Allows the SlidingMenu to be opened with a swipe
 	 * gesture on the screen's margin
@@ -921,6 +923,26 @@ public class SlidingMenu extends RelativeLayout {
 	public void setOnClosedListener(OnClosedListener listener) {
 		mViewAbove.setOnClosedListener(listener);
 	}
+	
+	/**
+	 * Add listener for fragment back stack changes
+	 * @param listener - Listener that will respond on fragment back stack change.
+	 */
+	public void addOnFragmentChangedListener(OnFragmentChangeListener listener) {
+		if(onFragmentChangeListeners == null){
+			onFragmentChangeListeners = new HashSet<OnFragmentChangeListener>();
+		}
+		
+		onFragmentChangeListeners.add(listener);
+	}
+	
+	/**
+	 * Remove listener for fragment back stack changes
+	 * @param listener - Listener that will be removed.
+	 */
+	public void removeOnFragmentChangedListener(OnFragmentChangeListener listener){
+		onFragmentChangeListeners.remove(listener);
+	}
 
 	public static class SavedState extends BaseSavedState {
 
@@ -960,7 +982,7 @@ public class SlidingMenu extends RelativeLayout {
 		};
 
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see android.view.View#onSaveInstanceState()
 	 */
