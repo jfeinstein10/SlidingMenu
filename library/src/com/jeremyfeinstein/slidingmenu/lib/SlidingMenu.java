@@ -1,10 +1,15 @@
 package com.jeremyfeinstein.slidingmenu.lib;
 
+import java.lang.ref.SoftReference;
 import java.lang.reflect.Method;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.FragmentManager.OnBackStackChangedListener;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -14,9 +19,9 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.os.Handler;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.v4.app.FragmentActivity;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Display;
@@ -36,6 +41,10 @@ public class SlidingMenu extends RelativeLayout {
 	public static final int SLIDING_WINDOW = 0;
 	public static final int SLIDING_CONTENT = 1;
 	private boolean mActionbarOverlay = false;
+	
+	private List<SoftReference<OnFragmentChangeListener>> onFragmentChangeListeners;
+	private OnBackStackChangedListener backStackChangedListener;
+	private android.support.v4.app.FragmentManager.OnBackStackChangedListener supportBackStackChangedListener;
 
 	/** Constant value for use with setTouchModeAbove(). Allows the SlidingMenu to be opened with a swipe
 	 * gesture on the screen's margin
@@ -921,6 +930,64 @@ public class SlidingMenu extends RelativeLayout {
 	public void setOnClosedListener(OnClosedListener listener) {
 		mViewAbove.setOnClosedListener(listener);
 	}
+	
+	/**
+	 * Add listener for fragment back stack changes
+	 * @param listener - Listener that will respond on fragment back stack change.
+	 */
+	public void addOnFragmentChangedListener(OnFragmentChangeListener listener) throws IllegalArgumentException {
+		Context context = getContext();
+
+		if (!(context instanceof Activity)) {
+			throw new IllegalArgumentException(
+					"Can't subscribe with OnFragmentChangeListener to not activity context.");
+		}
+
+		if (onFragmentChangeListeners == null) {
+			onFragmentChangeListeners = new LinkedList<SoftReference<OnFragmentChangeListener>>();
+		}
+
+		if (context instanceof FragmentActivity) {
+			initSupportBackStackListener((FragmentActivity) context);
+		} else {
+			initBackStackListener((Activity) context);
+		}
+
+		boolean canAdd = true;
+		for (SoftReference<OnFragmentChangeListener> reference : onFragmentChangeListeners) {
+			if (reference.get() == listener) {
+				canAdd = false;
+			}
+		}
+
+		if (canAdd) {
+			onFragmentChangeListeners.add(new SoftReference<OnFragmentChangeListener>(listener));
+		}
+	}
+	
+	/**
+	 * Remove listener for fragment back stack changes
+	 * @param listener - Listener that will be removed.
+	 */
+	public void removeOnFragmentChangedListener(OnFragmentChangeListener listener) {
+		Context context = getContext();
+
+		Iterator<SoftReference<OnFragmentChangeListener>> itr = onFragmentChangeListeners.iterator();
+		while (itr.hasNext()) {
+			SoftReference<OnFragmentChangeListener> element = itr.next();
+			if (element.get() == listener) {
+				itr.remove();
+			}
+		}
+
+		if (onFragmentChangeListeners != null && onFragmentChangeListeners.isEmpty()) {
+			if (context instanceof FragmentActivity) {
+				uninitSupportBackStackChangeListener((FragmentActivity) context);
+			} else {
+				uninitBackStackChangeListener((Activity) context);
+			}
+		}
+	}
 
 	public static class SavedState extends BaseSavedState {
 
@@ -960,7 +1027,7 @@ public class SlidingMenu extends RelativeLayout {
 		};
 
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see android.view.View#onSaveInstanceState()
 	 */
@@ -1016,6 +1083,57 @@ public class SlidingMenu extends RelativeLayout {
 					}
 				}
 			});
+		}
+	}
+	
+	private void initSupportBackStackListener(FragmentActivity fragmentActivity) {
+		if (supportBackStackChangedListener == null) {
+			supportBackStackChangedListener = new android.support.v4.app.FragmentManager.OnBackStackChangedListener() {
+				@Override
+				public void onBackStackChanged() {
+					runOnFragmentChangeListeners();
+				}
+			};
+
+			fragmentActivity.getSupportFragmentManager().addOnBackStackChangedListener(supportBackStackChangedListener);
+		}
+	}
+	
+	@SuppressLint("NewApi")
+	private void initBackStackListener(Activity activity) {
+		if (backStackChangedListener == null) {
+			backStackChangedListener = new OnBackStackChangedListener() {
+				@Override
+				public void onBackStackChanged() {
+					runOnFragmentChangeListeners();
+				}
+			};
+
+			activity.getFragmentManager().addOnBackStackChangedListener(backStackChangedListener);
+		}
+	}
+	
+	private void uninitSupportBackStackChangeListener(FragmentActivity activity) {
+		if (supportBackStackChangedListener != null) {
+			activity.getSupportFragmentManager().removeOnBackStackChangedListener(supportBackStackChangedListener);
+			supportBackStackChangedListener = null;
+		}
+	}
+	
+	@SuppressLint("NewApi")
+	private void uninitBackStackChangeListener(Activity activity) {
+		if (backStackChangedListener != null) {
+			activity.getFragmentManager().removeOnBackStackChangedListener(backStackChangedListener);
+			backStackChangedListener = null;
+		}
+	}
+	
+	private void runOnFragmentChangeListeners() {
+		for (SoftReference<OnFragmentChangeListener> softRef : onFragmentChangeListeners) {
+			OnFragmentChangeListener listener = softRef.get();
+			if (listener != null) {
+				listener.onFragmentChanged();
+			}
 		}
 	}
 
