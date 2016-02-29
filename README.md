@@ -100,7 +100,7 @@ If you decide to use SlidingMenu as a view, you can define it in your xml layout
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     sliding:viewAbove="@layout/YOUR_ABOVE_VIEW"
-    sliding:viewBehind="@layout/YOUR_BEHIND_BEHIND"
+    sliding:viewBehind="@layout/YOUR_BEHIND_VIEW"
     sliding:touchModeAbove="margin|fullscreen"
     sliding:behindOffset="@dimen/YOUR_OFFSET"
     sliding:behindWidth="@dimen/YOUR_WIDTH"
