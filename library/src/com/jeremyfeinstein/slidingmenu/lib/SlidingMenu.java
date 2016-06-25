@@ -1,7 +1,5 @@
 package com.jeremyfeinstein.slidingmenu.lib;
 
-import java.lang.reflect.Method;
-
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -14,7 +12,6 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.os.Handler;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
@@ -28,6 +25,8 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import com.jeremyfeinstein.slidingmenu.lib.CustomViewAbove.OnPageChangeListener;
+
+import java.lang.reflect.Method;
 
 public class SlidingMenu extends RelativeLayout {
 
@@ -88,7 +87,7 @@ public class SlidingMenu extends RelativeLayout {
 		/**
 		 * On open.
 		 */
-		public void onOpen();
+		void onOpen();
 	}
 
 	/**
@@ -107,7 +106,7 @@ public class SlidingMenu extends RelativeLayout {
 		/**
 		 * On opened.
 		 */
-		public void onOpened();
+		void onOpened();
 	}
 
 	/**
@@ -126,7 +125,7 @@ public class SlidingMenu extends RelativeLayout {
 		/**
 		 * On close.
 		 */
-		public void onClose();
+		void onClose();
 	}
 
 	/**
@@ -145,7 +144,7 @@ public class SlidingMenu extends RelativeLayout {
 		/**
 		 * On closed.
 		 */
-		public void onClosed();
+		void onClosed();
 	}
 
 	/**
@@ -159,7 +158,7 @@ public class SlidingMenu extends RelativeLayout {
 		 * @param canvas the canvas
 		 * @param percentOpen the percent open
 		 */
-		public void transformCanvas(Canvas canvas, float percentOpen);
+		void transformCanvas(Canvas canvas, float percentOpen);
 	}
 
 	/**
