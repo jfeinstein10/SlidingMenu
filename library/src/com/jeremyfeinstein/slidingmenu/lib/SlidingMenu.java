@@ -18,6 +18,8 @@ import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Display;
+import android.view.KeyCharacterMap;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -330,6 +332,7 @@ public class SlidingMenu extends RelativeLayout {
 				decor.removeView(decorChild);
 				decor.addView(this);
 				setContent(decorChild);
+
 				break;
 			case SLIDING_CONTENT:
 				mActionbarOverlay = actionbarOverlay;
@@ -1009,12 +1012,21 @@ public class SlidingMenu extends RelativeLayout {
 		int bottomPadding = insets.bottom;
 		if (!mActionbarOverlay) {
 			Log.v(TAG, "setting padding!");
-			setPadding(leftPadding, topPadding, rightPadding, navKeysHeight());
+			setPadding(leftPadding, topPadding, rightPadding, bottomPadding);
+		}
+		if (Build.VERSION.SDK_INT >= 21) {
+			setSystemUiVisibility(SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
 		}
 		return true;
 	}
 
 	public int navKeysHeight() {
+		boolean hasBackKey = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_BACK);
+		boolean hasHomeKey = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_HOME);
+
+		if (hasBackKey && hasHomeKey) {
+			return 0;
+		}
 		Resources resources = getContext().getResources();
 		int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
 		if (resourceId > 0) {
