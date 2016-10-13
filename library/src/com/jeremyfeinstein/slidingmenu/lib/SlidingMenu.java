@@ -264,7 +264,7 @@ public class SlidingMenu extends RelativeLayout {
 			setBehindOffset(0);
 		float scrollOffsetBehind = ta.getFloat(R.styleable.SlidingMenu_behindScrollScale, 0.33f);
 		setBehindScrollScale(scrollOffsetBehind);
-		int shadowRes = ta.getResourceId(R.styleable.SlidingMenu_shadowDrawable, -1);
+		int shadowRes = ta.getResourceId(R.styleable.SlidingMenu_slidingShadowDrawable, -1);
 		if (shadowRes != -1) {
 			setShadowDrawable(shadowRes);
 		}
