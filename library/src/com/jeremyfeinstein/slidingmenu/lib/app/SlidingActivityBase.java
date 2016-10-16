@@ -14,7 +14,7 @@ public interface SlidingActivityBase {
 	 * @param view The desired content to display.
 	 * @param layoutParams Layout parameters for the view.
 	 */
-	public void setBehindContentView(View view, LayoutParams layoutParams);
+	void setBehindContentView(View view, LayoutParams layoutParams);
 
 	/**
 	 * Set the behind view content to an explicit view. This view is placed directly into the behind view 's view hierarchy.
@@ -24,7 +24,7 @@ public interface SlidingActivityBase {
 	 *
 	 * @param view The desired content to display.
 	 */
-	public void setBehindContentView(View view);
+	void setBehindContentView(View view);
 
 	/**
 	 * Set the behind view content from a layout resource. The resource will be inflated, adding all top-level views
@@ -32,35 +32,35 @@ public interface SlidingActivityBase {
 	 *
 	 * @param layoutResID Resource ID to be inflated.
 	 */
-	public void setBehindContentView(int layoutResID);
+	void setBehindContentView(int layoutResID);
 
 	/**
 	 * Gets the SlidingMenu associated with this activity.
 	 *
 	 * @return the SlidingMenu associated with this activity.
 	 */
-	public SlidingMenu getSlidingMenu();
+	SlidingMenu getSlidingMenu();
 		
 	/**
 	 * Toggle the SlidingMenu. If it is open, it will be closed, and vice versa.
 	 */
-	public void toggle();
+	void toggle();
 	
 	/**
 	 * Close the SlidingMenu and show the content view.
 	 */
-	public void showContent();
+	void showContent();
 	
 	/**
 	 * Open the SlidingMenu and show the menu view.
 	 */
-	public void showMenu();
+	void showMenu();
 
 	/**
 	 * Open the SlidingMenu and show the secondary (right) menu view. Will default to the regular menu
 	 * if there is only one.
 	 */
-	public void showSecondaryMenu();
+	void showSecondaryMenu();
 	
 	/**
 	 * Controls whether the ActionBar slides along with the above view when the menu is opened,
@@ -69,6 +69,6 @@ public interface SlidingActivityBase {
 	 * @param slidingActionBarEnabled True if you want the ActionBar to slide along with the SlidingMenu,
 	 * false if you want the ActionBar to stay in place
 	 */
-	public void setSlidingActionBarEnabled(boolean slidingActionBarEnabled);
+	void setSlidingActionBarEnabled(boolean slidingActionBarEnabled);
 	
 }
