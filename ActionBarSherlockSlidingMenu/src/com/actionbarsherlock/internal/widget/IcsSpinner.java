@@ -78,6 +78,10 @@ public class IcsSpinner extends IcsAbsSpinner implements OnClickListener {
 
     private Rect mTempRect = new Rect();
 
+    public IcsSpinner(Context context, AttributeSet attrs) {
+        this(context, attrs, R.attr.actionDropDownStyle);
+    }
+
     /**
      * Construct a new spinner with the given context's theme, the supplied attribute set,
      * and default style.

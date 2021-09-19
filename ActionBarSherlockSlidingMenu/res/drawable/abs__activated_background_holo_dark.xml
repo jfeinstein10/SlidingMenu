@@ -14,8 +14,7 @@
      limitations under the License.
 -->
 
-<selector xmlns:android="http://schemas.android.com/apk/res/android"
-        android:exitFadeDuration="@android:integer/config_mediumAnimTime">
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_activated="true" android:drawable="@drawable/abs__list_activated_holo" />
     <item android:drawable="@android:color/transparent" />
 </selector>

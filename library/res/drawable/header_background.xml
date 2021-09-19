@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:top="35dp">
+        <shape android:shape="rectangle" >
+            <solid android:color="@color/holo_blue_bright" />
+
+            <size android:height="@dimen/menu_header_line" />
+        </shape>
+    </item>
+
+</layer-list>

@@ -1,12 +1,14 @@
 package com.actionbarsherlock;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
-
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Iterator;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -18,8 +20,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-
 import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.internal.ActionBarSherlockCompat;
+import com.actionbarsherlock.internal.ActionBarSherlockNative;
 import com.actionbarsherlock.view.ActionMode;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -34,11 +37,36 @@ import com.actionbarsherlock.view.MenuItem;
  * counterpart and you should refer to its documentation for instruction.</p>
  *
  * @author Jake Wharton <jakewharton@gmail.com>
- * @version 4.0.0
  */
 public abstract class ActionBarSherlock {
     protected static final String TAG = "ActionBarSherlock";
     protected static final boolean DEBUG = false;
+
+    private static final Class<?>[] CONSTRUCTOR_ARGS = new Class[] { Activity.class, int.class };
+    private static final HashMap<Implementation, Class<? extends ActionBarSherlock>> IMPLEMENTATIONS =
+            new HashMap<Implementation, Class<? extends ActionBarSherlock>>();
+
+    static {
+        //Register our two built-in implementations
+        registerImplementation(ActionBarSherlockCompat.class);
+//        registerImplementation(ActionBarSherlockNative.class);
+    }
+
+
+    /**
+     * <p>Denotes an implementation of ActionBarSherlock which provides an
+     * action bar-enhanced experience.</p>
+     */
+    @Target(ElementType.TYPE)
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface Implementation {
+        static final int DEFAULT_API = -1;
+        static final int DEFAULT_DPI = -1;
+
+        int api() default DEFAULT_API;
+        int dpi() default DEFAULT_DPI;
+    }
+
 
     /** Activity interface for menu creation callback. */
     public interface OnCreatePanelMenuListener {
@@ -82,6 +110,39 @@ public abstract class ActionBarSherlock {
      */
     public static final int FLAG_DELEGATE = 1;
 
+
+    /**
+     * Register an ActionBarSherlock implementation.
+     *
+     * @param implementationClass Target implementation class which extends
+     * {@link ActionBarSherlock}. This class must also be annotated with
+     * {@link Implementation}.
+     */
+    public static void registerImplementation(Class<? extends ActionBarSherlock> implementationClass) {
+        if (!implementationClass.isAnnotationPresent(Implementation.class)) {
+            throw new IllegalArgumentException("Class " + implementationClass.getSimpleName() + " is not annotated with @Implementation");
+        } else if (IMPLEMENTATIONS.containsValue(implementationClass)) {
+            if (DEBUG) Log.w(TAG, "Class " + implementationClass.getSimpleName() + " already registered");
+            return;
+        }
+
+        Implementation impl = implementationClass.getAnnotation(Implementation.class);
+        if (DEBUG) Log.i(TAG, "Registering " + implementationClass.getSimpleName() + " with qualifier " + impl);
+        IMPLEMENTATIONS.put(impl, implementationClass);
+    }
+
+    /**
+     * Unregister an ActionBarSherlock implementation. <strong>This should be
+     * considered very volatile and you should only use it if you know what
+     * you are doing.</strong> You have been warned.
+     *
+     * @param implementationClass Target implementation class.
+     * @return Boolean indicating whether the class was removed.
+     */
+    public static boolean unregisterImplementation(Class<? extends ActionBarSherlock> implementationClass) {
+        return IMPLEMENTATIONS.values().remove(implementationClass);
+    }
+
     /**
      * Wrap an activity with an action bar abstraction which will enable the
      * use of a custom implementation on platforms where a native version does
@@ -104,7 +165,80 @@ public abstract class ActionBarSherlock {
      * @return Instance to interact with the action bar.
      */
     public static ActionBarSherlock wrap(Activity activity, int flags) {
-        return new ActionBarSherlockCompat(activity, flags);
+        //Create a local implementation map we can modify
+        HashMap<Implementation, Class<? extends ActionBarSherlock>> impls =
+                new HashMap<Implementation, Class<? extends ActionBarSherlock>>(IMPLEMENTATIONS);
+        boolean hasQualfier;
+
+        /* DPI FILTERING */
+        hasQualfier = false;
+        for (Implementation key : impls.keySet()) {
+            //Only honor TVDPI as a specific qualifier
+            if (key.dpi() == DisplayMetrics.DENSITY_TV) {
+                hasQualfier = true;
+                break;
+            }
+        }
+        if (hasQualfier) {
+            final boolean isTvDpi = activity.getResources().getDisplayMetrics().densityDpi == DisplayMetrics.DENSITY_TV;
+            for (Iterator<Implementation> keys = impls.keySet().iterator(); keys.hasNext(); ) {
+                int keyDpi = keys.next().dpi();
+                if ((isTvDpi && keyDpi != DisplayMetrics.DENSITY_TV)
+                        || (!isTvDpi && keyDpi == DisplayMetrics.DENSITY_TV)) {
+                    keys.remove();
+                }
+            }
+        }
+
+        /* API FILTERING */
+        hasQualfier = false;
+        for (Implementation key : impls.keySet()) {
+            if (key.api() != Implementation.DEFAULT_API) {
+                hasQualfier = true;
+                break;
+            }
+        }
+        if (hasQualfier) {
+            final int runtimeApi = Build.VERSION.SDK_INT;
+            int bestApi = 0;
+            for (Iterator<Implementation> keys = impls.keySet().iterator(); keys.hasNext(); ) {
+                int keyApi = keys.next().api();
+                if (keyApi > runtimeApi) {
+                    keys.remove();
+                } else if (keyApi > bestApi) {
+                    bestApi = keyApi;
+                }
+            }
+            for (Iterator<Implementation> keys = impls.keySet().iterator(); keys.hasNext(); ) {
+                if (keys.next().api() != bestApi) {
+                    keys.remove();
+                }
+            }
+        }
+
+        if (impls.size() > 1) {
+            throw new IllegalStateException("More than one implementation matches configuration.");
+        }
+        if (impls.isEmpty()) {
+            throw new IllegalStateException("No implementations match configuration.");
+        }
+        Class<? extends ActionBarSherlock> impl = impls.values().iterator().next();
+        if (DEBUG) Log.i(TAG, "Using implementation: " + impl.getSimpleName());
+
+        try {
+            Constructor<? extends ActionBarSherlock> ctor = impl.getConstructor(CONSTRUCTOR_ARGS);
+            return ctor.newInstance(activity, flags);
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalArgumentException e) {
+            throw new RuntimeException(e);
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        } catch (InvocationTargetException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
@@ -389,6 +523,20 @@ public abstract class ActionBarSherlock {
      */
     public void dispatchPanelClosed(int featureId, android.view.Menu menu) {}
 
+    /**
+     * Notify the action bar that the activity has been destroyed. This method
+     * should be called before the superclass implementation.
+     *
+     * <blockquote><p>
+     * @Override
+     * public void onDestroy() {
+     *     mSherlock.dispatchDestroy();
+     *     super.onDestroy();
+     * }
+     * </p></blockquote>
+     */
+    public void dispatchDestroy() {}
+
 
     ///////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////
@@ -528,15 +676,15 @@ public abstract class ActionBarSherlock {
      */
     public abstract void setContentView(View view, ViewGroup.LayoutParams params);
 
-//    /**
-//     * Variation on {@link #setContentView(android.view.View, android.view.ViewGroup.LayoutParams)}
-//     * to add an additional content view to the screen. Added after any
-//     * existing ones on the screen -- existing views are NOT removed.
-//     *
-//     * @param view The desired content to display.
-//     * @param params Layout parameters for the view.
-//     */
-//    public abstract void addContentView(View view, ViewGroup.LayoutParams params);
+    /**
+     * Variation on {@link #setContentView(android.view.View, android.view.ViewGroup.LayoutParams)}
+     * to add an additional content view to the screen. Added after any
+     * existing ones on the screen -- existing views are NOT removed.
+     *
+     * @param view The desired content to display.
+     * @param params Layout parameters for the view.
+     */
+    public abstract void addContentView(View view, ViewGroup.LayoutParams params);
 
     /**
      * Change the title associated with this activity.

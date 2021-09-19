@@ -19,38 +19,41 @@ This is an optimized layout for a screen with
 the Action Bar enabled overlaying application content.
 -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:fitsSystemWindows="true">
     <com.actionbarsherlock.internal.nineoldandroids.widget.NineFrameLayout android:id="@+id/abs__content"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
     <com.actionbarsherlock.internal.widget.ActionBarContainer android:id="@+id/abs__action_bar_container"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         style="?attr/actionBarStyle"
         android:gravity="top">
         <com.actionbarsherlock.internal.widget.ActionBarView
             android:id="@+id/abs__action_bar"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="?attr/actionBarStyle" />
         <com.actionbarsherlock.internal.widget.ActionBarContextView
             android:id="@+id/abs__action_context_bar"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
             style="?attr/actionModeStyle" />
     </com.actionbarsherlock.internal.widget.ActionBarContainer>
     <ImageView android:src="?attr/windowContentOverlay"
                android:scaleType="fitXY"
-               android:layout_width="fill_parent"
+               android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:layout_below="@id/abs__action_bar_container" />
     <com.actionbarsherlock.internal.widget.ActionBarContainer android:id="@+id/abs__split_action_bar"
-                  android:layout_width="fill_parent"
+                  android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:layout_alignParentBottom="true"
+                  android:layout_gravity="bottom"
                   style="?attr/actionBarSplitStyle"
                   android:visibility="gone"
                   android:gravity="center"/>
-</RelativeLayout>
+</FrameLayout>

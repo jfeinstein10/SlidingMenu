@@ -107,6 +107,30 @@ public class IcsLinearLayout extends NineLinearLayout {
     }
 
     /**
+     * Set padding displayed on both ends of dividers.
+     *
+     * @param padding Padding value in pixels that will be applied to each end
+     *
+     * @see #setShowDividers(int)
+     * @see #setDividerDrawable(Drawable)
+     * @see #getDividerPadding()
+     */
+    public void setDividerPadding(int padding) {
+        mDividerPadding = padding;
+    }
+
+    /**
+     * Get the padding size used to inset dividers in pixels
+     *
+     * @see #setShowDividers(int)
+     * @see #setDividerDrawable(Drawable)
+     * @see #setDividerPadding(int)
+     */
+    public int getDividerPadding() {
+        return mDividerPadding;
+    }
+
+    /**
      * Get the width of the current divider drawable.
      *
      * @hide Used internally by framework.

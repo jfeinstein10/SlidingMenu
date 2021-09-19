@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
-
+import android.view.ViewGroup.LayoutParams;
 import com.actionbarsherlock.ActionBarSherlock;
 import com.actionbarsherlock.ActionBarSherlock.OnActionModeFinishedListener;
 import com.actionbarsherlock.ActionBarSherlock.OnActionModeStartedListener;
@@ -21,7 +21,7 @@ import com.actionbarsherlock.view.MenuItem;
 public abstract class SherlockActivity extends Activity implements OnCreatePanelMenuListener, OnPreparePanelListener, OnMenuItemSelectedListener, OnActionModeStartedListener, OnActionModeFinishedListener {
     private ActionBarSherlock mSherlock;
 
-    public final ActionBarSherlock getSherlock() {
+    protected final ActionBarSherlock getSherlock() {
         if (mSherlock == null) {
             mSherlock = ActionBarSherlock.wrap(this, ActionBarSherlock.FLAG_DELEGATE);
         }
@@ -74,6 +74,12 @@ public abstract class SherlockActivity extends Activity implements OnCreatePanel
     protected void onStop() {
         getSherlock().dispatchStop();
         super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        getSherlock().dispatchDestroy();
+        super.onDestroy();
     }
 
     @Override
@@ -138,7 +144,7 @@ public abstract class SherlockActivity extends Activity implements OnCreatePanel
     }
 
     @Override
-    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+    public final boolean onOptionsItemSelected(android.view.MenuItem item) {
         return getSherlock().dispatchOptionsItemSelected(item);
     }
 
@@ -202,25 +208,25 @@ public abstract class SherlockActivity extends Activity implements OnCreatePanel
     // Content
     ///////////////////////////////////////////////////////////////////////////
 
-//    @Override
-//    public void addContentView(View view, LayoutParams params) {
-//        getSherlock().addContentView(view, params);
-//    }
-//
-//    @Override
-//    public void setContentView(int layoutResId) {
-//        getSherlock().setContentView(layoutResId);
-//    }
-//
-//    @Override
-//    public void setContentView(View view, LayoutParams params) {
-//        getSherlock().setContentView(view, params);
-//    }
-//
-//    @Override
-//    public void setContentView(View view) {
-//        getSherlock().setContentView(view);
-//    }
+    @Override
+    public void addContentView(View view, LayoutParams params) {
+        getSherlock().addContentView(view, params);
+    }
+
+    @Override
+    public void setContentView(int layoutResId) {
+        getSherlock().setContentView(layoutResId);
+    }
+
+    @Override
+    public void setContentView(View view, LayoutParams params) {
+        getSherlock().setContentView(view, params);
+    }
+
+    @Override
+    public void setContentView(View view) {
+        getSherlock().setContentView(view);
+    }
 
     public void requestWindowFeature(long featureId) {
         getSherlock().requestFeature((int)featureId);

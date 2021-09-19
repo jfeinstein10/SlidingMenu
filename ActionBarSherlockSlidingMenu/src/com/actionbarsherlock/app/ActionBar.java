@@ -16,10 +16,9 @@
 
 package com.actionbarsherlock.app;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.support.v4.app.FragmentTransaction;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -27,8 +26,6 @@ import android.view.ViewDebug;
 import android.view.ViewGroup;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.SpinnerAdapter;
-
-import com.actionbarsherlock.view.Window;
 
 /**
  * A window feature at the top of the activity that may display the activity title, navigation

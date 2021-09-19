@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import com.actionbarsherlock.ActionBarSherlock;
-import com.actionbarsherlock.ActionBarSherlockCompat;
 import com.actionbarsherlock.ActionBarSherlock.OnActionModeFinishedListener;
 import com.actionbarsherlock.ActionBarSherlock.OnActionModeStartedListener;
 import com.actionbarsherlock.ActionBarSherlock.OnCreatePanelMenuListener;
@@ -24,7 +23,7 @@ public abstract class SherlockExpandableListActivity extends ExpandableListActiv
 
     protected final ActionBarSherlock getSherlock() {
         if (mSherlock == null) {
-          mSherlock = ActionBarSherlock.wrap(this, ActionBarSherlock.FLAG_DELEGATE);
+            mSherlock = ActionBarSherlock.wrap(this, ActionBarSherlock.FLAG_DELEGATE);
         }
         return mSherlock;
     }
@@ -75,6 +74,12 @@ public abstract class SherlockExpandableListActivity extends ExpandableListActiv
     protected void onStop() {
         getSherlock().dispatchStop();
         super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        getSherlock().dispatchDestroy();
+        super.onDestroy();
     }
 
     @Override
@@ -203,29 +208,29 @@ public abstract class SherlockExpandableListActivity extends ExpandableListActiv
     // Content
     ///////////////////////////////////////////////////////////////////////////
 
-//    @Override
-//    public void addContentView(View view, LayoutParams params) {
-//        getSherlock().addContentView(view, params);
-//    }
-//
-//    @Override
-//    public void setContentView(int layoutResId) {
-//        getSherlock().setContentView(layoutResId);
-//    }
-//
-//    @Override
-//    public void setContentView(View view, LayoutParams params) {
-//        getSherlock().setContentView(view, params);
-//    }
-//
-//    @Override
-//    public void setContentView(View view) {
-//        getSherlock().setContentView(view);
-//    }
-//
-//    public void requestWindowFeature(long featureId) {
-//        getSherlock().requestFeature((int)featureId);
-//    }
+    @Override
+    public void addContentView(View view, LayoutParams params) {
+        getSherlock().addContentView(view, params);
+    }
+
+    @Override
+    public void setContentView(int layoutResId) {
+        getSherlock().setContentView(layoutResId);
+    }
+
+    @Override
+    public void setContentView(View view, LayoutParams params) {
+        getSherlock().setContentView(view, params);
+    }
+
+    @Override
+    public void setContentView(View view) {
+        getSherlock().setContentView(view);
+    }
+
+    public void requestWindowFeature(long featureId) {
+        getSherlock().requestFeature((int)featureId);
+    }
 
 
     ///////////////////////////////////////////////////////////////////////////

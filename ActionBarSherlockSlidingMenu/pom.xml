@@ -11,7 +11,7 @@
 	<parent>
 		<groupId>com.actionbarsherlock</groupId>
 		<artifactId>parent</artifactId>
-		<version>4.0.1</version>
+		<version>4.1.0</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
@@ -148,39 +148,4 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-
-	<profiles>
-		<profile>
-			<id>release</id>
-			<activation>
-				<property>
-					<name>performRelease</name>
-					<value>true</value>
-				</property>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>com.jayway.maven.plugins.android.generation2</groupId>
-						<artifactId>android-maven-plugin</artifactId>
-						<version>${android-maven.version}</version>
-						<configuration>
-							<manifest>
-								<versionCodeAutoIncrement>true</versionCodeAutoIncrement>
-							</manifest>
-						</configuration>
-						<executions>
-							<execution>
-								<id>manifestUpdate</id>
-								<phase>process-resources</phase>
-								<goals>
-									<goal>manifest-update</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 </project>

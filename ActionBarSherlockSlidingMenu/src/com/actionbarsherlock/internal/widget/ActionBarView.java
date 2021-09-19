@@ -46,10 +46,10 @@ import android.widget.LinearLayout;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
-import com.actionbarsherlock.ActionBarSherlockCompat;
 import com.actionbarsherlock.R;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.OnNavigationListener;
+import com.actionbarsherlock.internal.ActionBarSherlockCompat;
 import com.actionbarsherlock.internal.view.menu.ActionMenuItem;
 import com.actionbarsherlock.internal.view.menu.ActionMenuPresenter;
 import com.actionbarsherlock.internal.view.menu.ActionMenuView;
@@ -63,7 +63,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.Window;
 
-import static com.actionbarsherlock.ResourcesCompat.getResources_getBoolean;
+import static com.actionbarsherlock.internal.ResourcesCompat.getResources_getBoolean;
 
 /**
  * @hide
@@ -132,7 +132,7 @@ public class ActionBarView extends AbsActionBarView {
     private SpinnerAdapter mSpinnerAdapter;
     private OnNavigationListener mCallback;
 
-    private Runnable mTabSelector;
+    //UNUSED private Runnable mTabSelector;
 
     private ExpandedActionViewMenuPresenter mExpandedMenuPresenter;
     View mExpandedActionView;
@@ -383,7 +383,7 @@ public class ActionBarView extends AbsActionBarView {
     @Override
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        removeCallbacks(mTabSelector);
+        //UNUSED removeCallbacks(mTabSelector);
         if (mActionMenuPresenter != null) {
             mActionMenuPresenter.hideOverflowMenu();
             mActionMenuPresenter.hideSubMenus();

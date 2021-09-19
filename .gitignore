@@ -1,8 +1,14 @@
 *.class
 
 # Package Files #
-*.jar
+*.dex
 *.war
 *.ear
+*.apk
 bin/
+bin
 gen/
+gen
+.metadata/
+.metadata
+*.project
